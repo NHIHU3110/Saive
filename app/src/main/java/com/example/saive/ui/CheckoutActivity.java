@@ -84,7 +84,7 @@ public class CheckoutActivity extends BaseActivity {
 
     private void loadIntentData() {
         totalPrice = getIntent().getStringExtra("total_price");
-        discount = getIntent().getDoubleExtra("discount", 0);
+        discount = getIntent().getDoubleExtra("discount_rate", 0);
         if (totalPrice != null) {
             btnAction.setText(getString(R.string.btn_continue_payment) + " (" + totalPrice + ")");
         }

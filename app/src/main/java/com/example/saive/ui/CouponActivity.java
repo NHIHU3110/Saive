@@ -3,6 +3,7 @@ package com.example.saive.ui;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -75,7 +76,14 @@ public class CouponActivity extends BaseActivity {
             clipboard.setPrimaryClip(clip);
             
             showCustomToast("Code " + coupon.getCode() + " copied to clipboard");
+            
+            // Navigate back to Cart and pass the code
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra("COUPON_CODE", coupon.getCode());
+            setResult(RESULT_OK, resultIntent);
+            
             dialog.dismiss();
+            finish();
         });
 
         dialog.setContentView(view);

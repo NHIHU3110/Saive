@@ -215,6 +215,7 @@
         <item>Quận Cầu Giấy</item>
         <item>Quận Thanh Xuân</item>
     </string-array>
+    <string name="menu_my_coupons">Kho Voucher của tôi</string>
     <string name="btn_explore_collection">KHÁM PHÁ BỘ SƯU TẬP</string>
     <string name="bulletin_header">BẢNG TIN</string>
     <string name="posted_time">Đã đăng %1$s trước</string>

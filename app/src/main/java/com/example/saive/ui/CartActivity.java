@@ -81,6 +81,25 @@ public class CartActivity extends AppCompatActivity {
         btnApplyCoupon.setOnClickListener(v -> {
             applyCoupon();
         });
+
+        // Add click listener to etCoupon or a container to open CouponActivity
+        etCoupon.setFocusable(false);
+        etCoupon.setOnClickListener(v -> {
+            Intent intent = new Intent(CartActivity.this, CouponActivity.class);
+            startActivityForResult(intent, 1001);
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1001 && resultCode == RESULT_OK && data != null) {
+            String code = data.getStringExtra("COUPON_CODE");
+            if (code != null) {
+                etCoupon.setText(code);
+                applyCoupon();
+            }
+        }
     }
 
     private void applyCoupon() {
@@ -91,7 +110,23 @@ public class CartActivity extends AppCompatActivity {
         }
 
         // Logic kiểm tra mã giảm giá
-        if (code.equals("SAIVE_S24_EXTRA")) {
+        if (code.equals("WELCOME20")) {
+            currentDiscountRate = 0.20;
+            appliedCouponCode = code;
+            ToastUtils.showCustomToast(this, "Đã áp dụng mã giảm giá 20%");
+        } else if (code.equals("SILK15")) {
+            currentDiscountRate = 0.15;
+            appliedCouponCode = code;
+            ToastUtils.showCustomToast(this, "Đã áp dụng mã giảm giá 15%");
+        } else if (code.equals("REWARD10")) {
+            currentDiscountRate = 0.10;
+            appliedCouponCode = code;
+            ToastUtils.showCustomToast(this, "Đã áp dụng mã giảm giá 10%");
+        } else if (code.equals("ARCHIVE25")) {
+            currentDiscountRate = 0.25;
+            appliedCouponCode = code;
+            ToastUtils.showCustomToast(this, "Đã áp dụng mã giảm giá 25%");
+        } else if (code.equals("SAIVE_S24_EXTRA")) {
             currentDiscountRate = 0.15; // Giảm 15%
             appliedCouponCode = code;
             ToastUtils.showCustomToast(this, "Đã áp dụng mã giảm giá 15%");

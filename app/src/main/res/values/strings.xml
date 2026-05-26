@@ -85,6 +85,7 @@
     <string name="menu_language">Language</string>
     <string name="menu_language_sub">English</string>
     <string name="menu_about">About SAIVE</string>
+    <string name="menu_my_coupons">Voucher của tôi</string>
     <string name="auth_login_title">Login</string>
     <string name="auth_signup_title">Sign up</string>
     <string name="label_password">Password</string>
@@ -118,8 +119,8 @@
     <string name="stat_collections_count">4</string>
     <string name="stat_recent_count">28</string>
     <string name="brand_name">SAIVE</string>
-    <string name="coupon_title">Exclusive Invitations</string>
-    <string name="coupon_desc">Archived access &amp; seasonal rewards</string>
+    <string name="coupon_title">Lời mời độc quyền</string>
+    <string name="coupon_desc">Truy cập kho lưu trữ &amp; phần thưởng theo mùa</string>
     <string name="coupon_code">SAIVE_S24_EXTRA</string>
     <string name="coupon_label">Coupon</string>
     <string name="acc_unread">Unread</string>
@@ -332,12 +333,19 @@
     <string name="btn_payment">Payment</string>
     <string name="promo_code_hint">Promo code</string>
     <!-- Coupon Screen -->
-    <string name="coupon_available_title">Available Vouchers</string>
-    <string name="coupon_search_hint">Search your coupons...</string>
-    <string name="coupon_no_coupons">NO COUPONS YET</string>
-    <string name="coupon_copy">COPY</string>
-    <string name="coupon_valid_until">Valid until: %1$s</string>
-    <string name="coupon_off">OFF</string>
+    <string name="coupon_available_title">Voucher hiện có</string>
+    <string name="coupon_search_hint">Tìm kiếm ưu đãi...</string>
+    <string name="coupon_copy">SAO CHÉP</string>
+    <string name="coupon_valid_until">Hạn dùng: %1$s</string>
+    <string name="coupon_off">GIẢM</string>
+    <string name="coupon_no_coupons">CHƯA CÓ VOUCHER</string>
+
+    <!-- Coupon Detail -->
+    <string name="coupon_detail_how_to">Cách sử dụng</string>
+    <string name="coupon_detail_steps">• Sao chép mã bên dưới.\n• Vào giỏ hàng hoặc trang thanh toán.\n• Dán mã vào ô \'Mã giảm giá\'.\n• Tận hưởng ưu đãi độc quyền từ Saive!</string>
+    <string name="coupon_detail_your_code">MÃ CỦA BẠN</string>
+    <string name="coupon_detail_copy_use">Sao chép &amp; Dùng ngay</string>
+    <string name="coupon_detail_welcome_desc">Nhận ưu đãi 20% cho đơn hàng đầu tiên</string>
 
     <!-- Address Labels -->
     <string name="label_address_label">Address Label</string>

@@ -327,6 +327,16 @@ public class ProfileActivity extends BaseActivity {
             });
         }
 
+        // My Coupons Menu Item
+        View btnMyCoupons = findViewById(R.id.btnMyCoupons);
+        if (btnMyCoupons != null) {
+            btnMyCoupons.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                Intent intent = new Intent(ProfileActivity.this, CouponActivity.class);
+                startActivity(intent);
+            });
+        }
+
         // Saved Collections Menu Item
         View btnSavedCollections = findViewById(R.id.btnSavedCollections);
         if (btnSavedCollections != null) {
