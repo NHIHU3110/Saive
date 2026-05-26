@@ -49,6 +49,15 @@ public class CartActivity extends AppCompatActivity {
 
         initViews();
         setupCartList();
+
+        // Check for coupon code from Intent
+        if (getIntent().hasExtra("COUPON_CODE")) {
+            String code = getIntent().getStringExtra("COUPON_CODE");
+            if (code != null) {
+                etCoupon.setText(code);
+                applyCoupon();
+            }
+        }
     }
 
     private void initViews() {
