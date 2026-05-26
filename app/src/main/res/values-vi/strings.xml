@@ -1,0 +1,293 @@
+<resources>
+    <string name="app_name">Saive</string>
+    <string name="search_hint">Tìm trong tủ đồ của bạn...</string>
+    <string name="cat_all">Tất cả</string>
+    <string name="cat_tshirt">Áo thun</string>
+    <string name="cat_jeans">Quần denim</string>
+    <string name="cat_jacket">Áo khoác</string>
+    <string name="cat_sunglasses">Kính mắt</string>
+    <string name="flash_sale_title">TUYỂN CHỌN CÓ THỜI HẠN</string>
+    <string name="flash_sale_label">LƯU TRỮ ĐẶC BIỆT</string>
+    <string name="flash_sale_desc">Một số silhouette từ kho lưu trữ, có mặt trong 48 giờ.</string>
+    <string name="btn_access_archive">KHÁM PHÁ KHO LƯU TRỮ</string>
+    <string name="collection_label">BỘ SƯU TẬP</string>
+    <string name="monochrome_series_title">SERIES ĐƠN SẮC</string>
+    <string name="explore_lookbook">KHÁM PHÁ LOOKBOOK</string>
+    <string name="curated_capsule_title">CAPSULE TINH TUYỂN</string>
+    <string name="material_story_title">KIẾN TRÚC CỦA LỤA</string>
+    <string name="material_story_desc">Lụa của chúng tôi được lấy từ các trang trại bền vững tại Việt Nam, dệt với mật độ cho phép vừa có cấu trúc vừa mềm mại. Một chất liệu thở cùng cơ thể.</string>
+    <string name="capsule_week_title">CAPSULE 01 / THIẾT YẾU</string>
+    <string name="view_full_curation">XEM TOÀN BỘ TUYỂN CHỌN</string>
+    <string name="editorial_quote">"TỦ ĐỒ LÀ TẤM CANVAS CỦA SỰ CÓ CHỦ Ý."</string>
+    <string name="footer_location">HÀ NỘI • SÀI GÒN</string>
+    <string name="nav_favorite">YÊU THÍCH</string>
+    <string name="nav_wardrobe">TỦ ĐỒ</string>
+    <string name="nav_notify">THÔNG BÁO</string>
+    <string name="btn_share">CHIA SẺ</string>
+    <string name="nav_profile">HỒ SƠ</string>
+    <string name="nav_search">TÌM KIẾM</string>
+    <string name="nav_shop">CỬA HÀNG</string>
+    <string name="nav_archive">LƯU TRỮ</string>
+    <string name="nav_about">VỀ SAIVE</string>
+    <string name="notify_title">THÔNG BÁO</string>
+    <string name="notify_empty_title">HOÀN TOÀN TĨNH LẶNG</string>
+    <string name="notify_empty_desc">Khi có drop mới hoặc cập nhật đơn hàng,\nchúng tôi sẽ nhẹ nhàng báo bạn.</string>
+    <string name="notify_drop_title">Drop mới đã ra mắt</string>
+    <string name="notify_drop_desc">Bộ sưu tập Mùa Thu vừa cập bến. 12 món mới.</string>
+    <string name="notify_drop_action">Khám phá ngay</string>
+    <string name="notify_order_title">Đơn hàng đang trên đường</string>
+    <string name="notify_order_desc">Áo linen oversize — Ivory · Size M đang được giao.</string>
+    <string name="notify_order_action">Theo dõi đơn hàng</string>
+    <string name="notify_capsule_title">Tủ đồ của bạn cần thêm một món</string>
+    <string name="notify_capsule_desc">Capsule builder gợi ý áo khoác nhẹ để hoàn thiện bộ.</string>
+    <string name="notify_capsule_action">Xem gợi ý</string>
+    <string name="notify_reminder_title">Bạn có món đang chờ trong tủ đồ</string>
+    <string name="notify_reminder_desc">3 món đã lưu từ 2 tuần trước. Vẫn còn hàng.</string>
+    <string name="notify_reminder_action">Xem tủ đồ</string>
+    <string name="wardrobe_header">TỦ ĐỒ CỦA TÔI</string>
+    <string name="wardrobe_empty_search_title">KHÔNG TÌM THẤY MÓN NÀO</string>
+    <string name="wardrobe_empty_search_desc">Không có món nào khớp với tìm kiếm của bạn.\nThử từ khóa hoặc danh mục khác.</string>
+    <string name="explore_piece">KHÁM PHÁ MÓN NÀY</string>
+    <string name="add_to_wardrobe">THÊM VÀO TỦ ĐỒ</string>
+    <string name="added_to_wardrobe">ĐÃ TRONG TỦ ĐỒ</string>
+    <string name="editorial_title_1">NGHỀ THỦ CÔNG VƯỢT THỜI GIAN</string>
+    <string name="editorial_title_2">VẺ ĐẸP THƯỜNG NGÀY</string>
+    <string name="editorial_title_3">CÂU CHUYỆN SAIVE</string>
+    <string name="editorial_story_1">Làm ra để mặc, không phải để thay. Triết lý của chúng tôi xoay quanh độ bền và thiết kế thủ công vượt thời gian.</string>
+    <string name="editorial_story_2">Những món lặng lẽ cho vẻ đẹp thường ngày. Nghiên cứu về chất liệu và bóng tối qua cách phối tông màu.</string>
+    <string name="editorial_story_3">Được thiết kế có chủ ý cho cuộc sống hiện đại. Những món chuyển tiếp liền mạch từ nhà ra phố.</string>
+    <string name="editorial_material_1">Nghề thủ công di sản Việt Nam</string>
+    <string name="editorial_material_2">Lụa thô · Cotton hữu cơ</string>
+    <string name="editorial_material_3">Hình khối kiến trúc</string>
+    <string name="profile_header">HỒ SƠ</string>
+    <string name="profile_user_name">Huỳnh Thảo Nhi</string>
+    <string name="profile_location">Hồ Chí Minh, Việt Nam</string>
+    <string name="stat_orders">Đơn hàng</string>
+    <string name="stat_collections">Bộ sưu tập</string>
+    <string name="stat_recent">Gần đây</string>
+    <string name="menu_my_orders">Đơn hàng của tôi</string>
+    <string name="menu_saved_collections">Bộ sưu tập đã lưu</string>
+    <string name="menu_my_wardrobe">Tủ đồ của tôi</string>
+    <string name="menu_notifications">Thông báo</string>
+    <string name="menu_language">Ngôn ngữ</string>
+    <string name="menu_language_sub">Tiếng Việt</string>
+    <string name="menu_about">Về SAIVE</string>
+    <string name="menu_logout">ĐĂNG XUẤT</string>
+    <string name="menu_login">ĐĂNG NHẬP</string>
+    <string name="section_recent">Đã xem gần đây</string>
+    <string name="view_all">XEM TẤT CẢ</string>
+    <string name="col_minimalist">Tối giản</string>
+    <string name="col_silk_story">Câu chuyện lụa</string>
+    <string name="col_winter_24">Đông \'24</string>
+    <string name="stat_orders_count">12</string>
+    <string name="stat_collections_count">4</string>
+    <string name="stat_recent_count">28</string>
+    <string name="brand_name">SAIVE</string>
+    <string name="coupon_title">Lời mời độc quyền</string>
+    <string name="coupon_desc">Quyền truy cập kho lưu trữ · Ưu đãi theo mùa</string>
+    <string name="coupon_code">SAIVE_S24_EXTRA</string>
+    <string name="coupon_label">ƯU ĐÃI</string>
+    <string name="acc_unread">Chưa đọc</string>
+    <string name="label_description">MÔ TẢ</string>
+    <string name="label_see_more">Xem thêm</string>
+    <string name="label_product_details">CHI TIẾT SẢN PHẨM</string>
+    <string name="label_material">Chất liệu</string>
+    <string name="label_origin">Xuất xứ</string>
+    <string name="label_instructions">Hướng dẫn bảo quản</string>
+    <string name="label_size">Kích cỡ</string>
+    <string name="label_total">Tổng cộng</string>
+    <string name="sort_price_low_high">Giá: Thấp đến cao</string>
+    <string name="sort_price_high_low">Giá: Cao đến thấp</string>
+    <string name="sort_alphabetical_az">Tên: A-Z</string>
+    <string name="sort_alphabetical_za">Tên: Z-A</string>
+    <string name="sort_latest">Mới nhất</string>
+    <string name="sort_oldest">Cũ nhất</string>
+    <string name="favorites_items_count">%1$d MÓN</string>
+    <string name="favorites_empty_state">CHƯA CÓ MÓN YÊU THÍCH</string>
+    <string name="cart_title">GIỎ HÀNG</string>
+    <string name="cart_empty_title">GIỎ HÀNG CỦA BẠN ĐANG TRỐNG</string>
+    <string name="cart_empty_desc">Khám phá bộ sưu tập và thêm những món\nchạm đến bạn.</string>
+    <string name="btn_checkout">THANH TOÁN</string>
+    <string name="search_recent">TÌM KIẾM GẦN ĐÂY</string>
+    <string name="search_trending">ĐANG ĐƯỢC QUAN TÂM</string>
+    <string name="chip_linen_shirt">Áo sơ mi linen</string>
+    <string name="chip_wool_coat">Áo khoác dạ</string>
+    <string name="label_complete_look">HOÀN THIỆN BỘ TRANG PHỤC</string>
+    <string name="about_hero_title">Lặng lẽ. Tự tin.\nKhông cần nói thêm.</string>
+    <string name="about_hero_subtitle">SAIVE · QUIET LUXURY · VIỆT NAM</string>
+    <string name="about_origin_year">2022</string>
+    <string name="about_origin_text">Bắt đầu từ một câu hỏi đơn giản:\ntại sao vẻ đẹp phải ồn ào?\nSAIVE ra đời tại Sài Gòn, từ niềm tin\nrằng sự tối giản\nlà hình thức xa xỉ cao nhất.</string>
+    <string name="about_material_title">Chúng tôi chọn vải trước khi chọn thiết kế.</string>
+    <string name="about_material_linen">LINEN</string>
+    <string name="about_material_linen_desc">Từ các trang trại châu Âu không thuốc trừ sâu. Thấm hút, thoáng khí.</string>
+    <string name="about_material_tencel">TENCEL</string>
+    <string name="about_material_tencel_desc">Sợi gỗ tái chế. Mềm như lụa. Mát hơn cotton 50%.</string>
+    <string name="about_material_bamboo">BAMBOO</string>
+    <string name="about_material_bamboo_desc">Mọc lại trong 90 ngày. Không cần thuốc. Tự phân hủy hoàn toàn.</string>
+    <string name="about_philosophy_quote">"Mỗi bộ sưu tập chỉ có 12 món.\nKhông hơn. Không kém."</string>
+    <string name="about_philosophy_sub">Chúng tôi không theo mùa. Chúng tôi theo nhịp sống.</string>
+    <string name="about_stats_items_value">12</string>
+    <string name="about_stats_items_label">Món mỗi\nbộ sưu tập</string>
+    <string name="about_stats_natural_value">100%</string>
+    <string name="about_stats_natural_label">Chất liệu\ntự nhiên</string>
+    <string name="about_stats_sale_value">0</string>
+    <string name="about_stats_sale_label">Flash sale\nmãi mãi</string>
+    <string name="about_stats_founded_value">2022</string>
+    <string name="about_stats_founded_label">Thành lập\ntại Sài Gòn</string>
+    <string name="about_commit_title">Cam kết của chúng tôi</string>
+    <string name="about_commit_1">Đổi trả trong 30 ngày, không cần lý do</string>
+    <string name="about_commit_2">Đóng gói tái sử dụng hoàn toàn</string>
+    <string name="about_commit_3">Thù lao công bằng cho từng nghệ nhân</string>
+    <string name="about_commit_4">Bảo hành sửa chữa trọn đời</string>
+    <string name="updating_language">Đang cập nhật ngôn ngữ...</string>
+
+    <!-- Checkout Strings -->
+    <string name="checkout_shipping_title">THÔNG TIN GIAO HÀNG</string>
+    <string name="checkout_payment_title">HÌNH THỨC THANH TOÁN</string>
+    <string name="label_full_name">Họ và Tên</string>
+    <string name="label_phone_number">Số điện thoại</string>
+    <string name="label_email">Địa chỉ Email</string>
+    <string name="label_address">Địa chỉ cụ thể (Số nhà, tên đường)</string>
+    <string name="label_country">Quốc gia</string>
+    <string name="label_district">Quận / Huyện / Tỉnh</string>
+    <string name="hint_choose_country">Chọn quốc gia</string>
+    <string name="hint_choose_district">Chọn quận huyện</string>
+    <string name="label_save_info">Lưu thông tin cho lần sau</string>
+    <string name="btn_continue_payment">TIẾP TỤC THANH TOÁN</string>
+    <string name="btn_place_order">ĐẶT HÀNG</string>
+
+    <string name="payment_bank">Chuyển khoản ngân hàng</string>
+    <string name="payment_momo">Ví Momo</string>
+    <string name="payment_zalopay">ZaloPay</string>
+    <string name="payment_cod">Thanh toán khi nhận hàng (COD)</string>
+    <string name="payment_bank_desc">Chuyển khoản qua Vietcombank, Techcombank...</string>
+    <string name="payment_momo_desc">Thanh toán nhanh qua ví điện tử</string>
+    <string name="payment_zalopay_desc">Thanh toán bằng tài khoản Zalo</string>
+    <string name="payment_cod_desc">Thanh toán khi bạn nhận được kiện hàng</string>
+
+    <string name="label_city">Tỉnh / Thành phố</string>
+    <string name="hint_choose_city">Chọn tỉnh thành</string>
+    <string name="error_required_field">Vui lòng điền thông tin này</string>
+    <string name="payment_method_more">Tùy chọn thanh toán khác</string>
+    <string name="payment_success_title">ĐẶT HÀNG THÀNH CÔNG</string>
+    <string name="payment_success_desc">Cảm ơn bạn đã lựa chọn SAIVE. Đơn hàng của bạn đã được tiếp nhận và đang được chuẩn bị chu đáo.</string>
+    <string name="btn_continue_shopping">TIẾP TỤC MUA SẮM</string>
+    <string name="btn_view_order">XEM TÌNH TRẠNG ĐƠN HÀNG</string>
+
+    <!-- Address Data -->
+    <string-array name="countries_array">
+        <item>Việt Nam</item>
+        <item>Singapore</item>
+        <item>Thái Lan</item>
+        <item>Malaysia</item>
+        <item>Nhật Bản</item>
+        <item>Hàn Quốc</item>
+        <item>Trung Quốc</item>
+    </string-array>
+
+    <string-array name="cities_vn_array">
+        <item>Hồ Chí Minh</item>
+        <item>Hà Nội</item>
+        <item>Đà Nẵng</item>
+        <item>Cần Thơ</item>
+        <item>Hải Phòng</item>
+        <item>Huế</item>
+        <item>Đà Lạt</item>
+    </string-array>
+
+    <string-array name="districts_hcm_array">
+        <item>Quận 1</item>
+        <item>Quận 3</item>
+        <item>Quận 5</item>
+        <item>Quận 7</item>
+        <item>Quận Bình Thạnh</item>
+        <item>Quận Tân Bình</item>
+        <item>Quận Phú Nhuận</item>
+        <item>Thành phố Thủ Đức</item>
+    </string-array>
+
+    <string-array name="districts_hanoi_array">
+        <item>Quận Hoàn Kiếm</item>
+        <item>Quận Ba Đình</item>
+        <item>Quận Đống Đa</item>
+        <item>Quận Hai Bà Trưng</item>
+        <item>Quận Tây Hồ</item>
+        <item>Quận Cầu Giấy</item>
+        <item>Quận Thanh Xuân</item>
+    </string-array>
+    <string name="btn_explore_collection">KHÁM PHÁ BỘ SƯU TẬP</string>
+    <string name="bulletin_header">BẢNG TIN</string>
+    <string name="posted_time">Đã đăng %1$s trước</string>
+    <string name="notify_detail_description_placeholder">Bộ sưu tập mới của chúng tôi cuối cùng đã ra mắt. Mùa này, chúng tôi tập trung vào các chất liệu bền vững và kiểu dáng vượt thời gian. Được chế tác từ len Ý cao cấp và lụa tái chế, mỗi sản phẩm được thiết kế để trở thành món đồ không thể thiếu trong tủ đồ của bạn trong nhiều năm tới.</string>
+    <string name="label_item_total">Tổng tiền hàng:</string>
+    <string name="label_delivery">Phí vận chuyển:</string>
+    <string name="label_free">Miễn phí</string>
+    <string name="btn_payment">Thanh toán</string>
+    <string name="promo_code_hint">Mã giảm giá</string>
+    <string name="menu_signup">Đăng ký</string>
+    <string name="menu_forgot_password">Quên mật khẩu?</string>
+    <string name="menu_remember_me">Ghi nhớ tôi</string>
+    <string name="auth_no_account">Chưa có tài khoản? Đăng ký</string>
+    <string name="auth_has_account">Đã có tài khoản? Đăng nhập</string>
+    <string name="auth_terms_agree">Tôi đồng ý với các Điều khoản &amp; Điều kiện</string>
+    <string name="auth_login_title">Đăng nhập</string>
+    <string name="auth_signup_title">Đăng ký</string>
+    <string name="label_password">Mật khẩu</string>
+    <string name="label_name">Họ tên</string>
+    <string name="label_phone">Số điện thoại</string>
+    <string name="checkout_select_address">Chọn địa chỉ giao hàng</string>
+    <string name="checkout_select_address_desc">Chọn nơi bạn muốn đơn hàng được giao đến.</string>
+    <string name="checkout_add_new_address">+ Thêm địa chỉ mới</string>
+    <!-- Quản lý địa chỉ -->
+    <string name="address_title">ĐỊA CHỈ CỦA TÔI</string>
+    <string name="address_add_new">THÊM ĐỊA CHỈ MỚI</string>
+    <string name="address_empty">Chưa có địa chỉ nào được lưu.</string>
+    <string name="address_default_label">MẶC ĐỊNH</string>
+    <string name="address_set_default">Đặt làm mặc định</string>
+    <string name="address_edit">Sửa</string>
+    <string name="address_delete">Xóa</string>
+    <string name="address_add_title">THÊM ĐỊA CHỈ</string>
+    <string name="address_edit_title">SỬA ĐỊA CHỈ</string>
+    <string name="address_save">LƯU ĐỊA CHỈ</string>
+    <string name="address_label_home">Nhà riêng</string>
+    <string name="address_label_office">Văn phòng</string>
+    <string name="address_label_other">Khác</string>
+
+    <!-- Màn hình Coupon -->
+    <string name="coupon_available_title">Voucher Đang Có</string>
+    <string name="coupon_search_hint">Tìm kiếm ưu đãi...</string>
+    <string name="coupon_no_coupons">CHƯA CÓ ƯU ĐÃI NÀO</string>
+    <string name="coupon_copy">SAO CHÉP</string>
+    <string name="coupon_valid_until">Hạn dùng: %1$s</string>
+    <string name="coupon_off">GIẢM</string>
+
+    <!-- Nhãn địa chỉ -->
+    <string name="label_address_label">Loại địa chỉ</string>
+    <string name="hint_full_name">vd: Huỳnh Thảo Nhi</string>
+    <string name="hint_phone_number">+84 901 234 567</string>
+    <string name="hint_street_address">Số nhà, tên đường...</string>
+    <string name="hint_city">vd: Hồ Chí Minh</string>
+    <string name="hint_district">vd: Quận 1</string>
+    <string name="suggestion_trousers">Quần tây Linen</string>
+    <string name="suggestion_loafers">Giày Loafers da</string>
+    <string name="suggestion_scarf">Khăn lụa</string>
+    <string name="toast_added_favorites">Đã thêm vào yêu thích</string>
+    <string name="toast_removed_favorites">Đã xóa khỏi yêu thích</string>
+    <string name="toast_already_in_wardrobe">Đã có trong tủ đồ</string>
+    <string name="toast_photo_feature_later">Tính năng chọn ảnh sẽ được tích hợp sau</string>
+    <string name="toast_input_comment">Vui lòng nhập bình luận của bạn</string>
+    <string name="toast_review_thanks">Cảm ơn bạn đã gửi đánh giá!</string>
+    <string name="review_user_you">Bạn</string>
+    <string name="share_message_format">Xem thử %1$s trên Saive: %2$s</string>
+    <string name="lang_en">English</string>
+    <string name="lang_vi">Tiếng Việt</string>
+    <string name="lang_zh">中文</string>
+    <string name="notifications_enabled">Đã bật thông báo</string>
+    <string name="notifications_disabled">Đã tắt thông báo</string>
+    <string name="logout_title">Đăng xuất</string>
+    <string name="logout_message">Bạn có chắc chắn muốn đăng xuất?</string>
+    <string name="yes">Có</string>
+    <string name="no">Không</string>
+    <string name="toast_logged_out">Đã đăng xuất</string>
+    <string name="toast_account_deleted">Đã xóa tài khoản</string>
+</resources>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorCotton"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="24dp"
+        android:background="@color/colorLinen" />
+
+    <TextView
+        android:id="@+id/tvDetailTitle"
+        style="@style/TextAppearance.Saive.Header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SAIVE WELCOME"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvDetailDiscount"
+        style="@style/TextAppearance.Saive.Thin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Get 20% OFF on your order"
+        android:textColor="@color/colorMaroon" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginVertical="24dp"
+        android:background="@color/colorLinen" />
+
+    <TextView
+        style="@style/TextAppearance.Saive.Label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="How to use"
+        android:textSize="12sp" />
+
+    <TextView
+        style="@style/TextAppearance.Saive.Thin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:lineSpacingExtra="6dp"
+        android:text="1. Copy the code below.\n2. Go to your Cart or Checkout page.\n3. Paste the code into the 'Promo Code' field.\n4. Enjoy your exclusive discount!"
+        android:textColor="@color/colorNoirBlack" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/bg_cart_variant"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            style="@style/TextAppearance.Saive.Nav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="YOUR CODE"
+            android:textColor="@color/colorSand" />
+
+        <TextView
+            android:id="@+id/tvDetailCode"
+            style="@style/TextAppearance.Saive.Header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="WELCOME20"
+            android:letterSpacing="0.2"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCopyDetail"
+        style="@style/Widget.Material3.Button.UnelevatedButton"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/colorMaroon"
+        android:text="Copy Code &amp; Use Now"
+        android:textColor="@color/white"
+        app:cornerRadius="12dp" />
+
+</LinearLayout>

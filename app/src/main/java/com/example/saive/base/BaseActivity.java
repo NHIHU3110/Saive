@@ -1,0 +1,60 @@
+package com.example.saive.base;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import com.example.saive.R;
+import java.util.Locale;
+
+public abstract class BaseActivity extends AppCompatActivity {
+    protected static final String LANG_PREFS = "language_prefs";
+    protected static final String LANG_KEY = "selected_language";
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // Ensure status bar is consistent across all activities
+        if (getWindow() != null) {
+            getWindow().setStatusBarColor(android.graphics.Color.parseColor("#FAF8F3")); // colorCotton
+            // Set dark icons for the light status bar
+            getWindow().getDecorView().setSystemUiVisibility(android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
+    }
+
+    public void showCustomToast(String message) {
+        LayoutInflater inflater = getLayoutInflater();
+        View toastRoot = inflater.inflate(R.layout.layout_custom_toast, null);
+
+        TextView text = toastRoot.findViewById(R.id.toast_text);
+        if (text != null) {
+            text.setText(message);
+        }
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.BOTTOM, 0, 100);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(toastRoot);
+        toast.show();
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        SharedPreferences prefs = newBase.getSharedPreferences(LANG_PREFS, MODE_PRIVATE);
+        String lang = prefs.getString(LANG_KEY, "en");
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        
+        Configuration config = newBase.getResources().getConfiguration();
+        config.setLocale(locale);
+        Context context = newBase.createConfigurationContext(config);
+        super.attachBaseContext(context);
+    }
+}

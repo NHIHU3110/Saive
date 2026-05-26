@@ -1,0 +1,40 @@
+package com.example.saive.models;
+
+import java.io.Serializable;
+
+public class Address implements Serializable {
+    private String id;
+    private String label; // Home, Office, etc.
+    private String fullName;
+    private String phoneNumber;
+    private String streetAddress;
+    private String city;
+    private String district;
+    private boolean isDefault;
+
+    public Address(String id, String label, String fullName, String phoneNumber, String streetAddress, String city, String district, boolean isDefault) {
+        this.id = id;
+        this.label = label;
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
+        this.streetAddress = streetAddress;
+        this.city = city;
+        this.district = district;
+        this.isDefault = isDefault;
+    }
+
+    public String getId() { return id; }
+    public String getLabel() { return label; }
+    public String getFullName() { return fullName; }
+    public String getPhoneNumber() { return phoneNumber; }
+    public String getStreetAddress() { return streetAddress; }
+    public String getCity() { return city; }
+    public String getDistrict() { return district; }
+    public boolean isDefault() { return isDefault; }
+
+    public void setDefault(boolean aDefault) { isDefault = aDefault; }
+
+    public String getFullDisplayAddress() {
+        return streetAddress + ", " + district + ", " + city;
+    }
+}

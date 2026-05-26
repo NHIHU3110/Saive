@@ -1,0 +1,430 @@
+<resources>
+    <string name="app_name">Saive</string>
+    <string name="search_hint">Search your wardrobe...</string>
+    <string name="cat_all">All</string>
+    <string name="cat_tshirt">T-shirts</string>
+    <string name="cat_jeans">Jeans</string>
+    <string name="cat_jacket">Jackets</string>
+    <string name="cat_sunglasses">Glasses</string>
+    <string name="flash_sale_title">TIMED CURATION</string>
+    <string name="flash_sale_label">FLASH SALE</string>
+    <string name="flash_sale_desc">A limited selection of archived silhouettes, available for 48 hours only.</string>
+    <string name="btn_access_archive">ACCESS ARCHIVE</string>
+    <string name="collection_label">COLLECTION</string>
+    <string name="monochrome_series_title">THE MONOCHROME SERIES</string>
+    <string name="explore_lookbook">EXPLORE LOOKBOOK</string>
+    <string name="curated_capsule_title">CURATED CAPSULE</string>
+    <string name="material_story_title">THE ARCHITECTURE OF SILK</string>
+    <string name="material_story_desc">Our silk is sourced from sustainable farms in Vietnam, woven with a density that allows for both structure and fluidity. A material that breathes with the body.</string>
+    <string name="capsule_week_title">CAPSULE 01 / ESSENTIALS</string>
+    <string name="view_full_curation">VIEW FULL CURATION</string>
+    <string name="editorial_quote">“THE WARDROBE IS A CANVAS OF INTENTIONALITY.”</string>
+    <string name="footer_location">HANOI • SAIGON</string>
+    <string name="nav_back">Back</string>
+    <string name="nav_favorite">FAVORITE</string>
+    <string name="nav_wardrobe">WARDROBE</string>
+    <string name="nav_notify">NOTIFY</string>
+    <string name="btn_share">SHARE</string>
+    <string name="notify_title">NOTIFICATIONS</string>
+    <string name="notify_empty_title">TOTAL QUIET</string>
+    <string name="notify_empty_desc">When there is a new drop or order update,\nwe will gently notify you.</string>
+    <string name="notify_drop_title">New Drop Available</string>
+    <string name="notify_drop_desc">The Autumn Collection has arrived. 12 new pieces.</string>
+    <string name="notify_drop_action">Explore Now</string>
+    <string name="notify_order_title">Order is on its way</string>
+    <string name="notify_order_desc">Oversized Linen Shirt — Ivory · Size M is being delivered.</string>
+    <string name="notify_order_action">Track Order</string>
+    <string name="notify_capsule_title">Your wardrobe needs one more piece</string>
+    <string name="notify_capsule_desc">Capsule builder suggests a light jacket to complete the set.</string>
+    <string name="notify_capsule_action">View Suggestion</string>
+    <string name="notify_reminder_title">You have items waiting in your wardrobe</string>
+    <string name="notify_reminder_desc">3 items saved from 2 weeks ago. Still in stock.</string>
+    <string name="notify_reminder_action">View Wardrobe</string>
+    <string name="nav_profile">PROFILE</string>
+    <string name="nav_search">SEARCH</string>
+    <string name="nav_shop">SHOP</string>
+    <string name="nav_archive">ARCHIVE</string>
+    <string name="nav_about">ABOUT</string>
+    <string name="wardrobe_header">MY WARDROBE</string>
+    <string name="wardrobe_empty_search_title">NO PIECES FOUND</string>
+    <string name="wardrobe_empty_search_desc">We couldn’t find any items matching your search.\nTry a different keyword or category.</string>
+
+    <string name="explore_piece">EXPLORE PIECE</string>
+    <string name="add_to_wardrobe">ADD TO WARDROBE</string>
+    <string name="added_to_wardrobe">IN WARDROBE</string>
+
+    <!-- Editorial Card Titles -->
+    <string name="editorial_title_1">TIMELESS CRAFT</string>
+    <string name="editorial_title_2">DAILY ELEGANCE</string>
+    <string name="editorial_title_3">THE SAIVE STORY</string>
+
+    <!-- Editorial Card Stories -->
+    <string name="editorial_story_1">Made to be worn, not replaced. Our philosophy centers on durability and timeless artisanal design.</string>
+    <string name="editorial_story_2">Quiet pieces for everyday elegance. A study of texture and shadow through tone-on-tone layering.</string>
+    <string name="editorial_story_3">Thoughtfully designed for modern living. Pieces that transition seamlessly from home to city.</string>
+
+    <string name="editorial_material_1">Vietnamese Heritage Crafts</string>
+    <string name="editorial_material_2">Raw Silk • Organic Cotton</string>
+    <string name="editorial_material_3">Architectural Forms</string>
+
+    <!-- Profile Screen -->
+    <string name="profile_header">PROFILE</string>
+    <string name="profile_user_name">Thao Nhi Huynh</string>
+    <string name="profile_location">Ho Chi Minh, Vietnam</string>
+
+    <string name="stat_orders">Orders</string>
+    <string name="stat_collections">Collections</string>
+    <string name="stat_recent">Recent</string>
+
+    <string name="menu_my_orders">My Orders</string>
+    <string name="menu_saved_collections">Saved Collections</string>
+    <string name="menu_my_wardrobe">My Wardrobe</string>
+    <string name="menu_notifications">Notifications</string>
+    <string name="menu_address">Shipping Address</string>
+    <string name="menu_address_sub">Manage your addresses</string>
+    <string name="menu_language">Language</string>
+    <string name="menu_language_sub">English</string>
+    <string name="menu_about">About SAIVE</string>
+    <string name="auth_login_title">Login</string>
+    <string name="auth_signup_title">Sign up</string>
+    <string name="label_password">Password</string>
+    <string name="label_name">Name</string>
+    <string name="label_phone">Phone number</string>
+    <string name="checkout_select_address">Select Shipping Address</string>
+    <string name="checkout_select_address_desc">Choose where you want your order to be delivered.</string>
+    <string name="checkout_add_new_address">+ Add New Address</string>
+    <string name="menu_logout">LOGOUT</string>
+    <string name="menu_login">LOGIN</string>
+    <string name="menu_signup">SIGN UP</string>
+    <string name="menu_forgot_password">Forgot password?</string>
+    <string name="menu_remember_me">Remember me</string>
+    <string name="auth_no_account">Don\'t have an account? Sign up</string>
+    <string name="auth_has_account">Already have an account? Login</string>
+    <string name="auth_terms_agree">I agree the Terms &amp; Conditions</string>
+    <string name="menu_delete_account">DELETE ACCOUNT</string>
+    <string name="dialog_delete_account_title">Delete Account</string>
+    <string name="dialog_delete_account_message">Are you sure you want to permanently delete your account? This action cannot be undone.</string>
+    <string name="dialog_delete_confirm">Delete</string>
+    <string name="dialog_cancel">Cancel</string>
+
+    <string name="section_recent">Recently Viewed</string>
+    <string name="view_all">VIEW ALL</string>
+
+    <string name="col_minimalist">Minimalist</string>
+    <string name="col_silk_story">The Silk Story</string>
+    <string name="col_winter_24">Winter \'24</string>
+
+    <string name="stat_orders_count">12</string>
+    <string name="stat_collections_count">4</string>
+    <string name="stat_recent_count">28</string>
+    <string name="brand_name">SAIVE</string>
+    <string name="coupon_title">Exclusive Invitations</string>
+    <string name="coupon_desc">Archived access &amp; seasonal rewards</string>
+    <string name="coupon_code">SAIVE_S24_EXTRA</string>
+    <string name="coupon_label">Coupon</string>
+    <string name="acc_unread">Unread</string>
+    <string name="label_description">DESCRIPTION</string>
+    <string name="label_see_more">See more</string>
+    <string name="label_see_less">See less</string>
+    <string name="label_color">COLOR</string>
+    <string name="label_product_details">PRODUCT DETAILS</string>
+    <string name="label_material">Material</string>
+    <string name="label_origin">Origin</string>
+    <string name="label_instructions">Instructions</string>
+    <string name="label_size">Size</string>
+    <string name="label_total">Total</string>
+    <string name="label_reviews">REVIEWS</string>
+    <string name="label_write_review">WRITE A REVIEW</string>
+    <string name="label_rating">Rating</string>
+    <string name="label_comment">Comment</string>
+    <string name="label_submit">SUBMIT</string>
+    <string name="hint_review">Tell us what you think about this piece...</string>
+    <string name="sort_price_low_high">Price: Low to High</string>
+    <string name="sort_price_high_low">Price: High to Low</string>
+    <string name="sort_alphabetical_az">Alphabetical: A-Z</string>
+    <string name="sort_alphabetical_za">Alphabetical: Z-A</string>
+    <string name="sort_latest">Latest Arrivals</string>
+    <string name="sort_oldest">Oldest First</string>
+    <string name="favorites_items_count">%1$d ITEMS</string>
+    <string name="favorites_empty_state">NO FAVORITES YET</string>
+    <string name="cart_title">SHOPPING BAG</string>
+    <string name="cart_empty_title">YOUR BAG IS EMPTY</string>
+    <string name="cart_empty_desc">Explore our collections and add pieces\nthat resonate with you.</string>
+    <string name="btn_checkout">CHECKOUT</string>
+    <string name="coupon_hint">Enter coupon code</string>
+    <string name="btn_apply">APPLY</string>
+    <string name="coupon_applied">Coupon applied: 10% discount</string>
+    <string name="coupon_invalid">Invalid coupon code</string>
+    <string name="coupon_empty">Please enter a coupon code</string>
+    <string name="search_recent">RECENT SEARCHES</string>
+    <string name="search_trending">TRENDING NOW</string>
+    <string name="chip_linen_shirt">Linen shirt</string>
+    <string name="chip_wool_coat">Wool coat</string>
+    <string name="label_complete_look">COMPLETE THE LOOK</string>
+    <!-- About Brand Strings -->
+    <string name="about_hero_title">Quietly Confident.\nUnspoken.</string>
+    <string name="about_hero_subtitle">SAIVE · QUIET LUXURY · VIETNAM</string>
+    <string name="about_origin_year">2022</string>
+    <string name="about_origin_text">Starting from a simple question:\nwhy does beauty have to be loud?\nSAIVE was born in Saigon, from\nthe belief that simplicity\nis the highest form of luxury.</string>
+    <string name="about_material_title">We choose the fabric before the design.</string>
+    <string name="about_material_linen">LINEN</string>
+    <string name="about_material_linen_desc">Sourced from pesticide-free European farms. Breathable.</string>
+    <string name="about_material_tencel">TENCEL</string>
+    <string name="about_material_tencel_desc">Recycled wood fiber. Soft as silk. 50% cooler than cotton.</string>
+    <string name="about_material_bamboo">BAMBOO</string>
+    <string name="about_material_bamboo_desc">Regrows in 90 days. Pesticide-free. Fully biodegradable.</string>
+    <string name="about_philosophy_quote">"Each collection consists of only 12 pieces.\nNo more. No less."</string>
+    <string name="about_philosophy_sub">We don\'t follow seasons. We follow life\'s rhythm.</string>
+    <string name="about_stats_items_value">12</string>
+    <string name="about_stats_items_label">Pieces per\ncollection</string>
+    <string name="about_stats_natural_value">100%</string>
+    <string name="about_stats_natural_label">Natural\nmaterials</string>
+    <string name="about_stats_sale_value">0</string>
+    <string name="about_stats_sale_label">Seasonal\nSales</string>
+    <string name="about_stats_founded_value">2022</string>
+    <string name="about_stats_founded_label">Founded in\nSaigon</string>
+    <string name="about_commit_title">Our Commitments</string>
+    <string name="about_commit_1">30-day returns, no questions asked</string>
+    <string name="about_commit_2">Fully reusable packaging</string>
+    <string name="about_commit_3">Fair wages for all artisans</string>
+    <string name="about_commit_4">Lifetime repair guarantee</string>
+    <string name="updating_language">Updating language...</string>
+
+    <!-- Checkout Strings -->
+    <string name="checkout_shipping_title">SHIPPING INFO</string>
+    <string name="checkout_payment_title">PAYMENT METHOD</string>
+    <string name="label_full_name">Full Name</string>
+    <string name="label_phone_number">Phone Number</string>
+    <string name="label_email">Email Address</string>
+    <string name="label_address">Street Address</string>
+    <string name="label_country">Country</string>
+    <string name="label_district">District / Province</string>
+    <string name="hint_choose_country">Choose your country</string>
+    <string name="hint_choose_district">Choose your district</string>
+    <string name="label_save_info">Save this information for next time</string>
+    <string name="btn_continue_payment">CONTINUE TO PAYMENT</string>
+    <string name="btn_place_order">PLACE ORDER</string>
+
+    <string name="payment_bank">Bank Transfer</string>
+    <string name="payment_momo">Momo Wallet</string>
+    <string name="payment_zalopay">ZaloPay</string>
+    <string name="payment_cod">Cash on Delivery (COD)</string>
+    <string name="payment_bank_desc">Transfer via Vietcombank, Techcombank...</string>
+    <string name="payment_momo_desc">Fast and secure mobile payment</string>
+    <string name="payment_zalopay_desc">Pay with your Zalo account</string>
+    <string name="payment_cod_desc">Pay when you receive the package</string>
+
+    <string name="label_city">City</string>
+    <string name="hint_choose_city">Choose your city</string>
+    <string name="error_required_field">This field is required</string>
+    <string name="error_invalid_email">Invalid email address</string>
+    <string name="payment_method_cash">Cash</string>
+    <string name="payment_method_card">Credit &amp; Debit Card</string>
+    <string name="payment_method_add_card">Add Card</string>
+    <string name="payment_method_more">More Payment Options</string>
+    <string name="payment_success_title">ORDER PLACED SUCCESSFULLY</string>
+    <string name="payment_success_desc">Thank you for choosing SAIVE. Your order has been received and is being prepared with care.</string>
+    <string name="btn_continue_shopping">CONTINUE SHOPPING</string>
+    <string name="btn_view_order">VIEW ORDER STATUS</string>
+
+    <!-- Address Data -->
+    <string-array name="countries_array">
+        <item>Vietnam</item>
+        <item>Singapore</item>
+        <item>Thailand</item>
+        <item>Malaysia</item>
+        <item>Japan</item>
+        <item>South Korea</item>
+        <item>China</item>
+    </string-array>
+
+    <string-array name="cities_vn_array">
+        <item>Ho Chi Minh City</item>
+        <item>Hanoi</item>
+        <item>Da Nang</item>
+        <item>Can Tho</item>
+        <item>Hai Phong</item>
+        <item>Hue</item>
+        <item>Da Lat</item>
+    </string-array>
+
+    <string-array name="districts_hcm_array">
+        <item>District 1</item>
+        <item>District 3</item>
+        <item>District 5</item>
+        <item>District 7</item>
+        <item>Binh Thanh District</item>
+        <item>Tan Binh District</item>
+        <item>Phu Nhuan District</item>
+        <item>Thu Duc City</item>
+    </string-array>
+
+    <string-array name="districts_hanoi_array">
+        <item>Hoan Kiem District</item>
+        <item>Ba Dinh District</item>
+        <item>Dong Da District</item>
+        <item>Hai Ba Trung District</item>
+        <item>Tay Ho District</item>
+        <item>Cau Giay District</item>
+        <item>Thanh Xuan District</item>
+    </string-array>
+    <!-- Address Management -->
+    <string name="address_title">MY ADDRESSES</string>
+    <string name="address_add_new">ADD NEW ADDRESS</string>
+    <string name="address_empty">No addresses saved yet.</string>
+    <string name="address_default_label">DEFAULT</string>
+    <string name="address_set_default">Set as default</string>
+    <string name="address_edit">Edit</string>
+    <string name="address_delete">Delete</string>
+    <string name="address_add_title">ADD ADDRESS</string>
+    <string name="address_edit_title">EDIT ADDRESS</string>
+    <string name="address_save">SAVE ADDRESS</string>
+    <string name="address_label_home">Home</string>
+    <string name="address_label_office">Office</string>
+    <string name="address_label_other">Other</string>
+
+    <!-- Collection Screen Strings -->
+    <string name="collection_view_all">VIEW ALL PIECES</string>
+    <string name="collection_story_title">DESIGN STORY</string>
+    <string name="collection_items_count">%1$d PIECES</string>
+    <string name="nav_collections">COLLECTIONS</string>
+    <string name="collection_filter">FILTER &amp; SORT</string>
+
+    <!-- Collections List Screen -->
+    <string name="collections_list_title">OUR\nCOLLECTIONS</string>
+    <string name="col_num_1">01</string>
+    <string name="col_num_2">02</string>
+    <string name="col_num_3">03</string>
+    <string name="col_edition_2024">EDITION\n2024</string>
+    <string name="col_archive_vol1">ARCHIVE\nVOL. 1</string>
+    <string name="col_new_arrival">NEW\nARRIVAL</string>
+    <string name="col_time_1">09:00</string>
+    <string name="col_date_1">12\nOCTOBER</string>
+    <string name="col_time_2">14:30</string>
+    <string name="col_date_2">15\nOCTOBER</string>
+    <string name="col_time_3">10:00</string>
+    <string name="col_date_3">20\nOCTOBER</string>
+    <string name="col_time_4">14:00</string>
+    <string name="col_date_4">15\nSEPTEMBER</string>
+    <string name="col_winter_title">WINTER\nSTORY</string>
+    <string name="col_preview_label">PREVIEW\nONLY</string>
+    <string name="col_silk_story_title">THE ARCHITECTURE\nOF SILK</string>
+    <string name="col_monochrome_title">THE MONOCHROME\nSERIES</string>
+    <string name="col_autumn_drop_title">THE AUTUMN\nCOLLECTION</string>
+    <string name="col_autumn_drop_story">Autumn Drop: Embracing the transition with warm textures and earthy tones.</string>
+
+    <string name="btn_explore_collection">EXPLORE COLLECTION</string>
+    <string name="bulletin_header">BULLETIN</string>
+    <string name="posted_time">Posted %1$s ago</string>
+    <string name="notify_detail_description_placeholder">Our new collection has finally arrived. This season, we focused on sustainable materials and timeless silhouettes. Crafted from premium Italian wool and recycled silk, each garment is designed to be a staple in your wardrobe for years to come.</string>
+    <string name="label_editorial_02">EDITORIAL 02</string>
+    <string name="label_autumn_winter">AUTUMN / WINTER</string>
+    <string name="label_new_collection">NEW COLLECTION</string>
+    <string name="label_shop_now">SHOP NOW</string>
+    <string name="label_flash_sale">Flash Sale</string>
+    <string name="chip_linen">Linen</string>
+    <string name="chip_silk">Silk</string>
+    <string name="chip_noir">Noir</string>
+    <string name="chip_ivory">Ivory</string>
+    <string name="label_item_total">Item total:</string>
+    <string name="label_delivery">Delivery:</string>
+    <string name="label_free">Free</string>
+    <string name="btn_payment">Payment</string>
+    <string name="promo_code_hint">Promo code</string>
+    <!-- Coupon Screen -->
+    <string name="coupon_available_title">Available Vouchers</string>
+    <string name="coupon_search_hint">Search your coupons...</string>
+    <string name="coupon_no_coupons">NO COUPONS YET</string>
+    <string name="coupon_copy">COPY</string>
+    <string name="coupon_valid_until">Valid until: %1$s</string>
+    <string name="coupon_off">OFF</string>
+
+    <!-- Address Labels -->
+    <string name="label_address_label">Address Label</string>
+    <string name="hint_full_name">e.g. Thao Nhi Huynh</string>
+    <string name="hint_phone_number">+84 901 234 567</string>
+    <string name="hint_street_address">House number, street name...</string>
+    <string name="hint_city">e.g. Ho Chi Minh</string>
+    <string name="hint_district">e.g. District 1</string>
+    <string name="suggestion_trousers">Linen Trousers</string>
+    <string name="suggestion_loafers">Leather Loafers</string>
+    <string name="suggestion_scarf">Silk Scarf</string>
+    <string name="toast_added_favorites">Added to Favorites</string>
+    <string name="toast_removed_favorites">Removed from Favorites</string>
+    <string name="toast_already_in_wardrobe">Already in Wardrobe</string>
+    <string name="toast_photo_feature_later">Photo selection feature will be integrated later</string>
+    <string name="toast_input_comment">Please enter your comment</string>
+    <string name="toast_review_thanks">Thank you for your review!</string>
+    <string name="review_user_you">You</string>
+    <string name="share_message_format">Check out this %1$s on Saive: %2$s</string>
+    <string name="lang_en">English</string>
+    <string name="lang_vi">Tiếng Việt</string>
+    <string name="lang_zh">中文</string>
+    <string name="notifications_enabled">Notifications enabled</string>
+    <string name="notifications_disabled">Notifications disabled</string>
+    <string name="logout_title">Logout</string>
+    <string name="logout_message">Are you sure you want to logout?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="toast_logged_out">Logged out</string>
+    <string name="toast_account_deleted">Account deleted</string>
+    <string name="col_headline_format">%1$s\nTimeless Elegance.</string>
+    <string name="col_subheadline_default">Discover our latest collection of premium silk and wool pieces designed for your everyday luxury.</string>
+    <string name="col_why_saive">Why Saive?</string>
+    <string name="col_why_desc">We believe in slow fashion. Every piece is crafted with care, ensuring longevity and timeless style that transcends seasons.</string>
+    <string name="col_shop_collection">Shop the Collection</string>
+    <string name="col_btn_shop">SHOP THE COLLECTION</string>
+    <string name="btn_shop_monochrome">SHOP THE MONOCHROME</string>
+    <string name="btn_shop_autumn">SHOP THE AUTUMN</string>
+    <string name="btn_shop_silk">SHOP THE SILK</string>
+    <string name="col_feature_1">Pure Silk</string>
+    <string name="col_feature_2">Premium Quality</string>
+    <string name="col_feature_3">Local Sourcing</string>
+    <string name="col_feature_4">Eco-Friendly</string>
+    <string name="col_copyright">© 2024 SAIVE. All rights reserved.</string>
+
+    <!-- Product Mock Data -->
+    <string name="price_3450">3.450.000 ₫</string>
+    <string name="price_1150">1.150.000 ₫</string>
+    <string name="price_950">950.000 ₫</string>
+    <string name="price_1800">1.800.000 ₫</string>
+    <string name="price_550">550.000 ₫</string>
+    <string name="price_2950">2.950.000 ₫</string>
+    <string name="price_2250">2.250.000 ₫</string>
+    <string name="price_4200">4.200.000 ₫</string>
+    <string name="price_2850">2.850.000 ₫</string>
+    <string name="price_1250">1.250.000 ₫</string>
+    <string name="price_850">850.000 ₫</string>
+    <string name="price_2100">2.100.000 ₫</string>
+
+    <string name="prod_noir_coat">Noir Wool Coat</string>
+    <string name="prod_city_trousers">City Trousers</string>
+    <string name="prod_min_knit">Minimalist Knit</string>
+    <string name="prod_archive_tote">Archive Tote</string>
+    <string name="prod_wool_scarf">Wool Blend Scarf</string>
+    <string name="prod_double_blazer">Double Blazer</string>
+    <string name="prod_ankle_boots">Ankle Boots</string>
+    <string name="prod_autumn_trench">Autumn Trench</string>
+    <string name="prod_silk_gown">Silk Gown</string>
+    <string name="prod_flowing_pants">Flowing Pants</string>
+    <string name="prod_min_top">Minimal Top</string>
+    <string name="prod_silk_blazer">Silk Blazer</string>
+
+    <!-- Monochrome Collection -->
+    <string name="col_monochrome_headline">The Art of\nAbsence.</string>
+    <string name="col_monochrome_subheadline">A study of light and shadow. Minimalist silhouettes in a palette of deep noir and crisp ivory.</string>
+    <string name="col_monochrome_why_title">Pure Minimalism</string>
+    <string name="col_monochrome_why_desc">Every line is intentional. Our Monochrome series focuses on the purity of form and the quality of construction.</string>
+
+    <!-- Autumn Collection -->
+    <string name="col_autumn_headline">Earthy\nTransitions.</string>
+    <string name="col_autumn_subheadline">Warm textures and layered forms. Embracing the change of season with premium wool blends and rich tones.</string>
+    <string name="col_autumn_why_title">Seasonal Warmth</string>
+    <string name="col_autumn_why_desc">Crafted for the shifting winds. We use high-density wool and thermal silk to keep you elegant and warm.</string>
+
+    <!-- Silk Collection -->
+    <string name="col_silk_headline">Architecture\nof Silk.</string>
+    <string name="col_silk_subheadline">Fluidity meets structure. Sourced from traditional Vietnamese looms, our silk pieces redefine modern elegance.</string>
+    <string name="col_silk_why_title">Vietnamese Heritage</string>
+    <string name="col_silk_why_desc">Our silk is woven in Bao Loc, known for its incredible luster and durability. A material that breathes with the body.</string>
+</resources>

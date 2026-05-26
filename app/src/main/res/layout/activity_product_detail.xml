@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorCotton">
+
+    <!-- FIXED HEADER (Search, Cart, Logo) -->
+    <LinearLayout
+        android:id="@+id/searchContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorCotton"
+        android:elevation="0dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/spacing_large"
+        android:paddingTop="54dp"
+        android:paddingBottom="12dp"
+        android:translationZ="10dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/bg_circle_white"
+            android:backgroundTint="#10000000"
+            android:padding="10dp"
+            android:src="@drawable/ic_back"
+            app:tint="@color/colorNoirBlack" />
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/bg_rounded_white_8dp"
+            android:backgroundTint="#08000000"
+            android:paddingHorizontal="16dp">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_gravity="center_vertical"
+                android:src="@android:drawable/ic_menu_search"
+                app:tint="@color/colorNoirBlack"
+                android:alpha="0.5"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="28dp"
+                style="@style/TextAppearance.Saive.Nav"
+                android:text="@string/nav_search"
+                android:textSize="13sp"
+                android:textColor="@color/colorNoirBlack"
+                android:alpha="0.5" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/btnCart"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_cart"
+                app:tint="@color/colorNoirBlack" />
+
+            <TextView
+                android:id="@+id/tvCartBadge"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/bg_circle_maroon"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@android:color/white"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                tools:visibility="visible" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/bottomBar"
+        app:layout_constraintTop_toBottomOf="@id/searchContainer">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- HERO IMAGE AREA -->
+            <FrameLayout
+                android:id="@+id/heroContainer"
+                android:layout_width="match_parent"
+                android:layout_height="450dp">
+
+                <ImageView
+                    android:id="@+id/ivHero"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/model1" />
+
+                <ImageButton
+                    android:id="@+id/btnFavorite"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="24dp"
+                    android:background="@drawable/bg_square_white"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_favorite"
+                    app:tint="@color/colorMaroon" />
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/lottieFavorite"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="4dp"
+                    android:visibility="gone"
+                    app:lottie_autoPlay="false"
+                    app:lottie_loop="false"
+                    app:lottie_rawRes="@raw/heart_animation" />
+
+                <ImageButton
+                    android:id="@+id/btnShare"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="top|end"
+                    android:layout_margin="16dp"
+                    android:background="@drawable/bg_square_white"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_share"
+                    app:tint="@color/colorNoirBlack" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_large">
+
+                <!-- Title & Price -->
+                <TextView
+                    android:id="@+id/tvProductName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.Saive.Header"
+                    android:textSize="24sp"
+                    android:text="Silk Wrap Dress" />
+
+                <TextView
+                    android:id="@+id/tvPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    style="@style/TextAppearance.Saive.Editorial"
+                    android:text="2.450.000 ₫"
+                    android:textColor="@color/colorMaroon" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginVertical="24dp"
+                    android:background="@color/colorNoirBlack"
+                    android:alpha="0.1" />
+
+                <!-- Description -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.Saive.Caption"
+                    android:text="@string/label_description"
+                    android:textColor="@color/colorMaroon" />
+
+                <TextView
+                    android:id="@+id/tvDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    style="@style/TextAppearance.Saive.Light"
+                    android:lineSpacingExtra="6dp"
+                    android:maxLines="4"
+                    android:ellipsize="end"
+                    android:text="A timeless piece crafted from 100% pure silk. Designed with a relaxed silhouette and elegant drape."
+                    android:textColor="@color/colorNoirBlack" />
+
+                <TextView
+                    android:id="@+id/btnSeeMore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/label_see_more"
+                    style="@style/TextAppearance.Saive.Nav"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorMaroon" />
+
+                <!-- Size Selection -->
+                <LinearLayout
+                    android:id="@+id/sizeSelectionContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        style="@style/TextAppearance.Saive.Caption"
+                        android:text="@string/label_size"
+                        android:textColor="@color/colorMaroon" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal">
+                        <TextView android:id="@+id/sizeXS" style="@style/TextAppearance.Saive.Nav" android:layout_width="40dp" android:layout_height="40dp" android:gravity="center" android:text="XS" android:background="@drawable/bg_size_square" android:clickable="true" android:focusable="true" android:layout_marginEnd="12dp"/>
+                        <TextView android:id="@+id/sizeS" style="@style/TextAppearance.Saive.Nav" android:layout_width="40dp" android:layout_height="40dp" android:gravity="center" android:text="S" android:background="@drawable/bg_size_square" android:clickable="true" android:focusable="true" android:layout_marginEnd="12dp"/>
+                        <TextView android:id="@+id/sizeM" style="@style/TextAppearance.Saive.Nav" android:layout_width="40dp" android:layout_height="40dp" android:gravity="center" android:text="M" android:background="@drawable/bg_size_square" android:clickable="true" android:focusable="true" android:layout_marginEnd="12dp"/>
+                        <TextView android:id="@+id/sizeL" style="@style/TextAppearance.Saive.Nav" android:layout_width="40dp" android:layout_height="40dp" android:gravity="center" android:text="L" android:background="@drawable/bg_size_square" android:clickable="true" android:focusable="true" android:layout_marginEnd="12dp"/>
+                        <TextView android:id="@+id/sizeXL" style="@style/TextAppearance.Saive.Nav" android:layout_width="40dp" android:layout_height="40dp" android:gravity="center" android:text="XL" android:background="@drawable/bg_size_square" android:clickable="true" android:focusable="true" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Color Selection -->
+                <LinearLayout
+                    android:id="@+id/colorSelectionContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        style="@style/TextAppearance.Saive.Caption"
+                        android:text="@string/label_color"
+                        android:textColor="@color/colorMaroon" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal">
+                        <View android:id="@+id/colorBlack" android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="16dp" android:background="@drawable/bg_color_square" android:backgroundTint="@color/black" android:tag="Black" android:clickable="true" android:focusable="true" />
+                        <View android:id="@+id/colorTortoise" android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="16dp" android:background="@drawable/bg_color_square" android:backgroundTint="#4E342E" android:tag="Tortoise" android:clickable="true" android:focusable="true" />
+                        <View android:id="@+id/colorGold" android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="16dp" android:background="@drawable/bg_color_square" android:backgroundTint="#D4AF37" android:tag="Gold" android:clickable="true" android:focusable="true" />
+                        <View android:id="@+id/colorSilver" android:layout_width="32dp" android:layout_height="32dp" android:background="@drawable/bg_color_square" android:backgroundTint="#C0C0C0" android:tag="Silver" android:clickable="true" android:focusable="true" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Complete the Look -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    style="@style/TextAppearance.Saive.Caption"
+                    android:text="Complete the Look"
+                    android:textColor="@color/colorMaroon" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCompleteLook"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:clipToPadding="false" />
+
+                <!-- Reviews Section -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="48dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        style="@style/TextAppearance.Saive.Caption"
+                        android:text="CUSTOMER REVIEWS"
+                        android:textColor="@color/colorMaroon"
+                        android:letterSpacing="0.2" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnWriteReview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:backgroundTint="@color/colorMaroon"
+                        android:paddingHorizontal="20dp"
+                        android:text="Write a review"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        app:cornerRadius="20dp"
+                        app:elevation="2dp"
+                        app:icon="@android:drawable/ic_menu_edit"
+                        app:iconGravity="textStart"
+                        app:iconSize="16dp"
+                        app:iconTint="@color/white"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        style="@style/TextAppearance.Saive.Nav" />
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvReviews"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:nestedScrollingEnabled="false" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- BOTTOM ACTION BAR -->
+    <FrameLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:paddingHorizontal="24dp"
+        android:paddingBottom="40dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:id="@+id/btnAddToWardrobe"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/bg_rounded_maroon_12dp"
+            android:elevation="8dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:stateListAnimator="@null">
+
+            <ImageView
+                android:id="@+id/ivWardrobeIcon"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_cart"
+                app:tint="@color/white" />
+
+            <TextView
+                android:id="@+id/tvWardrobeAction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                style="@style/TextAppearance.Saive.Nav"
+                android:text="ADD TO BAG"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.1" />
+        </LinearLayout>
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Basic Colors -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="colorNoirBlack">#1A1A1A</color>
+
+    <!-- Brand / Theme Colors -->
+    <color name="colorMaroon">#810100</color>
+    <color name="colorCherryRed">@color/colorMaroon</color>
+    <color name="colorMaroonBrand">@color/colorMaroon</color>
+    <color name="colorSand">#A89B85</color>
+    <color name="colorCotton">#EDEBDD</color>
+    <color name="colorIvory">#FAF8F3</color>
+    <color name="colorLinen">#D4C9B8</color>
+
+    <!-- UI Element Colors -->
+    <color name="colorGrayText">#888888</color>
+    <color name="colorLightGray">#E0E0E0</color>
+    <color name="colorRatingGold">#FFD700</color>
+    <color name="colorTransWhite">#40FFFFFF</color>
+
+    <!-- Background & Category Colors -->
+    <color name="colorBeigeBg">#EDE8DF</color>
+    <color name="colorGrayBg">#F0EDE3</color>
+    <color name="colorCategoryBg">#F5EAEA</color>
+    <color name="colorCategoryBorder">#E0D0D0</color>
+    <color name="colorUnreadBg">#FAF8F3</color>
+    <color name="colorReadBg">#EDEBDD</color>
+    <color name="colorNoir">#1B1717</color>
+    <color name="colorSandLight">#F2F0E9</color>
+    <color name="colorActionBlue">#0047FF</color>
+    <color name="colorGreen">#4CAF50</color>
+
+    <!-- Collection List Colors (Refined Pallette) -->
+    <color name="colorCollectionMaroon">@color/colorMaroonBrand</color>
+    <color name="colorCollectionSand">@color/colorSand</color>
+    <color name="colorCollectionMaroonSand">#4A0E0E</color>
+    <color name="colorCollectionSandLight">#E8E2D8</color>
+    <color name="colorCollectionBlack">#1A1A1A</color>
+    <color name="colorCollectionYellow">#FFC470</color>
+    <color name="colorCollectionPink">#FFB5D0</color>
+    <color name="colorCollectionBlue">#7CB9FF</color>
+    <color name="colorCollectionGreen">#B1F2B3</color>
+</resources>

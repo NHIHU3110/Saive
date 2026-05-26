@@ -1,0 +1,273 @@
+<resources>
+    <string name="app_name">Saive</string>
+    <string name="search_hint">搜索您的衣橱...</string>
+    <string name="nav_shop">商店</string>
+    <string name="nav_archive">存档</string>
+    <string name="nav_about">关于</string>
+    <string name="flash_sale_title">定时策划</string>
+    <string name="flash_sale_label">限时抢购</string>
+    <string name="flash_sale_desc">限量精选存档款式，仅限 48 小时。</string>
+    <string name="btn_access_archive">访问存档</string>
+    <string name="collection_label">系列</string>
+    <string name="monochrome_series_title">单色系列</string>
+    <string name="explore_lookbook">探索画册</string>
+    <string name="curated_capsule_title">精选胶囊系列</string>
+    <string name="material_story_title">丝绸之筑</string>
+    <string name="material_story_desc">我们的丝绸源自越南的可持续农场，织造密度兼顾结构感与流动性。一种随身体呼吸的材质。</string>
+    <string name="capsule_week_title">胶囊 01 / 必备单品</string>
+    <string name="view_full_curation">查看全部精选</string>
+    <string name="editorial_quote">“衣橱是意图的画布。”</string>
+    <string name="footer_location">河内 • 西贡</string>
+    <string name="nav_favorite">收藏</string>
+    <string name="nav_wardrobe">衣橱</string>
+    <string name="nav_notify">通知</string>
+    <string name="btn_share">分享</string>
+    <string name="nav_profile">个人资料</string>
+    <string name="nav_search">搜索</string>
+
+    <string name="explore_piece">探索单品</string>
+    <string name="add_to_wardrobe">加入衣橱</string>
+
+    <!-- Editorial Card Titles -->
+    <string name="editorial_title_1">永恒工艺</string>
+    <string name="editorial_title_2">日常优雅</string>
+    <string name="editorial_title_3">SAIVE 故事</string>
+
+    <!-- Editorial Card Stories -->
+    <string name="editorial_story_1">为穿着而生，而非为了被取代。我们的理念专注于耐用性和永恒的手工艺设计。</string>
+    <string name="editorial_story_2">日常优雅的宁静单品。通过同色系层搭研究纹理与光影。</string>
+    <string name="editorial_story_3">为现代生活精心设计。从居家到城市的无缝切换。</string>
+
+    <string name="editorial_material_1">越南传承工艺</string>
+    <string name="editorial_material_2">生丝 • 有机棉</string>
+    <string name="editorial_material_3">建筑形态</string>
+
+    <!-- Profile Screen -->
+    <string name="profile_header">个人资料</string>
+    <string name="profile_user_name">Huynh Thao Nhi</string>
+    <string name="profile_location">越南胡志明市</string>
+
+    <string name="stat_orders">订单</string>
+    <string name="stat_collections">系列</string>
+    <string name="stat_recent">最近查看</string>
+
+    <string name="menu_my_orders">我的订单</string>
+    <string name="menu_saved_collections">已存系列</string>
+    <string name="menu_my_wardrobe">我的衣橱</string>
+    <string name="menu_notifications">通知</string>
+    <string name="menu_language">语言</string>
+    <string name="menu_language_sub">中文</string>
+    <string name="menu_about">关于 SAIVE</string>
+    <string name="menu_logout">退出登录</string>
+    <string name="menu_login">登录</string>
+
+    <string name="section_recent">最近浏览</string>
+    <string name="view_all">查看全部</string>
+
+    <string name="col_minimalist">极简主义</string>
+    <string name="col_silk_story">丝绸故事</string>
+    <string name="col_winter_24">24 冬季</string>
+
+    <string name="stat_orders_count">12</string>
+    <string name="stat_collections_count">4</string>
+    <string name="stat_recent_count">28</string>
+    <string name="brand_name">SAIVE</string>
+    <string name="coupon_title">专属邀请</string>
+    <string name="coupon_desc">存档访问与季节性奖励</string>
+    <string name="coupon_code">SAIVE_S24_EXTRA</string>
+    <string name="coupon_label">优惠券</string>
+    <string name="wardrobe_header">我的衣橱</string>
+    <string name="added_to_wardrobe">已在衣橱中</string>
+    <string name="label_description">描述</string>
+    <string name="label_see_more">查看更多</string>
+    <string name="label_product_details">产品详情</string>
+    <string name="label_material">材质</string>
+    <string name="label_origin">产地</string>
+    <string name="label_instructions">保养说明</string>
+    <string name="label_size">尺寸</string>
+    <string name="label_total">总计</string>
+    <string name="favorites_items_count">%1$d 件商品</string>
+    <string name="favorites_empty_state">暂无收藏</string>
+    <string name="cart_title">购物袋</string>
+    <string name="cart_empty_title">您的购物袋是空的</string>
+    <string name="cart_empty_desc">探索我们的系列并添加与您产生共鸣的单品。</string>
+    <string name="btn_checkout">结账</string>
+    <string name="search_recent">最近搜索</string>
+    <string name="search_trending">热门趋势</string>
+    <string name="chip_linen_shirt">亚麻衬衫</string>
+    <string name="chip_wool_coat">羊毛大衣</string>
+    <!-- About Brand Strings -->
+    <string name="about_hero_title">静谧。自信。\n不显山露水。</string>
+    <string name="about_hero_subtitle">SAIVE · 静奢风 · 越南</string>
+    <string name="about_origin_year">2022</string>
+    <string name="about_origin_text">始于一个简单的问题：\n美为何必须喧嚣？\nSAIVE 诞生于西贡，源自\n极简主义是最高级奢华的信念。</string>
+    <string name="about_material_title">在选择设计之前，我们先选择面料。</string>
+    <string name="about_material_linen">亚麻 (LINEN)</string>
+    <string name="about_material_linen_desc">来自欧洲无农药种植。透气性极佳。</string>
+    <string name="about_material_tencel">天丝 (TENCEL)</string>
+    <string name="about_material_tencel_desc">再生木质纤维。如丝般柔软。比棉凉爽 50%。</string>
+    <string name="about_material_bamboo">竹纤维 (BAMBOO)</string>
+    <string name="about_material_bamboo_desc">90天内再生。无需农药。可自然降解。</string>
+    <string name="about_philosophy_quote">“每个系列仅有 12 件单品。\n不多。不少。”</string>
+    <string name="about_philosophy_sub">我们不随季节而动。我们随生活节奏而行。</string>
+    <string name="about_stats_items_value">12</string>
+    <string name="about_stats_items_label">每系列\n单品数</string>
+    <string name="about_stats_natural_value">100%</string>
+    <string name="about_stats_natural_label">天然\n材质</string>
+    <string name="about_stats_sale_value">0</string>
+    <string name="about_stats_sale_label">季节性\n折扣</string>
+    <string name="about_stats_founded_value">2022</string>
+    <string name="about_stats_founded_label">成立于\n西贡</string>
+    <string name="about_commit_title">我们的承诺</string>
+    <string name="about_commit_1">30天无理由退换货</string>
+    <string name="about_commit_2">全环保可重复使用包装</string>
+    <string name="about_commit_3">工匠公平薪酬</string>
+    <string name="about_commit_4">终身维修保修</string>
+    <string name="updating_language">正在更新语言...</string>
+
+    <!-- Checkout Strings -->
+    <string name="checkout_shipping_title">收货信息</string>
+    <string name="checkout_payment_title">付款方式</string>
+    <string name="label_full_name">姓名</string>
+    <string name="label_phone_number">电话号码</string>
+    <string name="label_email">电子邮箱</string>
+    <string name="label_address">详细地址 (门牌号, 街道)</string>
+    <string name="label_country">国家/地区</string>
+    <string name="label_district">区 / 县 / 省</string>
+    <string name="hint_choose_country">选择国家</string>
+    <string name="hint_choose_district">选择区县</string>
+    <string name="label_save_info">保存信息以备下次使用</string>
+    <string name="btn_continue_payment">继续付款</string>
+    <string name="btn_place_order">下单</string>
+
+    <string name="payment_bank">银行转账</string>
+    <string name="payment_momo">Momo 钱包</string>
+    <string name="payment_zalopay">ZaloPay</string>
+    <string name="payment_cod">货到付款 (COD)</string>
+
+    <string name="label_city">城市</string>
+    <string name="hint_choose_city">选择城市</string>
+    <string name="error_required_field">请填写此项</string>
+    <string name="payment_method_more">其他付款选项</string>
+    <string name="payment_success_title">下单成功</string>
+    <string name="payment_success_desc">感谢您选择 SAIVE。您的订单已收到，我们正在精心准备。</string>
+    <string name="btn_continue_shopping">继续购物</string>
+    <string name="btn_view_order">查看订单状态</string>
+
+    <!-- Address Data -->
+    <string-array name="countries_array">
+        <item>越南</item>
+        <item>新加坡</item>
+        <item>泰国</item>
+        <item>马来西亚</item>
+        <item>日本</item>
+        <item>韩国</item>
+        <item>中国</item>
+    </string-array>
+
+    <string-array name="cities_vn_array">
+        <item>胡志明市</item>
+        <item>河内</item>
+        <item>岘港</item>
+        <item>芹苴</item>
+        <item>海防</item>
+        <item>顺化</item>
+        <item>大叻</item>
+    </string-array>
+
+    <string-array name="districts_hcm_array">
+        <item>第一区</item>
+        <item>第三区</item>
+        <item>第五区</item>
+        <item>第七区</item>
+        <item>平盛区</item>
+        <item>新平区</item>
+        <item>富润区</item>
+        <item>守德市</item>
+    </string-array>
+
+    <string-array name="districts_hanoi_array">
+        <item>还剑区</item>
+        <item>巴亭区</item>
+        <item>栋多区</item>
+        <item>二征夫人区</item>
+        <item>西湖区</item>
+        <item>纸桥区</item>
+        <item>青春区</item>
+    </string-array>
+    <string name="btn_explore_collection">探索系列</string>
+    <string name="bulletin_header">简报</string>
+    <string name="posted_time">发布于 %1$s 前</string>
+    <string name="notify_detail_description_placeholder">我们的新系列终于发布了。本季，我们专注于可持续材质与永恒的轮廓。采用优质意大利羊毛和再生丝绸制成，每件单品都旨在成为您衣橱中多年不变的经典。</string>
+    <string name="label_item_total">商品小计：</string>
+    <string name="label_delivery">运费：</string>
+    <string name="label_free">免运费</string>
+    <string name="btn_payment">付款</string>
+    <string name="promo_code_hint">优惠券代码</string>
+    <string name="menu_signup">注册</string>
+    <string name="menu_forgot_password">忘记密码？</string>
+    <string name="menu_remember_me">记住我</string>
+    <string name="auth_no_account">还没有账号？注册</string>
+    <string name="auth_has_account">已有账号？登录</string>
+    <string name="auth_terms_agree">我同意条款与条件</string>
+    <string name="auth_login_title">登录</string>
+    <string name="auth_signup_title">注册</string>
+    <string name="label_password">密码</string>
+    <string name="label_name">姓名</string>
+    <string name="label_phone">电话号码</string>
+    <string name="checkout_select_address">选择收货地址</string>
+    <string name="checkout_select_address_desc">选择您希望订单送达的地点。</string>
+    <string name="checkout_add_new_address">+ 添加新地址</string>
+    <!-- 地址管理 -->
+    <string name="address_title">我的地址</string>
+    <string name="address_add_new">添加新地址</string>
+    <string name="address_empty">尚无保存的地址。</string>
+    <string name="address_default_label">默认</string>
+    <string name="address_set_default">设为默认</string>
+    <string name="address_edit">编辑</string>
+    <string name="address_delete">删除</string>
+    <string name="address_add_title">添加地址</string>
+    <string name="address_edit_title">编辑地址</string>
+    <string name="address_save">保存地址</string>
+    <string name="address_label_home">家</string>
+    <string name="address_label_office">公司</string>
+    <string name="address_label_other">其他</string>
+
+    <!-- 优惠券屏幕 -->
+    <string name="coupon_available_title">可用优惠券</string>
+    <string name="coupon_search_hint">搜索您的优惠券...</string>
+    <string name="coupon_no_coupons">暂无优惠券</string>
+    <string name="coupon_copy">复制</string>
+    <string name="coupon_valid_until">有效期至: %1$s</string>
+    <string name="coupon_off">折扣</string>
+
+    <!-- 地址标签 -->
+    <string name="label_address_label">地址标签</string>
+    <string name="hint_full_name">例如: Huynh Thao Nhi</string>
+    <string name="hint_phone_number">+84 901 234 567</string>
+    <string name="hint_street_address">门牌号, 街道名称...</string>
+    <string name="hint_city">例如: 胡志明市</string>
+    <string name="hint_district">例如: 第一区</string>
+    <string name="suggestion_trousers">亚麻长裤</string>
+    <string name="suggestion_loafers">真皮乐福鞋</string>
+    <string name="suggestion_scarf">丝巾</string>
+    <string name="toast_added_favorites">已添加到收藏</string>
+    <string name="toast_removed_favorites">已从收藏中移除</string>
+    <string name="toast_already_in_wardrobe">已在衣橱中</string>
+    <string name="toast_photo_feature_later">照片选择功能稍后整合</string>
+    <string name="toast_input_comment">请输入您的评论</string>
+    <string name="toast_review_thanks">感谢您的评价！</string>
+    <string name="review_user_you">您</string>
+    <string name="share_message_format">在 Saive 查看这款 %1$s: %2$s</string>
+    <string name="lang_en">English</string>
+    <string name="lang_vi">Tiếng Việt</string>
+    <string name="lang_zh">中文</string>
+    <string name="notifications_enabled">通知已启用</string>
+    <string name="notifications_disabled">通知已禁用</string>
+    <string name="logout_title">退出登录</string>
+    <string name="logout_message">您确定要退出登录吗？</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="toast_logged_out">已退出登录</string>
+    <string name="toast_account_deleted">账号已删除</string>
+</resources>

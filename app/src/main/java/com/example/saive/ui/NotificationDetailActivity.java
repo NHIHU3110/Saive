@@ -1,0 +1,121 @@
+package com.example.saive.ui;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.saive.R;
+
+public class NotificationDetailActivity extends AppCompatActivity {
+
+    private ImageView ivDetailImage;
+    private TextView tvDetailTitle, tvDetailTime, tvDetailContent, tvActionText;
+    private View btnBack, cvAction;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_notification_detail);
+
+        initViews();
+        handleIntent();
+        setupListeners();
+    }
+
+    private void initViews() {
+        ivDetailImage = findViewById(R.id.ivDetailImage);
+        tvDetailTitle = findViewById(R.id.tvDetailTitle);
+        tvDetailTime = findViewById(R.id.tvDetailTime);
+        tvDetailContent = findViewById(R.id.tvDetailContent);
+        tvActionText = findViewById(R.id.tvActionText);
+        btnBack = findViewById(R.id.btnBack);
+        cvAction = findViewById(R.id.cvAction);
+    }
+
+    private void handleIntent() {
+        Intent intent = getIntent();
+        if (intent != null) {
+            String title = intent.getStringExtra("title");
+            String time = intent.getStringExtra("time");
+            String desc = intent.getStringExtra("desc");
+            String action = intent.getStringExtra("action");
+            String typeStr = intent.getStringExtra("type");
+            int iconRes = intent.getIntExtra("icon", R.mipmap.banner1);
+
+            if (title != null) tvDetailTitle.setText(title);
+            if (time != null) {
+                tvDetailTime.setText(getString(R.string.posted_time, time));
+            }
+            if (desc != null) {
+                String fullContent = desc + "\n\n" + getString(R.string.notify_detail_description_placeholder);
+                tvDetailContent.setText(fullContent);
+            }
+            if (action != null) tvActionText.setText(action.toUpperCase());
+            
+            // Set image based on notification type
+            if (typeStr != null) {
+                com.example.saive.models.Notification.Type type = com.example.saive.models.Notification.Type.valueOf(typeStr);
+                switch (type) {
+                    case DROP:
+                        ivDetailImage.setImageResource(R.mipmap.atumncollection1);
+                        break;
+                    case ORDER:
+                        ivDetailImage.setImageResource(R.mipmap.atumncollection2);
+                        break;
+                    case REMINDER:
+                        ivDetailImage.setImageResource(R.mipmap.banner3);
+                        break;
+                    default:
+                        ivDetailImage.setImageResource(R.mipmap.banner1);
+                        break;
+                }
+            }
+        }
+    }
+
+    private void setupListeners() {
+        btnBack.setOnClickListener(v -> finish());
+        
+        cvAction.setOnClickListener(v -> {
+            String typeStr = getIntent().getStringExtra("type");
+            Intent intent;
+            
+            if (typeStr != null) {
+                com.example.saive.models.Notification.Type type = com.example.saive.models.Notification.Type.valueOf(typeStr);
+                switch (type) {
+                    case REMINDER:
+                        intent = new Intent(this, MainActivity.class);
+                        intent.putExtra("SHOW_WARDROBE", true);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        break;
+                    case CAPSULE:
+                        intent = new Intent(this, CartActivity.class);
+                        break;
+                    case ORDER:
+                        intent = new Intent(this, OrderTrackingActivity.class);
+                        break;
+                    default:
+                        intent = new Intent(this, MainActivity.class);
+                        intent.putExtra("SHOW_HOME", true);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        break;
+                }
+            } else {
+                intent = new Intent(this, MainActivity.class);
+            }
+
+            startActivity(intent);
+            finish();
+        });
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+}

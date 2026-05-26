@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Spacing & Margins -->
+    <dimen name="small_padding">8dp</dimen>
+    <dimen name="item_spacing">16dp</dimen>
+    <dimen name="spacing_medium">16dp</dimen>
+    <dimen name="spacing_large">24dp</dimen>
+    <dimen name="spacing_xlarge">32dp</dimen>
+    <dimen name="spacing_xxlarge">40dp</dimen>
+    <dimen name="screen_padding">20dp</dimen>
+    <dimen name="header_margin">24dp</dimen>
+
+    <!-- Section Spacing -->
+    <dimen name="section_spacing">48dp</dimen>
+    <dimen name="section_spacing_large">80dp</dimen>
+    <dimen name="section_spacing_huge">100dp</dimen>
+
+    <!-- Component Sizes -->
+    <dimen name="button_height">48dp</dimen>
+    <dimen name="nav_bar_height">72dp</dimen>
+    <dimen name="menu_item_height">54dp</dimen>
+    <dimen name="avatar_size">88dp</dimen>
+    <dimen name="banner_height">560dp</dimen>
+    <dimen name="editorial_image_height">640dp</dimen>
+    <dimen name="recent_card_width">120dp</dimen>
+    <dimen name="recent_card_height">160dp</dimen>
+    <dimen name="center_action_size">64dp</dimen>
+
+    <!-- Icons -->
+    <dimen name="icon_size_small">16dp</dimen>
+    <dimen name="icon_size_nav">24dp</dimen>
+    <dimen name="icon_size_medium">36dp</dimen>
+
+    <!-- Text Sizes -->
+    <dimen name="logo_text_size">18sp</dimen>
+    <dimen name="logo_text_size_huge">100sp</dimen>
+    <dimen name="text_size_h1">28sp</dimen>
+    <dimen name="text_size_h2">24sp</dimen>
+    <dimen name="text_size_h3">20sp</dimen>
+    <dimen name="text_size_body">15sp</dimen>
+    <dimen name="text_size_caption">12sp</dimen>
+    <dimen name="text_size_small">11sp</dimen>
+    <dimen name="text_size_tiny">10sp</dimen>
+    <dimen name="text_size_micro">9sp</dimen>
+
+    <!-- UI Details -->
+    <dimen name="card_elevation">8dp</dimen>
+    <dimen name="corner_radius_large">20dp</dimen>
+</resources>
