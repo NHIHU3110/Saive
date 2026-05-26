@@ -66,7 +66,6 @@ public class CartActivity extends AppCompatActivity {
         btnBack.setOnClickListener(v -> finish());
 
         btnCheckout.setOnClickListener(v -> {
-            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             if (cartManager.getCartItems().isEmpty()) {
                 ToastUtils.showCustomToast(this, "Giỏ hàng đang trống");
                 return;
@@ -80,7 +79,6 @@ public class CartActivity extends AppCompatActivity {
         });
 
         btnApplyCoupon.setOnClickListener(v -> {
-            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             applyCoupon();
         });
     }

@@ -389,7 +389,6 @@ public class CheckoutActivity extends BaseActivity {
         });
 
         btnAction.setOnClickListener(v -> {
-            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             if (!isPaymentStep) {
                 if (containerAddressSelection.getVisibility() == View.VISIBLE) {
                     showPaymentStep();
