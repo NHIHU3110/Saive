@@ -335,7 +335,21 @@ public class MainActivity extends BaseActivity {
                 "DISCOVER",
                 R.mipmap.banner2));
 
-        com.example.saive.adapters.WardrobeBannerAdapter adapter = new com.example.saive.adapters.WardrobeBannerAdapter(banners);
+        com.example.saive.adapters.WardrobeBannerAdapter adapter = new com.example.saive.adapters.WardrobeBannerAdapter(banners, banner -> {
+            Intent intent;
+            if (banner.getTitle().equals("ESSENTIALS")) {
+                intent = new Intent(MainActivity.this, CollectionDetailActivity.class);
+                intent.putExtra("COLLECTION_TITLE", "ESSENTIALS");
+            } else if (banner.getTitle().equals("URBAN ARCHIVE")) {
+                intent = new Intent(MainActivity.this, CollectionDetailActivity.class);
+                intent.putExtra("COLLECTION_TITLE", "URBAN ARCHIVE");
+            } else {
+                // Default or "NEW COLLECTION" -> Collections List
+                intent = new Intent(MainActivity.this, CollectionsListActivity.class);
+            }
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        });
         vpWardrobeBanner.setAdapter(adapter);
 
         setupDotIndicator(banners.size());
@@ -1157,8 +1171,26 @@ public class MainActivity extends BaseActivity {
     private double parsePrice(String price) {
         if (price == null || price.isEmpty()) return 0;
         try {
-            // Remove currency symbols, commas and whitespace
-            String cleanPrice = price.replaceAll("[^0-9.]", "").trim();
+            // Remove currency symbols and whitespace
+            String cleanPrice = price.replaceAll("[^0-9.,]", "").trim();
+
+            // Check if it's the 1.200.000 format (VN)
+            if (cleanPrice.contains(".") && cleanPrice.indexOf(".") != cleanPrice.lastIndexOf(".")) {
+                cleanPrice = cleanPrice.replace(".", "");
+            }
+            // Check if it's 1.200.000,00 format
+            else if (cleanPrice.contains(".") && cleanPrice.contains(",")) {
+                cleanPrice = cleanPrice.replace(".", "").replace(",", ".");
+            }
+            // Check if it's 1200000,00 format
+            else if (cleanPrice.contains(",") && cleanPrice.length() - cleanPrice.lastIndexOf(",") <= 3) {
+                cleanPrice = cleanPrice.replace(",", ".");
+            }
+            // Check if it's 1,200,000 format
+            else if (cleanPrice.contains(",") && cleanPrice.indexOf(",") != cleanPrice.lastIndexOf(",")) {
+                cleanPrice = cleanPrice.replace(",", "");
+            }
+
             if (cleanPrice.isEmpty()) return 0;
             return Double.parseDouble(cleanPrice);
         } catch (Exception e) {

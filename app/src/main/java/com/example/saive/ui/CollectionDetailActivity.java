@@ -104,7 +104,7 @@ public class CollectionDetailActivity extends BaseActivity {
                 btnShopAll.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.BLACK));
                 btnShopAll.setText(R.string.btn_shop_monochrome);
             }
-        } else if (titleUpper.contains("AUTUMN")) {
+        } else if (titleUpper.contains("AUTUMN") || titleUpper.contains("WINTER")) {
             // COLLECTION 2: THE AUTUMN COLLECTION - Warm Earthy
             tvHeadline.setText(R.string.col_autumn_headline);
             tvSubHeadline.setText(R.string.col_autumn_subheadline);
@@ -119,6 +119,36 @@ public class CollectionDetailActivity extends BaseActivity {
             if (btnShopAll != null) {
                 btnShopAll.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#810100")));
                 btnShopAll.setText(R.string.btn_shop_autumn);
+            }
+        } else if (titleUpper.contains("ESSENTIALS")) {
+            tvHeadline.setText("THE ESSENTIALS");
+            tvSubHeadline.setText("CURATED PIECES FOR EVERY DAY");
+            ivHeroLeft.setImageResource(R.mipmap.model2);
+            ivHeroRight.setImageResource(R.mipmap.atumncollection1);
+            ivSectionModel.setImageResource(R.mipmap.jacket3);
+            tvWhyTitle.setText("TIMELESS DESIGN");
+            tvWhyDesc.setText("Built for longevity and versatility in any wardrobe.");
+            
+            if (heroSection != null) heroSection.setBackgroundColor(Color.parseColor("#F0EDE3"));
+            if (productSection != null) productSection.setBackgroundColor(Color.parseColor("#F9F8F4"));
+            if (btnShopAll != null) {
+                btnShopAll.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#4A4A4A")));
+                btnShopAll.setText("SHOP ESSENTIALS");
+            }
+        } else if (titleUpper.contains("URBAN ARCHIVE")) {
+            tvHeadline.setText("URBAN ARCHIVE");
+            tvSubHeadline.setText("LIMITED DROP: STREET ARCHITECTURE");
+            ivHeroLeft.setImageResource(R.mipmap.banner2);
+            ivHeroRight.setImageResource(R.mipmap.model1);
+            ivSectionModel.setImageResource(R.mipmap.pant2);
+            tvWhyTitle.setText("STREET HERITAGE");
+            tvWhyDesc.setText("Exploring the intersection of function and form.");
+            
+            if (heroSection != null) heroSection.setBackgroundColor(Color.parseColor("#E5E5E5"));
+            if (productSection != null) productSection.setBackgroundColor(Color.parseColor("#EFEFEF"));
+            if (btnShopAll != null) {
+                btnShopAll.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#1A1A1A")));
+                btnShopAll.setText("EXPLORE DROP");
             }
         } else {
             // COLLECTION 3: THE SILK STORY - Heritage Beige
@@ -180,11 +210,21 @@ public class CollectionDetailActivity extends BaseActivity {
             productList.add(new Product(getString(R.string.prod_city_trousers), getString(R.string.price_1150), R.mipmap.pant1, "Monochrome"));
             productList.add(new Product(getString(R.string.prod_min_knit), getString(R.string.price_950), R.mipmap.jacket1, "Monochrome"));
             productList.add(new Product(getString(R.string.prod_archive_tote), getString(R.string.price_1800), R.mipmap.banner2, "Monochrome"));
-        } else if (titleUpper.contains("AUTUMN")) {
+        } else if (titleUpper.contains("AUTUMN") || titleUpper.contains("WINTER")) {
             productList.add(new Product(getString(R.string.prod_wool_scarf), getString(R.string.price_550), R.mipmap.atumncollection1, "Autumn"));
             productList.add(new Product(getString(R.string.prod_double_blazer), getString(R.string.price_2950), R.mipmap.atumncollection2, "Autumn"));
             productList.add(new Product(getString(R.string.prod_ankle_boots), getString(R.string.price_2250), R.mipmap.model1, "Autumn"));
             productList.add(new Product(getString(R.string.prod_autumn_trench), getString(R.string.price_4200), R.mipmap.atumncollection1, "Autumn"));
+        } else if (titleUpper.contains("ESSENTIALS")) {
+            productList.add(new Product("Modern T-Shirt", "450.000 ₫", R.mipmap.tshirt1, "Essentials"));
+            productList.add(new Product("Raw Denim", "1.200.000 ₫", R.mipmap.pant2, "Essentials"));
+            productList.add(new Product("Structured Blazer", "2.500.000 ₫", R.mipmap.jacket3, "Essentials"));
+            productList.add(new Product("Canvas Tote", "350.000 ₫", R.mipmap.banner3, "Essentials"));
+        } else if (titleUpper.contains("URBAN ARCHIVE")) {
+            productList.add(new Product("Tech Parka", "3.200.000 ₫", R.mipmap.jacket2, "Archive"));
+            productList.add(new Product("Cargo Trousers", "1.100.000 ₫", R.mipmap.pant2, "Archive"));
+            productList.add(new Product("Beanie", "250.000 ₫", R.mipmap.model1, "Archive"));
+            productList.add(new Product("Crossbody Bag", "850.000 ₫", R.mipmap.banner2, "Archive"));
         } else {
             productList.add(new Product(getString(R.string.prod_silk_gown), getString(R.string.price_2850), R.mipmap.model2, "Silk"));
             productList.add(new Product(getString(R.string.prod_flowing_pants), getString(R.string.price_1250), R.mipmap.banner2, "Silk"));

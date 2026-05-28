@@ -75,12 +75,20 @@ public class CouponActivity extends BaseActivity {
             ClipData clip = ClipData.newPlainText("Coupon Code", coupon.getCode());
             clipboard.setPrimaryClip(clip);
             
-            showCustomToast("Code " + coupon.getCode() + " copied to clipboard");
+            showCustomToast("Đã sao chép mã " + coupon.getCode());
             
-            // Navigate back to Cart and pass the code
-            Intent resultIntent = new Intent();
-            resultIntent.putExtra("COUPON_CODE", coupon.getCode());
-            setResult(RESULT_OK, resultIntent);
+            if (getCallingActivity() != null) {
+                // Trả kết quả về cho CartActivity nếu được gọi bằng startActivityForResult
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("COUPON_CODE", coupon.getCode());
+                setResult(RESULT_OK, resultIntent);
+            } else {
+                // Chuyển trực tiếp sang CartActivity nếu mở từ Profile
+                Intent intent = new Intent(this, CartActivity.class);
+                intent.putExtra("COUPON_CODE", coupon.getCode());
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+            }
             
             dialog.dismiss();
             finish();

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Quiet Luxury Typography Styles -->
+    <!-- Font Sans-Serif cho nội dung chính -->
     <style name="TextAppearance.Saive.Thin" parent="TextAppearance.MaterialComponents.Body1">
-        <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="android:fontFamily">sans-serif-light</item>
         <item name="android:letterSpacing">0.05</item>
     </style>
 
@@ -10,22 +11,28 @@
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
-    <style name="TextAppearance.Saive.Header" parent="TextAppearance.Saive.Thin">
-        <item name="android:textSize">@dimen/text_size_h3</item>
+    <!-- Font Serif cho Header (Sử dụng serif làm fallback, hãy thêm Bodoni Moda vào res/font) -->
+    <style name="TextAppearance.Saive.Header" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="android:fontFamily">serif</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textSize">@dimen/text_size_h1</item>
         <item name="android:textColor">@color/colorNoirBlack</item>
-        <item name="android:letterSpacing">0.1</item>
+        <item name="android:letterSpacing">0.02</item>
     </style>
 
-    <style name="TextAppearance.Saive.SectionHeader" parent="TextAppearance.Saive.Thin">
+    <style name="TextAppearance.Saive.SectionHeader" parent="TextAppearance.Saive.Header">
         <item name="android:textSize">@dimen/text_size_h3</item>
-        <item name="android:textColor">@color/colorNoirBlack</item>
-        <item name="android:letterSpacing">0.1</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 
+    <!-- Font Sans-Serif cho Nhãn (Giống hình mẫu: Flash Sale) -->
     <style name="TextAppearance.Saive.Label" parent="TextAppearance.Saive.Thin">
-        <item name="android:textSize">@dimen/item_spacing</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">@dimen/text_size_tiny</item>
         <item name="android:textColor">@color/colorNoirBlack</item>
         <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.15</item>
     </style>
 
     <style name="TextAppearance.Saive.SubLabel" parent="TextAppearance.Saive.Light">
@@ -43,7 +50,7 @@
         <item name="android:letterSpacing">0.4</item>
     </style>
 
-    <style name="TextAppearance.Saive.Editorial" parent="TextAppearance.Saive.Thin">
+    <style name="TextAppearance.Saive.Editorial" parent="TextAppearance.Saive.Header">
         <item name="android:textSize">18sp</item>
         <item name="android:lineSpacingExtra">8dp</item>
     </style>
@@ -62,15 +69,22 @@
         <item name="android:textColor">@color/colorMaroon</item>
     </style>
 
-    <style name="TextAppearance.Saive.Stats.Number" parent="TextAppearance.Saive.Thin">
+    <style name="TextAppearance.Saive.Stats.Number" parent="TextAppearance.Saive.Header">
         <item name="android:textSize">@dimen/text_size_h1</item>
+        <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/colorNoirBlack</item>
     </style>
 
-    <style name="TextAppearance.Saive.Stats.Label" parent="TextAppearance.Saive.Thin">
+    <style name="TextAppearance.Saive.Stats.Label" parent="TextAppearance.Saive.Label">
         <item name="android:textSize">@dimen/text_size_micro</item>
         <item name="android:letterSpacing">0.3</item>
         <item name="android:textColor">@color/colorSand</item>
+    </style>
+
+    <style name="TextAppearance.Saive.ProductTitle" parent="TextAppearance.Saive.Header">
+        <item name="android:fontFamily">serif</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 
     <style name="RoundedAppearance" parent="">

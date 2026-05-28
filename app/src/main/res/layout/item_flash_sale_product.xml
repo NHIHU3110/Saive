@@ -53,11 +53,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        style="@style/TextAppearance.Saive.Nav"
+        style="@style/TextAppearance.Saive.ProductTitle"
         android:text="NYLON WEATHER"
         android:textColor="@color/colorNoirBlack"
-        android:textSize="11sp"
-        android:textAllCaps="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cardProduct" />

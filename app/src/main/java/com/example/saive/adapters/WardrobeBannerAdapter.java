@@ -14,9 +14,15 @@ import java.util.List;
 public class WardrobeBannerAdapter extends RecyclerView.Adapter<WardrobeBannerAdapter.ViewHolder> {
 
     private List<WardrobeBanner> banners;
+    private OnBannerClickListener listener;
 
-    public WardrobeBannerAdapter(List<WardrobeBanner> banners) {
+    public interface OnBannerClickListener {
+        void onBannerClick(WardrobeBanner banner);
+    }
+
+    public WardrobeBannerAdapter(List<WardrobeBanner> banners, OnBannerClickListener listener) {
         this.banners = banners;
+        this.listener = listener;
     }
 
     @NonNull
@@ -33,6 +39,12 @@ public class WardrobeBannerAdapter extends RecyclerView.Adapter<WardrobeBannerAd
         holder.tvBannerCaption.setText(banner.getCaption());
         holder.tvBannerTitle.setText(banner.getTitle());
         holder.tvBannerAction.setText(banner.getAction());
+
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onBannerClick(banner);
+            }
+        });
     }
 
     @Override

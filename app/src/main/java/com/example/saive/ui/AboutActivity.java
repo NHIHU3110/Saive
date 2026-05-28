@@ -3,9 +3,11 @@ package com.example.saive.ui;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.HapticFeedbackConstants;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -21,6 +23,7 @@ public class AboutActivity extends BaseActivity {
 
     private View heroTextContainer, originSection, materialSection;
     private View tvHeroTitle, tvHeroSubtitle, tvOriginYear, tvOriginText, tvMaterialTitle, svMaterials;
+    private TextView tvCartBadge;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -41,6 +44,7 @@ public class AboutActivity extends BaseActivity {
         setContentView(R.layout.activity_about);
 
         initViews();
+        setupCartBadge();
 
         View rootLayout = findViewById(android.R.id.content);
         ViewCompat.setOnApplyWindowInsetsListener(rootLayout, (v, insets) -> {
@@ -83,6 +87,26 @@ public class AboutActivity extends BaseActivity {
             });
         }
 
+        View btnCart = findViewById(R.id.btnCart);
+        if (btnCart != null) {
+            btnCart.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                Intent intent = new Intent(AboutActivity.this, CartActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            });
+        }
+
+        View searchContainer = findViewById(R.id.searchContainer);
+        if (searchContainer != null) {
+            searchContainer.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                Intent intent = new Intent(AboutActivity.this, SearchActivity.class);
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            });
+        }
+
         // Initial states for animation
         View[] animatedViews = {tvHeroTitle, tvHeroSubtitle, tvOriginYear, tvOriginText, tvMaterialTitle, svMaterials};
         for (View v : animatedViews) {
@@ -118,5 +142,31 @@ public class AboutActivity extends BaseActivity {
                 .withLayer()
                 .withEndAction(() -> view.setLayerType(View.LAYER_TYPE_NONE, null))
                 .start();
+    }
+
+    private void setupCartBadge() {
+        tvCartBadge = findViewById(R.id.tvCartBadge);
+        updateCartBadge();
+        com.example.saive.utils.CartManager.getInstance(this).addListener(this::updateCartBadge);
+    }
+
+    private void updateCartBadge() {
+        if (tvCartBadge == null) return;
+        int count = com.example.saive.utils.CartManager.getInstance(this).getItemCount();
+        if (count > 0) {
+            tvCartBadge.setText(String.valueOf(count));
+            tvCartBadge.setVisibility(View.VISIBLE);
+            tvCartBadge.animate().scaleX(1.2f).scaleY(1.2f).setDuration(100).withEndAction(() -> {
+                tvCartBadge.animate().scaleX(1.0f).scaleY(1.0f).setDuration(100).start();
+            }).start();
+        } else {
+            tvCartBadge.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateCartBadge();
     }
 }

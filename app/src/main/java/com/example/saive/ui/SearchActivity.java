@@ -98,7 +98,7 @@ public class SearchActivity extends BaseActivity {
         ViewCompat.setOnApplyWindowInsetsListener(main, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             if (header != null) {
-                header.setPadding(header.getPaddingLeft(), systemBars.top + (int)(12 * getResources().getDisplayMetrics().density), 
+                header.setPadding(header.getPaddingLeft(), systemBars.top + (int)(12 * getResources().getDisplayMetrics().density),
                         header.getPaddingRight(), (int)(12 * getResources().getDisplayMetrics().density));
             }
             return insets;
