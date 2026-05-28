@@ -222,7 +222,7 @@ public class ProductDetailActivity extends BaseActivity {
             boolean isFavorite = FavoriteManager.getInstance(this).isFavorite(currentProduct);
             btnFavorite.setSelected(isFavorite);
             btnFavorite.setImageResource(isFavorite ? R.drawable.ic_favorite : R.drawable.ic_heart_thin);
-            btnFavorite.setColorFilter(ContextCompat.getColor(this, isFavorite ? R.color.colorMaroon : R.color.colorNoirBlack));
+            btnFavorite.setColorFilter(ContextCompat.getColor(this, R.color.colorMaroon));
 
             btnFavorite.setOnClickListener(v -> {
                 v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
@@ -247,7 +247,7 @@ public class ProductDetailActivity extends BaseActivity {
                     favoriteManager.removeFavorite(currentProduct);
                     btnFavorite.setSelected(false);
                     btnFavorite.setImageResource(R.drawable.ic_heart_thin);
-                    btnFavorite.setColorFilter(ContextCompat.getColor(this, R.color.colorNoirBlack));
+                    btnFavorite.setColorFilter(ContextCompat.getColor(this, R.color.colorMaroon));
                 }
                 
                 ToastUtils.showCustomToast(this, newState ? getString(R.string.toast_added_favorites) : getString(R.string.toast_removed_favorites));

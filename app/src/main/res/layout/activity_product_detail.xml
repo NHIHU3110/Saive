@@ -130,10 +130,10 @@
                     android:layout_margin="16dp"
                     android:background="@drawable/bg_square_white"
                     android:elevation="6dp"
-                    android:padding="12dp"
+                    android:padding="10dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_heart_thin"
-                    app:tint="@color/colorNoirBlack" />
+                    app:tint="@color/colorMaroon" />
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/lottieFavorite"
