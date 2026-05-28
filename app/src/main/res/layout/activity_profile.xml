@@ -528,6 +528,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorMaroon"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         android:elevation="16dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
@@ -545,20 +547,21 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:clickable="true"
+                android:focusable="true">
                 <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
+                    android:layout_width="@dimen/icon_size_nav"
+                    android:layout_height="@dimen/icon_size_nav"
                     android:src="@drawable/ic_favorite"
                     app:tint="@color/white" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/nav_favorite"
-                    android:textSize="9sp"
+                    style="@style/TextAppearance.Saive.Nav"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/white"
-                    android:alpha="0.7"/>
+                    android:textColor="@color/white" />
             </LinearLayout>
 
             <LinearLayout
@@ -567,20 +570,21 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:clickable="true"
+                android:focusable="true">
                 <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
+                    android:layout_width="@dimen/icon_size_nav"
+                    android:layout_height="@dimen/icon_size_nav"
                     android:src="@mipmap/hangericon"
                     app:tint="@color/white" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/nav_wardrobe"
-                    android:textSize="9sp"
+                    style="@style/TextAppearance.Saive.Nav"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/white"
-                    android:alpha="0.7"/>
+                    android:textColor="@color/white" />
             </LinearLayout>
 
             <View
@@ -588,27 +592,47 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
-            <LinearLayout
+            <FrameLayout
                 android:id="@+id/navNotify"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-                <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:src="@drawable/ic_notifications"
-                    app:tint="@color/white" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/nav_notify"
-                    android:textSize="9sp"
-                    android:layout_marginTop="4dp"
-                    android:textColor="@color/white"
-                    android:alpha="0.7"/>
-            </LinearLayout>
+                android:clickable="true"
+                android:focusable="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/icon_size_nav"
+                        android:layout_height="@dimen/icon_size_nav"
+                        android:src="@drawable/ic_notifications"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        style="@style/TextAppearance.Saive.Nav"
+                        android:text="@string/nav_notify"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/notificationBadge"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/bg_rounded_white_8dp"
+                    android:backgroundTint="@color/colorSand"
+                    android:visibility="gone" />
+
+            </FrameLayout>
 
             <LinearLayout
                 android:id="@+id/navProfile"
@@ -616,20 +640,21 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:clickable="true"
+                android:focusable="true">
                 <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
+                    android:layout_width="@dimen/icon_size_nav"
+                    android:layout_height="@dimen/icon_size_nav"
                     android:src="@drawable/ic_profile"
                     app:tint="@color/white" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/nav_profile"
-                    android:textSize="9sp"
+                    style="@style/TextAppearance.Saive.Nav"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"/>
+                    android:textColor="@color/white" />
             </LinearLayout>
 
         </LinearLayout>
@@ -644,12 +669,14 @@
             app:layout_constraintBottom_toBottomOf="@id/navItemsContainer"
             app:layout_constraintTop_toTopOf="@id/navItemsContainer"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="16dp"
+                android:scaleType="fitCenter"
                 android:src="@mipmap/saive_logo"
                 app:tint="@color/colorMaroon" />
         </FrameLayout>

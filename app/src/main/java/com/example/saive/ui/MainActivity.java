@@ -7,12 +7,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Pair;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnticipateInterpolator;
@@ -546,6 +548,9 @@ public class MainActivity extends BaseActivity {
             });
         }
 
+        // Set initial active state
+        updateBottomNavStyle(R.id.centerActionButton);
+
         View tvViewFullCuration = findViewById(R.id.tvViewFullCuration);
         if (tvViewFullCuration != null) {
             tvViewFullCuration.setOnClickListener(v -> {
@@ -609,7 +614,17 @@ public class MainActivity extends BaseActivity {
     }
 
     private void showView(View toShow) {
-        if (toShow == null || toShow.getVisibility() == View.VISIBLE) return;
+        if (toShow == null) return;
+
+        int activeId = -1;
+        if (toShow == homeScroll) activeId = R.id.centerActionButton;
+        else if (toShow == notificationsContainer) activeId = R.id.navNotify;
+        else if (toShow == wardrobeContainer) activeId = R.id.navWardrobe;
+        else if (toShow == favoritesContainer) activeId = R.id.navFavorite;
+
+        updateBottomNavStyle(activeId);
+
+        if (toShow.getVisibility() == View.VISIBLE) return;
 
         View[] views = {homeScroll, notificationsContainer, wardrobeContainer, favoritesContainer};
         View searchBar = findViewById(R.id.searchBarWrapper);
@@ -938,6 +953,20 @@ public class MainActivity extends BaseActivity {
         if (wardrobeAdapter != null) {
             wardrobeAdapter.notifyDataSetChanged();
         }
+
+        updateBottomNavFromVisibleContainer();
+    }
+
+    private void updateBottomNavFromVisibleContainer() {
+        if (notificationsContainer != null && notificationsContainer.getVisibility() == View.VISIBLE) {
+            updateBottomNavStyle(R.id.navNotify);
+        } else if (wardrobeContainer != null && wardrobeContainer.getVisibility() == View.VISIBLE) {
+            updateBottomNavStyle(R.id.navWardrobe);
+        } else if (favoritesContainer != null && favoritesContainer.getVisibility() == View.VISIBLE) {
+            updateBottomNavStyle(R.id.navFavorite);
+        } else if (homeScroll != null && homeScroll.getVisibility() == View.VISIBLE) {
+            updateBottomNavStyle(R.id.centerActionButton);
+        }
     }
 
     private void updateNotificationBadge() {
@@ -1205,6 +1234,40 @@ public class MainActivity extends BaseActivity {
         if (tvHomeHour != null) tvHomeHour.setText(String.format(java.util.Locale.getDefault(), "%02d", hours));
         if (tvHomeMinute != null) tvHomeMinute.setText(String.format(java.util.Locale.getDefault(), "%02d", minutes));
         if (tvHomeSecond != null) tvHomeSecond.setText(String.format(java.util.Locale.getDefault(), "%02d", seconds));
+    }
+
+    private void updateBottomNavStyle(int activeId) {
+        int[] navIds = {R.id.navFavorite, R.id.navWardrobe, R.id.navNotify, R.id.navProfile};
+        for (int id : navIds) {
+            View navItem = findViewById(id);
+            if (navItem != null) {
+                float alpha = (id == activeId) ? 1.0f : 0.7f;
+                navItem.setAlpha(alpha);
+
+                TextView tv = findTextView(navItem);
+                if (tv != null) {
+                    tv.setTypeface(null, (id == activeId) ? Typeface.BOLD : Typeface.NORMAL);
+                }
+            }
+        }
+
+        View centerActionButton = findViewById(R.id.centerActionButton);
+        if (centerActionButton != null) {
+            centerActionButton.setAlpha((activeId == R.id.centerActionButton) ? 1.0f : 0.7f);
+        }
+    }
+
+    private TextView findTextView(View view) {
+        if (view instanceof TextView) {
+            return (TextView) view;
+        } else if (view instanceof ViewGroup) {
+            ViewGroup group = (ViewGroup) view;
+            for (int i = 0; i < group.getChildCount(); i++) {
+                TextView res = findTextView(group.getChildAt(i));
+                if (res != null) return res;
+            }
+        }
+        return null;
     }
 
     private double parsePrice(String price) {

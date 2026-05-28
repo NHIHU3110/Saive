@@ -44,6 +44,9 @@ public class CollectionsListActivity extends BaseActivity {
         layoutDotsOverlay = findViewById(R.id.layoutDotsOverlay);
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
 
+        setupNavigation();
+        applyWindowInsets();
+
         collectionItems = new ArrayList<>();
         
         // Cấu hình 3 bộ sưu tập, mỗi bộ sưu tập là 1 màn hình duy nhất
@@ -108,6 +111,25 @@ public class CollectionsListActivity extends BaseActivity {
             layoutDotsOverlay.addView(dot);
         }
         updateDots(0);
+    }
+
+    private void setupNavigation() {
+        findViewById(R.id.navFavorite).setOnClickListener(v -> navigateToMain("SHOW_FAVORITES"));
+        findViewById(R.id.navWardrobe).setOnClickListener(v -> navigateToMain("SHOW_WARDROBE"));
+        findViewById(R.id.navNotify).setOnClickListener(v -> navigateToMain("SHOW_NOTIFICATIONS"));
+        findViewById(R.id.navProfile).setOnClickListener(v -> {
+            Intent intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
+        });
+        findViewById(R.id.centerActionButton).setOnClickListener(v -> navigateToMain("SHOW_HOME"));
+    }
+
+    private void applyWindowInsets() {
+        androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content), (v, insets) -> {
+            androidx.core.graphics.Insets systemBars = insets.getInsets(androidx.core.view.WindowInsetsCompat.Type.systemBars());
+            findViewById(R.id.bottomNav).setPadding(0, 0, 0, systemBars.bottom);
+            return insets;
+        });
     }
 
     private void updateDots(int currentPosition) {

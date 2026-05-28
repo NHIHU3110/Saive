@@ -61,7 +61,11 @@ public class AboutActivity extends BaseActivity {
                 searchContainer.bringToFront();
             }
 
-            v.setPadding(0, 0, 0, systemBars.bottom);
+            v.setPadding(0, 0, 0, 0);
+            View bottomNav = findViewById(R.id.bottomNav);
+            if (bottomNav != null) {
+                bottomNav.setPadding(0, 0, 0, systemBars.bottom);
+            }
             return insets;
         });
 
@@ -78,6 +82,8 @@ public class AboutActivity extends BaseActivity {
         materialSection = findViewById(R.id.materialSection);
         tvMaterialTitle = findViewById(R.id.tvMaterialTitle);
         svMaterials = findViewById(R.id.svMaterials);
+
+        setupNavigation();
 
         View btnBack = findViewById(R.id.btnBack);
         if (btnBack != null) {
@@ -115,6 +121,14 @@ public class AboutActivity extends BaseActivity {
                 v.setTranslationY(40f);
             }
         }
+    }
+
+    private void setupNavigation() {
+        findViewById(R.id.navFavorite).setOnClickListener(v -> navigateToMain("SHOW_FAVORITES"));
+        findViewById(R.id.navWardrobe).setOnClickListener(v -> navigateToMain("SHOW_WARDROBE"));
+        findViewById(R.id.navNotify).setOnClickListener(v -> navigateToMain("SHOW_NOTIFICATIONS"));
+        findViewById(R.id.navProfile).setOnClickListener(v -> navigateToMain("SHOW_HOME")); // Profile links back or something similar, but usually we just want to go home
+        findViewById(R.id.centerActionButton).setOnClickListener(v -> navigateToMain("SHOW_HOME"));
     }
 
     private void applyAnimations() {

@@ -47,6 +47,30 @@ public class FlashSaleActivity extends BaseActivity {
         setupTimer();
         setupProducts();
         setupCartBadge();
+        setupNavigation();
+        applyWindowInsets();
+    }
+
+    private void applyWindowInsets() {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            View bottomNav = findViewById(R.id.bottomNav);
+            if (bottomNav != null) {
+                bottomNav.setPadding(0, 0, 0, systemBars.bottom);
+            }
+            return insets;
+        });
+    }
+
+    private void setupNavigation() {
+        findViewById(R.id.navFavorite).setOnClickListener(v -> navigateToMain("SHOW_FAVORITES"));
+        findViewById(R.id.navWardrobe).setOnClickListener(v -> navigateToMain("SHOW_WARDROBE"));
+        findViewById(R.id.navNotify).setOnClickListener(v -> navigateToMain("SHOW_NOTIFICATIONS"));
+        findViewById(R.id.navProfile).setOnClickListener(v -> {
+            Intent intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
+        });
+        findViewById(R.id.centerActionButton).setOnClickListener(v -> navigateToMain("SHOW_HOME"));
     }
 
     private void setupCartBadge() {

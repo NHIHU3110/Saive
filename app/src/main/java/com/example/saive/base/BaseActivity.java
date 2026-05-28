@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.content.Intent;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.saive.R;
+import com.example.saive.ui.MainActivity;
 import java.util.Locale;
 
 public abstract class BaseActivity extends AppCompatActivity {
@@ -27,6 +29,14 @@ public abstract class BaseActivity extends AppCompatActivity {
             // Set dark icons for the light status bar
             getWindow().getDecorView().setSystemUiVisibility(android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
+    }
+
+    protected void navigateToMain(String extra) {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra(extra, true);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(intent);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     public void showCustomToast(String message) {
