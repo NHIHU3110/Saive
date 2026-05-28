@@ -107,8 +107,12 @@ public class AddressListActivity extends BaseActivity {
         if (json != null) {
             Gson gson = new Gson();
             Type type = new TypeToken<ArrayList<Address>>() {}.getType();
-            addressList = gson.fromJson(json, type);
-        } else {
+            List<Address> loadedAddresses = gson.fromJson(json, type);
+            if (loadedAddresses != null) {
+                addressList.clear();
+                addressList.addAll(loadedAddresses);
+            }
+        } else if (addressList.isEmpty()) {
             // Add a dummy default address if list is empty for first time
             addressList.add(new Address("1", "Home", "Thao Nhi Huynh", "+84 901 234 567", "123 Le Loi Street", "Ho Chi Minh City", "District 1", true));
             saveAddresses();

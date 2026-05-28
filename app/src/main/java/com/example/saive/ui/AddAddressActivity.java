@@ -146,7 +146,7 @@ public class AddAddressActivity extends BaseActivity {
 
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(ADDRESS_KEY, gson.toJson(addressList));
-        editor.apply();
+        editor.commit(); // Sử dụng commit để đảm bảo dữ liệu được lưu ngay lập tức trước khi finish
 
         setResult(RESULT_OK);
         finish();

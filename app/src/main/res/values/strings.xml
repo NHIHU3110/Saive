@@ -205,6 +205,8 @@
     <string name="label_save_info">Save this information for next time</string>
     <string name="btn_continue_payment">CONTINUE TO PAYMENT</string>
     <string name="btn_place_order">PLACE ORDER</string>
+    <string name="checkout_order_summary">ORDER SUMMARY</string>
+    <string name="checkout_shipping_to">Shipping to</string>
 
     <string name="payment_bank">Bank Transfer</string>
     <string name="payment_momo">Momo Wallet</string>

@@ -54,6 +54,7 @@ public class CheckoutActivity extends BaseActivity {
     private RadioGroup rgPaymentMethods;
     private View layoutCod, layoutBank, layoutMomo, layoutZaloPay;
     private RadioButton rbCod, rbBank, rbMomo, rbZaloPay;
+    private TextView tvSummaryFullName, tvSummaryAddress, tvSummaryPhone, tvSummaryTotal;
     private CheckoutAddressAdapter addressAdapter;
     private List<Address> addressList = new ArrayList<>();
     private Address selectedAddress;
@@ -90,13 +91,31 @@ public class CheckoutActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadAddresses();
+        if (!addressList.isEmpty()) {
+            if (addressAdapter == null) {
+                // Nếu trước đó chưa có adapter (danh sách trống), hãy thiết lập mới
+                checkExistingAddress();
+            } else {
+                addressAdapter.notifyDataSetChanged();
+            }
+        }
+    }
+
     private void loadAddresses() {
         SharedPreferences prefs = getSharedPreferences(ADDRESS_PREFS, MODE_PRIVATE);
         String json = prefs.getString(ADDRESS_KEY, null);
         if (json != null) {
             Gson gson = new Gson();
             Type type = new TypeToken<ArrayList<Address>>() {}.getType();
-            addressList = gson.fromJson(json, type);
+            List<Address> loaded = gson.fromJson(json, type);
+            if (loaded != null) {
+                addressList.clear();
+                addressList.addAll(loaded);
+            }
         }
     }
 
@@ -182,6 +201,11 @@ public class CheckoutActivity extends BaseActivity {
         rbBank = findViewById(R.id.rbBank);
         rbMomo = findViewById(R.id.rbMomo);
         rbZaloPay = findViewById(R.id.rbZaloPay);
+
+        tvSummaryFullName = findViewById(R.id.tvSummaryFullName);
+        tvSummaryAddress = findViewById(R.id.tvSummaryAddress);
+        tvSummaryPhone = findViewById(R.id.tvSummaryPhone);
+        tvSummaryTotal = findViewById(R.id.tvSummaryTotal);
 
         findViewById(R.id.btnBack).setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
@@ -463,6 +487,23 @@ public class CheckoutActivity extends BaseActivity {
         containerPayment.setVisibility(View.VISIBLE);
         sectionTitle.setVisibility(View.VISIBLE);
         sectionTitle.setText(R.string.checkout_payment_title);
+
+        // Update Order Summary
+        if (selectedAddress != null) {
+            tvSummaryFullName.setText(selectedAddress.getFullName());
+            tvSummaryAddress.setText(selectedAddress.getFullDisplayAddress());
+            tvSummaryPhone.setText(selectedAddress.getPhoneNumber());
+        } else {
+            // Manually entered info
+            tvSummaryFullName.setText(etFullName.getText().toString());
+            String addressText = etAddress.getText().toString() + ", " +
+                    tvSelectedDistrict.getText().toString() + ", " +
+                    tvSelectedCity.getText().toString();
+            tvSummaryAddress.setText(addressText);
+            tvSummaryPhone.setText(etPhone.getText().toString());
+        }
+        tvSummaryTotal.setText(totalPrice != null ? totalPrice : "");
+
         if (totalPrice != null) {
             btnAction.setText(getString(R.string.btn_place_order) + " (" + totalPrice + ")");
         } else {

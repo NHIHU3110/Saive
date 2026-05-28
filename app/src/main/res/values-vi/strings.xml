@@ -155,6 +155,8 @@
     <string name="label_save_info">Lưu thông tin cho lần sau</string>
     <string name="btn_continue_payment">TIẾP TỤC THANH TOÁN</string>
     <string name="btn_place_order">ĐẶT HÀNG</string>
+    <string name="checkout_order_summary">TÓM TẮT ĐƠN HÀNG</string>
+    <string name="checkout_shipping_to">Giao đến</string>
 
     <string name="payment_bank">Chuyển khoản ngân hàng</string>
     <string name="payment_momo">Ví Momo</string>
