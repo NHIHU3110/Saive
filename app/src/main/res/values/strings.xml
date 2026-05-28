@@ -139,6 +139,7 @@
     <string name="label_rating">Rating</string>
     <string name="label_comment">Comment</string>
     <string name="label_submit">SUBMIT</string>
+    <string name="label_attach_photos">ATTACH PHOTOS</string>
     <string name="hint_review">Tell us what you think about this piece...</string>
     <string name="sort_price_low_high">Price: Low to High</string>
     <string name="sort_price_high_low">Price: High to Low</string>

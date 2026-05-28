@@ -86,6 +86,7 @@
     <string name="label_instructions">保养说明</string>
     <string name="label_size">尺寸</string>
     <string name="label_total">总计</string>
+    <string name="label_attach_photos">添加图片</string>
     <string name="favorites_items_count">%1$d 件商品</string>
     <string name="favorites_empty_state">暂无收藏</string>
     <string name="cart_title">购物袋</string>

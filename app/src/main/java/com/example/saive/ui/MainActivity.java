@@ -506,9 +506,8 @@ public class MainActivity extends BaseActivity {
         
         if (navProfile != null) {
             navProfile.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-                startActivity(intent);
+                v.performHapticFeedback(android.view.HapticFeedbackConstants.VIRTUAL_KEY);
+                navigateToProfile();
             });
         }
 

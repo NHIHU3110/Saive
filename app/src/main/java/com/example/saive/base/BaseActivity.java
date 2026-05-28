@@ -39,6 +39,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
+    protected void navigateToProfile() {
+        Intent intent = new Intent(this, com.example.saive.ui.ProfileActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(intent);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+
     public void showCustomToast(String message) {
         LayoutInflater inflater = getLayoutInflater();
         View toastRoot = inflater.inflate(R.layout.layout_custom_toast, null);

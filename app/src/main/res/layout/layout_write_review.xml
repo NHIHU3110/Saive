@@ -93,7 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             style="@style/TextAppearance.Saive.Label"
-            android:text="ATTACH PHOTOS"
+            android:text="@string/label_attach_photos"
             android:alpha="0.6"
             android:letterSpacing="0.2" />
 
