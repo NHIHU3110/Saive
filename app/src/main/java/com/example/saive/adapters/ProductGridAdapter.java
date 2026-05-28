@@ -8,7 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.example.saive.utils.ToastUtils;
+import com.example.saive.utils.FavoriteManager;
+import androidx.core.content.ContextCompat;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +17,7 @@ import com.example.saive.R;
 import com.example.saive.models.Product;
 import com.example.saive.ui.ProductDetailActivity;
 import com.example.saive.utils.CartManager;
+import com.example.saive.utils.ToastUtils;
 
 import java.util.List;
 
@@ -77,10 +79,33 @@ public class ProductGridAdapter extends RecyclerView.Adapter<ProductGridAdapter.
             ToastUtils.showCustomToast(v.getContext(), "Added to wardrobe");
         });
 
+        boolean isFavorite = FavoriteManager.getInstance(holder.itemView.getContext()).isFavorite(product);
+        updateFavoriteIcon(holder.btnFavorite, isFavorite);
+
         holder.btnFavorite.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-            ToastUtils.showCustomToast(v.getContext(), "Saved to favorites");
+            FavoriteManager favoriteManager = FavoriteManager.getInstance(v.getContext());
+            boolean newState = !favoriteManager.isFavorite(product);
+            if (newState) {
+                favoriteManager.addFavorite(product);
+                ToastUtils.showCustomToast(v.getContext(), v.getContext().getString(R.string.toast_added_favorites));
+            } else {
+                favoriteManager.removeFavorite(product);
+                ToastUtils.showCustomToast(v.getContext(), v.getContext().getString(R.string.toast_removed_favorites));
+            }
+            updateFavoriteIcon(holder.btnFavorite, newState);
         });
+    }
+
+    private void updateFavoriteIcon(ImageButton btn, boolean isFavorite) {
+        if (isFavorite) {
+            btn.setImageResource(R.drawable.ic_favorite); // Assume ic_favorite is filled heart
+            btn.setColorFilter(ContextCompat.getColor(btn.getContext(), R.color.colorMaroon));
+        } else {
+            btn.setImageResource(R.drawable.ic_favorite); // In some apps they use different icons, 
+                                                           // but based on prompt "white to red", we use same icon with tint
+            btn.setColorFilter(ContextCompat.getColor(btn.getContext(), R.color.white));
+        }
     }
 
     @Override

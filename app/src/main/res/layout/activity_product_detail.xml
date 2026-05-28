@@ -124,14 +124,16 @@
 
                 <ImageButton
                     android:id="@+id/btnFavorite"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:layout_gravity="bottom|end"
-                    android:layout_margin="24dp"
+                    android:layout_margin="16dp"
                     android:background="@drawable/bg_square_white"
-                    android:padding="8dp"
-                    android:src="@drawable/ic_favorite"
-                    app:tint="@color/colorMaroon" />
+                    android:elevation="6dp"
+                    android:padding="12dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_heart_thin"
+                    app:tint="@color/colorNoirBlack" />
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/lottieFavorite"
@@ -146,12 +148,14 @@
 
                 <ImageButton
                     android:id="@+id/btnShare"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:layout_gravity="top|end"
                     android:layout_margin="16dp"
                     android:background="@drawable/bg_square_white"
-                    android:padding="10dp"
+                    android:elevation="6dp"
+                    android:padding="13dp"
+                    android:scaleType="fitCenter"
                     android:src="@drawable/ic_share"
                     app:tint="@color/colorNoirBlack" />
             </FrameLayout>

@@ -59,6 +59,7 @@ import com.example.saive.models.Product;
 import com.example.saive.base.BaseActivity;
 import com.example.saive.utils.CartManager;
 
+import com.example.saive.utils.FavoriteManager;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -627,18 +628,22 @@ public class MainActivity extends BaseActivity {
         if (rvFavorites != null) {
             rvFavorites.setLayoutManager(new androidx.recyclerview.widget.GridLayoutManager(this, 2));
             
-            // Mock data for Favorites
-            favoritesList = new ArrayList<>();
-            favoritesList.add(new Product("Structured Wool Coat", "1.200.000 ₫", R.mipmap.jacket1, getString(R.string.cat_jacket)));
-            favoritesList.add(new Product("Silk Blouse", "850.000 ₫", R.mipmap.tshirt1, getString(R.string.cat_tshirt)));
-            favoritesList.add(new Product("Modern Sunglasses", "450.000 ₫", R.mipmap.sunglass1, getString(R.string.cat_sunglasses)));
-            favoritesList.add(new Product("Archive Parka", "2.100.000 ₫", R.mipmap.jacket2, getString(R.string.cat_jacket)));
+            FavoriteManager favoriteManager = FavoriteManager.getInstance(this);
+            favoritesList = favoriteManager.getFavoriteItems();
             
             favoriteAdapter = new FavoriteAdapter(favoritesList, position -> {
-                favoritesList.remove(position);
-                favoriteAdapter.notifyItemRemoved(position);
+                Product product = favoritesList.get(position);
+                favoriteManager.removeFavorite(product);
+                // The listener will trigger update if we add it, but for now we can update manually or rely on manager
+            });
+            
+            favoriteManager.addListener(() -> {
+                favoritesList.clear();
+                favoritesList.addAll(favoriteManager.getFavoriteItems());
+                favoriteAdapter.notifyDataSetChanged();
                 updateFavoritesUI();
             });
+
             rvFavorites.setAdapter(favoriteAdapter);
             updateFavoritesUI();
         }
@@ -899,6 +904,11 @@ public class MainActivity extends BaseActivity {
         updateNotificationBadge();
         updateCartBadge(); // Cập nhật badge khi quay lại từ màn hình khác
         setupHomeTimer(); // Restart timer to sync or ensure it's running
+        
+        // Refresh wardrobe adapter when returning to MainActivity
+        if (wardrobeAdapter != null) {
+            wardrobeAdapter.notifyDataSetChanged();
+        }
     }
 
     private void updateNotificationBadge() {

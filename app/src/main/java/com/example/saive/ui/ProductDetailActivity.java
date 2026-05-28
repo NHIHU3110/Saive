@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.example.saive.utils.FavoriteManager;
 import com.example.saive.utils.ToastUtils;
 
 import androidx.core.content.ContextCompat;
@@ -217,13 +218,19 @@ public class ProductDetailActivity extends BaseActivity {
             btnWriteReview.setOnClickListener(v -> showWriteReviewDialog());
         }
 
-        if (btnFavorite != null) {
+        if (btnFavorite != null && currentProduct != null) {
+            boolean isFavorite = FavoriteManager.getInstance(this).isFavorite(currentProduct);
+            btnFavorite.setSelected(isFavorite);
+            btnFavorite.setImageResource(isFavorite ? R.drawable.ic_favorite : R.drawable.ic_heart_thin);
+            btnFavorite.setColorFilter(ContextCompat.getColor(this, isFavorite ? R.color.colorMaroon : R.color.colorNoirBlack));
+
             btnFavorite.setOnClickListener(v -> {
                 v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                boolean newState = !btnFavorite.isSelected();
-                btnFavorite.setSelected(newState);
+                FavoriteManager favoriteManager = FavoriteManager.getInstance(this);
+                boolean newState = !favoriteManager.isFavorite(currentProduct);
                 
                 if (newState) {
+                    favoriteManager.addFavorite(currentProduct);
                     btnFavorite.setVisibility(View.INVISIBLE);
                     lottieFavorite.setVisibility(View.VISIBLE);
                     lottieFavorite.playAnimation();
@@ -231,11 +238,16 @@ public class ProductDetailActivity extends BaseActivity {
                         if (animation.getAnimatedFraction() >= 1f) {
                             lottieFavorite.setVisibility(View.GONE);
                             btnFavorite.setVisibility(View.VISIBLE);
+                            btnFavorite.setSelected(true);
+                            btnFavorite.setImageResource(R.drawable.ic_favorite);
                             btnFavorite.setColorFilter(ContextCompat.getColor(this, R.color.colorMaroon));
                         }
                     });
                 } else {
-                    btnFavorite.setColorFilter(ContextCompat.getColor(this, R.color.white));
+                    favoriteManager.removeFavorite(currentProduct);
+                    btnFavorite.setSelected(false);
+                    btnFavorite.setImageResource(R.drawable.ic_heart_thin);
+                    btnFavorite.setColorFilter(ContextCompat.getColor(this, R.color.colorNoirBlack));
                 }
                 
                 ToastUtils.showCustomToast(this, newState ? getString(R.string.toast_added_favorites) : getString(R.string.toast_removed_favorites));

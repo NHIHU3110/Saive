@@ -18,6 +18,7 @@ import com.example.saive.models.Product;
 import com.example.saive.ui.ProductDetailActivity;
 import com.example.saive.utils.CartManager;
 
+import androidx.core.content.ContextCompat;
 import java.util.List;
 
 public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder> {
@@ -61,10 +62,11 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
         });
 
         holder.btnRemoveFavorite.setOnClickListener(v -> {
-            v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             if (removeListener != null) {
                 removeListener.onRemove(holder.getAdapterPosition());
             }
+            ToastUtils.showCustomToast(v.getContext(), v.getContext().getString(R.string.toast_removed_favorites));
         });
 
         holder.btnAddToCart.setOnClickListener(v -> {

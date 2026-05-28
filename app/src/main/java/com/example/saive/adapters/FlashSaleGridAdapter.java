@@ -1,21 +1,22 @@
 package com.example.saive.adapters;
 
 import android.content.Intent;
+import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.widget.Toast;
 import com.example.saive.R;
 import com.example.saive.models.Product;
 import com.example.saive.ui.ProductDetailActivity;
-
-import java.util.ArrayList;
+import com.example.saive.utils.FavoriteManager;
 import com.example.saive.utils.ToastUtils;
 import java.util.List;
 
@@ -60,11 +61,36 @@ public class FlashSaleGridAdapter extends RecyclerView.Adapter<FlashSaleGridAdap
             holder.ivProduct.setImageResource(R.mipmap.model1);
         }
 
+        boolean isFavorite = FavoriteManager.getInstance(holder.itemView.getContext()).isFavorite(product);
+        updateFavoriteIcon(holder.btnFavorite, isFavorite);
+
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), ProductDetailActivity.class);
             intent.putExtra("PRODUCT", product);
             v.getContext().startActivity(intent);
         });
+
+        holder.btnFavorite.setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            FavoriteManager favoriteManager = FavoriteManager.getInstance(v.getContext());
+            boolean newState = !favoriteManager.isFavorite(product);
+            if (newState) {
+                favoriteManager.addFavorite(product);
+                ToastUtils.showCustomToast(v.getContext(), v.getContext().getString(R.string.toast_added_favorites));
+            } else {
+                favoriteManager.removeFavorite(product);
+                ToastUtils.showCustomToast(v.getContext(), v.getContext().getString(R.string.toast_removed_favorites));
+            }
+            updateFavoriteIcon(holder.btnFavorite, newState);
+        });
+    }
+
+    private void updateFavoriteIcon(ImageButton btn, boolean isFavorite) {
+        if (isFavorite) {
+            btn.setColorFilter(ContextCompat.getColor(btn.getContext(), R.color.colorMaroon));
+        } else {
+            btn.setColorFilter(ContextCompat.getColor(btn.getContext(), R.color.white));
+        }
     }
 
     @Override
@@ -75,6 +101,7 @@ public class FlashSaleGridAdapter extends RecyclerView.Adapter<FlashSaleGridAdap
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivProduct;
         TextView tvName, tvPrice, tvDiscount;
+        ImageButton btnFavorite;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -82,6 +109,7 @@ public class FlashSaleGridAdapter extends RecyclerView.Adapter<FlashSaleGridAdap
             tvName = itemView.findViewById(R.id.tvProductName);
             tvPrice = itemView.findViewById(R.id.tvProductPrice);
             tvDiscount = itemView.findViewById(R.id.tvDiscountBadge);
+            btnFavorite = itemView.findViewById(R.id.btnFavorite);
         }
     }
 }
