@@ -508,16 +508,7 @@ public class MainActivity extends BaseActivity {
             navProfile.setOnClickListener(v -> {
                 v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-                if (centerActionButton != null) {
-                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(
-                            MainActivity.this,
-                            Pair.create(centerActionButton, "nav_circle")
-                    );
-                    startActivity(intent, options.toBundle());
-                } else {
-                    startActivity(intent);
-                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                }
+                startActivity(intent);
             });
         }
 
