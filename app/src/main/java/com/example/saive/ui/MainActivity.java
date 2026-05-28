@@ -117,8 +117,32 @@ public class MainActivity extends BaseActivity {
     private void checkIntent(Intent intent) {
         if (intent == null) return;
         
+        boolean hasSectionExtra = intent.getBooleanExtra("SHOW_NOTIFICATIONS", false) ||
+                intent.getBooleanExtra("SHOW_WARDROBE", false) ||
+                intent.getBooleanExtra("SHOW_FAVORITES", false) ||
+                intent.getBooleanExtra("SHOW_HOME", false);
+
         // Add a small delay to ensure UI is ready and transitions are smoother
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            if (hasSectionExtra) {
+                // Đảm bảo BottomNav và Center Button luôn hiển thị khi điều hướng từ Activity khác về
+                View bottomNav = findViewById(R.id.bottomNav);
+                if (bottomNav != null) {
+                    bottomNav.setAlpha(1f);
+                    bottomNav.setTranslationY(0f);
+                    bottomNav.setVisibility(View.VISIBLE);
+                }
+                View centerFab = findViewById(R.id.centerActionButton);
+                if (centerFab != null) {
+                    centerFab.setAlpha(1f);
+                    centerFab.setVisibility(View.VISIBLE);
+                    if (centerFab.getScaleX() <= 0.1f) {
+                        centerFab.setScaleX(1f);
+                        centerFab.setScaleY(1f);
+                    }
+                }
+            }
+
             if (intent.getBooleanExtra("SHOW_NOTIFICATIONS", false)) {
                 if (notificationsContainer != null) {
                     showView(notificationsContainer);
@@ -664,6 +688,11 @@ public class MainActivity extends BaseActivity {
     }
 
     private void animateNavIcon(View view) {
+        if (view == null) return;
+        // Đảm bảo view hiển thị trước khi chạy hiệu ứng (fix lỗi Shared Element Transition)
+        view.setVisibility(View.VISIBLE);
+        view.setAlpha(1.0f);
+
         view.animate()
                 .scaleX(1.1f)
                 .scaleY(1.1f)

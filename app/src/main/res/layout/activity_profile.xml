@@ -640,6 +640,7 @@
             android:layout_height="64dp"
             android:background="@drawable/bg_circle_white"
             android:elevation="24dp"
+            android:transitionName="nav_circle"
             app:layout_constraintBottom_toBottomOf="@id/navItemsContainer"
             app:layout_constraintTop_toTopOf="@id/navItemsContainer"
             app:layout_constraintStart_toStartOf="parent"
