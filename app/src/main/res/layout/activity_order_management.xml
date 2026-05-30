@@ -17,14 +17,17 @@
         android:paddingTop="54dp"
         android:paddingBottom="20dp"
         android:gravity="center_vertical"
+        android:background="@color/colorMaroon"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
             android:id="@+id/btnBack"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
             android:background="@drawable/bg_circle_white"
-            android:elevation="2dp"
+            android:elevation="4dp"
+            android:padding="12dp"
+            android:scaleType="centerInside"
             android:src="@drawable/ic_back"
             app:tint="@color/colorMaroon" />
 
@@ -32,19 +35,24 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="24dp"
             android:text="@string/admin_order_mgmt"
             style="@style/TextAppearance.Saive.SectionHeader"
-            android:textSize="18sp"
-            android:textColor="@color/colorNoirBlack"
-            android:letterSpacing="0.2" />
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:fontFamily="serif"
+            android:textStyle="italic"
+            android:textAllCaps="true"
+            android:letterSpacing="0.1" />
 
         <ImageButton
             android:id="@+id/btnFilter"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
             android:background="@drawable/bg_circle_white"
-            android:elevation="2dp"
+            android:elevation="4dp"
+            android:padding="12dp"
+            android:scaleType="centerInside"
             android:src="@drawable/ic_filter"
             app:tint="@color/colorMaroon" />
     </LinearLayout>

@@ -17,6 +17,7 @@
         android:paddingTop="54dp"
         android:paddingBottom="20dp"
         android:gravity="center_vertical"
+        android:background="@color/colorMaroon"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
@@ -31,29 +32,29 @@
             app:tint="@color/colorMaroon" />
 
         <TextView
+            style="@style/TextAppearance.Saive.SectionHeader"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginStart="24dp"
-            android:text="@string/admin_inventory_title"
-            style="@style/TextAppearance.Saive.SectionHeader"
-            android:textSize="20sp"
-            android:textColor="@color/colorNoirBlack"
+            android:layout_weight="1"
             android:fontFamily="serif"
-            android:textStyle="italic"
+            android:letterSpacing="0.1"
+            android:text="@string/admin_inventory_title"
             android:textAllCaps="true"
-            android:letterSpacing="0.1" />
+            android:textColor="@color/colorIvory"
+            android:textSize="20sp"
+            android:textStyle="italic" />
 
         <ImageButton
             android:id="@+id/btnAddProduct"
             android:layout_width="44dp"
             android:layout_height="44dp"
-            android:background="@drawable/bg_circle_black"
+            android:background="@drawable/bg_circle_white"
             android:elevation="4dp"
             android:padding="12dp"
             android:scaleType="centerInside"
             android:src="@drawable/ic_plus"
-            app:tint="@color/white" />
+            app:tint="@color/colorMaroon" />
     </LinearLayout>
 
     <!-- Search Section -->
