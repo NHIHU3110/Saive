@@ -24,17 +24,21 @@ import com.google.android.material.button.MaterialButton;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.saive.utils.DataManager;
+
 public class CouponActivity extends BaseActivity {
 
     private RecyclerView rvCoupons;
     private CouponAdapter adapter;
     private List<Coupon> couponList;
     private EditText etSearch;
+    private DataManager dataManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coupon);
+        dataManager = DataManager.getInstance(this);
 
         if (getWindow() != null) {
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorMaroon));
@@ -130,10 +134,10 @@ public class CouponActivity extends BaseActivity {
     }
 
     private void loadCoupons() {
-        couponList = new ArrayList<>();
-        couponList.add(new Coupon("SAIVE WELCOME", "On your first archive access.", "20%", "Dec 31, 2024", "WELCOME20"));
-        couponList.add(new Coupon("SILK STORY", "Exclusive for Silk series.", "15%", "Nov 15, 2024", "SILK15"));
-        couponList.add(new Coupon("SEASONAL REWARD", "For orders over $200.", "10%", "Oct 20, 2024", "REWARD10"));
-        couponList.add(new Coupon("ARCHIVE ACCESS", "Limited time archive discount.", "25%", "Dec 01, 2024", "ARCHIVE25"));
+        couponList = dataManager.getCoupons();
+        if (couponList.isEmpty()) {
+            couponList.add(new Coupon("SAIVE WELCOME", "On your first archive access.", "20%", "Dec 31, 2024", "WELCOME20"));
+            couponList.add(new Coupon("SILK STORY", "Exclusive for Silk series.", "15%", "Nov 15, 2024", "SILK15"));
+        }
     }
 }

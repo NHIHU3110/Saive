@@ -15,6 +15,7 @@
     <color name="colorLinen">#D4C9B8</color>
 
     <!-- UI Element Colors -->
+    <color name="colorGrey">#888888</color>
     <color name="colorGrayText">#888888</color>
     <color name="colorLightGray">#E0E0E0</color>
     <color name="colorRatingGold">#FFD700</color>

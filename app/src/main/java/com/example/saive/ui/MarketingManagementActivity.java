@@ -19,15 +19,19 @@ import androidx.appcompat.app.AlertDialog;
 import com.example.saive.base.BaseActivity;
 import java.util.Calendar;
 
+import com.example.saive.utils.DataManager;
+
 public class MarketingManagementActivity extends BaseActivity {
 
     private List<Coupon> couponList;
     private AdminCouponAdapter adapter;
+    private DataManager dataManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_marketing_management);
+        dataManager = DataManager.getInstance(this);
 
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
         findViewById(R.id.btnAddCoupon).setOnClickListener(v -> showAddVoucherDialog());
@@ -35,16 +39,19 @@ public class MarketingManagementActivity extends BaseActivity {
         RecyclerView rvCoupons = findViewById(R.id.rvCoupons);
         rvCoupons.setLayoutManager(new LinearLayoutManager(this));
 
-        couponList = new ArrayList<>();
-        couponList.add(new Coupon("Silk Sale", "20% OFF on Silk Collection", "20%", "2024-12-31", "SILK20", "Active", 142));
-        couponList.add(new Coupon("Welcome", "10% OFF for new users", "10%", "2025-01-01", "WELCOME10", "Active", 856));
-        couponList.add(new Coupon("Black Friday", "50% OFF everything", "50%", "2024-11-30", "BLACK50", "Expired", 2301));
+        couponList = dataManager.getCoupons();
+        if (couponList.isEmpty()) {
+            couponList.add(new Coupon("Silk Sale", "20% OFF on Silk Collection", "20%", "2024-12-31", "SILK20", "Active", 142));
+            couponList.add(new Coupon("Welcome", "10% OFF for new users", "10%", "2025-01-01", "WELCOME10", "Active", 856));
+            dataManager.saveCoupons(couponList);
+        }
 
         adapter = new AdminCouponAdapter(couponList);
         rvCoupons.setAdapter(adapter);
     }
 
     private void showAddVoucherDialog() {
+        // ... (existing code for dialog)
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.SaiveDialog);
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_add_voucher, null);
         builder.setView(view);
@@ -70,8 +77,10 @@ public class MarketingManagementActivity extends BaseActivity {
             String expiry = etExpiry.getText().toString();
             String desc = ((EditText) view.findViewById(R.id.etVoucherDesc)).getText().toString();
 
-            if (!name.isEmpty() & !code.isEmpty()) {
-                couponList.add(0, new Coupon(name, desc, discount, expiry, code, "Active", 0));
+            if (!name.isEmpty() && !code.isEmpty()) {
+                Coupon newCoupon = new Coupon(name, desc, discount, expiry, code, "Active", 0);
+                couponList.add(0, newCoupon);
+                dataManager.saveCoupons(couponList);
                 adapter.notifyItemInserted(0);
                 rvCouponsScrollToTop();
                 dialog.dismiss();

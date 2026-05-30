@@ -16,15 +16,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.example.saive.base.BaseActivity;
+import com.example.saive.utils.DataManager;
+
 public class UserManagementActivity extends BaseActivity {
 
     private List<User> userList;
     private UserAdapter adapter;
+    private DataManager dataManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_management);
+        dataManager = DataManager.getInstance(this);
 
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
         findViewById(R.id.btnExport).setOnClickListener(v -> 
@@ -34,13 +38,22 @@ public class UserManagementActivity extends BaseActivity {
         RecyclerView rvUsers = findViewById(R.id.rvUsers);
         rvUsers.setLayoutManager(new LinearLayoutManager(this));
 
-        userList = new ArrayList<>();
-        userList.add(new User("1", "Huỳnh Thảo Nhi", "nhi.huynh@saive.com", "ADMIN", ""));
-        userList.add(new User("2", "Lê Minh Tâm", "tam.le@gmail.com", "VIP CUSTOMER", ""));
-        userList.add(new User("3", "Trần Hoàng Nam", "nam.tran@outlook.com", "CUSTOMER", ""));
-        userList.add(new User("4", "Nguyễn Thu Hà", "ha.nguyen@saive.com", "MANAGER", ""));
+        userList = dataManager.getUsers();
+        if (userList.isEmpty()) {
+            userList.add(new User("1", "Huỳnh Thảo Nhi", "nhi.huynh@saive.com", "ADMIN", ""));
+            userList.add(new User("2", "Lê Minh Tâm", "tam.le@gmail.com", "VIP CUSTOMER", ""));
+            userList.add(new User("3", "Trần Hoàng Nam", "nam.tran@outlook.com", "CUSTOMER", ""));
+            userList.add(new User("4", "Nguyễn Thu Hà", "ha.nguyen@saive.com", "MANAGER", ""));
+            dataManager.saveUsers(userList);
+        }
 
-        adapter = new UserAdapter(new ArrayList<>(userList));
+        adapter = new UserAdapter(new ArrayList<>(userList), (user, position) -> {
+            boolean newBlockedStatus = !user.isBlocked();
+            user.setBlocked(newBlockedStatus);
+            dataManager.setUserBlocked(user.getEmail(), newBlockedStatus);
+            adapter.notifyItemChanged(position);
+            Toast.makeText(this, user.getName() + " " + (newBlockedStatus ? "blocked" : "unblocked"), Toast.LENGTH_SHORT).show();
+        });
         rvUsers.setAdapter(adapter);
 
         EditText etSearch = findViewById(R.id.etUserSearch);

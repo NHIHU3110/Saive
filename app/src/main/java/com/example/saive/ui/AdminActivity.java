@@ -98,6 +98,8 @@ public class AdminActivity extends BaseActivity implements NavigationView.OnNavi
             startActivity(new Intent(this, UserManagementActivity.class));
         } else if (id == R.id.nav_marketing) {
             startActivity(new Intent(this, MarketingManagementActivity.class));
+        } else if (id == R.id.nav_reviews) {
+            startActivity(new Intent(this, ReviewManagementActivity.class));
         } else if (id == R.id.nav_language) {
             showLanguageDialog();
         } else if (id == R.id.nav_logout) {

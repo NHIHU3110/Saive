@@ -17,6 +17,7 @@ public class AdminOrder {
         this.timeAgo = timeAgo;
     }
 
+    public void setStatus(String status) { this.status = status; }
     public String getOrderId() { return orderId; }
     public String getCustomerName() { return customerName; }
     public String getItemsSummary() { return itemsSummary; }

@@ -17,6 +17,8 @@ import androidx.core.splashscreen.SplashScreen;
 import com.example.saive.R;
 import com.example.saive.base.BaseActivity;
 
+import com.example.saive.utils.DataManager;
+
 public class LoginActivity extends BaseActivity {
 
     private EditText etEmail, etPassword;
@@ -126,6 +128,12 @@ public class LoginActivity extends BaseActivity {
     private void performLogin() {
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
+
+        DataManager dataManager = DataManager.getInstance(this);
+        if (dataManager.isUserBlocked(email)) {
+            showCustomToast("Tài khoản bị khóa. Vui lòng liên hệ Admin.");
+            return;
+        }
 
         if (email.equals("user@gmail.com") && password.equals("user123")) {
             SharedPreferences prefs = getSharedPreferences("user_prefs", MODE_PRIVATE);

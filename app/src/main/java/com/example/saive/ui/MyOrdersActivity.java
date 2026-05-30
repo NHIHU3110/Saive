@@ -8,6 +8,13 @@ import android.widget.ImageView;
 import com.example.saive.R;
 import com.example.saive.base.BaseActivity;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import com.example.saive.adapters.UserOrderAdapter;
+import com.example.saive.models.AdminOrder;
+import com.example.saive.utils.DataManager;
+import java.util.List;
+
 public class MyOrdersActivity extends BaseActivity {
 
     @Override
@@ -22,25 +29,21 @@ public class MyOrdersActivity extends BaseActivity {
             );
         }
 
-        ImageView btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
 
-        View orderItem1 = findViewById(R.id.orderItem1);
-        View orderItem2 = findViewById(R.id.orderItem2);
+        RecyclerView rvOrders = findViewById(R.id.rvMyOrders);
+        View emptyState = findViewById(R.id.emptyState);
 
-        View.OnClickListener toTracking = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MyOrdersActivity.this, OrderTrackingActivity.class));
-            }
-        };
-
-        if (orderItem1 != null) orderItem1.setOnClickListener(toTracking);
-        if (orderItem2 != null) orderItem2.setOnClickListener(toTracking);
+        List<AdminOrder> orderList = DataManager.getInstance(this).getOrders();
+        
+        if (orderList.isEmpty()) {
+            emptyState.setVisibility(View.VISIBLE);
+            rvOrders.setVisibility(View.GONE);
+        } else {
+            emptyState.setVisibility(View.GONE);
+            rvOrders.setVisibility(View.VISIBLE);
+            rvOrders.setLayoutManager(new LinearLayoutManager(this));
+            rvOrders.setAdapter(new UserOrderAdapter(orderList));
+        }
     }
 }

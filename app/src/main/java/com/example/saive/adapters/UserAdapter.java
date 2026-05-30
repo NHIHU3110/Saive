@@ -44,11 +44,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         holder.tvUserRole.setText(user.getRole());
 
         if (user.isBlocked()) {
-            holder.btnBlockUser.setImageResource(R.drawable.ic_search); // Using search as "unblock" icon placeholder
+            holder.btnBlockUser.setImageResource(R.drawable.ic_check_circle); // Using check_circle as "unblock" icon placeholder
             holder.btnBlockUser.setColorFilter(Color.GRAY);
             holder.tvUserName.setTextColor(Color.GRAY);
         } else {
-            holder.btnBlockUser.setImageResource(R.drawable.ic_notify); // Using notify as "block" icon placeholder
+            holder.btnBlockUser.setImageResource(R.drawable.ic_notifications); // Using notifications as "block" icon placeholder
             holder.btnBlockUser.setColorFilter(Color.parseColor("#810100")); // colorMaroon
             holder.tvUserName.setTextColor(Color.parseColor("#0F0F0F")); // colorNoirBlack
         }

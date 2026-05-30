@@ -23,6 +23,8 @@ import android.view.View;
 import android.widget.EditText;
 import androidx.appcompat.app.AlertDialog;
 import com.example.saive.base.BaseActivity;
+import com.example.saive.utils.DataManager;
+import com.example.saive.utils.ToastUtils;
 
 public class FlashSaleManagementActivity extends BaseActivity {
 
@@ -66,6 +68,13 @@ public class FlashSaleManagementActivity extends BaseActivity {
 
             if (!discount.isEmpty() && !durationStr.isEmpty()) {
                 long durationMillis = TimeUnit.HOURS.toMillis(Long.parseLong(durationStr));
+                long endTime = System.currentTimeMillis() + durationMillis;
+                
+                DataManager.getInstance(this).setFlashSaleEndTime(endTime);
+                
+                // For demo, we sync current flash products to DataManager
+                DataManager.getInstance(this).saveFlashSaleProducts(flashProducts);
+                
                 startNewTimer(durationMillis);
                 dialog.dismiss();
                 Toast.makeText(this, "Flash Sale Activated", Toast.LENGTH_SHORT).show();
@@ -91,32 +100,43 @@ public class FlashSaleManagementActivity extends BaseActivity {
             @Override
             public void onFinish() {
                 tvTimer.setText("00 : 00 : 00");
+                DataManager.getInstance(FlashSaleManagementActivity.this).setFlashSaleEndTime(0);
             }
         }.start();
     }
 
     private void setupTimer() {
-        long duration = TimeUnit.HOURS.toMillis(14) + TimeUnit.MINUTES.toMillis(20);
-        countDownTimer = new CountDownTimer(duration, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                long hours = TimeUnit.MILLISECONDS.toHours(millisUntilFinished);
-                long minutes = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60;
-                long seconds = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60;
-                tvTimer.setText(String.format(Locale.getDefault(), "%02d : %02d : %02d", hours, minutes, seconds));
-            }
+        long endTime = DataManager.getInstance(this).getFlashSaleEndTime();
+        long currentTime = System.currentTimeMillis();
+        
+        if (endTime > currentTime) {
+            long duration = endTime - currentTime;
+            countDownTimer = new CountDownTimer(duration, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    long hours = TimeUnit.MILLISECONDS.toHours(millisUntilFinished);
+                    long minutes = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60;
+                    long seconds = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60;
+                    tvTimer.setText(String.format(Locale.getDefault(), "%02d : %02d : %02d", hours, minutes, seconds));
+                }
 
-            @Override
-            public void onFinish() {
-                tvTimer.setText("00 : 00 : 00");
-            }
-        }.start();
+                @Override
+                public void onFinish() {
+                    tvTimer.setText("00 : 00 : 00");
+                }
+            }.start();
+        } else {
+            tvTimer.setText("00 : 00 : 00");
+        }
     }
 
     private void setupList() {
-        flashProducts = new ArrayList<>();
-        flashProducts.add(new Product("Structured Wool Coat", "840.000 ₫", R.mipmap.jacket1, "Jacket"));
-        flashProducts.add(new Product("Modern Aviators", "147.000 ₫", R.mipmap.sunglass1, "Sunglasses"));
+        flashProducts = DataManager.getInstance(this).getFlashSaleProducts();
+        if (flashProducts.isEmpty()) {
+            flashProducts.add(new Product("Structured Wool Coat", "840.000 ₫", R.mipmap.jacket1, "Jacket"));
+            flashProducts.add(new Product("Modern Aviators", "147.000 ₫", R.mipmap.sunglass1, "Sunglasses"));
+            DataManager.getInstance(this).saveFlashSaleProducts(flashProducts);
+        }
 
         adapter = new InventoryAdapter(flashProducts, product -> {
             Toast.makeText(this, "Sửa Flash Sale cho: " + product.getName(), Toast.LENGTH_SHORT).show();

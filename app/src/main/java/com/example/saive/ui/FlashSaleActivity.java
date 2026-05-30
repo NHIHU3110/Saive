@@ -23,6 +23,7 @@ import com.example.saive.base.BaseActivity;
 import com.example.saive.models.Product;
 import com.example.saive.utils.CartManager;
 
+import com.example.saive.utils.DataManager;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -141,22 +142,29 @@ public class FlashSaleActivity extends BaseActivity {
     }
 
     private void setupTimer() {
-        // Synchronized with home timer or generic 24h
-        long diff = TimeUnit.HOURS.toMillis(24);
+        long endTime = DataManager.getInstance(this).getFlashSaleEndTime();
+        long currentTime = System.currentTimeMillis();
 
-        countDownTimer = new CountDownTimer(diff, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                updateTimerUI(millisUntilFinished);
-            }
+        if (endTime > currentTime) {
+            long diff = endTime - currentTime;
+            countDownTimer = new CountDownTimer(diff, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    updateTimerUI(millisUntilFinished);
+                }
 
-            @Override
-            public void onFinish() {
-                if (tvHour != null) tvHour.setText("00");
-                if (tvMinute != null) tvMinute.setText("00");
-                if (tvSecond != null) tvSecond.setText("00");
-            }
-        }.start();
+                @Override
+                public void onFinish() {
+                    if (tvHour != null) tvHour.setText("00");
+                    if (tvMinute != null) tvMinute.setText("00");
+                    if (tvSecond != null) tvSecond.setText("00");
+                }
+            }.start();
+        } else {
+            if (tvHour != null) tvHour.setText("00");
+            if (tvMinute != null) tvMinute.setText("00");
+            if (tvSecond != null) tvSecond.setText("00");
+        }
     }
 
     private void updateTimerUI(long millis) {
@@ -170,13 +178,15 @@ public class FlashSaleActivity extends BaseActivity {
     }
 
     private void setupProducts() {
-        allProducts = new ArrayList<>();
-        allProducts.add(new Product("NYLON WEATHER", "$30.00 USD", R.mipmap.model1, "Men's Clothing"));
-        allProducts.add(new Product("TWILL TEXTILE", "$100.00 USD", R.mipmap.model2, "Men's Clothing"));
-        allProducts.add(new Product("STRUCTURED COAT", "$450.00 USD", R.mipmap.jacket1, "Outerwear"));
-        allProducts.add(new Product("LINEN SHIRT", "$120.00 USD", R.mipmap.tshirt2, "Shirts"));
-        allProducts.add(new Product("MODERN AVIATORS", "$210.00 USD", R.mipmap.sunglass1, "Accessories"));
-        allProducts.add(new Product("ARCHIVE PARKA", "$520.00 USD", R.mipmap.jacket2, "Outerwear"));
+        allProducts = DataManager.getInstance(this).getFlashSaleProducts();
+        if (allProducts.isEmpty()) {
+            allProducts.add(new Product("NYLON WEATHER", "$30.00 USD", R.mipmap.model1, "Men's Clothing"));
+            allProducts.add(new Product("TWILL TEXTILE", "$100.00 USD", R.mipmap.model2, "Men's Clothing"));
+            allProducts.add(new Product("STRUCTURED COAT", "$450.00 USD", R.mipmap.jacket1, "Outerwear"));
+            allProducts.add(new Product("LINEN SHIRT", "$120.00 USD", R.mipmap.tshirt2, "Shirts"));
+            allProducts.add(new Product("MODERN AVIATORS", "$210.00 USD", R.mipmap.sunglass1, "Accessories"));
+            allProducts.add(new Product("ARCHIVE PARKA", "$520.00 USD", R.mipmap.jacket2, "Outerwear"));
+        }
 
         adapter = new FlashSaleGridAdapter(allProducts);
         rvProducts.setLayoutManager(new GridLayoutManager(this, 2));

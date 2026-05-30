@@ -10,12 +10,15 @@ public class Review implements Serializable {
     private String date;
     private List<String> imageUrls; // Can be local URIs or URLs
 
+    private boolean isApproved;
+
     public Review(String userName, float rating, String comment, String date, List<String> imageUrls) {
         this.userName = userName;
         this.rating = rating;
         this.comment = comment;
         this.date = date;
         this.imageUrls = imageUrls;
+        this.isApproved = false; // Default to false for moderation
     }
 
     public String getUserName() { return userName; }
@@ -23,4 +26,6 @@ public class Review implements Serializable {
     public String getComment() { return comment; }
     public String getDate() { return date; }
     public List<String> getImageUrls() { return imageUrls; }
+    public boolean isApproved() { return isApproved; }
+    public void setApproved(boolean approved) { isApproved = approved; }
 }

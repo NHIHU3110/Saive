@@ -23,6 +23,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.widget.PopupMenu;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.example.saive.adapters.BottomSheetOptionAdapter;
@@ -62,6 +63,8 @@ import com.example.saive.utils.CartManager;
 import com.example.saive.utils.FavoriteManager;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.example.saive.utils.DataManager;
 
 public class MainActivity extends BaseActivity {
 
@@ -919,6 +922,20 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        
+        // Block check
+        SharedPreferences prefs = getSharedPreferences("user_prefs", MODE_PRIVATE);
+        String userEmail = prefs.getString("saved_email", "");
+        if (!userEmail.isEmpty() && DataManager.getInstance(this).isUserBlocked(userEmail)) {
+            prefs.edit().putBoolean("is_logged_in", false).apply();
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            Toast.makeText(this, "Tài khoản bị khóa bởi Admin", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
+
         bannerHandler.postDelayed(bannerRunnable, 5000);
         updateNotificationBadge();
         updateCartBadge(); // Cập nhật badge khi quay lại từ màn hình khác

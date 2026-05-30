@@ -14,16 +14,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.saive.base.BaseActivity;
+import com.example.saive.utils.DataManager;
+
 public class OrderManagementActivity extends BaseActivity {
 
     private RecyclerView rvOrders;
     private AdminOrderAdapter adapter;
     private List<AdminOrder> orderList;
+    private DataManager dataManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_management);
+        dataManager = DataManager.getInstance(this);
 
         rvOrders = findViewById(R.id.rvOrders);
         
@@ -39,10 +43,13 @@ public class OrderManagementActivity extends BaseActivity {
     }
 
     private void setupOrderList() {
-        orderList = new ArrayList<>();
-        orderList.add(new AdminOrder("#SA-9012", "Lê Minh Trí", "1 Item: Silk Blazer", "1.250.000 ₫", "PENDING", "5m ago"));
-        orderList.add(new AdminOrder("#SA-9011", "Nguyễn An", "3 Items: Wool Scarf, T-Shirt...", "840.000 ₫", "SHIPPED", "1h ago"));
-        orderList.add(new AdminOrder("#SA-9010", "Trần Thị B", "2 Items: Sun Glasses, Jacket", "2.100.000 ₫", "COMPLETED", "3h ago"));
+        orderList = dataManager.getOrders();
+        if (orderList.isEmpty()) {
+            orderList.add(new AdminOrder("#SA-9012", "Lê Minh Trí", "1 Item: Silk Blazer", "1.250.000 ₫", "PENDING", "5m ago"));
+            orderList.add(new AdminOrder("#SA-9011", "Nguyễn An", "3 Items: Wool Scarf, T-Shirt...", "840.000 ₫", "SHIPPED", "1h ago"));
+            orderList.add(new AdminOrder("#SA-9010", "Trần Thị B", "2 Items: Sun Glasses, Jacket", "2.100.000 ₫", "COMPLETED", "3h ago"));
+            dataManager.saveOrders(orderList);
+        }
 
         adapter = new AdminOrderAdapter(orderList, this::showOrderDetails);
         rvOrders.setLayoutManager(new LinearLayoutManager(this));
@@ -68,6 +75,9 @@ public class OrderManagementActivity extends BaseActivity {
         tvStatus.setText(order.getStatus());
 
         dialogView.findViewById(R.id.btnMarkShipped).setOnClickListener(v -> {
+            order.setStatus("SHIPPED");
+            dataManager.updateOrderStatus(order.getOrderId(), "SHIPPED");
+            adapter.notifyDataSetChanged();
             Toast.makeText(this, "Order " + order.getOrderId() + " marked as SHIPPED", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
         });

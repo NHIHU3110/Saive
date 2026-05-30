@@ -30,8 +30,12 @@
                 android:icon="@drawable/ic_coupon"
                 android:title="@string/admin_menu_marketing" />
             <item
+                android:id="@+id/nav_reviews"
+                android:icon="@drawable/ic_favorite"
+                android:title="Review Moderation" />
+            <item
                 android:id="@+id/nav_language"
-                android:icon="@drawable/ic_search"
+                android:icon="@drawable/ic_menu"
                 android:title="@string/menu_language" />
         </menu>
     </item>

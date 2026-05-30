@@ -417,6 +417,8 @@
     <string name="admin_select_products">Select Products</string>
     <string name="admin_user_mgmt">USER DIRECTORY</string>
     <string name="admin_logout_confirm">Select Logout to exit Admin</string>
+    <string name="admin_inventory_title">INVENTORY MANAGEMENT</string>
+    <string name="admin_order_mgmt">ORDER MANAGEMENT</string>
 
     <string name="logout_title">Logout</string>
     <string name="logout_message">Are you sure you want to logout?</string>
