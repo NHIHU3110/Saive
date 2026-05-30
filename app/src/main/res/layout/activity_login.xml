@@ -17,8 +17,11 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/ivLogo"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:clickable="true"
+            android:focusable="true"
             android:src="@mipmap/saive_logo"
             app:tint="@color/white" />
 

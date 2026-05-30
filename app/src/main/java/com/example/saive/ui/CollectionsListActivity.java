@@ -37,15 +37,14 @@ public class CollectionsListActivity extends BaseActivity {
         initViews();
         setupRecyclerView();
         setupDots();
+        setupNavigation();
+        applyWindowInsets();
     }
 
     private void initViews() {
         rvCollections = findViewById(R.id.rvCollections);
         layoutDotsOverlay = findViewById(R.id.layoutDotsOverlay);
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
-
-        setupNavigation();
-        applyWindowInsets();
 
         collectionItems = new ArrayList<>();
         

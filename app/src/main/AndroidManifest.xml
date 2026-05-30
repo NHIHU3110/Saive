@@ -85,6 +85,30 @@
             android:name=".ui.FlashSaleActivity"
             android:exported="false"
             android:theme="@style/Theme.Saive" />
+        <activity
+            android:name=".ui.AdminActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Saive" />
+        <activity
+            android:name=".ui.InventoryManagementActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Saive" />
+        <activity
+            android:name=".ui.FlashSaleManagementActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Saive" />
+        <activity
+            android:name=".ui.OrderManagementActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Saive" />
+        <activity
+            android:name=".ui.UserManagementActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Saive" />
+        <activity
+            android:name=".ui.MarketingManagementActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Saive" />
     </application>
 
 </manifest>

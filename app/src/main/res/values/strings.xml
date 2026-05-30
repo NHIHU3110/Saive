@@ -124,6 +124,7 @@
     <string name="coupon_code">SAIVE_S24_EXTRA</string>
     <string name="coupon_label">Coupon</string>
     <string name="acc_unread">Unread</string>
+    <string name="expires_format">Expires: %1$s</string>
     <string name="label_description">DESCRIPTION</string>
     <string name="label_see_more">See more</string>
     <string name="label_see_less">See less</string>
@@ -373,6 +374,17 @@
     <string name="lang_zh">中文</string>
     <string name="notifications_enabled">Notifications enabled</string>
     <string name="notifications_disabled">Notifications disabled</string>
+    <string name="menu_admin_portal">Admin Portal</string>
+    <string name="admin_stats_revenue">Doanh thu</string>
+    <string name="admin_stats_orders">Đơn hàng mới</string>
+    <string name="admin_menu_inventory">Kho hàng</string>
+    <string name="admin_menu_flashsale">Flash Sale</string>
+    <string name="admin_menu_marketing">Khuyến mãi</string>
+    <string name="admin_menu_users">Người dùng</string>
+    <string name="admin_menu_reviews">Đánh giá</string>
+    <string name="admin_push_notify">Gửi thông báo Push toàn hệ thống</string>
+    <string name="admin_broadcast_push">BROADCAST PUSH NOTIFICATION</string>
+
     <string name="logout_title">Logout</string>
     <string name="logout_message">Are you sure you want to logout?</string>
     <string name="yes">Yes</string>

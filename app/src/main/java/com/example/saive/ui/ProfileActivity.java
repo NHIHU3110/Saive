@@ -5,11 +5,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,67 +45,6 @@ public class ProfileActivity extends BaseActivity {
         super.onResume();
         updateNotificationBadge();
         updateAuthUI();
-        updateBottomNavStyle(R.id.navProfile);
-        
-        // Match the transition animation from MainActivity
-        View navProfile = findViewById(R.id.navProfile);
-        if (navProfile != null) {
-            animateNavIcon(navProfile);
-        }
-    }
-
-    private void animateNavIcon(View view) {
-        if (view == null) return;
-        view.setVisibility(View.VISIBLE);
-        view.setAlpha(1.0f);
-
-        view.animate()
-                .scaleX(1.1f)
-                .scaleY(1.1f)
-                .setDuration(300)
-                .setInterpolator(new android.view.animation.DecelerateInterpolator())
-                .withEndAction(() -> {
-                    view.animate()
-                            .scaleX(1.0f)
-                            .scaleY(1.0f)
-                            .setDuration(300)
-                            .start();
-                })
-                .start();
-    }
-
-    private void updateBottomNavStyle(int activeId) {
-        int[] navIds = {R.id.navFavorite, R.id.navWardrobe, R.id.navNotify, R.id.navProfile};
-        for (int id : navIds) {
-            View navItem = findViewById(id);
-            if (navItem != null) {
-                float alpha = (id == activeId) ? 1.0f : 0.7f;
-                navItem.setAlpha(alpha);
-
-                TextView tv = findTextView(navItem);
-                if (tv != null) {
-                    tv.setTypeface(null, (id == activeId) ? Typeface.BOLD : Typeface.NORMAL);
-                }
-            }
-        }
-
-        View centerActionButton = findViewById(R.id.centerActionButton);
-        if (centerActionButton != null) {
-            centerActionButton.setAlpha((activeId == R.id.centerActionButton) ? 1.0f : 0.7f);
-        }
-    }
-
-    private TextView findTextView(View view) {
-        if (view instanceof TextView) {
-            return (TextView) view;
-        } else if (view instanceof ViewGroup) {
-            ViewGroup group = (ViewGroup) view;
-            for (int i = 0; i < group.getChildCount(); i++) {
-                TextView res = findTextView(group.getChildAt(i));
-                if (res != null) return res;
-            }
-        }
-        return null;
     }
 
     private void updateAuthUI() {
@@ -197,8 +134,7 @@ public class ProfileActivity extends BaseActivity {
         finish();
     }
 
-    @Override
-    protected void navigateToMain(String sectionExtra) {
+    private void navigateToMain(String sectionExtra) {
         Intent intent = new Intent(this, MainActivity.class);
         if (sectionExtra != null) {
             intent.putExtra(sectionExtra, true);
@@ -260,6 +196,7 @@ public class ProfileActivity extends BaseActivity {
                 showCustomToast(message);
             });
         }
+
 
         // Logout Action
         btnLogoutNew = findViewById(R.id.btnLogoutNew);
@@ -357,10 +294,10 @@ public class ProfileActivity extends BaseActivity {
 
                             // Also clear address data
                             getSharedPreferences("address_prefs", MODE_PRIVATE).edit().clear().apply();
-                            
+
                             showCustomToast(getString(R.string.toast_account_deleted));
                             updateAuthUI();
-                            
+
                             // Return to login or splash
                             Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

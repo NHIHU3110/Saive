@@ -8,6 +8,18 @@
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor">@color/colorCotton</item>
 
+        <!-- Material 3 Color Palette Overrides to remove default Purple -->
+        <item name="colorPrimary">@color/colorMaroon</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/colorMaroon</item>
+        <item name="colorOnPrimaryContainer">@color/white</item>
+        <item name="colorSecondary">@color/colorSand</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorTertiary">@color/colorNoirBlack</item>
+        <item name="android:colorBackground">@color/colorCotton</item>
+        <item name="colorSurface">@color/colorCotton</item>
+        <item name="colorOnSurface">@color/colorNoirBlack</item>
+
         <!-- Global Font Settings -->
         <item name="android:fontFamily">sans-serif-light</item>
         <item name="textAppearanceHeadlineLarge">@style/TextAppearance.Saive.Header</item>
