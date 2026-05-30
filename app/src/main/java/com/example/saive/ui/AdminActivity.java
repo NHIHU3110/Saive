@@ -47,38 +47,6 @@ public class AdminActivity extends BaseActivity implements NavigationView.OnNavi
         findViewById(R.id.btnMenu).setOnClickListener(v -> {
             drawerLayout.openDrawer(GravityCompat.START);
         });
-
-        findViewById(R.id.btnPushNotification).setOnClickListener(v -> {
-            showBroadcastDialog();
-        });
-    }
-
-    private void showBroadcastDialog() {
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
-        View dialogView = getLayoutInflater().inflate(R.layout.dialog_broadcast, null);
-        builder.setView(dialogView);
-
-        android.app.AlertDialog dialog = builder.create();
-        if (dialog.getWindow() != null) {
-            dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-        }
-
-        EditText etTitle = dialogView.findViewById(R.id.etNotifyTitle);
-        EditText etMessage = dialogView.findViewById(R.id.etNotifyMessage);
-        View btnSend = dialogView.findViewById(R.id.btnSendBroadcast);
-
-        btnSend.setOnClickListener(v -> {
-            String title = etTitle.getText().toString();
-            String message = etMessage.getText().toString();
-            if (!title.isEmpty() && !message.isEmpty()) {
-                Toast.makeText(this, "Broadcast sent: " + title, Toast.LENGTH_LONG).show();
-                dialog.dismiss();
-            } else {
-                Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        dialog.show();
     }
 
     private void setupWindowInsets() {
@@ -99,6 +67,8 @@ public class AdminActivity extends BaseActivity implements NavigationView.OnNavi
             startActivity(new Intent(this, InventoryManagementActivity.class));
         } else if (id == R.id.nav_orders) {
             startActivity(new Intent(this, OrderManagementActivity.class));
+        } else if (id == R.id.nav_notifications) {
+            startActivity(new Intent(this, NotificationManagementActivity.class));
         } else if (id == R.id.nav_flash_sale) {
             startActivity(new Intent(this, FlashSaleManagementActivity.class));
         } else if (id == R.id.nav_users) {

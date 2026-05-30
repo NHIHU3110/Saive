@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="24dp"
+    app:cardCornerRadius="28dp"
+    app:cardElevation="8dp"
+    app:cardBackgroundColor="@color/white"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/colorLinen">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CREATE NOTIFICATION"
+            style="@style/TextAppearance.Saive.SectionHeader"
+            android:textSize="16sp"
+            android:textColor="@color/colorNoirBlack"
+            android:letterSpacing="0.1" />
+
+        <View
+            android:layout_width="40dp"
+            android:layout_height="2dp"
+            android:background="@color/colorMaroon"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="24dp" />
+
+        <RelativeLayout
+            android:id="@+id/btnSelectNotifyCategory"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@drawable/bg_rounded_white_8dp"
+            android:paddingHorizontal="16dp"
+            android:clickable="true"
+            android:focusable="true">
+            <TextView
+                android:id="@+id/tvSelectedNotifyCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Select Category"
+                android:textColor="@color/colorSand"
+                android:textSize="14sp" />
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_chevron_down"
+                app:tint="@color/colorSand" />
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/etNotifyTitle"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="16dp"
+            android:hint="Notification Title"
+            android:background="@drawable/bg_rounded_white_8dp"
+            android:paddingHorizontal="16dp"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/etNotifyMessage"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="16dp"
+            android:hint="Message content..."
+            android:gravity="top"
+            android:padding="16dp"
+            android:background="@drawable/bg_rounded_white_8dp"
+            android:textSize="14sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSendNotification"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/bg_rounded_black_12dp"
+            android:text="SEND BROADCAST"
+            android:textColor="@color/white"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.1" />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

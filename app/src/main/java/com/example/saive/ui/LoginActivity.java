@@ -46,7 +46,7 @@ public class LoginActivity extends BaseActivity {
 
                 if (logoClickCount >= 5) {
                     logoClickCount = 0;
-                    Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, AdminLoginActivity.class);
                     startActivity(intent);
                     Toast.makeText(this, "Admin Mode Unlocked", Toast.LENGTH_SHORT).show();
                 }

@@ -14,8 +14,12 @@
             android:icon="@mipmap/ordericonadmin"
             android:title="@string/admin_menu_orders" />
         <item
-            android:id="@+id/nav_flash_sale"
+            android:id="@+id/nav_notifications"
             android:icon="@drawable/ic_notifications"
+            android:title="Notifications" />
+        <item
+            android:id="@+id/nav_flash_sale"
+            android:icon="@drawable/ic_coupon"
             android:title="@string/admin_menu_flashsale" />
     </group>
 
