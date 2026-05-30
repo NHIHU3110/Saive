@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/colorCotton"
+    tools:context=".ui.AdminActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorCotton">
+
+        <!-- Header -->
+        <LinearLayout
+            android:id="@+id/adminHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="24dp"
+            android:paddingTop="54dp"
+            android:paddingBottom="20dp"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/btnMenu"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="@drawable/bg_circle_white"
+                android:elevation="2dp"
+                android:padding="10dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_menu"
+                app:tint="@color/colorMaroon" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="20dp"
+                android:text="SAIVE INSIGHTS"
+                style="@style/TextAppearance.Saive.SectionHeader"
+                android:textSize="18sp"
+                android:textColor="@color/colorNoirBlack"
+                android:letterSpacing="0.2" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/model1"
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.Saive.Circle"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/colorMaroon" />
+        </LinearLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:overScrollMode="never"
+            app:layout_constraintTop_toBottomOf="@id/adminHeader"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <!-- Stats Summary Cards -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        app:cardCornerRadius="24dp"
+                        app:cardElevation="0dp"
+                        app:cardBackgroundColor="@color/white"
+                        app:strokeWidth="1dp"
+                        app:strokeColor="@color/colorLinen">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="20dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="REVENUE"
+                                style="@style/TextAppearance.Saive.Caption"
+                                android:textColor="@color/colorSand"
+                                android:textSize="10sp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="$12.8k"
+                                style="@style/TextAppearance.Saive.Header"
+                                android:textSize="24sp"
+                                android:textColor="@color/colorNoirBlack"
+                                android:layout_marginTop="4dp"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="+15% UP"
+                                android:textSize="10sp"
+                                android:fontFamily="sans-serif-medium"
+                                android:textColor="@color/colorMaroon"
+                                android:layout_marginTop="8dp"/>
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        app:cardCornerRadius="24dp"
+                        app:cardElevation="0dp"
+                        app:cardBackgroundColor="@color/colorMaroon"
+                        app:strokeWidth="0dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="20dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="ORDERS"
+                                style="@style/TextAppearance.Saive.Caption"
+                                android:textColor="@color/colorLinen"
+                                android:alpha="0.8"
+                                android:textSize="10sp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="156"
+                                style="@style/TextAppearance.Saive.Header"
+                                android:textSize="24sp"
+                                android:textColor="@color/white"
+                                android:layout_marginTop="4dp"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="8 PENDING"
+                                android:textSize="10sp"
+                                android:fontFamily="sans-serif-medium"
+                                android:textColor="@color/colorCotton"
+                                android:layout_marginTop="8dp"/>
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <!-- Analytics Chart Section -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GROWTH ANALYTICS"
+                    style="@style/TextAppearance.Saive.Caption"
+                    android:textColor="@color/colorSand"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="16dp"
+                    android:letterSpacing="0.2"/>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    app:cardCornerRadius="28dp"
+                    app:cardElevation="4dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/colorLinen">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="24dp">
+
+                        <!-- Minimalist Bar Chart -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:gravity="bottom"
+                            android:layout_marginBottom="32dp">
+                            <View android:layout_width="0dp" android:layout_height="40dp" android:layout_weight="1" android:layout_marginHorizontal="6dp" android:background="@color/colorLinen" android:alpha="0.5"/>
+                            <View android:layout_width="0dp" android:layout_height="80dp" android:layout_weight="1" android:layout_marginHorizontal="6dp" android:background="@color/colorLinen" android:alpha="0.5"/>
+                            <View android:layout_width="0dp" android:layout_height="60dp" android:layout_weight="1" android:layout_marginHorizontal="6dp" android:background="@color/colorLinen" android:alpha="0.5"/>
+                            <View android:layout_width="0dp" android:layout_height="120dp" android:layout_weight="1" android:layout_marginHorizontal="6dp" android:background="@color/colorMaroon"/>
+                            <View android:layout_width="0dp" android:layout_height="100dp" android:layout_weight="1" android:layout_marginHorizontal="6dp" android:background="@color/colorNoirBlack"/>
+                            <View android:layout_width="0dp" android:layout_height="140dp" android:layout_weight="1" android:layout_marginHorizontal="6dp" android:background="@color/colorMaroon" android:alpha="0.7"/>
+                            <View android:layout_width="0dp" android:layout_height="70dp" android:layout_weight="1" android:layout_marginHorizontal="6dp" android:background="@color/colorLinen" android:alpha="0.5"/>
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:text="M   T   W   T   F   S   S"
+                            style="@style/TextAppearance.Saive.Caption"
+                            android:textSize="10sp"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/colorSand"/>
+                    </RelativeLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btnPushNotification"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@color/colorLinen"
+                    app:strokeWidth="0dp"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="20dp"
+                        android:gravity="center_vertical">
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_notifications"
+                            app:tint="@color/colorMaroon" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="16dp"
+                            android:text="@string/admin_broadcast_push"
+                            style="@style/TextAppearance.Saive.Label"
+                            android:textSize="12sp"
+                            android:textColor="@color/colorMaroon" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Activity List -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RECENT ACTIVITY"
+                    style="@style/TextAppearance.Saive.Caption"
+                    android:textColor="@color/colorSand"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="16dp"
+                    android:letterSpacing="0.2"/>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/colorLinen">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="8dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="64dp"
+                            android:gravity="center_vertical"
+                            android:paddingHorizontal="16dp">
+                            <View android:layout_width="8dp" android:layout_height="8dp" android:background="@drawable/bg_circle_maroon"/>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="16dp"
+                                android:text="Order #1204 - Paid via Momo"
+                                style="@style/TextAppearance.Saive.Light"
+                                android:textSize="13sp"
+                                android:textColor="@color/colorNoirBlack"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Just now"
+                                android:textSize="10sp"
+                                android:textColor="@color/colorSand"/>
+                        </LinearLayout>
+
+                        <View android:layout_width="match_parent" android:layout_height="0.5dp" android:layout_marginHorizontal="16dp" android:background="@color/colorLinen" android:alpha="0.5"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="64dp"
+                            android:gravity="center_vertical"
+                            android:paddingHorizontal="16dp">
+                            <View android:layout_width="8dp" android:layout_height="8dp" android:background="@drawable/bg_circle_black"/>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="16dp"
+                                android:text="Inventory Alert: Silk Blazer (Low)"
+                                style="@style/TextAppearance.Saive.Light"
+                                android:textSize="13sp"
+                                android:textColor="@color/colorNoirBlack"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="2h ago"
+                                android:textSize="10sp"
+                                android:textColor="@color/colorSand"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Drawer Menu Styled -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        android:background="@color/colorCotton"
+        app:itemIconTint="@color/colorMaroon"
+        app:itemTextColor="@color/colorNoirBlack"
+        app:itemShapeAppearanceOverlay="@style/ShapeAppearance.Saive.Small"
+        app:itemShapeInsetStart="12dp"
+        app:itemShapeInsetEnd="12dp"
+        app:headerLayout="@layout/nav_header_admin"
+        app:menu="@menu/menu_admin_drawer" />
+
+</androidx.drawerlayout.widget.DrawerLayout>
