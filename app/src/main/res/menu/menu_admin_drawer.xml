@@ -7,11 +7,11 @@
             android:title="@string/admin_dashboard_title" />
         <item
             android:id="@+id/nav_inventory"
-            android:icon="@drawable/ic_wardrobe"
+            android:icon="@mipmap/inventoryicon"
             android:title="@string/admin_menu_inventory" />
         <item
             android:id="@+id/nav_orders"
-            android:icon="@drawable/ic_package"
+            android:icon="@mipmap/ordericonadmin"
             android:title="@string/admin_menu_orders" />
         <item
             android:id="@+id/nav_flash_sale"
