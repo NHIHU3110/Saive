@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -15,10 +16,12 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.saive.base.BaseActivity;
 import com.example.saive.R;
 import com.google.android.material.navigation.NavigationView;
+import android.content.SharedPreferences;
 
-public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class AdminActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
 
@@ -39,8 +42,36 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         });
 
         findViewById(R.id.btnPushNotification).setOnClickListener(v -> {
-            Toast.makeText(this, "Pushing notification to all users...", Toast.LENGTH_SHORT).show();
+            showBroadcastDialog();
         });
+    }
+
+    private void showBroadcastDialog() {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_broadcast, null);
+        builder.setView(dialogView);
+
+        android.app.AlertDialog dialog = builder.create();
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        }
+
+        EditText etTitle = dialogView.findViewById(R.id.etNotifyTitle);
+        EditText etMessage = dialogView.findViewById(R.id.etNotifyMessage);
+        View btnSend = dialogView.findViewById(R.id.btnSendBroadcast);
+
+        btnSend.setOnClickListener(v -> {
+            String title = etTitle.getText().toString();
+            String message = etMessage.getText().toString();
+            if (!title.isEmpty() && !message.isEmpty()) {
+                Toast.makeText(this, "Broadcast sent: " + title, Toast.LENGTH_LONG).show();
+                dialog.dismiss();
+            } else {
+                Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        dialog.show();
     }
 
     private void setupWindowInsets() {
@@ -67,6 +98,8 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
             startActivity(new Intent(this, UserManagementActivity.class));
         } else if (id == R.id.nav_marketing) {
             startActivity(new Intent(this, MarketingManagementActivity.class));
+        } else if (id == R.id.nav_language) {
+            showLanguageDialog();
         } else if (id == R.id.nav_logout) {
             logoutAdmin();
         } else {
@@ -75,6 +108,29 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void showLanguageDialog() {
+        String[] languages = {getString(R.string.lang_en), getString(R.string.lang_vi), getString(R.string.lang_zh)};
+        String[] codes = {"en", "vi", "zh"};
+
+        new android.app.AlertDialog.Builder(this)
+                .setTitle(R.string.menu_language)
+                .setItems(languages, (dialog, which) -> {
+                    updateLanguage(codes[which]);
+                })
+                .show();
+    }
+
+    private void updateLanguage(String langCode) {
+        SharedPreferences.Editor editor = getSharedPreferences(LANG_PREFS, MODE_PRIVATE).edit();
+        editor.putString(LANG_KEY, langCode);
+        editor.apply();
+
+        // Restart activity to apply changes
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
     }
 
     private void logoutAdmin() {
@@ -91,7 +147,8 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
             // Không cho back ra ngoài trừ khi logout
-            Toast.makeText(this, "Vui lòng chọn Đăng xuất để thoát Admin", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.admin_logout_confirm, Toast.LENGTH_SHORT).show();
+            // super.onBackPressed();
         }
     }
 }

@@ -15,7 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class UserManagementActivity extends AppCompatActivity {
+import com.example.saive.base.BaseActivity;
+public class UserManagementActivity extends BaseActivity {
 
     private List<User> userList;
     private UserAdapter adapter;

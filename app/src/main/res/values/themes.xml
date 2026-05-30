@@ -13,8 +13,8 @@
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorPrimaryContainer">@color/colorMaroon</item>
         <item name="colorOnPrimaryContainer">@color/white</item>
-        <item name="colorSecondary">@color/colorSand</item>
-        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSecondaryContainer">@color/colorLinen</item>
+        <item name="colorOnSecondaryContainer">@color/colorNoirBlack</item>
         <item name="colorTertiary">@color/colorNoirBlack</item>
         <item name="android:colorBackground">@color/colorCotton</item>
         <item name="colorSurface">@color/colorCotton</item>

@@ -5,6 +5,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import android.widget.ImageButton;
+import android.graphics.Color;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,10 +17,16 @@ import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
 
-    private List<User> userList;
+    public interface OnUserActionListener {
+        void onBlockToggle(User user, int position);
+    }
 
-    public UserAdapter(List<User> userList) {
+    private List<User> userList;
+    private OnUserActionListener listener;
+
+    public UserAdapter(List<User> userList, OnUserActionListener listener) {
         this.userList = userList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -34,6 +42,22 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         holder.tvUserName.setText(user.getName());
         holder.tvUserEmail.setText(user.getEmail());
         holder.tvUserRole.setText(user.getRole());
+
+        if (user.isBlocked()) {
+            holder.btnBlockUser.setImageResource(R.drawable.ic_search); // Using search as "unblock" icon placeholder
+            holder.btnBlockUser.setColorFilter(Color.GRAY);
+            holder.tvUserName.setTextColor(Color.GRAY);
+        } else {
+            holder.btnBlockUser.setImageResource(R.drawable.ic_notify); // Using notify as "block" icon placeholder
+            holder.btnBlockUser.setColorFilter(Color.parseColor("#810100")); // colorMaroon
+            holder.tvUserName.setTextColor(Color.parseColor("#0F0F0F")); // colorNoirBlack
+        }
+
+        holder.btnBlockUser.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onBlockToggle(user, position);
+            }
+        });
     }
 
     @Override
@@ -48,12 +72,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     static class UserViewHolder extends RecyclerView.ViewHolder {
         TextView tvUserName, tvUserEmail, tvUserRole;
+        ImageButton btnBlockUser;
 
         public UserViewHolder(@NonNull View itemView) {
             super(itemView);
             tvUserName = itemView.findViewById(R.id.tvUserName);
             tvUserEmail = itemView.findViewById(R.id.tvUserEmail);
             tvUserRole = itemView.findViewById(R.id.tvUserRole);
+            btnBlockUser = itemView.findViewById(R.id.btnBlockUser);
         }
     }
 }

@@ -13,9 +13,15 @@ import java.util.List;
 public class AdminOrderAdapter extends RecyclerView.Adapter<AdminOrderAdapter.ViewHolder> {
 
     private List<AdminOrder> orderList;
+    private OnOrderClickListener listener;
 
-    public AdminOrderAdapter(List<AdminOrder> orderList) {
+    public interface OnOrderClickListener {
+        void onOrderClick(AdminOrder order);
+    }
+
+    public AdminOrderAdapter(List<AdminOrder> orderList, OnOrderClickListener listener) {
         this.orderList = orderList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -34,7 +40,7 @@ public class AdminOrderAdapter extends RecyclerView.Adapter<AdminOrderAdapter.Vi
         holder.tvOrderTotal.setText(order.getTotalAmount());
         holder.tvStatus.setText(order.getStatus());
         
-        // Optional: Change status background/text color based on status string
+        holder.itemView.setOnClickListener(v -> listener.onOrderClick(order));
     }
 
     @Override

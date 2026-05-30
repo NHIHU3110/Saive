@@ -34,6 +34,14 @@ public class AdminCouponAdapter extends RecyclerView.Adapter<AdminCouponAdapter.
         holder.tvCouponCode.setText(coupon.getCode());
         holder.tvCouponDesc.setText(coupon.getDescription());
         holder.tvCouponExpiry.setText(holder.itemView.getContext().getString(R.string.expires_format, coupon.getExpiryDate()));
+        holder.tvUsageCount.setText(holder.itemView.getContext().getString(R.string.admin_voucher_used, coupon.getUsageCount()));
+        
+        holder.tvVoucherStatus.setText(coupon.getStatus());
+        if ("Active".equalsIgnoreCase(coupon.getStatus())) {
+            holder.tvVoucherStatus.setBackgroundTintList(android.content.res.ColorStateList.valueOf(holder.itemView.getContext().getColor(R.color.colorMaroon)));
+        } else {
+            holder.tvVoucherStatus.setBackgroundTintList(android.content.res.ColorStateList.valueOf(holder.itemView.getContext().getColor(R.color.colorSand)));
+        }
     }
 
     @Override
@@ -42,13 +50,15 @@ public class AdminCouponAdapter extends RecyclerView.Adapter<AdminCouponAdapter.
     }
 
     static class CouponViewHolder extends RecyclerView.ViewHolder {
-        TextView tvCouponCode, tvCouponDesc, tvCouponExpiry;
+        TextView tvCouponCode, tvCouponDesc, tvCouponExpiry, tvUsageCount, tvVoucherStatus;
 
         public CouponViewHolder(@NonNull View itemView) {
             super(itemView);
             tvCouponCode = itemView.findViewById(R.id.tvCouponCode);
             tvCouponDesc = itemView.findViewById(R.id.tvCouponDesc);
             tvCouponExpiry = itemView.findViewById(R.id.tvCouponExpiry);
+            tvUsageCount = itemView.findViewById(R.id.tvUsageCount);
+            tvVoucherStatus = itemView.findViewById(R.id.tvVoucherStatus);
         }
     }
 }

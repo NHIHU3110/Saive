@@ -4,40 +4,44 @@
         <item
             android:id="@+id/nav_dashboard"
             android:icon="@drawable/ic_all"
-            android:title="Dashboard Tổng Quan" />
+            android:title="@string/admin_dashboard_title" />
         <item
             android:id="@+id/nav_inventory"
             android:icon="@drawable/ic_wardrobe"
-            android:title="Quản Lý Kho Hàng" />
+            android:title="@string/admin_menu_inventory" />
         <item
             android:id="@+id/nav_orders"
             android:icon="@drawable/ic_package"
-            android:title="Quản Lý Đơn Hàng" />
+            android:title="@string/admin_menu_orders" />
         <item
             android:id="@+id/nav_flash_sale"
             android:icon="@drawable/ic_notifications"
-            android:title="Chiến Dịch Flash Sale" />
+            android:title="@string/admin_menu_flashsale" />
     </group>
 
-    <item android:title="Hệ thống">
+    <item android:title="@string/admin_recent_activity">
         <menu>
             <item
                 android:id="@+id/nav_users"
                 android:icon="@drawable/ic_profile"
-                android:title="Quản Lý Người Dùng" />
+                android:title="@string/admin_menu_users" />
             <item
                 android:id="@+id/nav_marketing"
                 android:icon="@drawable/ic_coupon"
-                android:title="Mã Giảm Giá" />
+                android:title="@string/admin_menu_marketing" />
+            <item
+                android:id="@+id/nav_language"
+                android:icon="@drawable/ic_search"
+                android:title="@string/menu_language" />
         </menu>
     </item>
 
-    <item android:title="Tài khoản">
+    <item android:title="@string/profile_header">
         <menu>
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_logout"
-                android:title="Đăng xuất Admin" />
+                android:title="@string/menu_logout" />
         </menu>
     </item>
 </menu>

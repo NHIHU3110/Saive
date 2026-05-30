@@ -1,6 +1,8 @@
 package com.example.saive.ui;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,7 +13,8 @@ import com.example.saive.models.AdminOrder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderManagementActivity extends AppCompatActivity {
+import com.example.saive.base.BaseActivity;
+public class OrderManagementActivity extends BaseActivity {
 
     private RecyclerView rvOrders;
     private AdminOrderAdapter adapter;
@@ -40,10 +43,40 @@ public class OrderManagementActivity extends AppCompatActivity {
         orderList.add(new AdminOrder("#SA-9012", "Lê Minh Trí", "1 Item: Silk Blazer", "1.250.000 ₫", "PENDING", "5m ago"));
         orderList.add(new AdminOrder("#SA-9011", "Nguyễn An", "3 Items: Wool Scarf, T-Shirt...", "840.000 ₫", "SHIPPED", "1h ago"));
         orderList.add(new AdminOrder("#SA-9010", "Trần Thị B", "2 Items: Sun Glasses, Jacket", "2.100.000 ₫", "COMPLETED", "3h ago"));
-        orderList.add(new AdminOrder("#SA-9009", "Phạm Văn C", "1 Item: Evening Gown", "3.500.000 ₫", "CANCELLED", "Yesterday"));
 
-        adapter = new AdminOrderAdapter(orderList);
+        adapter = new AdminOrderAdapter(orderList, this::showOrderDetails);
         rvOrders.setLayoutManager(new LinearLayoutManager(this));
         rvOrders.setAdapter(adapter);
+    }
+
+    private void showOrderDetails(AdminOrder order) {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_order_details, null);
+        builder.setView(dialogView);
+
+        android.app.AlertDialog dialog = builder.create();
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        }
+
+        TextView tvId = dialogView.findViewById(R.id.tvOrderDetailsId);
+        TextView tvCustomer = dialogView.findViewById(R.id.tvOrderDetailsCustomer);
+        TextView tvStatus = dialogView.findViewById(R.id.tvOrderDetailsStatus);
+        
+        tvId.setText(order.getOrderId());
+        tvCustomer.setText(order.getCustomerName());
+        tvStatus.setText(order.getStatus());
+
+        dialogView.findViewById(R.id.btnMarkShipped).setOnClickListener(v -> {
+            Toast.makeText(this, "Order " + order.getOrderId() + " marked as SHIPPED", Toast.LENGTH_SHORT).show();
+            dialog.dismiss();
+        });
+
+        dialogView.findViewById(R.id.btnExportInvoice).setOnClickListener(v -> {
+            Toast.makeText(this, "Generating PDF Invoice...", Toast.LENGTH_SHORT).show();
+            dialog.dismiss();
+        });
+
+        dialog.show();
     }
 }

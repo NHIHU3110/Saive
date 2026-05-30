@@ -11,7 +11,18 @@ import com.example.saive.models.Coupon;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MarketingManagementActivity extends AppCompatActivity {
+import android.app.DatePickerDialog;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.EditText;
+import androidx.appcompat.app.AlertDialog;
+import com.example.saive.base.BaseActivity;
+import java.util.Calendar;
+
+public class MarketingManagementActivity extends BaseActivity {
+
+    private List<Coupon> couponList;
+    private AdminCouponAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,19 +30,60 @@ public class MarketingManagementActivity extends AppCompatActivity {
         setContentView(R.layout.activity_marketing_management);
 
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
-        findViewById(R.id.btnAddCoupon).setOnClickListener(v -> 
-            Toast.makeText(this, "Tính năng tạo mã giảm giá mới", Toast.LENGTH_SHORT).show()
-        );
+        findViewById(R.id.btnAddCoupon).setOnClickListener(v -> showAddVoucherDialog());
 
         RecyclerView rvCoupons = findViewById(R.id.rvCoupons);
         rvCoupons.setLayoutManager(new LinearLayoutManager(this));
 
-        List<Coupon> couponList = new ArrayList<>();
-        couponList.add(new Coupon("Silk Sale", "20% OFF on Silk Collection", "20%", "2024-12-31", "SILK20"));
-        couponList.add(new Coupon("Welcome", "10% OFF for new users", "10%", "2025-01-01", "WELCOME10"));
-        couponList.add(new Coupon("Black Friday", "50% OFF everything", "50%", "2024-11-30", "BLACK50"));
+        couponList = new ArrayList<>();
+        couponList.add(new Coupon("Silk Sale", "20% OFF on Silk Collection", "20%", "2024-12-31", "SILK20", "Active", 142));
+        couponList.add(new Coupon("Welcome", "10% OFF for new users", "10%", "2025-01-01", "WELCOME10", "Active", 856));
+        couponList.add(new Coupon("Black Friday", "50% OFF everything", "50%", "2024-11-30", "BLACK50", "Expired", 2301));
 
-        AdminCouponAdapter adapter = new AdminCouponAdapter(couponList);
+        adapter = new AdminCouponAdapter(couponList);
         rvCoupons.setAdapter(adapter);
+    }
+
+    private void showAddVoucherDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.SaiveDialog);
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_add_voucher, null);
+        builder.setView(view);
+
+        EditText etExpiry = view.findViewById(R.id.etVoucherExpiry);
+        etExpiry.setOnClickListener(v -> {
+            Calendar cal = Calendar.getInstance();
+            new DatePickerDialog(this, (view1, year, month, dayOfMonth) -> {
+                String date = year + "-" + (month + 1) + "-" + dayOfMonth;
+                etExpiry.setText(date);
+            }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show();
+        });
+
+        AlertDialog dialog = builder.create();
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        }
+
+        view.findViewById(R.id.btnSaveVoucher).setOnClickListener(v -> {
+            String name = ((EditText) view.findViewById(R.id.etVoucherName)).getText().toString();
+            String code = ((EditText) view.findViewById(R.id.etVoucherCode)).getText().toString();
+            String discount = ((EditText) view.findViewById(R.id.etVoucherDiscount)).getText().toString();
+            String expiry = etExpiry.getText().toString();
+            String desc = ((EditText) view.findViewById(R.id.etVoucherDesc)).getText().toString();
+
+            if (!name.isEmpty() & !code.isEmpty()) {
+                couponList.add(0, new Coupon(name, desc, discount, expiry, code, "Active", 0));
+                adapter.notifyItemInserted(0);
+                rvCouponsScrollToTop();
+                dialog.dismiss();
+                Toast.makeText(this, "Voucher created", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        dialog.show();
+    }
+
+    private void rvCouponsScrollToTop() {
+        RecyclerView rvCoupons = findViewById(R.id.rvCoupons);
+        rvCoupons.scrollToPosition(0);
     }
 }

@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginStart="20dp"
-            android:text="ORDER LOGISTICS"
+            android:text="@string/admin_order_mgmt"
             style="@style/TextAppearance.Saive.SectionHeader"
             android:textSize="18sp"
             android:textColor="@color/colorNoirBlack"

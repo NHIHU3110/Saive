@@ -18,7 +18,13 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-public class FlashSaleManagementActivity extends AppCompatActivity {
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.EditText;
+import androidx.appcompat.app.AlertDialog;
+import com.example.saive.base.BaseActivity;
+
+public class FlashSaleManagementActivity extends BaseActivity {
 
     private TextView tvTimer;
     private RecyclerView rvFlashSale;
@@ -41,9 +47,52 @@ public class FlashSaleManagementActivity extends AppCompatActivity {
 
     private void setupHeader() {
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
-        findViewById(R.id.btnCreateFlashSale).setOnClickListener(v -> 
-            Toast.makeText(this, "Tạo chiến dịch Flash Sale mới", Toast.LENGTH_SHORT).show()
-        );
+        findViewById(R.id.btnCreateFlashSale).setOnClickListener(v -> showCreateFlashSaleDialog());
+    }
+
+    private void showCreateFlashSaleDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.SaiveDialog);
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_create_flash_sale, null);
+        builder.setView(view);
+
+        AlertDialog dialog = builder.create();
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        }
+
+        view.findViewById(R.id.btnActivateFlashSale).setOnClickListener(v -> {
+            String discount = ((EditText) view.findViewById(R.id.etFlashDiscount)).getText().toString();
+            String durationStr = ((EditText) view.findViewById(R.id.etFlashDuration)).getText().toString();
+
+            if (!discount.isEmpty() && !durationStr.isEmpty()) {
+                long durationMillis = TimeUnit.HOURS.toMillis(Long.parseLong(durationStr));
+                startNewTimer(durationMillis);
+                dialog.dismiss();
+                Toast.makeText(this, "Flash Sale Activated", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        dialog.show();
+    }
+
+    private void startNewTimer(long durationMillis) {
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
+        countDownTimer = new CountDownTimer(durationMillis, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                long hours = TimeUnit.MILLISECONDS.toHours(millisUntilFinished);
+                long minutes = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60;
+                long seconds = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60;
+                tvTimer.setText(String.format(Locale.getDefault(), "%02d : %02d : %02d", hours, minutes, seconds));
+            }
+
+            @Override
+            public void onFinish() {
+                tvTimer.setText("00 : 00 : 00");
+            }
+        }.start();
     }
 
     private void setupTimer() {

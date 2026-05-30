@@ -66,11 +66,11 @@
         </LinearLayout>
 
         <ImageButton
-            android:id="@+id/btnUserAction"
+            android:id="@+id/btnBlockUser"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:background="@drawable/bg_circle_beige"
-            android:src="@drawable/ic_arrow_right"
+            android:src="@drawable/ic_notify"
             app:tint="@color/colorMaroon" />
 
     </LinearLayout>

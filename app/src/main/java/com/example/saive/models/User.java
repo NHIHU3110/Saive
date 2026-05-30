@@ -6,6 +6,7 @@ public class User {
     private String email;
     private String role;
     private String avatarUrl;
+    private boolean isBlocked;
 
     public User(String id, String name, String email, String role, String avatarUrl) {
         this.id = id;
@@ -13,6 +14,15 @@ public class User {
         this.email = email;
         this.role = role;
         this.avatarUrl = avatarUrl;
+        this.isBlocked = false;
+    }
+
+    public boolean isBlocked() {
+        return isBlocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        isBlocked = blocked;
     }
 
     public String getId() {

@@ -53,18 +53,30 @@
                 android:layout_marginTop="8dp" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvUsageCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="142 Used"
-            style="@style/TextAppearance.Saive.Caption"
-            android:textSize="10sp"
-            android:textColor="@color/colorSand"
-            android:background="@drawable/bg_rounded_maroon_btn"
-            android:backgroundTint="@color/colorLinen"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="4dp" />
+            <TextView
+                android:id="@+id/tvUsageCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="142 Used"
+                style="@style/TextAppearance.Saive.Caption"
+                android:textSize="10sp"
+                android:textColor="@color/colorSand"
+                android:background="@drawable/bg_rounded_white_8dp"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="4dp"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/tvVoucherStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Active"
+                style="@style/TextAppearance.Saive.Caption"
+                android:textSize="10sp"
+                android:textColor="@color/white"
+                android:background="@drawable/bg_rounded_maroon_btn"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="4dp" />
 
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

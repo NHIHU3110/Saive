@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginStart="20dp"
-            android:text="FLASH CAMPAIGNS"
+            android:text="@string/admin_menu_flashsale"
             style="@style/TextAppearance.Saive.SectionHeader"
             android:textSize="18sp"
             android:textColor="@color/colorNoirBlack"
@@ -72,7 +72,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ACTIVE CAMPAIGN ENDS IN"
+                android:text="@string/flash_sale_title"
                 style="@style/TextAppearance.Saive.Caption"
                 android:textColor="@color/colorCotton"
                 android:alpha="0.8"
