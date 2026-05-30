@@ -156,6 +156,7 @@ public class AdminActivity extends BaseActivity implements NavigationView.OnNavi
 
         // Show loading screen while switching language
         Intent intent = new Intent(this, LanguageLoadingActivity.class);
+        intent.putExtra("is_admin", true); // Đánh dấu là Admin đang yêu cầu
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);

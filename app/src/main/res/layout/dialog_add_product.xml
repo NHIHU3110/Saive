@@ -74,7 +74,7 @@
                 android:hint="Product Name"
                 android:background="@drawable/bg_rounded_white_8dp"
                 android:paddingHorizontal="16dp"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -91,7 +91,8 @@
                     android:hint="Price (VND)"
                     android:inputType="number"
                     android:background="@drawable/bg_rounded_white_8dp"
-                    android:paddingHorizontal="16dp" />
+                    android:paddingHorizontal="16dp"
+                    android:textSize="14sp" />
                 <EditText
                     android:id="@+id/etProductSKU"
                     android:layout_width="0dp"
@@ -100,28 +101,38 @@
                     android:layout_marginStart="8dp"
                     android:hint="SKU"
                     android:background="@drawable/bg_rounded_white_8dp"
-                    android:paddingHorizontal="16dp" />
-            </LinearLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:hintEnabled="false"
-                app:boxStrokeWidth="0dp"
-                app:boxStrokeWidthFocused="0dp">
-
-                <AutoCompleteTextView
-                    android:id="@+id/actvCategory"
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:background="@drawable/bg_rounded_white_8dp"
-                    android:hint="@string/admin_select_category"
-                    android:inputType="none"
                     android:paddingHorizontal="16dp"
                     android:textSize="14sp" />
-            </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/btnSelectCategory"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_rounded_white_8dp"
+                android:paddingHorizontal="16dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:id="@+id/tvSelectedCategory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/admin_select_category"
+                    android:textColor="@color/colorSand"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif-light" />
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_chevron_down"
+                    app:tint="@color/colorSand" />
+            </RelativeLayout>
 
             <EditText
                 android:id="@+id/etProductDescription"
@@ -132,7 +143,8 @@
                 android:gravity="top"
                 android:padding="16dp"
                 android:background="@drawable/bg_rounded_white_8dp"
-                android:fontFamily="sans-serif-light" />
+                android:fontFamily="sans-serif-light"
+                android:textSize="14sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSaveProduct"

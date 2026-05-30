@@ -29,7 +29,7 @@ public class LanguageLoadingActivity extends BaseActivity {
 
         // Giả lập thời gian chờ để "chuyển đổi" xong
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            boolean isAdmin = getSharedPreferences("admin_prefs", MODE_PRIVATE).getBoolean("is_admin", false);
+            boolean isAdmin = getIntent().getBooleanExtra("is_admin", false);
             Intent intent;
             if (isAdmin) {
                 intent = new Intent(LanguageLoadingActivity.this, AdminActivity.class);

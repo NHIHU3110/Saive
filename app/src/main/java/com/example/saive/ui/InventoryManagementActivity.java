@@ -2,20 +2,21 @@ package com.example.saive.ui;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.saive.R;
 import com.example.saive.adapters.InventoryAdapter;
+import com.example.saive.adapters.BottomSheetOptionAdapter;
 import com.example.saive.models.Product;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.example.saive.base.BaseActivity;
@@ -44,10 +45,29 @@ public class InventoryManagementActivity extends BaseActivity {
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_add_product, null);
         builder.setView(dialogView);
 
-        AutoCompleteTextView actvCategory = dialogView.findViewById(R.id.actvCategory);
-        String[] categories = {"Silk", "Linen", "Cotton", "Wool", "Denim", "Leather"};
-        ArrayAdapter<String> adapterCategory = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, categories);
-        actvCategory.setAdapter(adapterCategory);
+        View btnSelectCategory = dialogView.findViewById(R.id.btnSelectCategory);
+        TextView tvSelectedCategory = dialogView.findViewById(R.id.tvSelectedCategory);
+        List<String> categories = Arrays.asList("Silk", "Linen", "Cotton", "Wool", "Denim", "Leather");
+
+        btnSelectCategory.setOnClickListener(v -> {
+            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this, R.style.BottomSheetDialogTheme);
+            View sheetView = getLayoutInflater().inflate(R.layout.layout_bottom_sheet_menu, null);
+            bottomSheetDialog.setContentView(sheetView);
+
+            TextView tvTitle = sheetView.findViewById(R.id.tvSheetTitle);
+            tvTitle.setText(R.string.admin_select_category);
+
+            RecyclerView rvOptions = sheetView.findViewById(R.id.rvSheetOptions);
+            rvOptions.setLayoutManager(new LinearLayoutManager(this));
+
+            BottomSheetOptionAdapter adapter = new BottomSheetOptionAdapter(categories, tvSelectedCategory.getText().toString(), option -> {
+                tvSelectedCategory.setText(option);
+                tvSelectedCategory.setTextColor(getResources().getColor(R.color.colorNoirBlack));
+                bottomSheetDialog.dismiss();
+            });
+            rvOptions.setAdapter(adapter);
+            bottomSheetDialog.show();
+        });
 
         android.app.AlertDialog dialog = builder.create();
         if (dialog.getWindow() != null) {
