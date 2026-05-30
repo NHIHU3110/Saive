@@ -29,7 +29,13 @@ public class LanguageLoadingActivity extends BaseActivity {
 
         // Giả lập thời gian chờ để "chuyển đổi" xong
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            Intent intent = new Intent(LanguageLoadingActivity.this, MainActivity.class);
+            boolean isAdmin = getSharedPreferences("admin_prefs", MODE_PRIVATE).getBoolean("is_admin", false);
+            Intent intent;
+            if (isAdmin) {
+                intent = new Intent(LanguageLoadingActivity.this, AdminActivity.class);
+            } else {
+                intent = new Intent(LanguageLoadingActivity.this, MainActivity.class);
+            }
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             overridePendingTransition(R.anim.fade_in_slow, R.anim.fade_out_slow);

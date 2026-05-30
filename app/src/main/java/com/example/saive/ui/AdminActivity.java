@@ -19,6 +19,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.saive.base.BaseActivity;
 import com.example.saive.R;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import com.example.saive.adapters.BottomSheetOptionAdapter;
+import android.widget.TextView;
+import java.util.Arrays;
+import java.util.List;
 import android.content.SharedPreferences;
 
 public class AdminActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -113,15 +120,33 @@ public class AdminActivity extends BaseActivity implements NavigationView.OnNavi
     }
 
     private void showLanguageDialog() {
-        String[] languages = {getString(R.string.lang_en), getString(R.string.lang_vi), getString(R.string.lang_zh)};
-        String[] codes = {"en", "vi", "zh"};
+        List<String> languages = Arrays.asList(getString(R.string.lang_en), getString(R.string.lang_vi), getString(R.string.lang_zh));
+        List<String> codes = Arrays.asList("en", "vi", "zh");
 
-        new android.app.AlertDialog.Builder(this)
-                .setTitle(R.string.menu_language)
-                .setItems(languages, (dialog, which) -> {
-                    updateLanguage(codes[which]);
-                })
-                .show();
+        String currentLang = getSharedPreferences(LANG_PREFS, MODE_PRIVATE).getString(LANG_KEY, "en");
+        String currentLangName = languages.get(codes.indexOf(currentLang));
+
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this, R.style.BottomSheetDialogTheme);
+        View sheetView = getLayoutInflater().inflate(R.layout.layout_bottom_sheet_menu, null);
+        bottomSheetDialog.setContentView(sheetView);
+
+        TextView tvTitle = sheetView.findViewById(R.id.tvSheetTitle);
+        tvTitle.setText(R.string.menu_language);
+
+        RecyclerView rvOptions = sheetView.findViewById(R.id.rvSheetOptions);
+        rvOptions.setLayoutManager(new LinearLayoutManager(this));
+
+        BottomSheetOptionAdapter adapter = new BottomSheetOptionAdapter(languages, currentLangName, option -> {
+            int index = languages.indexOf(option);
+            String selectedLang = codes.get(index);
+            if (!selectedLang.equals(currentLang)) {
+                updateLanguage(selectedLang);
+            }
+            bottomSheetDialog.dismiss();
+        });
+        rvOptions.setAdapter(adapter);
+
+        bottomSheetDialog.show();
     }
 
     private void updateLanguage(String langCode) {
@@ -129,10 +154,12 @@ public class AdminActivity extends BaseActivity implements NavigationView.OnNavi
         editor.putString(LANG_KEY, langCode);
         editor.apply();
 
-        // Restart activity to apply changes
-        Intent intent = getIntent();
-        finish();
+        // Show loading screen while switching language
+        Intent intent = new Intent(this, LanguageLoadingActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        finish();
     }
 
     private void logoutAdmin() {
