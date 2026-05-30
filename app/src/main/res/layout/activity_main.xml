@@ -985,6 +985,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:alpha="0.5"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="@dimen/icon_size_nav"
@@ -996,6 +997,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/nav_favorite"
                     style="@style/TextAppearance.Saive.Nav"
+                    android:textSize="10sp"
                     android:layout_marginTop="4dp"
                     android:textColor="@color/white" />
             </LinearLayout>
@@ -1007,6 +1009,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:alpha="0.5"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="@dimen/icon_size_nav"
@@ -1018,6 +1021,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/nav_wardrobe"
                     style="@style/TextAppearance.Saive.Nav"
+                    android:textSize="10sp"
                     android:layout_marginTop="4dp"
                     android:textColor="@color/white" />
             </LinearLayout>
@@ -1047,6 +1051,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:alpha="0.5"
                 android:clickable="true"
                 android:focusable="true">
 
@@ -1067,6 +1072,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         style="@style/TextAppearance.Saive.Nav"
+                        android:textSize="10sp"
                         android:text="@string/nav_notify"
                         android:textColor="@color/white" />
                 </LinearLayout>
@@ -1092,6 +1098,7 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 android:focusable="true"
+                android:alpha="0.5"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -1105,6 +1112,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/nav_profile"
                     style="@style/TextAppearance.Saive.Nav"
+                    android:textSize="10sp"
                     android:layout_marginTop="4dp"
                     android:textColor="@color/white" />
             </LinearLayout>

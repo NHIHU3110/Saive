@@ -428,6 +428,9 @@ public class MainActivity extends BaseActivity {
         View searchContainer = findViewById(R.id.searchContainer);
         View btnCart = findViewById(R.id.btnCart);
 
+        // Khởi tạo trạng thái ban đầu (Home đang active)
+        updateNavHighlight(centerActionButton);
+
         if (searchContainer != null) {
             searchContainer.setOnClickListener(v -> {
                 v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
@@ -450,7 +453,6 @@ public class MainActivity extends BaseActivity {
             navHome.setOnClickListener(v -> {
                 v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 showView(homeScroll);
-                animateNavIcon(centerActionButton);
             });
         }
 
@@ -458,7 +460,6 @@ public class MainActivity extends BaseActivity {
             navWardrobe.setOnClickListener(v -> {
                 v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 showView(wardrobeContainer);
-                animateNavIcon(navWardrobe);
             });
         }
 
@@ -466,7 +467,6 @@ public class MainActivity extends BaseActivity {
             navNotify.setOnClickListener(v -> {
                 v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 showView(notificationsContainer);
-                animateNavIcon(navNotify);
             });
         }
 
@@ -474,7 +474,6 @@ public class MainActivity extends BaseActivity {
             navFavorite.setOnClickListener(v -> {
                 v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 showView(favoritesContainer);
-                animateNavIcon(navFavorite);
             });
         }
 
@@ -508,6 +507,7 @@ public class MainActivity extends BaseActivity {
         if (navProfile != null) {
             navProfile.setOnClickListener(v -> {
                 v.performHapticFeedback(android.view.HapticFeedbackConstants.VIRTUAL_KEY);
+                updateNavHighlight(v);
                 navigateToProfile();
             });
         }
@@ -535,7 +535,6 @@ public class MainActivity extends BaseActivity {
             centerActionButton.setOnClickListener(v -> {
                 v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 showView(homeScroll);
-                animateNavIcon(centerActionButton);
             });
         }
 
@@ -544,7 +543,6 @@ public class MainActivity extends BaseActivity {
             tvViewFullCuration.setOnClickListener(v -> {
                 v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 showView(wardrobeContainer);
-                animateNavIcon(navWardrobe);
             });
         }
 
@@ -606,6 +604,15 @@ public class MainActivity extends BaseActivity {
 
         View[] views = {homeScroll, notificationsContainer, wardrobeContainer, favoritesContainer};
         View searchBar = findViewById(R.id.searchBarWrapper);
+
+        // Xác định tab nào cần highlight
+        View activeNav = null;
+        if (toShow == homeScroll) activeNav = findViewById(R.id.centerActionButton);
+        else if (toShow == wardrobeContainer) activeNav = findViewById(R.id.navWardrobe);
+        else if (toShow == notificationsContainer) activeNav = findViewById(R.id.navNotify);
+        else if (toShow == favoritesContainer) activeNav = findViewById(R.id.navFavorite);
+
+        updateNavHighlight(activeNav);
 
         for (View v : views) {
             if (v == null) continue;
@@ -680,25 +687,30 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    private void animateNavIcon(View view) {
-        if (view == null) return;
-        // Đảm bảo view hiển thị trước khi chạy hiệu ứng (fix lỗi Shared Element Transition)
-        view.setVisibility(View.VISIBLE);
-        view.setAlpha(1.0f);
+    private void updateNavHighlight(View activeView) {
+        View[] navItems = {
+                findViewById(R.id.navFavorite),
+                findViewById(R.id.navWardrobe),
+                findViewById(R.id.centerActionButton),
+                findViewById(R.id.navNotify),
+                findViewById(R.id.navProfile)
+        };
 
-        view.animate()
-                .scaleX(1.1f)
-                .scaleY(1.1f)
-                .setDuration(300)
-                .setInterpolator(new DecelerateInterpolator())
-                .withEndAction(() -> {
-                    view.animate()
-                            .scaleX(1.0f)
-                            .scaleY(1.0f)
-                            .setDuration(300)
-                            .start();
-                })
-                .start();
+        for (View item : navItems) {
+            if (item == null) continue;
+            boolean isActive = (item == activeView);
+
+            item.animate()
+                    .alpha(isActive ? 1.0f : 0.5f)
+                    .scaleX(isActive ? 1.1f : 1.0f)
+                    .scaleY(isActive ? 1.1f : 1.0f)
+                    .setDuration(250)
+                    .start();
+        }
+    }
+
+    private void animateNavIcon(View view) {
+        updateNavHighlight(view);
     }
 
     private void setupWardrobe() {

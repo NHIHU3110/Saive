@@ -134,7 +134,8 @@ public class ProfileActivity extends BaseActivity {
         finish();
     }
 
-    private void navigateToMain(String sectionExtra) {
+    @Override
+    protected void navigateToMain(String sectionExtra) {
         Intent intent = new Intent(this, MainActivity.class);
         if (sectionExtra != null) {
             intent.putExtra(sectionExtra, true);
