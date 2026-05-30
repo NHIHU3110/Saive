@@ -16,6 +16,8 @@ public class AdminLoginActivity extends BaseActivity {
 
     private EditText etEmail, etPassword;
     private View loadingOverlay;
+    private int logoClickCount = 0;
+    private long lastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,26 @@ public class AdminLoginActivity extends BaseActivity {
                     performAdminLogin();
                 } else {
                     Toast.makeText(this, "Invalid Admin Credentials", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+        View ivLogo = findViewById(R.id.ivLogo);
+        if (ivLogo != null) {
+            ivLogo.setOnClickListener(v -> {
+                long currentTime = System.currentTimeMillis();
+                if (currentTime - lastClickTime > 2000) {
+                    logoClickCount = 0;
+                }
+                lastClickTime = currentTime;
+                logoClickCount++;
+
+                if (logoClickCount == 5) {
+                    logoClickCount = 0;
+                    Intent intent = new Intent(AdminLoginActivity.this, LoginActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(intent);
+                    finish();
                 }
             });
         }

@@ -17,6 +17,7 @@
         android:paddingTop="54dp"
         android:paddingBottom="20dp"
         android:gravity="center_vertical"
+        android:background="@color/colorMaroon"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
@@ -37,18 +38,18 @@
             android:text="@string/admin_menu_marketing"
             style="@style/TextAppearance.Saive.SectionHeader"
             android:textSize="18sp"
-            android:textColor="@color/colorNoirBlack"
+            android:textColor="@color/white"
             android:letterSpacing="0.2" />
 
         <ImageButton
             android:id="@+id/btnAddCoupon"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@drawable/bg_circle_black"
+            android:background="@drawable/bg_circle_white"
             android:elevation="2dp"
             android:src="@drawable/ic_plus"
             android:contentDescription="Add Coupon"
-            app:tint="@color/white" />
+            app:tint="@color/colorMaroon" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

@@ -17,6 +17,7 @@
         android:paddingTop="54dp"
         android:paddingBottom="20dp"
         android:gravity="center_vertical"
+        android:background="@color/colorMaroon"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
@@ -36,7 +37,7 @@
             android:text="@string/admin_user_mgmt"
             style="@style/TextAppearance.Saive.SectionHeader"
             android:textSize="18sp"
-            android:textColor="@color/colorNoirBlack"
+            android:textColor="@color/white"
             android:letterSpacing="0.2" />
 
         <ImageButton
