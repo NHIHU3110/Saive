@@ -75,7 +75,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/atumncollection1" />
+                xmlns:tools="http://schemas.android.com/tools"
+                tools:src="@mipmap/atumncollection1" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -138,10 +139,12 @@
                         app:cardCornerRadius="0dp"
                         app:cardElevation="0dp">
                         <ImageView
+                            android:id="@+id/ivSub1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
-                            android:src="@mipmap/atumncollection2" />
+                            xmlns:tools="http://schemas.android.com/tools"
+                            tools:src="@mipmap/atumncollection2" />
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
@@ -152,19 +155,23 @@
                         app:cardCornerRadius="0dp"
                         app:cardElevation="0dp">
                         <ImageView
+                            android:id="@+id/ivSub2"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
-                            android:src="@mipmap/model1" />
+                            xmlns:tools="http://schemas.android.com/tools"
+                            tools:src="@mipmap/model1" />
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
 
                 <ImageView
+                    android:id="@+id/ivSub3"
                     android:layout_width="match_parent"
                     android:layout_height="350dp"
                     android:layout_marginTop="16dp"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/banner2" />
+                    xmlns:tools="http://schemas.android.com/tools"
+                    tools:src="@mipmap/banner2" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cvAction"

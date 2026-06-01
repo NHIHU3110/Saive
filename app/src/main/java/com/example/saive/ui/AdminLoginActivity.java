@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 
 import com.example.saive.R;
 import com.example.saive.base.BaseActivity;
+import com.example.saive.utils.ImageUtils;
 
 public class AdminLoginActivity extends BaseActivity {
 
@@ -47,9 +49,13 @@ public class AdminLoginActivity extends BaseActivity {
             });
         }
 
-        View ivLogo = findViewById(R.id.ivLogo);
-        if (ivLogo != null) {
-            ivLogo.setOnClickListener(v -> {
+        View ivLogoView = findViewById(R.id.ivLogo);
+        if (ivLogoView instanceof ImageView) {
+            ImageUtils.setSafeImage((ImageView) ivLogoView, R.mipmap.saive_logo);
+        }
+        
+        if (ivLogoView != null) {
+            ivLogoView.setOnClickListener(v -> {
                 long currentTime = System.currentTimeMillis();
                 if (currentTime - lastClickTime > 2000) {
                     logoClickCount = 0;
@@ -66,6 +72,11 @@ public class AdminLoginActivity extends BaseActivity {
                 }
             });
         }
+
+        ImageView ivFbIcon = findViewById(R.id.ivFbIcon);
+        ImageView ivGgIcon = findViewById(R.id.ivGgIcon);
+        ImageUtils.setSafeImage(ivFbIcon, R.mipmap.fbicon);
+        ImageUtils.setSafeImage(ivGgIcon, R.mipmap.ggicon);
     }
 
     private void performAdminLogin() {

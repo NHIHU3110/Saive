@@ -3,11 +3,13 @@ package com.example.saive.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.saive.R;
 import com.example.saive.models.AdminOrder;
+import com.example.saive.utils.ImageUtils;
 import java.util.List;
 
 public class UserOrderAdapter extends RecyclerView.Adapter<UserOrderAdapter.OrderViewHolder> {
@@ -34,6 +36,9 @@ public class UserOrderAdapter extends RecyclerView.Adapter<UserOrderAdapter.Orde
         holder.tvTotal.setText(order.getTotalAmount());
         holder.tvStatus.setText(order.getStatus());
 
+        // For now using a placeholder image from the model or a default
+        ImageUtils.setSafeImage(holder.ivItem, R.mipmap.model1);
+
         if ("PENDING".equals(order.getStatus())) {
             holder.tvStatus.setTextColor(android.graphics.Color.parseColor("#810100"));
         } else if ("SHIPPED".equals(order.getStatus())) {
@@ -50,6 +55,7 @@ public class UserOrderAdapter extends RecyclerView.Adapter<UserOrderAdapter.Orde
 
     static class OrderViewHolder extends RecyclerView.ViewHolder {
         TextView tvId, tvDate, tvItems, tvTotal, tvStatus;
+        ImageView ivItem;
 
         public OrderViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -58,6 +64,7 @@ public class UserOrderAdapter extends RecyclerView.Adapter<UserOrderAdapter.Orde
             tvItems = itemView.findViewById(R.id.tvUserOrderItems);
             tvTotal = itemView.findViewById(R.id.tvUserOrderTotal);
             tvStatus = itemView.findViewById(R.id.tvUserOrderStatus);
+            ivItem = itemView.findViewById(R.id.ivUserOrderItem);
         }
     }
 }

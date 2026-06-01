@@ -17,6 +17,7 @@ import com.example.saive.R;
 import com.example.saive.models.Product;
 import com.example.saive.ui.ProductDetailActivity;
 import com.example.saive.utils.CartManager;
+import com.example.saive.utils.ImageUtils;
 
 import androidx.core.content.ContextCompat;
 import java.util.List;
@@ -50,9 +51,9 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
         holder.tvCategory.setText(product.getCategory());
         
         try {
-            holder.ivProduct.setImageResource(product.getImageResId());
+            ImageUtils.setSafeImage(holder.ivProduct, product.getImageResId());
         } catch (Exception e) {
-            holder.ivProduct.setImageResource(R.drawable.ic_cart); // Ảnh mặc định nếu ID sai
+            ImageUtils.setSafeImage(holder.ivProduct, R.drawable.ic_cart); // Ảnh mặc định nếu ID sai
         }
 
         holder.itemView.setOnClickListener(v -> {

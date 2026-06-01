@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +24,7 @@ public class AboutActivity extends BaseActivity {
 
     private View heroTextContainer, originSection, materialSection;
     private View tvHeroTitle, tvHeroSubtitle, tvOriginYear, tvOriginText, tvMaterialTitle, svMaterials;
+    private ImageView ivAboutHero, ivLinen, ivTencel, ivBamboo;
     private TextView tvCartBadge;
 
     @Override
@@ -69,6 +71,16 @@ public class AboutActivity extends BaseActivity {
     }
 
     private void initViews() {
+        ivAboutHero = findViewById(R.id.ivAboutHero);
+        ivLinen = findViewById(R.id.ivLinen);
+        ivTencel = findViewById(R.id.ivTencel);
+        ivBamboo = findViewById(R.id.ivBamboo);
+        
+        com.example.saive.utils.ImageUtils.setSafeImage(ivAboutHero, R.mipmap.abouthero);
+        com.example.saive.utils.ImageUtils.setSafeImage(ivLinen, R.mipmap.banner1);
+        com.example.saive.utils.ImageUtils.setSafeImage(ivTencel, R.mipmap.atumncollection2);
+        com.example.saive.utils.ImageUtils.setSafeImage(ivBamboo, R.mipmap.banner2);
+
         heroTextContainer = findViewById(R.id.heroTextContainer);
         tvHeroTitle = findViewById(R.id.tvHeroTitle);
         tvHeroSubtitle = findViewById(R.id.tvHeroSubtitle);

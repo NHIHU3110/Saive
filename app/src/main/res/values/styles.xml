@@ -112,4 +112,9 @@
         <item name="cornerSize">8dp</item>
     </style>
 
+    <style name="DatePickerTheme" parent="Theme.MaterialComponents.Light.Dialog">
+        <item name="colorPrimary">@color/colorMaroon</item>
+        <item name="colorAccent">@color/colorMaroon</item>
+    </style>
+
 </resources>

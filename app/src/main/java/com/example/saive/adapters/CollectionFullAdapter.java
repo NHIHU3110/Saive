@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.saive.R;
 import com.example.saive.models.CollectionItem;
+import com.example.saive.utils.ImageUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +53,7 @@ public class CollectionFullAdapter extends RecyclerView.Adapter<CollectionFullAd
         holder.tvName.setText(col.getName());
 
         if (col.getImages() != null && !col.getImages().isEmpty()) {
-            holder.ivBackground.setImageResource(col.getImages().get(0));
+            ImageUtils.setSafeImage(holder.ivBackground, col.getImages().get(0));
         }
         
         if (onCollectionClickListener != null) {

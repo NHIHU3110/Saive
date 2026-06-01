@@ -8,6 +8,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,8 +17,8 @@ import androidx.core.splashscreen.SplashScreen;
 
 import com.example.saive.R;
 import com.example.saive.base.BaseActivity;
-
 import com.example.saive.utils.DataManager;
+import com.example.saive.utils.ImageUtils;
 
 public class LoginActivity extends BaseActivity {
 
@@ -33,9 +34,13 @@ public class LoginActivity extends BaseActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
 
-        View ivLogo = findViewById(R.id.ivLogo);
-        if (ivLogo != null) {
-            ivLogo.setOnClickListener(v -> {
+        View ivLogoView = findViewById(R.id.ivLogo);
+        if (ivLogoView instanceof ImageView) {
+            ImageUtils.setSafeImage((ImageView) ivLogoView, R.mipmap.saive_logo);
+        }
+        
+        if (ivLogoView != null) {
+            ivLogoView.setOnClickListener(v -> {
                 long currentTime = System.currentTimeMillis();
                 if (currentTime - lastClickTime < 500) {
                     logoClickCount++;
@@ -52,6 +57,11 @@ public class LoginActivity extends BaseActivity {
                 }
             });
         }
+
+        ImageView ivFbIcon = findViewById(R.id.ivFbIcon);
+        ImageView ivGgIcon = findViewById(R.id.ivGgIcon);
+        ImageUtils.setSafeImage(ivFbIcon, R.mipmap.fbicon);
+        ImageUtils.setSafeImage(ivGgIcon, R.mipmap.ggicon);
 
         if (getWindow() != null) {
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorMaroon));
@@ -85,7 +95,7 @@ public class LoginActivity extends BaseActivity {
 
         if (tvForgotPassword != null) {
             tvForgotPassword.setOnClickListener(v -> {
-                // TODO: Implement forgot password logic
+                startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
                 showCustomToast("Forgot password clicked");
             });
         }
@@ -135,8 +145,11 @@ public class LoginActivity extends BaseActivity {
             return;
         }
 
-        if (email.equals("user@gmail.com") && password.equals("user123")) {
-            SharedPreferences prefs = getSharedPreferences("user_prefs", MODE_PRIVATE);
+        // Đọc password hiện tại (mặc định là user123 nếu chưa reset)
+        SharedPreferences prefs = getSharedPreferences("user_prefs", MODE_PRIVATE);
+        String currentPassword = prefs.getString("user_password", "user123");
+
+        if (email.equals("user@gmail.com") && password.equals(currentPassword)) {
             SharedPreferences.Editor editor = prefs.edit();
             editor.putBoolean("is_logged_in", true);
 
@@ -151,7 +164,6 @@ public class LoginActivity extends BaseActivity {
             }
 
             editor.apply();
-
             showCustomToast("Login Successful");
 
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);

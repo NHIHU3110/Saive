@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.saive.R;
 import com.example.saive.models.Category;
+import com.example.saive.utils.ImageUtils;
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
@@ -36,7 +37,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Category category = categories.get(position);
         holder.tvName.setText(category.getName());
-        holder.ivIcon.setImageResource(category.getIconResId());
+        ImageUtils.setSafeImage(holder.ivIcon, category.getIconResId());
         holder.itemView.setOnClickListener(v -> listener.onCategoryClick(category));
     }
 

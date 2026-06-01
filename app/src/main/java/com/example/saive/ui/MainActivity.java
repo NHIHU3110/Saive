@@ -65,6 +65,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.saive.utils.DataManager;
+import com.example.saive.utils.ImageUtils;
 
 public class MainActivity extends BaseActivity {
 
@@ -174,6 +175,14 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences themePrefs = getSharedPreferences("theme_prefs", MODE_PRIVATE);
+        boolean isDark = themePrefs.getBoolean("dark_mode", false);
+        androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(
+                isDark
+                        ? androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
+                        : androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
+        );
+
         SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
         super.onCreate(savedInstanceState);
 
@@ -240,6 +249,8 @@ public class MainActivity extends BaseActivity {
         setupNavigation();
         setupCartBadge();
         setupHomeTimer();
+        setupEditorialImages();
+
         checkIntent(getIntent());
 
         // Bắt đầu hiệu ứng vào cho UI chính
@@ -347,6 +358,7 @@ public class MainActivity extends BaseActivity {
         if (vpWardrobeBanner == null || dotIndicatorWardrobe == null) return;
 
         List<com.example.saive.models.WardrobeBanner> banners = new ArrayList<>();
+        // Sử dụng ảnh thay thế hoặc kiểm tra dung lượng
         banners.add(new com.example.saive.models.WardrobeBanner(
                 getString(R.string.label_autumn_winter),
                 getString(R.string.label_new_collection),
@@ -364,6 +376,7 @@ public class MainActivity extends BaseActivity {
                 R.mipmap.banner2));
 
         com.example.saive.adapters.WardrobeBannerAdapter adapter = new com.example.saive.adapters.WardrobeBannerAdapter(banners, banner -> {
+            // ... giữ nguyên logic
             Intent intent;
             if (banner.getTitle().equals("ESSENTIALS")) {
                 intent = new Intent(MainActivity.this, CollectionDetailActivity.class);
@@ -372,23 +385,32 @@ public class MainActivity extends BaseActivity {
                 intent = new Intent(MainActivity.this, CollectionDetailActivity.class);
                 intent.putExtra("COLLECTION_TITLE", "URBAN ARCHIVE");
             } else {
-                // Default or "NEW COLLECTION" -> Collections List
                 intent = new Intent(MainActivity.this, CollectionsListActivity.class);
             }
             startActivity(intent);
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         });
         vpWardrobeBanner.setAdapter(adapter);
-
         setupDotIndicator(banners.size());
+    }
 
-        vpWardrobeBanner.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
-                updateDots(position);
-            }
-        });
+    // Thêm hàm nạp ảnh editorial an toàn
+    private void setupEditorialImages() {
+        ImageView ivEditorialPrimary = findViewById(R.id.ivEditorialPrimary);
+        ImageView ivEditorialSecondary = findViewById(R.id.ivEditorialSecondary);
+        ImageView ivMaterialStory = findViewById(R.id.ivMaterialStory);
+        ImageView ivCapsule1 = findViewById(R.id.ivCapsule1);
+        ImageView ivCapsule2 = findViewById(R.id.ivCapsule2);
+
+        if (ivEditorialPrimary != null) ImageUtils.setSafeImage(ivEditorialPrimary, R.mipmap.model2);
+        if (ivEditorialSecondary != null) ImageUtils.setSafeImage(ivEditorialSecondary, R.mipmap.model1);
+        if (ivMaterialStory != null) ImageUtils.setSafeImage(ivMaterialStory, R.mipmap.banner2);
+        if (ivCapsule1 != null) ImageUtils.setSafeImage(ivCapsule1, R.mipmap.model1);
+        if (ivCapsule2 != null) ImageUtils.setSafeImage(ivCapsule2, R.mipmap.banner3);
+    }
+
+    // Thêm hàm helper để load ảnh an toàn
+    private void setSafeImage(ImageView imageView, int resId) {
+        ImageUtils.setSafeImage(imageView, resId);
     }
 
     private void setupDotIndicator(int count) {
@@ -925,7 +947,9 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        bannerHandler.removeCallbacks(bannerRunnable);
+        if (bannerRunnable != null) {
+            bannerHandler.removeCallbacks(bannerRunnable);
+        }
         if (homeCountDownTimer != null) {
             homeCountDownTimer.cancel();
         }
@@ -948,7 +972,9 @@ public class MainActivity extends BaseActivity {
             return;
         }
 
-        bannerHandler.postDelayed(bannerRunnable, 5000);
+        if (bannerRunnable != null) {
+            bannerHandler.postDelayed(bannerRunnable, 5000);
+        }
         updateNotificationBadge();
         updateCartBadge(); // Cập nhật badge khi quay lại từ màn hình khác
         setupHomeTimer(); // Restart timer to sync or ensure it's running

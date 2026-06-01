@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.saive.R
 import com.example.saive.models.EditorialCard
+import com.example.saive.utils.ImageUtils
 import com.google.android.material.button.MaterialButton
 
 class EditorialCardAdapter(
@@ -40,7 +41,7 @@ class EditorialCardAdapter(
         holder.tvTitle.text = card.title
         holder.tvStory.text = card.story
         holder.tvMaterial.text = card.material
-        holder.ivEditorial.setImageResource(card.imageResId)
+        ImageUtils.setSafeImage(holder.ivEditorial, card.imageResId)
         holder.btnCTA.text = card.ctaText
 
         holder.btnCTA.setOnClickListener {

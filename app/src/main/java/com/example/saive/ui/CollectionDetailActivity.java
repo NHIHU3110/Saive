@@ -17,6 +17,7 @@ import com.example.saive.R;
 import com.example.saive.adapters.ProductGridAdapter;
 import com.example.saive.base.BaseActivity;
 import com.example.saive.models.Product;
+import com.example.saive.utils.ImageUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,9 +93,9 @@ public class CollectionDetailActivity extends BaseActivity {
             // COLLECTION 1: THE MONOCHROME SERIES - Minimalist Grey/Black
             tvHeadline.setText(R.string.col_monochrome_headline);
             tvSubHeadline.setText(R.string.col_monochrome_subheadline);
-            ivHeroLeft.setImageResource(R.mipmap.model2);
-            ivHeroRight.setImageResource(R.mipmap.banner2);
-            ivSectionModel.setImageResource(R.mipmap.jacket1);
+            ImageUtils.setSafeImage(ivHeroLeft, R.mipmap.model2);
+            ImageUtils.setSafeImage(ivHeroRight, R.mipmap.banner2);
+            ImageUtils.setSafeImage(ivSectionModel, R.mipmap.jacket1);
             tvWhyTitle.setText(R.string.col_monochrome_why_title);
             tvWhyDesc.setText(R.string.col_monochrome_why_desc);
             
@@ -108,9 +109,9 @@ public class CollectionDetailActivity extends BaseActivity {
             // COLLECTION 2: THE AUTUMN COLLECTION - Warm Earthy
             tvHeadline.setText(R.string.col_autumn_headline);
             tvSubHeadline.setText(R.string.col_autumn_subheadline);
-            ivHeroLeft.setImageResource(R.mipmap.atumncollection1);
-            ivHeroRight.setImageResource(R.mipmap.atumncollection2);
-            ivSectionModel.setImageResource(R.mipmap.model1);
+            ImageUtils.setSafeImage(ivHeroLeft, R.mipmap.atumncollection1);
+            ImageUtils.setSafeImage(ivHeroRight, R.mipmap.atumncollection2);
+            ImageUtils.setSafeImage(ivSectionModel, R.mipmap.model1);
             tvWhyTitle.setText(R.string.col_autumn_why_title);
             tvWhyDesc.setText(R.string.col_autumn_why_desc);
             
@@ -123,9 +124,9 @@ public class CollectionDetailActivity extends BaseActivity {
         } else if (titleUpper.contains("ESSENTIALS")) {
             tvHeadline.setText("THE ESSENTIALS");
             tvSubHeadline.setText("CURATED PIECES FOR EVERY DAY");
-            ivHeroLeft.setImageResource(R.mipmap.model2);
-            ivHeroRight.setImageResource(R.mipmap.atumncollection1);
-            ivSectionModel.setImageResource(R.mipmap.jacket3);
+            ImageUtils.setSafeImage(ivHeroLeft, R.mipmap.model2);
+            ImageUtils.setSafeImage(ivHeroRight, R.mipmap.atumncollection1);
+            ImageUtils.setSafeImage(ivSectionModel, R.mipmap.jacket3);
             tvWhyTitle.setText("TIMELESS DESIGN");
             tvWhyDesc.setText("Built for longevity and versatility in any wardrobe.");
             
@@ -138,9 +139,9 @@ public class CollectionDetailActivity extends BaseActivity {
         } else if (titleUpper.contains("URBAN ARCHIVE")) {
             tvHeadline.setText("URBAN ARCHIVE");
             tvSubHeadline.setText("LIMITED DROP: STREET ARCHITECTURE");
-            ivHeroLeft.setImageResource(R.mipmap.banner2);
-            ivHeroRight.setImageResource(R.mipmap.model1);
-            ivSectionModel.setImageResource(R.mipmap.pant2);
+            ImageUtils.setSafeImage(ivHeroLeft, R.mipmap.banner2);
+            ImageUtils.setSafeImage(ivHeroRight, R.mipmap.model1);
+            ImageUtils.setSafeImage(ivSectionModel, R.mipmap.pant2);
             tvWhyTitle.setText("STREET HERITAGE");
             tvWhyDesc.setText("Exploring the intersection of function and form.");
             
@@ -154,9 +155,9 @@ public class CollectionDetailActivity extends BaseActivity {
             // COLLECTION 3: THE SILK STORY - Heritage Beige
             tvHeadline.setText(R.string.col_silk_headline);
             tvSubHeadline.setText(R.string.col_silk_subheadline);
-            ivHeroLeft.setImageResource(R.mipmap.banner1);
-            ivHeroRight.setImageResource(R.mipmap.banner2);
-            ivSectionModel.setImageResource(R.mipmap.model2);
+            ImageUtils.setSafeImage(ivHeroLeft, R.mipmap.banner1);
+            ImageUtils.setSafeImage(ivHeroRight, R.mipmap.banner2);
+            ImageUtils.setSafeImage(ivSectionModel, R.mipmap.model2);
             tvWhyTitle.setText(R.string.col_silk_why_title);
             tvWhyDesc.setText(R.string.col_silk_why_desc);
             

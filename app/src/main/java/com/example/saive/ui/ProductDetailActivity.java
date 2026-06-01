@@ -19,6 +19,7 @@ import com.example.saive.R;
 import com.example.saive.base.BaseActivity;
 import com.example.saive.models.Product;
 import com.example.saive.utils.CartManager;
+import com.example.saive.utils.ImageUtils;
 
 import com.example.saive.adapters.FlashProductAdapter;
 import com.example.saive.adapters.ReviewAdapter;
@@ -165,7 +166,7 @@ public class ProductDetailActivity extends BaseActivity {
         tvProductName.setText(currentProduct.getName());
         tvPrice.setText(currentProduct.getPrice());
         tvDescription.setText(currentProduct.getDescription());
-        ivHero.setImageResource(currentProduct.getImageResId());
+        ImageUtils.setSafeImage(ivHero, currentProduct.getImageResId());
 
         // Toggle Size/Color selection based on category
         boolean isGlasses = currentProduct.getCategory() != null && currentProduct.getCategory().toLowerCase().contains("glasses");

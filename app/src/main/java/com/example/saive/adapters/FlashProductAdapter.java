@@ -16,6 +16,7 @@ import com.example.saive.R;
 import com.example.saive.models.Product;
 import com.example.saive.ui.ProductDetailActivity;
 import com.example.saive.utils.CartManager;
+import com.example.saive.utils.ImageUtils;
 
 import java.util.List;
 
@@ -42,11 +43,7 @@ public class FlashProductAdapter extends RecyclerView.Adapter<FlashProductAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Product product = productList.get(position);
         
-        try {
-            holder.ivProduct.setImageResource(product.getImageResId());
-        } catch (Exception e) {
-            holder.ivProduct.setImageResource(R.drawable.ic_cart);
-        }
+        ImageUtils.setSafeImage(holder.ivProduct, product.getImageResId());
 
         holder.tvName.setText(product.getName().toUpperCase());
         holder.tvPrice.setText(product.getPrice());

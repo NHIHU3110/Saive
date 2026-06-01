@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">Saive</string>
     <string name="search_hint">搜索您的衣橱...</string>
-    <string name="nav_shop">商店</string>
-    <string name="nav_archive">存档</string>
-    <string name="nav_about">关于</string>
+    <string name="cat_all">全部</string>
+    <string name="cat_tshirt">T恤</string>
+    <string name="cat_jeans">牛仔裤</string>
+    <string name="cat_jacket">夹克</string>
+    <string name="cat_sunglasses">眼镜</string>
     <string name="flash_sale_title">定时策划</string>
     <string name="flash_sale_label">限时抢购</string>
     <string name="flash_sale_desc">限量精选存档款式，仅限 48 小时。</string>
@@ -18,15 +20,38 @@
     <string name="view_full_curation">查看全部精选</string>
     <string name="editorial_quote">“衣橱是意图的画布。”</string>
     <string name="footer_location">河内 • 西贡</string>
+    <string name="nav_back">返回</string>
     <string name="nav_favorite">收藏</string>
     <string name="nav_wardrobe">衣橱</string>
     <string name="nav_notify">通知</string>
     <string name="btn_share">分享</string>
+    <string name="notify_title">通知</string>
+    <string name="notify_empty_title">完全安静</string>
+    <string name="notify_empty_desc">当有新发布或订单更新时，\n我们会轻轻通知您。</string>
+    <string name="notify_drop_title">新系列已上线</string>
+    <string name="notify_drop_desc">秋季系列已送达。12 件新单品。</string>
+    <string name="notify_drop_action">立即探索</string>
+    <string name="notify_order_title">订单正在派送中</string>
+    <string name="notify_order_desc">廓形亚麻衬衫 — 象牙白 · M 码正在配送中。</string>
+    <string name="notify_order_action">追踪订单</string>
+    <string name="notify_capsule_title">您的衣橱还需要一件单品</string>
+    <string name="notify_capsule_desc">胶囊系列构建者建议添加一件轻便夹克以完善搭配。</string>
+    <string name="notify_capsule_action">查看建议</string>
+    <string name="notify_reminder_title">您的衣橱中有待处理单品</string>
+    <string name="notify_reminder_desc">3 件单品于 2 周前保存。仍有库存。</string>
+    <string name="notify_reminder_action">查看衣橱</string>
     <string name="nav_profile">个人资料</string>
     <string name="nav_search">搜索</string>
+    <string name="nav_shop">商店</string>
+    <string name="nav_archive">存档</string>
+    <string name="nav_about">关于</string>
+    <string name="wardrobe_header">我的衣橱</string>
+    <string name="wardrobe_empty_search_title">未找到单品</string>
+    <string name="wardrobe_empty_search_desc">我们找不到匹配您搜索的任何单品。\n请尝试其他关键词或类别。</string>
 
     <string name="explore_piece">探索单品</string>
     <string name="add_to_wardrobe">加入衣橱</string>
+    <string name="added_to_wardrobe">已在衣橱中</string>
 
     <!-- Editorial Card Titles -->
     <string name="editorial_title_1">永恒工艺</string>
@@ -55,11 +80,33 @@
     <string name="menu_saved_collections">已存系列</string>
     <string name="menu_my_wardrobe">我的衣橱</string>
     <string name="menu_notifications">通知</string>
+    <string name="menu_address">收货地址</string>
+    <string name="menu_address_sub">管理您的地址</string>
     <string name="menu_language">语言</string>
     <string name="menu_language_sub">中文</string>
     <string name="menu_about">关于 SAIVE</string>
+    <string name="menu_my_coupons">我的优惠券</string>
+    <string name="auth_login_title">登录</string>
+    <string name="auth_signup_title">注册</string>
+    <string name="label_password">密码</string>
+    <string name="label_name">姓名</string>
+    <string name="label_phone">电话号码</string>
+    <string name="checkout_select_address">选择收货地址</string>
+    <string name="checkout_select_address_desc">选择您希望订单送达的地点。</string>
+    <string name="checkout_add_new_address">+ 添加新地址</string>
     <string name="menu_logout">退出登录</string>
     <string name="menu_login">登录</string>
+    <string name="menu_signup">注册</string>
+    <string name="menu_forgot_password">忘记密码？</string>
+    <string name="menu_remember_me">记住我</string>
+    <string name="auth_no_account">还没有账号？注册</string>
+    <string name="auth_has_account">已有账号？登录</string>
+    <string name="auth_terms_agree">我同意条款与条件</string>
+    <string name="menu_delete_account">删除账号</string>
+    <string name="dialog_delete_account_title">删除账号</string>
+    <string name="dialog_delete_account_message">您确定要永久删除您的账号吗？此操作无法撤销。</string>
+    <string name="dialog_delete_confirm">删除</string>
+    <string name="dialog_cancel">取消</string>
 
     <string name="section_recent">最近浏览</string>
     <string name="view_all">查看全部</string>
@@ -76,27 +123,47 @@
     <string name="coupon_desc">存档访问与季节性奖励</string>
     <string name="coupon_code">SAIVE_S24_EXTRA</string>
     <string name="coupon_label">优惠券</string>
-    <string name="wardrobe_header">我的衣橱</string>
-    <string name="added_to_wardrobe">已在衣橱中</string>
+    <string name="acc_unread">未读</string>
+    <string name="expires_format">有效期至: %1$s</string>
     <string name="label_description">描述</string>
     <string name="label_see_more">查看更多</string>
+    <string name="label_see_less">查看更少</string>
+    <string name="label_color">颜色</string>
     <string name="label_product_details">产品详情</string>
     <string name="label_material">材质</string>
     <string name="label_origin">产地</string>
     <string name="label_instructions">保养说明</string>
     <string name="label_size">尺寸</string>
     <string name="label_total">总计</string>
+    <string name="label_reviews">评价</string>
+    <string name="label_write_review">撰写评价</string>
+    <string name="label_rating">评分</string>
+    <string name="label_comment">评论</string>
+    <string name="label_submit">提交</string>
     <string name="label_attach_photos">添加图片</string>
+    <string name="hint_review">告诉我们您对这件单品的看法...</string>
+    <string name="sort_price_low_high">价格：从低到高</string>
+    <string name="sort_price_high_low">价格：从高到低</string>
+    <string name="sort_alphabetical_az">字母顺序：A-Z</string>
+    <string name="sort_alphabetical_za">字母顺序：Z-A</string>
+    <string name="sort_latest">最新上架</string>
+    <string name="sort_oldest">最早优先</string>
     <string name="favorites_items_count">%1$d 件商品</string>
     <string name="favorites_empty_state">暂无收藏</string>
     <string name="cart_title">购物袋</string>
     <string name="cart_empty_title">您的购物袋是空的</string>
     <string name="cart_empty_desc">探索我们的系列并添加与您产生共鸣的单品。</string>
     <string name="btn_checkout">结账</string>
+    <string name="coupon_hint">输入优惠券代码</string>
+    <string name="btn_apply">应用</string>
+    <string name="coupon_applied">优惠券已应用：10% 折扣</string>
+    <string name="coupon_invalid">优惠券代码无效</string>
+    <string name="coupon_empty">请输入优惠券代码</string>
     <string name="search_recent">最近搜索</string>
     <string name="search_trending">热门趋势</string>
     <string name="chip_linen_shirt">亚麻衬衫</string>
     <string name="chip_wool_coat">羊毛大衣</string>
+    <string name="label_complete_look">完善搭配</string>
     <!-- About Brand Strings -->
     <string name="about_hero_title">静谧。自信。\n不显山露水。</string>
     <string name="about_hero_subtitle">SAIVE · 静奢风 · 越南</string>
@@ -140,15 +207,25 @@
     <string name="label_save_info">保存信息以备下次使用</string>
     <string name="btn_continue_payment">继续付款</string>
     <string name="btn_place_order">下单</string>
+    <string name="checkout_order_summary">订单摘要</string>
+    <string name="checkout_shipping_to">配送至</string>
 
     <string name="payment_bank">银行转账</string>
     <string name="payment_momo">Momo 钱包</string>
     <string name="payment_zalopay">ZaloPay</string>
     <string name="payment_cod">货到付款 (COD)</string>
+    <string name="payment_bank_desc">通过 Vietcombank, Techcombank... 转账</string>
+    <string name="payment_momo_desc">快速安全的移动支付</string>
+    <string name="payment_zalopay_desc">使用您的 Zalo 账号支付</string>
+    <string name="payment_cod_desc">收到包裹时付款</string>
 
     <string name="label_city">城市</string>
     <string name="hint_choose_city">选择城市</string>
     <string name="error_required_field">请填写此项</string>
+    <string name="error_invalid_email">电子邮箱地址无效</string>
+    <string name="payment_method_cash">现金</string>
+    <string name="payment_method_card">信用卡和借记卡</string>
+    <string name="payment_method_add_card">添加卡片</string>
     <string name="payment_method_more">其他付款选项</string>
     <string name="payment_success_title">下单成功</string>
     <string name="payment_success_desc">感谢您选择 SAIVE。您的订单已收到，我们正在精心准备。</string>
@@ -196,30 +273,6 @@
         <item>纸桥区</item>
         <item>青春区</item>
     </string-array>
-    <string name="menu_my_coupons">我的优惠券</string>
-    <string name="btn_explore_collection">探索系列</string>
-    <string name="bulletin_header">简报</string>
-    <string name="posted_time">发布于 %1$s 前</string>
-    <string name="notify_detail_description_placeholder">我们的新系列终于发布了。本季，我们专注于可持续材质与永恒的轮廓。采用优质意大利羊毛和再生丝绸制成，每件单品都旨在成为您衣橱中多年不变的经典。</string>
-    <string name="label_item_total">商品小计：</string>
-    <string name="label_delivery">运费：</string>
-    <string name="label_free">免运费</string>
-    <string name="btn_payment">付款</string>
-    <string name="promo_code_hint">优惠券代码</string>
-    <string name="menu_signup">注册</string>
-    <string name="menu_forgot_password">忘记密码？</string>
-    <string name="menu_remember_me">记住我</string>
-    <string name="auth_no_account">还没有账号？注册</string>
-    <string name="auth_has_account">已有账号？登录</string>
-    <string name="auth_terms_agree">我同意条款与条件</string>
-    <string name="auth_login_title">登录</string>
-    <string name="auth_signup_title">注册</string>
-    <string name="label_password">密码</string>
-    <string name="label_name">姓名</string>
-    <string name="label_phone">电话号码</string>
-    <string name="checkout_select_address">选择收货地址</string>
-    <string name="checkout_select_address_desc">选择您希望订单送达的地点。</string>
-    <string name="checkout_add_new_address">+ 添加新地址</string>
     <!-- 地址管理 -->
     <string name="address_title">我的地址</string>
     <string name="address_add_new">添加新地址</string>
@@ -235,13 +288,68 @@
     <string name="address_label_office">公司</string>
     <string name="address_label_other">其他</string>
 
-    <!-- 优惠券屏幕 -->
+    <!-- Collection Screen Strings -->
+    <string name="collection_view_all">查看全部单品</string>
+    <string name="collection_story_title">设计故事</string>
+    <string name="collection_items_count">%1$d 件单品</string>
+    <string name="nav_collections">系列</string>
+    <string name="collection_filter">筛选与排序</string>
+
+    <!-- Collections List Screen -->
+    <string name="collections_list_title">我们的\n系列</string>
+    <string name="col_num_1">01</string>
+    <string name="col_num_2">02</string>
+    <string name="col_num_3">03</string>
+    <string name="col_edition_2024">2024\n版</string>
+    <string name="col_archive_vol1">存档\nVOL. 1</string>
+    <string name="col_new_arrival">新品\n上架</string>
+    <string name="col_time_1">09:00</string>
+    <string name="col_date_1">10月\n12日</string>
+    <string name="col_time_2">14:30</string>
+    <string name="col_date_2">10月\n15日</string>
+    <string name="col_time_3">10:00</string>
+    <string name="col_date_3">10月\n20日</string>
+    <string name="col_time_4">14:00</string>
+    <string name="col_date_4">9月\n15日</string>
+    <string name="col_winter_title">冬季\n故事</string>
+    <string name="col_preview_label">仅供\n预览</string>
+    <string name="col_silk_story_title">丝绸之筑</string>
+    <string name="col_monochrome_title">单色\n系列</string>
+    <string name="col_autumn_drop_title">秋季\n系列</string>
+    <string name="col_autumn_drop_story">秋季发布：以温暖的质感和大地色系拥抱季节更迭。</string>
+
+    <string name="btn_explore_collection">探索系列</string>
+    <string name="bulletin_header">简报</string>
+    <string name="posted_time">发布于 %1$s 前</string>
+    <string name="notify_detail_description_placeholder">我们的新系列终于发布了。本季，我们专注于可持续材质与永恒的轮廓。采用优质意大利羊毛和再生丝绸制成，每件单品都旨在成为您衣橱中多年不变的经典。</string>
+    <string name="label_editorial_02">社论 02</string>
+    <string name="label_autumn_winter">秋季 / 冬季</string>
+    <string name="label_new_collection">新系列</string>
+    <string name="label_shop_now">立即选购</string>
+    <string name="label_flash_sale">限时抢购</string>
+    <string name="chip_linen">亚麻</string>
+    <string name="chip_silk">丝绸</string>
+    <string name="chip_noir">深黑</string>
+    <string name="chip_ivory">象牙白</string>
+    <string name="label_item_total">商品小计：</string>
+    <string name="label_delivery">运费：</string>
+    <string name="label_free">免运费</string>
+    <string name="btn_payment">付款</string>
+    <string name="promo_code_hint">优惠券代码</string>
+    <!-- Coupon Screen -->
     <string name="coupon_available_title">可用优惠券</string>
     <string name="coupon_search_hint">搜索您的优惠券...</string>
-    <string name="coupon_no_coupons">暂无优惠券</string>
     <string name="coupon_copy">复制</string>
     <string name="coupon_valid_until">有效期至: %1$s</string>
     <string name="coupon_off">折扣</string>
+    <string name="coupon_no_coupons">暂无优惠券</string>
+
+    <!-- Coupon Detail -->
+    <string name="coupon_detail_how_to">如何使用</string>
+    <string name="coupon_detail_steps">• 复制下方代码。\n• 前往购物袋或结账页面。\n• 将代码粘贴到“优惠券”框中。\n• 享受 Saive 的专属优惠！</string>
+    <string name="coupon_detail_your_code">您的代码</string>
+    <string name="coupon_detail_copy_use">复制并立即使用</string>
+    <string name="coupon_detail_welcome_desc">首单尊享 20% 折扣</string>
 
     <!-- 地址标签 -->
     <string name="label_address_label">地址标签</string>
@@ -266,12 +374,6 @@
     <string name="lang_zh">中文</string>
     <string name="notifications_enabled">通知已启用</string>
     <string name="notifications_disabled">通知已禁用</string>
-    <string name="logout_title">退出登录</string>
-    <string name="logout_message">您确定要退出登录吗？</string>
-    <string name="yes">是</string>
-    <string name="no">否</string>
-    <string name="toast_logged_out">已退出登录</string>
-    <string name="toast_account_deleted">账号已删除</string>
     <string name="menu_admin_portal">管理端入口</string>
     <string name="admin_dashboard_title">SAIVE 洞察</string>
     <string name="admin_stats_revenue">营收</string>
@@ -315,4 +417,91 @@
     <string name="admin_select_products">选择产品</string>
     <string name="admin_user_mgmt">用户名单</string>
     <string name="admin_logout_confirm">选择退出登录以退出管理端</string>
+    <string name="admin_inventory_title">库存管理</string>
+    <string name="admin_order_mgmt">订单管理</string>
+
+    <string name="logout_title">退出登录</string>
+    <string name="logout_message">您确定要退出登录吗？</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="toast_logged_out">已退出登录</string>
+    <string name="toast_account_deleted">账号已删除</string>
+    <string name="col_headline_format">%1$s\n永恒的优雅。</string>
+    <string name="col_subheadline_default">探索我们最新的高级丝绸和羊毛系列，为您的日常奢华而设计。</string>
+    <string name="col_why_saive">为什么选择 Saive？</string>
+    <string name="col_why_desc">我们相信慢时尚。每一件单品都倾心打造，确保经久不衰的耐用性和超越季节的永恒风格。</string>
+    <string name="col_shop_collection">选购系列</string>
+    <string name="col_btn_shop">选购系列</string>
+    <string name="btn_shop_monochrome">选购单色系列</string>
+    <string name="btn_shop_autumn">选购秋季系列</string>
+    <string name="btn_shop_silk">选购丝绸系列</string>
+    <string name="col_feature_1">纯丝绸</string>
+    <string name="col_feature_2">卓越品质</string>
+    <string name="col_feature_3">本地货源</string>
+    <string name="col_feature_4">环保理念</string>
+    <string name="col_copyright">© 2024 SAIVE. 保留所有权利。</string>
+
+    <!-- Product Mock Data -->
+    <string name="price_3450">3,450,000 ₫</string>
+    <string name="price_1150">1,150,000 ₫</string>
+    <string name="price_950">950,000 ₫</string>
+    <string name="price_1800">1,800,000 ₫</string>
+    <string name="price_550">550,000 ₫</string>
+    <string name="price_2950">2,950,000 ₫</string>
+    <string name="price_2250">2,250,000 ₫</string>
+    <string name="price_4200">4,200,000 ₫</string>
+    <string name="price_2850">2,850,000 ₫</string>
+    <string name="price_1250">1,250,000 ₫</string>
+    <string name="price_850">850,000 ₫</string>
+    <string name="price_2100">2,100,000 ₫</string>
+
+    <string name="prod_noir_coat">深黑羊毛大衣</string>
+    <string name="prod_city_trousers">都市长裤</string>
+    <string name="prod_min_knit">极简针织衫</string>
+    <string name="prod_archive_tote">存档托特包</string>
+    <string name="prod_wool_scarf">羊毛混纺围巾</string>
+    <string name="prod_double_blazer">双排扣西装</string>
+    <string name="prod_ankle_boots">短靴</string>
+    <string name="prod_autumn_trench">秋季风衣</string>
+    <string name="prod_silk_gown">丝绸礼服</string>
+    <string name="prod_flowing_pants">垂坠阔腿裤</string>
+    <string name="prod_min_top">极简上衣</string>
+    <string name="prod_silk_blazer">丝绸西装</string>
+
+    <!-- Monochrome Collection -->
+    <string name="col_monochrome_headline">空缺的\n艺术。</string>
+    <string name="col_monochrome_subheadline">光与影的研究。深黑与纯白的极简廓形。</string>
+    <string name="col_monochrome_why_title">纯粹极简</string>
+    <string name="col_monochrome_why_desc">每一根线条都别具匠心。我们的单色系列专注于纯粹的形态和精湛的工艺。</string>
+
+    <!-- Autumn Collection -->
+    <string name="col_autumn_headline">大地色的\n更迭。</string>
+    <string name="col_autumn_subheadline">温暖的质感与层搭的形态。以高级羊毛混纺和浓郁色调迎接季节更迭。</string>
+    <string name="col_autumn_why_title">季节温暖</string>
+    <string name="col_autumn_why_desc">专为变幻的风季打造。我们使用高密度羊毛和保暖丝绸，让您兼具优雅与温暖。</string>
+
+    <!-- Silk Collection -->
+    <string name="col_silk_headline">丝绸之\n筑。</string>
+    <string name="col_silk_subheadline">流动感与结构感的邂逅。源自越南传统织造，我们的丝绸单品重新定义现代优雅。</string>
+    <string name="col_silk_why_title">越南传承</string>
+    <string name="col_silk_why_desc">我们的丝绸织造于保禄，以惊人的光泽和耐用性闻名。一种随身体呼吸的材质。</string>
+    <string name="edit_profile_title">Edit Profile</string>
+    <string name="change_profile_title">Change Profile</string>
+    <string name="label_personal_information">Personal Information</string>
+    <string name="change_photo_title">Change Photo</string>
+    <string name="profile_birthday">Birthday</string>
+    <string name="profile_gender">Gender</string>
+    <string name="profile_not_set">Not set</string>
+    <string name="profile_save">Save</string>
+    <string name="profile_save_changes">Save Changes</string>
+    <string name="forgot_password_title">Forgot Password</string>
+    <string name="label_detail_forgot_password">Enter your email to receive a verification code</string>
+    <string name="forgot_password_back_to_login">Back to Login</string>
+    <string name="verify_otp_title">Verify OTP</string>
+    <string name="label_detail_verify_otp">Code send to your email</string>
+    <string name="verify_opt_resend_code">Resend Code</string>
+    <string name="new_password_title">New Password</string>
+    <string name="menu_payment_cards">Payment Cards</string>
+    <string name="menu_empty_payment_cards">Empty Payment Cards</string>
+    <string name="menu_dark_mode">Dark Mode</string>
 </resources>

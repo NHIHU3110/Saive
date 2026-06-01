@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.saive.R;
 import com.example.saive.models.Product;
+import com.example.saive.utils.ImageUtils;
 import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
@@ -58,10 +59,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         Product product = cartItems.get(position);
         
         try {
-            holder.ivProduct.setImageResource(product.getImageResId());
+            ImageUtils.setSafeImage(holder.ivProduct, product.getImageResId());
         } catch (Exception e) {
             // Fallback to a default image if resource ID is invalid
-            holder.ivProduct.setImageResource(R.drawable.ic_cart); 
+            ImageUtils.setSafeImage(holder.ivProduct, R.drawable.ic_cart);
         }
 
         holder.tvName.setText(product.getName());

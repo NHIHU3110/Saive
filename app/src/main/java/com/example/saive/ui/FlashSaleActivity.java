@@ -64,16 +64,35 @@ public class FlashSaleActivity extends BaseActivity {
     }
 
     private void setupNavigation() {
-        findViewById(R.id.navFavorite).setOnClickListener(v -> navigateToMain("SHOW_FAVORITES"));
-        findViewById(R.id.navWardrobe).setOnClickListener(v -> navigateToMain("SHOW_WARDROBE"));
-        findViewById(R.id.navNotify).setOnClickListener(v -> navigateToMain("SHOW_NOTIFICATIONS"));
-        findViewById(R.id.navProfile).setOnClickListener(v -> {
-            Intent intent = new Intent(this, ProfileActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(intent);
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        });
-        findViewById(R.id.centerActionButton).setOnClickListener(v -> navigateToMain("SHOW_HOME"));
+        View navFavorite = findViewById(R.id.navFavorite);
+        if (navFavorite != null) {
+            navFavorite.setOnClickListener(v -> navigateToMain("SHOW_FAVORITES"));
+        }
+
+        View navWardrobe = findViewById(R.id.navWardrobe);
+        if (navWardrobe != null) {
+            navWardrobe.setOnClickListener(v -> navigateToMain("SHOW_WARDROBE"));
+        }
+
+        View navNotify = findViewById(R.id.navNotify);
+        if (navNotify != null) {
+            navNotify.setOnClickListener(v -> navigateToMain("SHOW_NOTIFICATIONS"));
+        }
+
+        View navProfile = findViewById(R.id.navProfile);
+        if (navProfile != null) {
+            navProfile.setOnClickListener(v -> {
+                Intent intent = new Intent(this, ProfileActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            });
+        }
+
+        View centerActionButton = findViewById(R.id.centerActionButton);
+        if (centerActionButton != null) {
+            centerActionButton.setOnClickListener(v -> navigateToMain("SHOW_HOME"));
+        }
     }
 
     private void setupCartBadge() {

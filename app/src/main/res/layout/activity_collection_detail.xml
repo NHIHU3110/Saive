@@ -130,7 +130,7 @@
                     android:layout_height="220dp"
                     android:layout_marginTop="40dp"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/banner1"
+                    tools:src="@mipmap/banner1"
                     app:layout_constraintEnd_toStartOf="@+id/ivHeroRight"
                     app:layout_constraintHorizontal_bias="0.3"
                     app:layout_constraintStart_toStartOf="parent"
@@ -142,7 +142,7 @@
                     android:layout_height="220dp"
                     android:layout_marginTop="60dp"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/banner2"
+                    tools:src="@mipmap/banner2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/ivHeroLeft"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -311,7 +311,7 @@
                     android:layout_height="300dp"
                     android:layout_marginTop="24dp"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/model2"
+                    tools:src="@mipmap/model2"
                     app:layout_constraintTop_toBottomOf="@id/tvWhyDesc" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

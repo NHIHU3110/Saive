@@ -323,6 +323,41 @@
                             app:tint="@color/colorLinen" />
                     </LinearLayout>
 
+                    <View android:layout_width="match_parent" android:layout_height="0.5dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:background="@color/colorLinen" android:alpha="0.5" />
+
+                    <LinearLayout
+                        android:id="@+id/btnPaymentCards"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_menu_item"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="16dp">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@android:drawable/ic_menu_send"
+                            app:tint="@color/colorNoirBlack" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            style="@style/TextAppearance.Saive.Light"
+                            android:text="@string/menu_payment_cards"
+                            android:textColor="@color/colorNoirBlack"
+                            android:textSize="14sp" />
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_back"
+                            android:rotation="180"
+                            app:tint="@color/colorLinen" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
                 <!-- PREFERENCES -->
@@ -368,6 +403,38 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:checked="true"
+                            app:thumbTint="@color/colorMaroon"
+                            app:trackTint="@color/colorLinen" />
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="0.5dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:background="@color/colorLinen" android:alpha="0.5" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="16dp">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_notifications"
+                            app:tint="@color/colorNoirBlack" />
+
+                        <TextView
+                            style="@style/TextAppearance.Saive.Light"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:text="@string/menu_dark_mode"
+                            android:textColor="@color/colorNoirBlack"
+                            android:textSize="14sp" />
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/switchDarkMode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             app:thumbTint="@color/colorMaroon"
                             app:trackTint="@color/colorLinen" />
                     </LinearLayout>

@@ -343,10 +343,10 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
                     <ImageView
+                        android:id="@+id/ivEditorialSecondary"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@mipmap/model1" />
+                        android:scaleType="centerCrop" />
                 </com.google.android.material.card.MaterialCardView>
 
                 <!-- Secondary Image (Overlapping) -->
@@ -363,10 +363,10 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginTop="80dp">
                     <ImageView
+                        android:id="@+id/ivEditorialPrimary"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@mipmap/model2" />
+                        android:scaleType="centerCrop" />
                 </com.google.android.material.card.MaterialCardView>
 
                 <LinearLayout
@@ -462,7 +462,6 @@
                     android:layout_height="480dp"
                     android:layout_marginTop="@dimen/spacing_large"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/banner2"
                     app:layout_constraintTop_toBottomOf="@id/tvMaterialTitle" />
 
                 <TextView
@@ -513,20 +512,20 @@
                     android:columnCount="2">
 
                     <ImageView
+                        android:id="@+id/ivCapsule1"
                         android:layout_width="0dp"
                         android:layout_height="280dp"
                         android:layout_columnWeight="1"
                         android:layout_marginEnd="@dimen/small_padding"
-                        android:scaleType="centerCrop"
-                        android:src="@mipmap/model1" />
+                        android:scaleType="centerCrop" />
 
                     <ImageView
+                        android:id="@+id/ivCapsule2"
                         android:layout_width="0dp"
                         android:layout_height="280dp"
                         android:layout_columnWeight="1"
                         android:layout_marginStart="@dimen/small_padding"
-                        android:scaleType="centerCrop"
-                        android:src="@mipmap/banner3" />
+                        android:scaleType="centerCrop" />
                 </GridLayout>
 
                 <TextView

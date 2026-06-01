@@ -108,10 +108,11 @@
                 android:layout_height="500dp">
 
                 <ImageView
+                    android:id="@+id/ivAboutHero"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/abouthero" />
+                    tools:src="@mipmap/abouthero" />
 
                 <View
                     android:layout_width="match_parent"
@@ -227,10 +228,11 @@
                                 android:orientation="vertical">
 
                                 <ImageView
+                                    android:id="@+id/ivLinen"
                                     android:layout_width="match_parent"
                                     android:layout_height="160dp"
                                     android:scaleType="centerCrop"
-                                    android:src="@mipmap/banner1" />
+                                    tools:src="@mipmap/banner1" />
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -275,10 +277,11 @@
                                 android:orientation="vertical">
 
                                 <ImageView
+                                    android:id="@+id/ivTencel"
                                     android:layout_width="match_parent"
                                     android:layout_height="160dp"
                                     android:scaleType="centerCrop"
-                                    android:src="@mipmap/atumncollection2" />
+                                    tools:src="@mipmap/atumncollection2" />
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -322,10 +325,11 @@
                                 android:orientation="vertical">
 
                                 <ImageView
+                                    android:id="@+id/ivBamboo"
                                     android:layout_width="match_parent"
                                     android:layout_height="160dp"
                                     android:scaleType="centerCrop"
-                                    android:src="@mipmap/banner2" />
+                                    tools:src="@mipmap/banner2" />
 
                                 <LinearLayout
                                     android:layout_width="match_parent"

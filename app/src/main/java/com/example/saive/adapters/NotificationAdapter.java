@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.saive.R;
 import com.example.saive.models.Notification;
+import com.example.saive.utils.ImageUtils;
 
 import java.util.List;
 
@@ -52,7 +53,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         holder.tvDesc.setText(notification.getDescription());
         holder.tvAction.setText(notification.getActionLabel());
         holder.tvTime.setText(notification.getTime());
-        holder.ivCategory.setImageResource(notification.getIconResId());
+        ImageUtils.setSafeImage(holder.ivCategory, notification.getIconResId());
         // Remove color filter to allow full-color images (like mipmap) to show properly
         holder.ivCategory.clearColorFilter();
         

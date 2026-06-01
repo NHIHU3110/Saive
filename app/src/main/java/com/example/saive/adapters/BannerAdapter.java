@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.saive.R;
 import com.example.saive.ui.CollectionsListActivity;
+import com.example.saive.utils.ImageUtils;
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
 
     @Override
     public void onBindViewHolder(@NonNull BannerViewHolder holder, int position) {
-        holder.ivBanner.setImageResource(bannerImages.get(position));
+        ImageUtils.setSafeImage(holder.ivBanner, bannerImages.get(position));
         
         // Thêm tiêu đề nghệ thuật cho từng banner
         String[] titles = {"SAIVE", "NEW SEASON", "ARCHIVE '24", "ESSENTIALS", "LIMITED"};

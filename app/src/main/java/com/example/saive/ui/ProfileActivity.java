@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +46,40 @@ public class ProfileActivity extends BaseActivity {
         super.onResume();
         updateNotificationBadge();
         updateAuthUI();
+        loadAvatarFromPrefs();
+    }
+
+    private void loadAvatarFromPrefs() {
+        ImageView ivAvatar = findViewById(R.id.ivAvatar);
+        if (ivAvatar == null) return;
+
+        String avatarUri = getSharedPreferences(USER_PREFS, MODE_PRIVATE)
+                .getString("avatar_uri", "");
+
+        if (!avatarUri.isEmpty()) {
+            try {
+                android.net.Uri uri = android.net.Uri.parse(avatarUri);
+                android.graphics.BitmapFactory.Options opt = new android.graphics.BitmapFactory.Options();
+                opt.inJustDecodeBounds = true;
+                try (java.io.InputStream is = getContentResolver().openInputStream(uri)) {
+                    android.graphics.BitmapFactory.decodeStream(is, null, opt);
+                }
+                int sample = 1;
+                if (opt.outHeight > 300 || opt.outWidth > 300) {
+                    int hh = opt.outHeight / 2, hw = opt.outWidth / 2;
+                    while ((hh / sample) >= 300 && (hw / sample) >= 300) sample *= 2;
+                }
+                opt.inSampleSize = sample;
+                opt.inJustDecodeBounds = false;
+                android.graphics.Bitmap bmp;
+                try (java.io.InputStream is = getContentResolver().openInputStream(uri)) {
+                    bmp = android.graphics.BitmapFactory.decodeStream(is, null, opt);
+                }
+                if (bmp != null) ivAvatar.setImageBitmap(bmp);
+            } catch (Exception ignored) {
+                // URI hết hạn hoặc lỗi → giữ ảnh mặc định
+            }
+        }
     }
 
     private void updateAuthUI() {
@@ -160,6 +195,14 @@ public class ProfileActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences themePrefs = getSharedPreferences("theme_prefs", MODE_PRIVATE);
+        boolean isDark = themePrefs.getBoolean("dark_mode", false);
+        androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(
+                isDark
+                        ? androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
+                        : androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
+        );
+
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_profile);
@@ -187,14 +230,50 @@ public class ProfileActivity extends BaseActivity {
         // Navigation Items
         notificationBadge = findViewById(R.id.notificationBadge);
         tvCurrentLanguage = findViewById(R.id.tvCurrentLanguage);
-
-        // Notifications Toggle
+        
+        // Fix large bitmap issue for profile avatar and logo
+        ImageView ivAvatar = findViewById(R.id.ivAvatar);
+        if (ivAvatar != null) {
+            com.example.saive.utils.ImageUtils.setSafeImage(ivAvatar, R.mipmap.model1);
+        }
+        
+        View centerActionButton = findViewById(R.id.centerActionButton);
+        if (centerActionButton != null) {
+            ImageView ivLogo = (ImageView) ((android.view.ViewGroup) centerActionButton).getChildAt(0);
+            if (ivLogo != null) {
+                com.example.saive.utils.ImageUtils.setSafeImage(ivLogo, R.mipmap.saive_logo);
+            }
+            
+            centerActionButton.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                navigateToMain("SHOW_HOME");
+            });
+        }
         SwitchCompat switchNotifications = findViewById(R.id.switchNotifications);
         if (switchNotifications != null) {
             switchNotifications.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 buttonView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 String message = isChecked ? getString(R.string.notifications_enabled) : getString(R.string.notifications_disabled);
                 showCustomToast(message);
+            });
+        }
+
+        SwitchCompat switchDarkMode = findViewById(R.id.switchDarkMode);
+        if (switchDarkMode != null) {
+            boolean isDarkMode = getSharedPreferences("theme_prefs", MODE_PRIVATE)
+                    .getBoolean("dark_mode", false);
+            switchDarkMode.setChecked(isDarkMode);
+
+            switchDarkMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                buttonView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                getSharedPreferences("theme_prefs", MODE_PRIVATE)
+                        .edit().putBoolean("dark_mode", isChecked).apply();
+                androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(
+                        isChecked
+                                ? androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
+                                : androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
+                );
+                recreate();
             });
         }
 
@@ -233,15 +312,6 @@ public class ProfileActivity extends BaseActivity {
                     Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
                     startActivity(intent);
                 }
-            });
-        }
-
-        // Center Action Button (Now acts as Home button on Profile page)
-        View centerActionButton = findViewById(R.id.centerActionButton);
-        if (centerActionButton != null) {
-            centerActionButton.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                navigateToMain("SHOW_HOME");
             });
         }
 
@@ -325,6 +395,15 @@ public class ProfileActivity extends BaseActivity {
             });
         }
 
+        // Payment Cards Menu Item
+        View btnPaymentCards = findViewById(R.id.btnPaymentCards);
+        if (btnPaymentCards != null) {
+            btnPaymentCards.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                startActivity(new Intent(ProfileActivity.this, PaymentCardsActivity.class));
+            });
+        }
+
         // My Orders Menu Item
         View btnMyOrders = findViewById(R.id.btnMyOrdersNew);
         if (btnMyOrders != null) {
@@ -360,6 +439,22 @@ public class ProfileActivity extends BaseActivity {
             navFavorite.setOnClickListener(v -> {
                 v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 navigateToMain("SHOW_FAVORITES");
+            });
+        }
+
+        // Edit Profile — bấm vào avatar hoặc tên
+        if (ivAvatar != null) {
+            ivAvatar.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                startActivity(new Intent(ProfileActivity.this, EditProfileActivity.class));
+            });
+        }
+
+        View tvUserName = findViewById(R.id.tvUserName);
+        if (tvUserName != null) {
+            tvUserName.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                startActivity(new Intent(ProfileActivity.this, EditProfileActivity.class));
             });
         }
     }

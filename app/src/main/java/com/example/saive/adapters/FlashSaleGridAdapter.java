@@ -17,6 +17,7 @@ import com.example.saive.R;
 import com.example.saive.models.Product;
 import com.example.saive.ui.ProductDetailActivity;
 import com.example.saive.utils.FavoriteManager;
+import com.example.saive.utils.ImageUtils;
 import com.example.saive.utils.ToastUtils;
 import java.util.List;
 
@@ -56,9 +57,9 @@ public class FlashSaleGridAdapter extends RecyclerView.Adapter<FlashSaleGridAdap
         holder.tvDiscount.setVisibility(View.VISIBLE);
 
         try {
-            holder.ivProduct.setImageResource(product.getImageResId());
+            ImageUtils.setSafeImage(holder.ivProduct, product.getImageResId());
         } catch (Exception e) {
-            holder.ivProduct.setImageResource(R.mipmap.model1);
+            ImageUtils.setSafeImage(holder.ivProduct, R.mipmap.model1);
         }
 
         boolean isFavorite = FavoriteManager.getInstance(holder.itemView.getContext()).isFavorite(product);

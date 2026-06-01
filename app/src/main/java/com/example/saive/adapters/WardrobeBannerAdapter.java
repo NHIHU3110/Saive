@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.saive.R;
 import com.example.saive.models.WardrobeBanner;
+import com.example.saive.utils.ImageUtils;
+
 import java.util.List;
 
 public class WardrobeBannerAdapter extends RecyclerView.Adapter<WardrobeBannerAdapter.ViewHolder> {
@@ -35,7 +37,7 @@ public class WardrobeBannerAdapter extends RecyclerView.Adapter<WardrobeBannerAd
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         WardrobeBanner banner = banners.get(position);
-        holder.ivBannerImage.setImageResource(banner.getImageResId());
+        ImageUtils.setSafeImage(holder.ivBannerImage, banner.getImageResId());
         holder.tvBannerCaption.setText(banner.getCaption());
         holder.tvBannerTitle.setText(banner.getTitle());
         holder.tvBannerAction.setText(banner.getAction());

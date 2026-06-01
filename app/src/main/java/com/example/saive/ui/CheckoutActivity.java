@@ -162,6 +162,7 @@ public class CheckoutActivity extends BaseActivity {
         rvCheckoutAddresses.setAdapter(addressAdapter);
     }
 
+    private View layoutAddCard;
     private void initViews() {
         etFullName = findViewById(R.id.etFullName);
         etPhone = findViewById(R.id.etPhone);
@@ -201,6 +202,8 @@ public class CheckoutActivity extends BaseActivity {
         rbBank = findViewById(R.id.rbBank);
         rbMomo = findViewById(R.id.rbMomo);
         rbZaloPay = findViewById(R.id.rbZaloPay);
+
+        layoutAddCard = findViewById(R.id.layoutAddCard);
 
         tvSummaryFullName = findViewById(R.id.tvSummaryFullName);
         tvSummaryAddress = findViewById(R.id.tvSummaryAddress);
@@ -384,6 +387,13 @@ public class CheckoutActivity extends BaseActivity {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             selectPaymentMethod(rbZaloPay);
         });
+
+        if (layoutAddCard != null) {
+            layoutAddCard.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                startActivity(new Intent(CheckoutActivity.this, PaymentCardsActivity.class));
+            });
+        }
 
         rbCod.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);

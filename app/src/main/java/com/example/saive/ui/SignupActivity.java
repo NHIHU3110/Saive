@@ -7,6 +7,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ import androidx.activity.EdgeToEdge;
 
 import com.example.saive.R;
 import com.example.saive.base.BaseActivity;
+import com.example.saive.utils.ImageUtils;
 
 public class SignupActivity extends BaseActivity {
 
@@ -24,6 +26,14 @@ public class SignupActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+
+        ImageView ivLogo = findViewById(R.id.ivLogo);
+        ImageView ivFbIcon = findViewById(R.id.ivFbIcon);
+        ImageView ivGgIcon = findViewById(R.id.ivGgIcon);
+        
+        ImageUtils.setSafeImage(ivLogo, R.mipmap.saive_logo);
+        ImageUtils.setSafeImage(ivFbIcon, R.mipmap.fbicon);
+        ImageUtils.setSafeImage(ivGgIcon, R.mipmap.ggicon);
 
         if (getWindow() != null) {
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorMaroon));

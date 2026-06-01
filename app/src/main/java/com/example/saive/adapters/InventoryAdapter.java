@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.saive.R;
 import com.example.saive.models.Product;
+import com.example.saive.utils.ImageUtils;
 
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
         Product product = products.get(position);
         holder.tvName.setText(product.getName());
         holder.tvPrice.setText(product.getPrice());
-        holder.ivProduct.setImageResource(product.getImageResId());
+        ImageUtils.setSafeImage(holder.ivProduct, product.getImageResId());
         
         // Mock stock
         holder.tvStock.setText("Kho: " + (10 + position * 2));

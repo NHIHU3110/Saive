@@ -9,10 +9,11 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.saive.R;
+import com.example.saive.utils.ImageUtils;
 
 public class NotificationDetailActivity extends AppCompatActivity {
 
-    private ImageView ivDetailImage;
+    private ImageView ivDetailImage, ivSub1, ivSub2, ivSub3;
     private TextView tvDetailTitle, tvDetailTime, tvDetailContent, tvActionText;
     private View btnBack, cvAction;
 
@@ -28,6 +29,14 @@ public class NotificationDetailActivity extends AppCompatActivity {
 
     private void initViews() {
         ivDetailImage = findViewById(R.id.ivDetailImage);
+        ivSub1 = findViewById(R.id.ivSub1);
+        ivSub2 = findViewById(R.id.ivSub2);
+        ivSub3 = findViewById(R.id.ivSub3);
+        
+        ImageUtils.setSafeImage(ivSub1, R.mipmap.atumncollection2);
+        ImageUtils.setSafeImage(ivSub2, R.mipmap.model1);
+        ImageUtils.setSafeImage(ivSub3, R.mipmap.banner2);
+
         tvDetailTitle = findViewById(R.id.tvDetailTitle);
         tvDetailTime = findViewById(R.id.tvDetailTime);
         tvDetailContent = findViewById(R.id.tvDetailContent);
@@ -61,16 +70,16 @@ public class NotificationDetailActivity extends AppCompatActivity {
                 com.example.saive.models.Notification.Type type = com.example.saive.models.Notification.Type.valueOf(typeStr);
                 switch (type) {
                     case DROP:
-                        ivDetailImage.setImageResource(R.mipmap.atumncollection1);
+                        ImageUtils.setSafeImage(ivDetailImage, R.mipmap.atumncollection1);
                         break;
                     case ORDER:
-                        ivDetailImage.setImageResource(R.mipmap.atumncollection2);
+                        ImageUtils.setSafeImage(ivDetailImage, R.mipmap.atumncollection2);
                         break;
                     case REMINDER:
-                        ivDetailImage.setImageResource(R.mipmap.banner3);
+                        ImageUtils.setSafeImage(ivDetailImage, R.mipmap.banner3);
                         break;
                     default:
-                        ivDetailImage.setImageResource(R.mipmap.banner1);
+                        ImageUtils.setSafeImage(ivDetailImage, R.mipmap.banner1);
                         break;
                 }
             }
