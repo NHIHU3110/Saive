@@ -46,19 +46,30 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.tvName.setText(product.getName().toUpperCase());
         holder.tvPrice.setText(product.getPrice());
 
-        boolean isFavorite = FavoriteManager.getInstance(holder.itemView.getContext()).isFavorite(product);
-        updateFavoriteIcon(holder.btnFavorite, isFavorite);
+        // Local quantity state for the item card
+        final int[] itemQuantity = {1};
+        holder.tvQuantity.setText("1");
 
-        holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(v.getContext(), ProductDetailActivity.class);
-            intent.putExtra("PRODUCT", product);
-            v.getContext().startActivity(intent);
+        holder.btnDecrease.setOnClickListener(v -> {
+            if (itemQuantity[0] > 1) {
+                itemQuantity[0]--;
+                holder.tvQuantity.setText(String.valueOf(itemQuantity[0]));
+            }
+        });
+
+        holder.btnIncrease.setOnClickListener(v -> {
+            itemQuantity[0]++;
+            holder.tvQuantity.setText(String.valueOf(itemQuantity[0]));
         });
 
         holder.btnAddToCart.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-            CartManager.getInstance(v.getContext()).addProduct(product);
-            ToastUtils.showCustomToast(v.getContext(), "Added to cart");
+            CartManager.getInstance(v.getContext()).addProduct(product, itemQuantity[0]);
+            ToastUtils.showCustomToast(v.getContext(), "Added " + itemQuantity[0] + " to wardrobe");
+            
+            // Reset quantity after adding
+            itemQuantity[0] = 1;
+            holder.tvQuantity.setText("1");
         });
 
         holder.btnFavorite.setOnClickListener(v -> {
@@ -91,8 +102,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     static class ProductViewHolder extends RecyclerView.ViewHolder {
         ImageView ivProduct;
-        TextView tvName, tvPrice;
-        ImageButton btnAddToCart, btnFavorite;
+        TextView tvName, tvPrice, tvQuantity;
+        ImageButton btnAddToCart, btnFavorite, btnDecrease, btnIncrease;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -101,6 +112,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             tvPrice = itemView.findViewById(R.id.tvItemPrice);
             btnAddToCart = itemView.findViewById(R.id.btnAddToCart);
             btnFavorite = itemView.findViewById(R.id.btnFavorite);
+            tvQuantity = itemView.findViewById(R.id.tvQuantity);
+            btnDecrease = itemView.findViewById(R.id.btnDecrease);
+            btnIncrease = itemView.findViewById(R.id.btnIncrease);
         }
     }
 }

@@ -151,83 +151,93 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="28dp"
             app:layout_constraintBottom_toTopOf="@id/btnCheckout"
             app:layout_constraintTop_toBottomOf="@id/couponContainer">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="14dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     style="@style/TextAppearance.Saive.Caption"
                     android:text="@string/label_item_total"
                     android:textColor="@color/colorOnMaroonSecondary"
-                    android:textSize="13sp" />
+                    android:textSize="14sp"
+                    android:letterSpacing="0.02" />
                 <TextView
                     android:id="@+id/tvSubtotal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
                     style="@style/TextAppearance.Saive.Nav"
                     android:text="0 ₫"
                     android:textColor="@color/colorOnMaroon"
-                    android:textSize="14sp" />
+                    android:textSize="15sp"
+                    android:letterSpacing="0.05" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/layoutDiscount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="14dp"
                 android:visibility="gone">
                 <TextView
                     android:id="@+id/tvDiscountLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     style="@style/TextAppearance.Saive.Caption"
                     android:text="Giảm giá"
                     android:textColor="@color/colorOnMaroonSecondary"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
                 <TextView
                     android:id="@+id/tvDiscountValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
                     style="@style/TextAppearance.Saive.Nav"
                     android:text="-0 ₫"
                     android:textColor="@color/colorGreen"
-                    android:textSize="14sp" />
+                    android:textSize="15sp" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="24dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     style="@style/TextAppearance.Saive.Caption"
                     android:text="@string/label_delivery"
                     android:textColor="@color/colorOnMaroonSecondary"
-                    android:textSize="13sp" />
+                    android:textSize="14sp"
+                    android:letterSpacing="0.02" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
                     style="@style/TextAppearance.Saive.Nav"
                     android:text="@string/label_free"
                     android:textColor="@color/colorOnMaroonSecondary"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="0.5dp"
                 android:background="@color/colorOnMaroonDivider"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="24dp"
+                android:alpha="0.3" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -235,21 +245,25 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     style="@style/TextAppearance.Saive.Nav"
                     android:text="@string/label_total"
                     android:letterSpacing="0.1"
                     android:textColor="@color/colorOnMaroon"
-                    android:textSize="16sp" />
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
                 <TextView
                     android:id="@+id/tvTotalPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
                     style="@style/TextAppearance.Saive.Nav"
                     android:text="0 ₫"
                     android:textStyle="bold"
                     android:textColor="@color/colorOnMaroon"
-                    android:textSize="20sp" />
+                    android:textSize="22sp"
+                    android:letterSpacing="0.05" />
             </RelativeLayout>
         </LinearLayout>
 

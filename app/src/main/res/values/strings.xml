@@ -43,7 +43,7 @@
     <string name="nav_profile">PROFILE</string>
     <string name="nav_search">SEARCH</string>
     <string name="nav_shop">SHOP</string>
-    <string name="nav_archive">ARCHIVE</string>
+    <string name="nav_archive">COLLECTION</string>
     <string name="nav_about">ABOUT</string>
     <string name="wardrobe_header">MY WARDROBE</string>
     <string name="wardrobe_empty_search_title">NO PIECES FOUND</string>

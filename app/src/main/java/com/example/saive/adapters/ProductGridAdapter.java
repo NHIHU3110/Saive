@@ -69,6 +69,16 @@ public class ProductGridAdapter extends RecyclerView.Adapter<ProductGridAdapter.
             holder.btnDecrease.setColorFilter(textColor);
             holder.btnIncrease.setColorFilter(textColor);
             holder.tvQuantity.setTextColor(textColor);
+            holder.tvName.setAlpha(1.0f);
+            holder.tvPrice.setAlpha(0.7f);
+        } else {
+            // Default colors if not set
+            holder.tvName.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.colorNoirBlack));
+            holder.tvPrice.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.colorGrayText));
+            holder.btnAddToCart.setColorFilter(ContextCompat.getColor(holder.itemView.getContext(), R.color.colorMaroon));
+            holder.btnDecrease.setColorFilter(ContextCompat.getColor(holder.itemView.getContext(), R.color.colorNoirBlack));
+            holder.btnIncrease.setColorFilter(ContextCompat.getColor(holder.itemView.getContext(), R.color.colorNoirBlack));
+            holder.tvQuantity.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.colorNoirBlack));
         }
 
         holder.itemView.setOnClickListener(v -> {

@@ -5,12 +5,15 @@ import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -41,6 +44,7 @@ public class FlashSaleActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flash_sale);
 
@@ -50,11 +54,41 @@ public class FlashSaleActivity extends BaseActivity {
         setupCartBadge();
         setupNavigation();
         applyWindowInsets();
+        updateStatusBar();
+    }
+
+    private void updateStatusBar() {
+        if (getWindow() != null) {
+            boolean isDarkMode = (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) 
+                    == Configuration.UI_MODE_NIGHT_YES;
+            
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorCotton));
+            
+            int flags = getWindow().getDecorView().getSystemUiVisibility();
+            if (isDarkMode) {
+                flags &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            } else {
+                flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            }
+            getWindow().getDecorView().setSystemUiVisibility(flags);
+        }
     }
 
     private void applyWindowInsets() {
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content), (v, insets) -> {
+        View root = findViewById(R.id.flashSaleRoot);
+        ViewCompat.setOnApplyWindowInsetsListener(root, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            
+            View topBar = findViewById(R.id.topBar);
+            if (topBar != null) {
+                int paddingHorizontal = (int) (24 * getResources().getDisplayMetrics().density);
+                int paddingVertical = (int) (12 * getResources().getDisplayMetrics().density);
+                topBar.setPadding(paddingHorizontal, 
+                        systemBars.top + paddingVertical,
+                        paddingHorizontal, 
+                        paddingVertical);
+            }
+
             View bottomNav = findViewById(R.id.bottomNav);
             if (bottomNav != null) {
                 bottomNav.setPadding(0, 0, 0, systemBars.bottom);
@@ -117,16 +151,6 @@ public class FlashSaleActivity extends BaseActivity {
         tvMinute = findViewById(R.id.tvMinute);
         tvSecond = findViewById(R.id.tvSecond);
         rvProducts = findViewById(R.id.rvFlashSaleProducts);
-
-        View topBar = findViewById(R.id.topBar);
-        ViewCompat.setOnApplyWindowInsetsListener(topBar, (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(v.getPaddingLeft(), 
-                    systemBars.top + (int)(12 * getResources().getDisplayMetrics().density),
-                    v.getPaddingRight(), 
-                    (int)(16 * getResources().getDisplayMetrics().density));
-            return insets;
-        });
 
         View ivBack = findViewById(R.id.ivBack);
         if (ivBack != null) {
@@ -208,6 +232,7 @@ public class FlashSaleActivity extends BaseActivity {
         }
 
         adapter = new FlashSaleGridAdapter(allProducts);
+        adapter.setTextColor(ContextCompat.getColor(this, R.color.colorCotton));
         rvProducts.setLayoutManager(new GridLayoutManager(this, 2));
         rvProducts.setAdapter(adapter);
     }

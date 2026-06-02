@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.saive.R;
 import com.example.saive.models.Product;
 import com.example.saive.ui.ProductDetailActivity;
+import com.example.saive.utils.CartManager;
 import com.example.saive.utils.FavoriteManager;
 import com.example.saive.utils.ImageUtils;
 import com.example.saive.utils.ToastUtils;
@@ -24,9 +25,15 @@ import java.util.List;
 public class FlashSaleGridAdapter extends RecyclerView.Adapter<FlashSaleGridAdapter.ViewHolder> {
 
     private List<Product> productList;
+    private int textColor = -1;
 
     public FlashSaleGridAdapter(List<Product> productList) {
         this.productList = productList;
+    }
+
+    public void setTextColor(int color) {
+        this.textColor = color;
+        notifyDataSetChanged();
     }
 
     public void updateList(List<Product> newList) {
@@ -47,6 +54,15 @@ public class FlashSaleGridAdapter extends RecyclerView.Adapter<FlashSaleGridAdap
 
         holder.tvName.setText(product.getName().toUpperCase());
         holder.tvPrice.setText(product.getPrice());
+
+        if (textColor != -1) {
+            holder.tvName.setTextColor(textColor);
+            holder.tvPrice.setTextColor(textColor);
+            holder.tvQuantity.setTextColor(textColor);
+            holder.btnDecrease.setColorFilter(textColor);
+            holder.btnIncrease.setColorFilter(textColor);
+            holder.btnAddToCart.setColorFilter(textColor);
+        }
         
         // Discount badge mock logic (could be added to Product model later)
         if (position % 2 == 0) {
@@ -64,6 +80,32 @@ public class FlashSaleGridAdapter extends RecyclerView.Adapter<FlashSaleGridAdap
 
         boolean isFavorite = FavoriteManager.getInstance(holder.itemView.getContext()).isFavorite(product);
         updateFavoriteIcon(holder.btnFavorite, isFavorite);
+
+        // Local quantity state for the item card
+        final int[] itemQuantity = {1};
+        holder.tvQuantity.setText("1");
+
+        holder.btnDecrease.setOnClickListener(v -> {
+            if (itemQuantity[0] > 1) {
+                itemQuantity[0]--;
+                holder.tvQuantity.setText(String.valueOf(itemQuantity[0]));
+            }
+        });
+
+        holder.btnIncrease.setOnClickListener(v -> {
+            itemQuantity[0]++;
+            holder.tvQuantity.setText(String.valueOf(itemQuantity[0]));
+        });
+
+        holder.btnAddToCart.setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            CartManager.getInstance(v.getContext()).addProduct(product, itemQuantity[0]);
+            ToastUtils.showCustomToast(v.getContext(), "Added " + itemQuantity[0] + " to wardrobe");
+            
+            // Reset quantity after adding
+            itemQuantity[0] = 1;
+            holder.tvQuantity.setText("1");
+        });
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), ProductDetailActivity.class);
@@ -101,8 +143,8 @@ public class FlashSaleGridAdapter extends RecyclerView.Adapter<FlashSaleGridAdap
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivProduct;
-        TextView tvName, tvPrice, tvDiscount;
-        ImageButton btnFavorite;
+        TextView tvName, tvPrice, tvDiscount, tvQuantity;
+        ImageButton btnFavorite, btnDecrease, btnIncrease, btnAddToCart;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -111,6 +153,10 @@ public class FlashSaleGridAdapter extends RecyclerView.Adapter<FlashSaleGridAdap
             tvPrice = itemView.findViewById(R.id.tvProductPrice);
             tvDiscount = itemView.findViewById(R.id.tvDiscountBadge);
             btnFavorite = itemView.findViewById(R.id.btnFavorite);
+            tvQuantity = itemView.findViewById(R.id.tvQuantity);
+            btnDecrease = itemView.findViewById(R.id.btnDecrease);
+            btnIncrease = itemView.findViewById(R.id.btnIncrease);
+            btnAddToCart = itemView.findViewById(R.id.btnAddToCart);
         }
     }
 }

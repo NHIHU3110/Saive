@@ -415,6 +415,7 @@ public class ProductDetailActivity extends BaseActivity {
             suggestions.add(new Product(getString(R.string.suggestion_scarf), "450.000 ₫", R.mipmap.model1, "Accessories"));
             
             FlashProductAdapter adapter = new FlashProductAdapter(suggestions);
+            adapter.setTextColor(ContextCompat.getColor(this, R.color.colorNoirBlack));
             rvCompleteLook.setAdapter(adapter);
         }
     }

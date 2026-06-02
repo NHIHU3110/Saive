@@ -43,7 +43,7 @@
     <string name="nav_profile">个人资料</string>
     <string name="nav_search">搜索</string>
     <string name="nav_shop">商店</string>
-    <string name="nav_archive">存档</string>
+    <string name="nav_archive">COLLECTION</string>
     <string name="nav_about">关于</string>
     <string name="wardrobe_header">我的衣橱</string>
     <string name="wardrobe_empty_search_title">未找到单品</string>

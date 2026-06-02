@@ -928,6 +928,7 @@ public class MainActivity extends BaseActivity {
         flashProductList.add(new Product("Retro Frames", "$150.00", R.mipmap.sunglass5, getString(R.string.cat_sunglasses)));
 
         FlashProductAdapter adapter = new FlashProductAdapter(flashProductList);
+        adapter.setTextColor(ContextCompat.getColor(this, R.color.colorCotton));
         // Thiết lập LinearLayoutManager nằm ngang
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         rvFlashSale.setLayoutManager(layoutManager);
