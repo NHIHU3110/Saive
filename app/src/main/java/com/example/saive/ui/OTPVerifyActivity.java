@@ -44,6 +44,8 @@ public class OTPVerifyActivity extends BaseActivity {
         etOtp5 = findViewById(R.id.etOtp5);
         etOtp6 = findViewById(R.id.etOtp6);
 
+        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+
         setupOtpInputs();
 
         View btnVerify = findViewById(R.id.btnVerify);

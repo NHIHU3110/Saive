@@ -95,7 +95,51 @@ public class CartActivity extends BaseActivity {
         View btnBack = findViewById(R.id.btnBack);
         View btnCheckout = findViewById(R.id.btnCheckout);
 
+        // Navigation Bar Items
+        View navFavorite = findViewById(R.id.navFavorite);
+        View navWardrobe = findViewById(R.id.navWardrobe);
+        View navHome = findViewById(R.id.navHome);
+        View navNotify = findViewById(R.id.navNotify);
+        View navProfile = findViewById(R.id.navProfile);
+        View centerActionButton = findViewById(R.id.centerActionButton);
+
         btnBack.setOnClickListener(v -> finish());
+
+        // Navigation Listeners
+        navFavorite.setOnClickListener(v -> {
+            Intent intent = new Intent(CartActivity.this, MainActivity.class);
+            intent.putExtra("SHOW_FAVORITES", true);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+        });
+
+        navWardrobe.setOnClickListener(v -> {
+            Intent intent = new Intent(CartActivity.this, MainActivity.class);
+            intent.putExtra("SHOW_WARDROBE", true);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+        });
+
+        View.OnClickListener homeListener = v -> {
+            Intent intent = new Intent(CartActivity.this, MainActivity.class);
+            intent.putExtra("SHOW_HOME", true);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+        };
+        navHome.setOnClickListener(homeListener);
+        centerActionButton.setOnClickListener(homeListener);
+
+        navNotify.setOnClickListener(v -> {
+            Intent intent = new Intent(CartActivity.this, MainActivity.class);
+            intent.putExtra("SHOW_NOTIFICATIONS", true);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+        });
+
+        navProfile.setOnClickListener(v -> {
+            Intent intent = new Intent(CartActivity.this, ProfileActivity.class);
+            startActivity(intent);
+        });
 
         btnCheckout.setOnClickListener(v -> {
             if (cartManager.getCartItems().isEmpty()) {
