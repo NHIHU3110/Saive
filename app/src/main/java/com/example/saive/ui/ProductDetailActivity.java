@@ -43,13 +43,15 @@ public class ProductDetailActivity extends BaseActivity {
     private ImageButton btnFavorite, btnShare;
     private View btnCart;
     private LottieAnimationView lottieFavorite;
-    private TextView tvProductName, tvPrice, tvDescription, tvWardrobeAction, btnWriteReview, btnSeeMore, tvCartBadge;
+    private TextView tvProductName, tvPrice, tvDescription, tvWardrobeAction, btnWriteReview, btnSeeMore, tvCartBadge, tvQuantity;
     private View btnAddToWardrobe, sizeSelectionContainer, colorSelectionContainer;
+    private ImageButton btnDecrease, btnIncrease;
     private RecyclerView rvCompleteLook, rvReviews;
     private List<View> sizeViews, colorViews;
     
     private Product currentProduct;
     private boolean isAddedToWardrobe = false;
+    private int selectedQuantity = 1;
     private List<Review> reviewList;
     private ReviewAdapter reviewAdapter;
     private CartManager.OnCartChangeListener cartChangeListener;
@@ -126,6 +128,10 @@ public class ProductDetailActivity extends BaseActivity {
         tvDescription = findViewById(R.id.tvDescription);
         btnSeeMore = findViewById(R.id.btnSeeMore);
         btnWriteReview = findViewById(R.id.btnWriteReview);
+        
+        tvQuantity = findViewById(R.id.tvQuantity);
+        btnDecrease = findViewById(R.id.btnDecrease);
+        btnIncrease = findViewById(R.id.btnIncrease);
         
         rvCompleteLook = findViewById(R.id.rvCompleteLook);
         rvReviews = findViewById(R.id.rvReviews);
@@ -255,6 +261,22 @@ public class ProductDetailActivity extends BaseActivity {
             });
         }
 
+        if (btnDecrease != null) {
+            btnDecrease.setOnClickListener(v -> {
+                if (selectedQuantity > 1) {
+                    selectedQuantity--;
+                    tvQuantity.setText(String.valueOf(selectedQuantity));
+                }
+            });
+        }
+
+        if (btnIncrease != null) {
+            btnIncrease.setOnClickListener(v -> {
+                selectedQuantity++;
+                tvQuantity.setText(String.valueOf(selectedQuantity));
+            });
+        }
+
         if (btnAddToWardrobe != null) {
             btnAddToWardrobe.setOnClickListener(v -> {
                 v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
@@ -279,7 +301,7 @@ public class ProductDetailActivity extends BaseActivity {
                             }
                         }
 
-                        CartManager.getInstance(this).addProduct(currentProduct);
+                        CartManager.getInstance(this).addProduct(currentProduct, selectedQuantity);
                         isAddedToWardrobe = true;
                         updateWardrobeUI();
                         ToastUtils.showCustomToast(this, getString(R.string.added_to_wardrobe));

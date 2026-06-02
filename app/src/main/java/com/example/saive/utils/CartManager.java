@@ -70,16 +70,20 @@ public class CartManager {
     }
 
     public void addProduct(Product product) {
+        addProduct(product, 1);
+    }
+
+    public void addProduct(Product product, int quantity) {
         boolean exists = false;
         for (Product item : cartItems) {
             if (item.getName().equals(product.getName())) {
-                item.setQuantity(item.getQuantity() + 1);
+                item.setQuantity(item.getQuantity() + quantity);
                 exists = true;
                 break;
             }
         }
         if (!exists) {
-            product.setQuantity(1);
+            product.setQuantity(quantity);
             cartItems.add(product);
         }
         saveCartItems();

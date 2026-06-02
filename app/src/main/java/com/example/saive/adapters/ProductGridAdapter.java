@@ -57,11 +57,18 @@ public class ProductGridAdapter extends RecyclerView.Adapter<ProductGridAdapter.
         holder.tvName.setText(product.getName().toUpperCase());
         holder.tvPrice.setText(product.getPrice());
 
+        // Local quantity state for the item card
+        final int[] itemQuantity = {1};
+        holder.tvQuantity.setText("1");
+
         if (textColor != null) {
             holder.tvName.setTextColor(textColor);
             holder.tvPrice.setTextColor(textColor);
             holder.tvPrice.setAlpha(1.0f); // Đảm bảo giá tiền luôn nổi bật nhất
             holder.btnAddToCart.setColorFilter(textColor);
+            holder.btnDecrease.setColorFilter(textColor);
+            holder.btnIncrease.setColorFilter(textColor);
+            holder.tvQuantity.setTextColor(textColor);
         }
 
         holder.itemView.setOnClickListener(v -> {
@@ -70,10 +77,26 @@ public class ProductGridAdapter extends RecyclerView.Adapter<ProductGridAdapter.
             v.getContext().startActivity(intent);
         });
 
+        holder.btnDecrease.setOnClickListener(v -> {
+            if (itemQuantity[0] > 1) {
+                itemQuantity[0]--;
+                holder.tvQuantity.setText(String.valueOf(itemQuantity[0]));
+            }
+        });
+
+        holder.btnIncrease.setOnClickListener(v -> {
+            itemQuantity[0]++;
+            holder.tvQuantity.setText(String.valueOf(itemQuantity[0]));
+        });
+
         holder.btnAddToCart.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-            CartManager.getInstance(v.getContext()).addProduct(product);
-            ToastUtils.showCustomToast(v.getContext(), "Added to wardrobe");
+            CartManager.getInstance(v.getContext()).addProduct(product, itemQuantity[0]);
+            ToastUtils.showCustomToast(v.getContext(), "Added " + itemQuantity[0] + " to wardrobe");
+            
+            // Reset quantity after adding
+            itemQuantity[0] = 1;
+            holder.tvQuantity.setText("1");
         });
 
         boolean isFavorite = FavoriteManager.getInstance(holder.itemView.getContext()).isFavorite(product);
@@ -112,16 +135,19 @@ public class ProductGridAdapter extends RecyclerView.Adapter<ProductGridAdapter.
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivProduct;
-        TextView tvName, tvPrice;
-        ImageButton btnAddToCart, btnFavorite;
+        TextView tvName, tvPrice, tvQuantity;
+        ImageButton btnAddToCart, btnFavorite, btnDecrease, btnIncrease;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivProduct = itemView.findViewById(R.id.ivProduct);
             tvName = itemView.findViewById(R.id.tvItemName);
             tvPrice = itemView.findViewById(R.id.tvItemPrice);
+            tvQuantity = itemView.findViewById(R.id.tvQuantity);
             btnAddToCart = itemView.findViewById(R.id.btnAddToCart);
             btnFavorite = itemView.findViewById(R.id.btnFavorite);
+            btnDecrease = itemView.findViewById(R.id.btnDecrease);
+            btnIncrease = itemView.findViewById(R.id.btnIncrease);
         }
     }
 }
