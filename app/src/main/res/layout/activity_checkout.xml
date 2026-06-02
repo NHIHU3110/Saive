@@ -499,7 +499,7 @@
                                 style="@style/TextAppearance.Saive.Label"
                                 android:text="@string/label_total"
                                 android:textStyle="bold"
-                                android:letterSpacing="0.1"
+                                android:letterSpacing="0.02"
                                 android:textColor="@color/colorNoirBlack" />
                             <TextView
                                 android:id="@+id/tvSummaryTotal"
@@ -510,6 +510,7 @@
                                 style="@style/TextAppearance.Saive.SectionHeader"
                                 android:textColor="@color/colorMaroon"
                                 android:textSize="22sp"
+                                android:letterSpacing="0.02"
                                 tools:text="3.450.000 ₫" />
                         </RelativeLayout>
 

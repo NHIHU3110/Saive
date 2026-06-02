@@ -332,6 +332,7 @@
     <string name="chip_noir">Noir</string>
     <string name="chip_ivory">Ivory</string>
     <string name="label_item_total">Tổng tiền hàng:</string>
+    <string name="label_discount">Giảm giá:</string>
     <string name="label_delivery">Phí vận chuyển:</string>
     <string name="label_free">Miễn phí</string>
     <string name="btn_payment">Thanh toán</string>

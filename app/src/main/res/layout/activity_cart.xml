@@ -35,7 +35,7 @@
             android:layout_weight="1"
             android:layout_marginEnd="40dp"
             android:gravity="center"
-            android:letterSpacing="0.1"
+            android:letterSpacing="0.02"
             android:text="@string/cart_title"
             android:textColor="@color/colorNoirBlack"
             android:textSize="18sp" />
@@ -193,9 +193,10 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     style="@style/TextAppearance.Saive.Caption"
-                    android:text="Giảm giá"
+                    android:text="@string/label_discount"
                     android:textColor="@color/colorOnMaroonSecondary"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:letterSpacing="0.02" />
                 <TextView
                     android:id="@+id/tvDiscountValue"
                     android:layout_width="wrap_content"
@@ -205,7 +206,8 @@
                     style="@style/TextAppearance.Saive.Nav"
                     android:text="-0 ₫"
                     android:textColor="@color/colorGreen"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:letterSpacing="0.05" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -248,7 +250,7 @@
                     android:layout_centerVertical="true"
                     style="@style/TextAppearance.Saive.Nav"
                     android:text="@string/label_total"
-                    android:letterSpacing="0.1"
+                    android:letterSpacing="0.02"
                     android:textColor="@color/colorOnMaroon"
                     android:textSize="17sp"
                     android:textStyle="bold" />
@@ -263,7 +265,7 @@
                     android:textStyle="bold"
                     android:textColor="@color/colorOnMaroon"
                     android:textSize="22sp"
-                    android:letterSpacing="0.05" />
+                    android:letterSpacing="0.02" />
             </RelativeLayout>
         </LinearLayout>
 

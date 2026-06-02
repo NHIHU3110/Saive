@@ -72,26 +72,41 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilOtp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+        <LinearLayout
+            android:id="@+id/otpContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="40dp"
+            android:layout_marginHorizontal="32dp"
             android:layout_marginTop="40dp"
-            android:hint="6-digit OTP"
-            app:hintTextColor="@color/colorGrayText"
+            android:gravity="center"
+            android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@id/tvEmailHint">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etOtp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:inputType="number"
-                android:maxLength="6"
-                android:paddingHorizontal="0dp" />
-        </com.google.android.material.textfield.TextInputLayout>
+            <EditText
+                android:id="@+id/etOtp1"
+                style="@style/OtpBoxStyle" />
+
+            <EditText
+                android:id="@+id/etOtp2"
+                style="@style/OtpBoxStyle" />
+
+            <EditText
+                android:id="@+id/etOtp3"
+                style="@style/OtpBoxStyle" />
+
+            <EditText
+                android:id="@+id/etOtp4"
+                style="@style/OtpBoxStyle" />
+
+            <EditText
+                android:id="@+id/etOtp5"
+                style="@style/OtpBoxStyle" />
+
+            <EditText
+                android:id="@+id/etOtp6"
+                style="@style/OtpBoxStyle" />
+
+        </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnVerify"
