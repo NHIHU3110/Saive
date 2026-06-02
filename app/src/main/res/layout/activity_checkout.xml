@@ -495,6 +495,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
                                 style="@style/TextAppearance.Saive.Label"
                                 android:text="@string/label_total"
                                 android:textStyle="bold"
@@ -505,9 +506,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
                                 style="@style/TextAppearance.Saive.SectionHeader"
                                 android:textColor="@color/colorMaroon"
-                                android:textSize="18sp"
+                                android:textSize="22sp"
                                 tools:text="3.450.000 ₫" />
                         </RelativeLayout>
 

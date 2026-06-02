@@ -473,7 +473,6 @@ public class MainActivity extends BaseActivity {
 
         if (searchContainer != null) {
             searchContainer.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 Intent intent = new Intent(MainActivity.this, SearchActivity.class);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -482,7 +481,6 @@ public class MainActivity extends BaseActivity {
 
         if (btnCart != null) {
             btnCart.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 Intent intent = new Intent(MainActivity.this, CartActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -491,28 +489,24 @@ public class MainActivity extends BaseActivity {
 
         if (navHome != null) {
             navHome.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 showView(homeScroll);
             });
         }
 
         if (navWardrobe != null) {
             navWardrobe.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 showView(wardrobeContainer);
             });
         }
 
         if (navNotify != null) {
             navNotify.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 showView(notificationsContainer);
             });
         }
 
         if (navFavorite != null) {
             navFavorite.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 showView(favoritesContainer);
             });
         }
@@ -523,7 +517,6 @@ public class MainActivity extends BaseActivity {
         View btnExplore = findViewById(R.id.btnExploreLookbook);
 
         View.OnClickListener monochromeClickListener = v -> {
-            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             Intent intent = new Intent(MainActivity.this, CollectionsListActivity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -537,7 +530,6 @@ public class MainActivity extends BaseActivity {
         View ivMaterialStory = findViewById(R.id.ivMaterialStory);
         if (ivMaterialStory != null) {
             ivMaterialStory.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 Intent intent = new Intent(MainActivity.this, CollectionDetailActivity.class);
                 intent.putExtra("COLLECTION_TITLE", getString(R.string.material_story_title));
                 startActivity(intent);
@@ -546,7 +538,6 @@ public class MainActivity extends BaseActivity {
         
         if (navProfile != null) {
             navProfile.setOnClickListener(v -> {
-                v.performHapticFeedback(android.view.HapticFeedbackConstants.VIRTUAL_KEY);
                 updateNavHighlight(v);
                 navigateToProfile();
             });
@@ -556,7 +547,6 @@ public class MainActivity extends BaseActivity {
         View btnSortWardrobe = findViewById(R.id.btnSortWardrobe);
         if (btnSortWardrobe != null) {
             btnSortWardrobe.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 showSortPopup(v);
             });
         }
@@ -565,7 +555,6 @@ public class MainActivity extends BaseActivity {
         View btnNotificationSettings = findViewById(R.id.btnNotificationSettings);
         if (btnNotificationSettings != null) {
             btnNotificationSettings.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 showNotificationSortPopup(v);
             });
         }
@@ -573,7 +562,6 @@ public class MainActivity extends BaseActivity {
         // Home button (center) also toggles home view
         if (centerActionButton != null) {
             centerActionButton.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 showView(homeScroll);
             });
         }
@@ -581,7 +569,6 @@ public class MainActivity extends BaseActivity {
         View tvViewFullCuration = findViewById(R.id.tvViewFullCuration);
         if (tvViewFullCuration != null) {
             tvViewFullCuration.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 showView(wardrobeContainer);
             });
         }
@@ -593,7 +580,6 @@ public class MainActivity extends BaseActivity {
 
         if (tvNavShop != null) {
             tvNavShop.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 showView(wardrobeContainer);
                 animateNavIcon(navWardrobe);
             });
@@ -601,7 +587,6 @@ public class MainActivity extends BaseActivity {
 
         if (tvNavArchive != null) {
             tvNavArchive.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 Intent intent = new Intent(MainActivity.this, CollectionsListActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -610,7 +595,6 @@ public class MainActivity extends BaseActivity {
 
         if (tvNavAbout != null) {
             tvNavAbout.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 Intent intent = new Intent(MainActivity.this, AboutActivity.class);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -621,7 +605,6 @@ public class MainActivity extends BaseActivity {
         View bannerNewCollection = findViewById(R.id.wardrobeBannerContainer);
         if (bannerNewCollection != null) {
             bannerNewCollection.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 Intent intent = new Intent(MainActivity.this, CollectionsListActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -631,7 +614,6 @@ public class MainActivity extends BaseActivity {
         // Flash Sale Container Click
         if (flashSaleContainer != null) {
             flashSaleContainer.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 Intent intent = new Intent(MainActivity.this, FlashSaleActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -742,8 +724,6 @@ public class MainActivity extends BaseActivity {
 
             item.animate()
                     .alpha(isActive ? 1.0f : 0.5f)
-                    .scaleX(isActive ? 1.1f : 1.0f)
-                    .scaleY(isActive ? 1.1f : 1.0f)
                     .setDuration(250)
                     .start();
         }
