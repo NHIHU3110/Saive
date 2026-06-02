@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardBackgroundColor="@color/white"
+    app:cardBackgroundColor="@color/colorIvory"
     app:cardCornerRadius="0dp"
     app:cardElevation="0dp">
 
@@ -28,6 +28,7 @@
             android:layout_height="36dp"
             android:layout_margin="8dp"
             android:background="@drawable/bg_circle_white"
+            android:backgroundTint="@color/colorIvory"
             android:padding="8dp"
             android:src="@drawable/ic_favorite"
             app:layout_constraintEnd_toEndOf="parent"

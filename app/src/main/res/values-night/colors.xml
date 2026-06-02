@@ -23,4 +23,17 @@
     <color name="colorGrey">#999999</color>
 
     <color name="white">#2A2A2A</color>
+    <color name="colorAlwaysWhite">#FFFFFF</color>
+    <color name="colorAlwaysBlack">#000000</color>
+
+    <!-- Maroon elements → Beige in Dark Mode -->
+    <color name="colorMaroon">#D4C9B8</color>
+    <color name="colorCountdownText">#FFFFFF</color>
+    <color name="colorFlashProductName">#000000</color>
+
+    <!-- Colors for content on Maroon/Beige background (Adaptive) -->
+    <color name="colorOnMaroon">#1A1A1A</color>
+    <color name="colorOnMaroonSecondary">#901A1A1A</color>
+    <color name="colorOnMaroonDivider">#201A1A1A</color>
+    <color name="colorOnMaroonContainer">#151A1A1A</color>
 </resources>

@@ -30,7 +30,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0"
-                app:tint="@color/white" />
+                app:tint="@color/colorOnMaroon" />
 
             <TextView
                 android:id="@+id/tvTitle"
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/btn_checkout"
                 android:textSize="18sp"
-                android:textColor="@color/white"
+                android:textColor="@color/colorOnMaroon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -164,7 +164,7 @@
                     app:icon="@drawable/ic_arrow_right"
                     app:iconGravity="textStart"
                     app:iconPadding="0dp"
-                    app:iconTint="@color/white"
+                    app:iconTint="@color/colorOnMaroon"
                     app:cornerRadius="20dp"
                     android:backgroundTint="@color/colorMaroon"
                     app:layout_constraintBottom_toBottomOf="@id/tvSelectedCountry"
@@ -220,7 +220,7 @@
                     app:icon="@drawable/ic_arrow_right"
                     app:iconGravity="textStart"
                     app:iconPadding="0dp"
-                    app:iconTint="@color/white"
+                    app:iconTint="@color/colorOnMaroon"
                     app:cornerRadius="20dp"
                     android:backgroundTint="@color/colorMaroon"
                     app:layout_constraintBottom_toBottomOf="@id/tvSelectedCity"
@@ -276,7 +276,7 @@
                     app:icon="@drawable/ic_arrow_right"
                     app:iconGravity="textStart"
                     app:iconPadding="0dp"
-                    app:iconTint="@color/white"
+                    app:iconTint="@color/colorOnMaroon"
                     app:cornerRadius="20dp"
                     android:backgroundTint="@color/colorMaroon"
                     app:layout_constraintBottom_toBottomOf="@id/tvSelectedDistrict"
@@ -435,7 +435,7 @@
                     app:cardElevation="0dp"
                     app:strokeWidth="1dp"
                     app:strokeColor="@color/colorLightGray"
-                    app:cardBackgroundColor="@color/white">
+                    app:cardBackgroundColor="@color/colorIvory">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -539,7 +539,7 @@
                         app:cardElevation="0dp"
                         app:strokeWidth="1dp"
                         app:strokeColor="@color/colorLightGray"
-                        app:cardBackgroundColor="@color/white"
+                        app:cardBackgroundColor="@color/colorIvory"
                         android:clickable="true"
                         android:focusable="true">
 
@@ -590,7 +590,7 @@
                         app:cardElevation="0dp"
                         app:strokeWidth="1dp"
                         app:strokeColor="@color/colorLightGray"
-                        app:cardBackgroundColor="@color/white">
+                        app:cardBackgroundColor="@color/colorIvory">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -636,7 +636,7 @@
                         app:cardElevation="0dp"
                         app:strokeWidth="1dp"
                         app:strokeColor="@color/colorLightGray"
-                        app:cardBackgroundColor="@color/white">
+                        app:cardBackgroundColor="@color/colorIvory">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -771,9 +771,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:background="@drawable/bg_rounded_white_8dp"
-                android:backgroundTint="#20FFFFFF"
+                android:backgroundTint="@color/colorOnMaroonContainer"
                 android:text="@string/btn_continue_payment"
-                android:textColor="@color/white"
+                android:textColor="@color/colorOnMaroon"
                 android:textAllCaps="false"
                 android:textSize="16sp"
                 android:textStyle="bold"

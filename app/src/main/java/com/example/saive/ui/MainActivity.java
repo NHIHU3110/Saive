@@ -255,6 +255,24 @@ public class MainActivity extends BaseActivity {
 
         // Bắt đầu hiệu ứng vào cho UI chính
         startEntryAnimations();
+        updateStatusBar();
+    }
+
+    private void updateStatusBar() {
+        if (getWindow() != null) {
+            boolean isDarkMode = (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) 
+                    == Configuration.UI_MODE_NIGHT_YES;
+            
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorCotton));
+            
+            int flags = getWindow().getDecorView().getSystemUiVisibility();
+            if (isDarkMode) {
+                flags &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            } else {
+                flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            }
+            getWindow().getDecorView().setSystemUiVisibility(flags);
+        }
     }
 
     private void setupCartBadge() {

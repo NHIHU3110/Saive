@@ -23,7 +23,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/white"
+                app:tint="@color/colorOnMaroon"
                 android:alpha="0"
                 android:scaleX="0.5"
                 android:scaleY="0.5" />
@@ -35,7 +35,7 @@
         android:id="@+id/swipeForeground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/white"
+        app:cardBackgroundColor="@color/colorIvory"
         app:cardCornerRadius="0dp"
         app:cardElevation="0dp">
 

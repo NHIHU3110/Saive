@@ -3,6 +3,10 @@
     <!-- Basic Colors -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="colorAlwaysWhite">#FFFFFF</color>
+    <color name="colorAlwaysBlack">#000000</color>
+    <color name="colorCountdownText">#FFFFFF</color>
+    <color name="colorFlashProductName">#D4C9B8</color>
     <color name="colorNoirBlack">#1A1A1A</color>
 
     <!-- Brand / Theme Colors -->
@@ -32,6 +36,12 @@
     <color name="colorSandLight">#F2F0E9</color>
     <color name="colorActionBlue">#0047FF</color>
     <color name="colorGreen">#4CAF50</color>
+
+    <!-- Colors for content on Maroon background (Adaptive) -->
+    <color name="colorOnMaroon">#FFFFFF</color>
+    <color name="colorOnMaroonSecondary">#B0FFFFFF</color>
+    <color name="colorOnMaroonDivider">#20FFFFFF</color>
+    <color name="colorOnMaroonContainer">#15FFFFFF</color>
 
     <!-- Collection List Colors (Refined Pallette) -->
     <color name="colorCollectionMaroon">@color/colorMaroonBrand</color>

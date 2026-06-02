@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorCotton">
+    android:background="@color/colorCotton"
+    android:clipChildren="false"
+    android:clipToPadding="false">
 
     <LinearLayout
         android:id="@+id/topBar"
@@ -60,7 +62,7 @@
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
                 android:text="0"
-                android:textColor="@color/white"
+                android:textColor="@color/colorOnMaroon"
                 android:textSize="8sp"
                 android:textStyle="bold"
                 android:visibility="gone"
@@ -159,7 +161,7 @@
                 android:background="@drawable/bg_timer_box"
                 android:gravity="center"
                 android:text="00"
-                android:textColor="@color/white"
+                android:textColor="@color/colorCountdownText"
                 android:fontFamily="monospace"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -169,7 +171,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="4dp"
                 android:text=":"
-                android:textColor="@color/colorSand"
+                android:textColor="@color/colorCountdownText"
                 android:textStyle="bold" />
 
             <TextView
@@ -179,7 +181,7 @@
                 android:background="@drawable/bg_timer_box"
                 android:gravity="center"
                 android:text="11"
-                android:textColor="@color/white"
+                android:textColor="@color/colorCountdownText"
                 android:fontFamily="monospace"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -189,7 +191,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="4dp"
                 android:text=":"
-                android:textColor="@color/colorSand"
+                android:textColor="@color/colorCountdownText"
                 android:textStyle="bold" />
 
             <TextView
@@ -199,7 +201,7 @@
                 android:background="@drawable/bg_timer_box"
                 android:gravity="center"
                 android:text="33"
-                android:textColor="@color/white"
+                android:textColor="@color/colorCountdownText"
                 android:fontFamily="monospace"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -256,14 +258,12 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:alpha="0.5"
-                android:orientation="vertical"
-                android:clickable="true"
-                android:focusable="true">
+                android:orientation="vertical">
                 <ImageView
                     android:layout_width="@dimen/icon_size_nav"
                     android:layout_height="@dimen/icon_size_nav"
                     android:src="@drawable/ic_favorite"
-                    app:tint="@color/white" />
+                    app:tint="@color/colorOnMaroon" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -271,9 +271,10 @@
                     style="@style/TextAppearance.Saive.Nav"
                     android:textSize="10sp"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/colorOnMaroon" />
             </LinearLayout>
 
+            <!-- WARDROBE -->
             <LinearLayout
                 android:id="@+id/navWardrobe"
                 android:layout_width="0dp"
@@ -281,14 +282,12 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:alpha="0.5"
-                android:orientation="vertical"
-                android:clickable="true"
-                android:focusable="true">
+                android:orientation="vertical">
                 <ImageView
                     android:layout_width="@dimen/icon_size_nav"
                     android:layout_height="@dimen/icon_size_nav"
                     android:src="@mipmap/hangericon"
-                    app:tint="@color/white" />
+                    app:tint="@color/colorOnMaroon" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -296,9 +295,10 @@
                     style="@style/TextAppearance.Saive.Nav"
                     android:textSize="10sp"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/colorOnMaroon" />
             </LinearLayout>
 
+            <!-- Item 2: HOME (ACTIVE AREA) -->
             <LinearLayout
                 android:id="@+id/navHome"
                 android:layout_width="0dp"
@@ -309,8 +309,15 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="24dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.Saive.Nav"
+                    android:text="SAIVE"
+                    android:visibility="invisible"/>
             </LinearLayout>
 
+            <!-- NOTIFICATIONS -->
             <FrameLayout
                 android:id="@+id/navNotify"
                 android:layout_width="0dp"
@@ -319,16 +326,19 @@
                 android:alpha="0.5"
                 android:clickable="true"
                 android:focusable="true">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:orientation="vertical">
+
                     <ImageView
                         android:layout_width="@dimen/icon_size_nav"
                         android:layout_height="@dimen/icon_size_nav"
                         android:src="@drawable/ic_notifications"
-                        app:tint="@color/white" />
+                        app:tint="@color/colorOnMaroon" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -336,10 +346,23 @@
                         style="@style/TextAppearance.Saive.Nav"
                         android:textSize="10sp"
                         android:text="@string/nav_notify"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/colorOnMaroon" />
                 </LinearLayout>
+
+                <View
+                    android:id="@+id/notificationBadge"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/bg_rounded_white_8dp"
+                    android:backgroundTint="@color/colorSand"
+                    android:visibility="gone" />
+
             </FrameLayout>
 
+            <!-- PROFILE -->
             <LinearLayout
                 android:id="@+id/navProfile"
                 android:layout_width="0dp"
@@ -348,13 +371,14 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:alpha="0.5"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:gravity="center"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="@dimen/icon_size_nav"
                     android:layout_height="@dimen/icon_size_nav"
                     android:src="@drawable/ic_profile"
-                    app:tint="@color/white" />
+                    app:tint="@color/colorOnMaroon" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -362,21 +386,25 @@
                     style="@style/TextAppearance.Saive.Nav"
                     android:textSize="10sp"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/colorOnMaroon" />
             </LinearLayout>
+
         </LinearLayout>
 
+        <!-- SELECTION CIRCLE (At Home - Index 2 - Bias 0.5) -->
         <FrameLayout
             android:id="@+id/centerActionButton"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:background="@drawable/bg_circle_white"
             android:elevation="24dp"
+            android:transitionName="nav_circle"
             app:layout_constraintBottom_toBottomOf="@id/navItemsContainer"
             app:layout_constraintTop_toTopOf="@id/navItemsContainer"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5">
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -384,7 +412,9 @@
                 android:scaleType="fitCenter"
                 android:src="@mipmap/saive_logo"
                 app:tint="@color/colorMaroon" />
+
         </FrameLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
