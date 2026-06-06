@@ -34,9 +34,9 @@ import java.util.UUID;
 public class AddAddressActivity extends BaseActivity {
 
     private EditText etName, etPhone, etStreet;
-    private AutoCompleteTextView etCity, etDistrict;
-    private TextView chipHome, chipOffice, chipOther, tvTitle, tvSelectedCountry;
-    private View btnCountrySelector;
+    private TextView tvSelectedCity, tvSelectedDistrict, tvSelectedWard;
+    private TextView chipHome, chipOffice, chipOther, tvTitle;
+    private View btnCitySelector, btnDistrictSelector, btnWardSelector;
     private CheckBox cbDefault;
     private String selectedLabel = "Home";
     private String selectedCountry = "Vietnam";
@@ -61,18 +61,19 @@ public class AddAddressActivity extends BaseActivity {
         etName = findViewById(R.id.etFullName);
         etPhone = findViewById(R.id.etPhone);
         etStreet = findViewById(R.id.etStreet);
-        etCity = findViewById(R.id.etCity);
-        etDistrict = findViewById(R.id.etDistrict);
-        tvSelectedCountry = findViewById(R.id.tvSelectedCountry);
-        btnCountrySelector = findViewById(R.id.btnCountrySelector);
+        tvSelectedCity = findViewById(R.id.tvSelectedCity);
+        tvSelectedDistrict = findViewById(R.id.tvSelectedDistrict);
+        tvSelectedWard = findViewById(R.id.tvSelectedWard);
+        btnCitySelector = findViewById(R.id.btnCitySelector);
+        btnDistrictSelector = findViewById(R.id.btnDistrictSelector);
+        btnWardSelector = findViewById(R.id.btnWardSelector);
         cbDefault = findViewById(R.id.cbDefault);
         
         chipHome = findViewById(R.id.chipHome);
         chipOffice = findViewById(R.id.chipOffice);
         chipOther = findViewById(R.id.chipOther);
 
-        setupAutocomplete();
-        setupCountrySelector();
+        setupSelectors();
 
         editAddress = (Address) getIntent().getSerializableExtra("edit_address");
         if (editAddress != null) {
@@ -89,52 +90,41 @@ public class AddAddressActivity extends BaseActivity {
         findViewById(R.id.btnSaveAddress).setOnClickListener(v -> saveAddress());
     }
 
-    private void setupAutocomplete() {
-        String[] cities = getResources().getStringArray(R.array.cities_vn_array);
-        ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, cities);
-        etCity.setAdapter(cityAdapter);
+    private void setupSelectors() {
+        btnCitySelector.setOnClickListener(v -> showLocationDialog("City", com.example.saive.utils.LocationProvider.getProvinces(this)));
 
-        // Update districts based on city selection
-        etCity.setOnItemClickListener((parent, view, position, id) -> {
-            String selection = (String) parent.getItemAtPosition(position);
-            updateDistrictAdapter(selection);
+        btnDistrictSelector.setOnClickListener(v -> {
+            String city = tvSelectedCity.getText().toString();
+            if (city.equals("Chọn tỉnh thành")) {
+                ToastUtils.showCustomToast(this, "Vui lòng chọn tỉnh thành trước");
+                return;
+            }
+            showLocationDialog("District", com.example.saive.utils.LocationProvider.getDistricts(this, city));
+        });
+
+        btnWardSelector.setOnClickListener(v -> {
+            String city = tvSelectedCity.getText().toString();
+            String district = tvSelectedDistrict.getText().toString();
+            if (district.equals("Chọn quận huyện")) {
+                ToastUtils.showCustomToast(this, "Vui lòng chọn quận huyện trước");
+                return;
+            }
+            showLocationDialog("Ward", com.example.saive.utils.LocationProvider.getWards(this, city, district));
         });
     }
 
-    private void updateDistrictAdapter(String city) {
-        String[] districts;
-        if (city.contains("Ho Chi Minh") || city.contains("Hồ Chí Minh")) {
-            districts = getResources().getStringArray(R.array.districts_hcm_array);
-        } else if (city.contains("Hanoi") || city.contains("Hà Nội")) {
-            districts = getResources().getStringArray(R.array.districts_hanoi_array);
-        } else {
-            districts = new String[]{"District 1", "District 2", "District 3"};
-        }
-        ArrayAdapter<String> districtAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, districts);
-        etDistrict.setAdapter(districtAdapter);
-    }
-
-    private void setupCountrySelector() {
-        if (btnCountrySelector != null) {
-            btnCountrySelector.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                showCountryDialog();
-            });
-        }
-    }
-
-    private void showCountryDialog() {
-        String[] countries = getResources().getStringArray(R.array.countries_array);
-        
+    private void showLocationDialog(String type, List<String> options) {
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this, R.style.BottomSheetDialogTheme);
         View view = getLayoutInflater().inflate(R.layout.layout_bottom_sheet_menu, null, false);
-        
+
         TextView tvTitle = view.findViewById(R.id.tvSheetTitle);
-        tvTitle.setText(R.string.label_country);
-        
+        if (type.equals("City")) tvTitle.setText("Chọn tỉnh thành");
+        else if (type.equals("District")) tvTitle.setText("Chọn quận huyện");
+        else tvTitle.setText("Chọn phường xã");
+
         RecyclerView rvOptions = view.findViewById(R.id.rvSheetOptions);
         rvOptions.setLayoutManager(new LinearLayoutManager(this));
-        
+
         rvOptions.setAdapter(new RecyclerView.Adapter<OptionViewHolder>() {
             @androidx.annotation.NonNull
             @Override
@@ -145,17 +135,26 @@ public class AddAddressActivity extends BaseActivity {
 
             @Override
             public void onBindViewHolder(@androidx.annotation.NonNull OptionViewHolder holder, int position) {
-                holder.tvName.setText(countries[position]);
+                String option = options.get(position);
+                holder.tvName.setText(option);
                 holder.itemView.setOnClickListener(v -> {
-                    selectedCountry = countries[position];
-                    tvSelectedCountry.setText(selectedCountry);
+                    if (type.equals("City")) {
+                        tvSelectedCity.setText(option);
+                        tvSelectedDistrict.setText("Chọn quận huyện");
+                        tvSelectedWard.setText("Choose your ward/commune");
+                    } else if (type.equals("District")) {
+                        tvSelectedDistrict.setText(option);
+                        tvSelectedWard.setText("Choose your ward/commune");
+                    } else {
+                        tvSelectedWard.setText(option);
+                    }
                     bottomSheetDialog.dismiss();
                 });
             }
 
             @Override
             public int getItemCount() {
-                return countries.length;
+                return options.size();
             }
         });
 
@@ -183,15 +182,11 @@ public class AddAddressActivity extends BaseActivity {
         }
 
         etStreet.setText(address.getStreetAddress());
-        etCity.setText(address.getCity());
-        etDistrict.setText(address.getDistrict());
+        tvSelectedCity.setText(address.getCity());
+        tvSelectedDistrict.setText(address.getDistrict());
+        tvSelectedWard.setText(address.getWard());
         cbDefault.setChecked(address.isDefault());
         selectLabel(address.getLabel());
-        
-        if (address.getCountry() != null) {
-            selectedCountry = address.getCountry();
-            tvSelectedCountry.setText(selectedCountry);
-        }
     }
 
     private void selectLabel(String label) {
@@ -219,8 +214,9 @@ public class AddAddressActivity extends BaseActivity {
         String name = etName.getText().toString().trim();
         String phonePart = etPhone.getText().toString().trim();
         String street = etStreet.getText().toString().trim();
-        String city = etCity.getText().toString().trim();
-        String district = etDistrict.getText().toString().trim();
+        String city = tvSelectedCity.getText().toString().trim();
+        String district = tvSelectedDistrict.getText().toString().trim();
+        String ward = tvSelectedWard.getText().toString().trim();
         boolean isDefault = cbDefault.isChecked();
 
         // Validation
@@ -236,12 +232,16 @@ public class AddAddressActivity extends BaseActivity {
             etPhone.setError("Vui lòng nhập 9 chữ số");
             return;
         }
-        if (TextUtils.isEmpty(city)) {
-            etCity.setError(getString(R.string.error_required_field));
+        if (city.equals("Chọn tỉnh thành")) {
+            ToastUtils.showCustomToast(this, "Vui lòng chọn tỉnh thành");
             return;
         }
-        if (TextUtils.isEmpty(district)) {
-            etDistrict.setError(getString(R.string.error_required_field));
+        if (district.equals("Chọn quận huyện")) {
+            ToastUtils.showCustomToast(this, "Vui lòng chọn quận huyện");
+            return;
+        }
+        if (ward.equals("Choose your ward/commune")) {
+            ToastUtils.showCustomToast(this, "Vui lòng chọn phường xã");
             return;
         }
         if (TextUtils.isEmpty(street)) {
@@ -271,7 +271,7 @@ public class AddAddressActivity extends BaseActivity {
             // Update existing
             for (int i = 0; i < addressList.size(); i++) {
                 if (addressList.get(i).getId().equals(editAddress.getId())) {
-                    Address updated = new Address(editAddress.getId(), selectedLabel, name, fullPhone, street, city, district, isDefault);
+                    Address updated = new Address(editAddress.getId(), selectedLabel, name, fullPhone, street, ward, district, city, isDefault);
                     updated.setCountry(selectedCountry);
                     addressList.set(i, updated);
                     break;
@@ -280,7 +280,7 @@ public class AddAddressActivity extends BaseActivity {
         } else {
             // Add new
             String id = UUID.randomUUID().toString();
-            Address newAddr = new Address(id, selectedLabel, name, fullPhone, street, city, district, isDefault);
+            Address newAddr = new Address(id, selectedLabel, name, fullPhone, street, ward, district, city, isDefault);
             newAddr.setCountry(selectedCountry);
             addressList.add(newAddr);
         }

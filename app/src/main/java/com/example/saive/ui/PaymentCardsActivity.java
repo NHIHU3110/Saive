@@ -170,7 +170,9 @@ public class PaymentCardsActivity extends BaseActivity {
         } else {
             emptyState.setVisibility(View.GONE);
             rvPaymentCards.setVisibility(View.VISIBLE);
-            adapter = new PaymentCardAdapter(cardList);
+            adapter = new PaymentCardAdapter(cardList, card -> {
+                // Handle card selection if needed in this activity
+            });
             rvPaymentCards.setLayoutManager(new LinearLayoutManager(this));
             rvPaymentCards.setAdapter(adapter);
         }

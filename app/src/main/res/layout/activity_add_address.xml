@@ -168,108 +168,159 @@
                     android:textSize="14sp" />
             </LinearLayout>
 
-            <!-- Country Selector -->
-            <TextView
-                style="@style/TextAppearance.Saive.Nav"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/label_country"
-                android:textColor="@color/colorSand"
-                android:textSize="11sp" />
-
-            <RelativeLayout
-                android:id="@+id/btnCountrySelector"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/bg_edittext"
-                android:clickable="true"
-                android:focusable="true"
-                android:paddingHorizontal="16dp">
-
-                <TextView
-                    android:id="@+id/tvSelectedCountry"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toStartOf="@+id/ivCountryArrow"
-                    android:text="@string/hint_choose_country"
-                    android:textColor="@color/colorNoirBlack"
-                    android:textSize="14sp" />
-
-                <ImageView
-                    android:id="@+id/ivCountryArrow"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_chevron_down"
-                    app:tint="@color/colorSand" />
-            </RelativeLayout>
-
-            <!-- City and District -->
+            <!-- City, District, Ward -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="0dp"
+                <!-- Province Selector -->
+                <TextView
+                    style="@style/TextAppearance.Saive.Nav"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="8dp"
-                    android:orientation="vertical">
+                    android:text="@string/label_city"
+                    android:textColor="@color/colorSand"
+                    android:textSize="11sp" />
+
+                <RelativeLayout
+                    android:id="@+id/btnCitySelector"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_edittext"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:paddingHorizontal="16dp">
 
                     <TextView
-                        style="@style/TextAppearance.Saive.Nav"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/label_city"
-                        android:textColor="@color/colorSand"
-                        android:textSize="11sp" />
-
-                    <AutoCompleteTextView
-                        android:id="@+id/etCity"
+                        android:id="@+id/tvSelectedCity"
                         android:layout_width="match_parent"
-                        android:layout_height="52dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@drawable/bg_edittext"
-                        android:hint="@string/hint_city"
-                        android:paddingHorizontal="16dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@+id/ivCityArrow"
+                        android:text="@string/hint_choose_city"
                         android:textColor="@color/colorNoirBlack"
-                        android:textSize="14sp"
-                        android:completionThreshold="1" />
-                </LinearLayout>
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
-                <LinearLayout
-                    android:layout_width="0dp"
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/ivCityArrow"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:insetLeft="0dp"
+                        android:insetTop="0dp"
+                        android:insetRight="0dp"
+                        android:insetBottom="0dp"
+                        app:icon="@drawable/ic_arrow_right"
+                        app:iconGravity="textStart"
+                        app:iconPadding="0dp"
+                        app:iconTint="@color/white"
+                        app:cornerRadius="16dp"
+                        android:backgroundTint="@color/colorMaroon" />
+                </RelativeLayout>
+
+                <!-- District Selector -->
+                <TextView
+                    style="@style/TextAppearance.Saive.Nav"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="8dp"
-                    android:orientation="vertical">
+                    android:layout_marginTop="20dp"
+                    android:text="@string/label_district"
+                    android:textColor="@color/colorSand"
+                    android:textSize="11sp" />
+
+                <RelativeLayout
+                    android:id="@+id/btnDistrictSelector"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_edittext"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:paddingHorizontal="16dp">
 
                     <TextView
-                        style="@style/TextAppearance.Saive.Nav"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/label_district"
-                        android:textColor="@color/colorSand"
-                        android:textSize="11sp" />
-
-                    <AutoCompleteTextView
-                        android:id="@+id/etDistrict"
+                        android:id="@+id/tvSelectedDistrict"
                         android:layout_width="match_parent"
-                        android:layout_height="52dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@drawable/bg_edittext"
-                        android:hint="@string/hint_district"
-                        android:paddingHorizontal="16dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@+id/ivDistrictArrow"
+                        android:text="@string/hint_choose_district"
                         android:textColor="@color/colorNoirBlack"
-                        android:textSize="14sp"
-                        android:completionThreshold="1" />
-                </LinearLayout>
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/ivDistrictArrow"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:insetLeft="0dp"
+                        android:insetTop="0dp"
+                        android:insetRight="0dp"
+                        android:insetBottom="0dp"
+                        app:icon="@drawable/ic_arrow_right"
+                        app:iconGravity="textStart"
+                        app:iconPadding="0dp"
+                        app:iconTint="@color/white"
+                        app:cornerRadius="16dp"
+                        android:backgroundTint="@color/colorMaroon" />
+                </RelativeLayout>
+
+                <!-- Ward Selector -->
+                <TextView
+                    style="@style/TextAppearance.Saive.Nav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/label_ward"
+                    android:textColor="@color/colorSand"
+                    android:textSize="11sp" />
+
+                <RelativeLayout
+                    android:id="@+id/btnWardSelector"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_edittext"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:paddingHorizontal="16dp">
+
+                    <TextView
+                        android:id="@+id/tvSelectedWard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@+id/ivWardArrow"
+                        android:text="@string/hint_choose_ward"
+                        android:textColor="@color/colorNoirBlack"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/ivWardArrow"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:insetLeft="0dp"
+                        android:insetTop="0dp"
+                        android:insetRight="0dp"
+                        android:insetBottom="0dp"
+                        app:icon="@drawable/ic_arrow_right"
+                        app:iconGravity="textStart"
+                        app:iconPadding="0dp"
+                        app:iconTint="@color/white"
+                        app:cornerRadius="16dp"
+                        android:backgroundTint="@color/colorMaroon" />
+                </RelativeLayout>
+
             </LinearLayout>
 
             <!-- Street Address (Now at the end) -->

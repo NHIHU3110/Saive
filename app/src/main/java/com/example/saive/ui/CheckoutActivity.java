@@ -44,8 +44,8 @@ public class CheckoutActivity extends BaseActivity {
     private static final String KEY_ADDRESS = "address";
 
     private EditText etFullName, etPhone, etEmail, etAddress;
-    private TextView tvSelectedCountry, tvSelectedCity, tvSelectedDistrict;
-    private View btnCountrySelector, btnCitySelector, btnDistrictSelector;
+    private TextView tvSelectedCountry, tvSelectedCity, tvSelectedDistrict, tvSelectedWard;
+    private View btnCountrySelector, btnCitySelector, btnDistrictSelector, btnWardSelector;
     private CheckBox cbSaveInfo;
     private LinearLayout containerShipping, containerPayment, containerAddressSelection, llCountrySelector;
     private RecyclerView rvCheckoutAddresses;
@@ -55,14 +55,21 @@ public class CheckoutActivity extends BaseActivity {
     private RadioGroup rgPaymentMethods;
     private View layoutCod, layoutBank, layoutMomo, layoutZaloPay;
     private RadioButton rbCod, rbBank, rbMomo, rbZaloPay;
-    private TextView tvSummaryFullName, tvSummaryAddress, tvSummaryPhone, tvSummaryTotal;
+    private TextView tvSummaryFullName, tvSummaryAddress, tvSummaryPhone, tvSummarySize, tvSummaryTotal;
+    private com.google.android.material.card.MaterialCardView cardOrderSummary;
     private TextView tvDefaultAddressLabel, tvDefaultName, tvDefaultAddress, tvDefaultPhone;
     private View btnChangeAddress, btnAddAddress, layoutDefaultAddress;
+    private View layoutDefaultPaymentCard;
+    private TextView tvDefaultCardNumber, tvDefaultCardHolder;
+    private View btnAddPaymentCard, btnChangePaymentCard;
     private CheckoutAddressAdapter addressAdapter;
+    private com.example.saive.adapters.PaymentCardAdapter paymentCardAdapter;
     private List<Address> addressList = new ArrayList<>();
+    private List<com.example.saive.models.PaymentCard> savedCards = new ArrayList<>();
     private Address selectedAddress;
+    private com.example.saive.models.PaymentCard selectedCard;
     private boolean isPaymentStep = false;
-    private String totalPrice;
+    private String totalPrice, selectedSize;
     private double discount;
     private static final String ADDRESS_PREFS = "address_prefs";
     private static final String ADDRESS_KEY = "saved_addresses";
@@ -100,6 +107,7 @@ public class CheckoutActivity extends BaseActivity {
 
     private void loadIntentData() {
         totalPrice = getIntent().getStringExtra("total_price");
+        selectedSize = getIntent().getStringExtra("selected_size");
         discount = getIntent().getDoubleExtra("discount_rate", 0);
         if (totalPrice != null) {
             btnAction.setText(getString(R.string.btn_continue_payment) + " (" + totalPrice + ")");
@@ -144,16 +152,37 @@ public class CheckoutActivity extends BaseActivity {
                     break;
                 }
             }
-            showAddressSelectionStep();
+            showAddressSummaryStep();
         } else {
+            // Show shipping manual entry if no addresses
             showShippingStep();
-            loadSavedInfo();
+            if (llCountrySelector != null) llCountrySelector.setVisibility(View.GONE);
+            sectionTitle.setVisibility(View.VISIBLE);
+            sectionTitle.setText(R.string.checkout_shipping_title);
         }
     }
 
-    private void showAddressSelectionStep() {
+    private void showShippingStep() {
         isPaymentStep = false;
-        containerAddressSelection.setVisibility(View.GONE); // Use popup instead
+        containerShipping.setVisibility(View.VISIBLE);
+        containerPayment.setVisibility(View.GONE);
+        containerAddressSelection.setVisibility(View.GONE);
+        layoutDefaultAddress.setVisibility(View.GONE);
+        if (sectionTitle != null) {
+            sectionTitle.setVisibility(View.VISIBLE);
+            sectionTitle.setText(R.string.checkout_shipping_title);
+        }
+        btnAction.setVisibility(View.VISIBLE);
+        if (totalPrice != null) {
+            btnAction.setText(getString(R.string.btn_continue_payment) + " (" + totalPrice + ")");
+        } else {
+            btnAction.setText(R.string.btn_continue_payment);
+        }
+    }
+
+    private void showAddressSummaryStep() {
+        isPaymentStep = false;
+        containerAddressSelection.setVisibility(View.GONE);
         containerShipping.setVisibility(View.GONE);
         containerPayment.setVisibility(View.GONE);
         layoutDefaultAddress.setVisibility(View.VISIBLE);
@@ -163,7 +192,7 @@ public class CheckoutActivity extends BaseActivity {
 
         // Hide large selectors
         if (llCountrySelector != null) llCountrySelector.setVisibility(View.GONE);
-        sectionTitle.setVisibility(View.GONE);
+        if (sectionTitle != null) sectionTitle.setVisibility(View.GONE);
 
         if (totalPrice != null) {
             btnAction.setText(getString(R.string.btn_continue_payment) + " (" + totalPrice + ")");
@@ -199,9 +228,8 @@ public class CheckoutActivity extends BaseActivity {
 
         view.findViewById(R.id.btnAddNewAddress).setOnClickListener(v -> {
             bottomSheetDialog.dismiss();
-            showShippingStep();
-            if (llCountrySelector != null) llCountrySelector.setVisibility(View.VISIBLE);
-            sectionTitle.setVisibility(View.VISIBLE);
+            Intent intent = new Intent(this, AddAddressActivity.class);
+            startActivity(intent);
         });
 
         bottomSheetDialog.show();
@@ -281,6 +309,7 @@ public class CheckoutActivity extends BaseActivity {
             com.example.saive.utils.DataManager.getInstance(this).addPaymentCard(card);
             bottomSheetDialog.dismiss();
             ToastUtils.showCustomToast(this, "Card added successfully");
+            loadSavedCards();
         });
 
         bottomSheetDialog.show();
@@ -301,14 +330,14 @@ public class CheckoutActivity extends BaseActivity {
         etEmail = findViewById(R.id.etEmail);
         etAddress = findViewById(R.id.etAddress);
         
-        tvSelectedCountry = findViewById(R.id.tvSelectedCountry);
-        btnCountrySelector = findViewById(R.id.btnCountrySelector);
-        
         tvSelectedCity = findViewById(R.id.tvSelectedCity);
         btnCitySelector = findViewById(R.id.btnCitySelector);
         
         tvSelectedDistrict = findViewById(R.id.tvSelectedDistrict);
         btnDistrictSelector = findViewById(R.id.btnDistrictSelector);
+
+        tvSelectedWard = findViewById(R.id.tvSelectedWard);
+        btnWardSelector = findViewById(R.id.btnWardSelector);
         
         cbSaveInfo = findViewById(R.id.cbSaveInfo);
         
@@ -319,8 +348,7 @@ public class CheckoutActivity extends BaseActivity {
         containerAddressSelection = findViewById(R.id.containerAddressSelection);
         rvCheckoutAddresses = findViewById(R.id.rvCheckoutAddresses);
         btnAddFromCheckout = findViewById(R.id.btnAddFromCheckout);
-        llCountrySelector = findViewById(R.id.llCountrySelector);
-
+        
         sectionTitle = findViewById(R.id.sectionTitle);
         btnAction = findViewById(R.id.btnAction);
         rgPaymentMethods = findViewById(R.id.rgPaymentMethods);
@@ -337,10 +365,18 @@ public class CheckoutActivity extends BaseActivity {
 
         layoutAddCard = findViewById(R.id.layoutAddCard);
 
+        layoutDefaultPaymentCard = findViewById(R.id.layoutDefaultPaymentCard);
+        tvDefaultCardNumber = findViewById(R.id.tvDefaultCardNumber);
+        tvDefaultCardHolder = findViewById(R.id.tvDefaultCardHolder);
+        btnAddPaymentCard = findViewById(R.id.btnAddPaymentCard);
+        btnChangePaymentCard = findViewById(R.id.btnChangePaymentCard);
+
         tvSummaryFullName = findViewById(R.id.tvSummaryFullName);
         tvSummaryAddress = findViewById(R.id.tvSummaryAddress);
         tvSummaryPhone = findViewById(R.id.tvSummaryPhone);
+        tvSummarySize = findViewById(R.id.tvSummarySize);
         tvSummaryTotal = findViewById(R.id.tvSummaryTotal);
+        cardOrderSummary = findViewById(R.id.cardOrderSummary);
 
         layoutDefaultAddress = findViewById(R.id.layoutDefaultAddress);
         tvDefaultAddressLabel = findViewById(R.id.tvDefaultAddressLabel);
@@ -354,7 +390,7 @@ public class CheckoutActivity extends BaseActivity {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             if (isPaymentStep) {
                 if (containerAddressSelection.getVisibility() == View.VISIBLE) {
-                    showAddressSelectionStep();
+                    showAddressSummaryStep();
                 } else {
                     showShippingStep();
                 }
@@ -367,38 +403,17 @@ public class CheckoutActivity extends BaseActivity {
     }
 
     private void setupSelectors() {
-        // Country Selector
-        btnCountrySelector.setOnClickListener(v -> {
-            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-            showOptionsBottomSheet(getString(R.string.hint_choose_country),
-                getResources().getStringArray(R.array.countries_array),
-                selection -> {
-                    tvSelectedCountry.setText(selection);
-                    // Clear city and district when country changes
-                    tvSelectedCity.setText(R.string.hint_choose_city);
-                    tvSelectedDistrict.setText(R.string.hint_choose_district);
-                });
-        });
-        tvSelectedCountry.setOnClickListener(v -> {
-            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-            btnCountrySelector.performClick();
-        });
-
         // City Selector
         btnCitySelector.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-            String selectedCountry = tvSelectedCountry.getText().toString();
-            // Currently we only have city data for Vietnam
-            if (selectedCountry.equals("Vietnam") || selectedCountry.equals("Việt Nam") || selectedCountry.equals("越南")) {
-                showOptionsBottomSheet(getString(R.string.hint_choose_city),
-                        getResources().getStringArray(R.array.cities_vn_array),
-                        selection -> {
-                            tvSelectedCity.setText(selection);
-                            tvSelectedDistrict.setText(R.string.hint_choose_district);
-                        });
-            } else {
-                ToastUtils.showCustomToast(this, "Cities not available for selected country");
-            }
+            List<String> cities = com.example.saive.utils.LocationProvider.getProvinces(this);
+            showOptionsBottomSheet(getString(R.string.hint_choose_city),
+                    cities.toArray(new String[0]),
+                    selection -> {
+                        tvSelectedCity.setText(selection);
+                        tvSelectedDistrict.setText(R.string.hint_choose_district);
+                        tvSelectedWard.setText(R.string.hint_choose_ward);
+                    });
         });
         tvSelectedCity.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
@@ -409,24 +424,49 @@ public class CheckoutActivity extends BaseActivity {
         btnDistrictSelector.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             String selectedCity = tvSelectedCity.getText().toString();
-            String[] districts;
+            List<String> districts = com.example.saive.utils.LocationProvider.getDistricts(this, selectedCity);
             
-            if (selectedCity.equals("Ho Chi Minh City") || selectedCity.equals("Hồ Chí Minh") || selectedCity.equals("胡志明市")) {
-                districts = getResources().getStringArray(R.array.districts_hcm_array);
-            } else if (selectedCity.equals("Hanoi") || selectedCity.equals("Hà Nội") || selectedCity.equals("河内")) {
-                districts = getResources().getStringArray(R.array.districts_hanoi_array);
-            } else {
+            if (districts.isEmpty()) {
                 // Fallback for other cities
-                districts = new String[]{"District 1", "District 2", "District 3", "District 4", "District 5"};
+                districts = new ArrayList<>();
+                districts.add(selectedCity + " District 1");
+                districts.add(selectedCity + " District 2");
             }
 
             showOptionsBottomSheet(getString(R.string.hint_choose_district),
-                    districts,
-                    selection -> tvSelectedDistrict.setText(selection));
+                    districts.toArray(new String[0]),
+                    selection -> {
+                        tvSelectedDistrict.setText(selection);
+                        tvSelectedWard.setText(R.string.hint_choose_ward);
+                    });
         });
         tvSelectedDistrict.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             btnDistrictSelector.performClick();
+        });
+
+        // Ward Selector
+        btnWardSelector.setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            String selectedCity = tvSelectedCity.getText().toString();
+            String selectedDistrict = tvSelectedDistrict.getText().toString();
+            List<String> wards = com.example.saive.utils.LocationProvider.getWards(this, selectedCity, selectedDistrict);
+
+            if (wards.isEmpty()) {
+                // Generic mock wards for other districts
+                wards = new ArrayList<>();
+                wards.add(selectedDistrict + " Ward 1");
+                wards.add(selectedDistrict + " Ward 2");
+                wards.add(selectedDistrict + " Ward 3");
+            }
+
+            showOptionsBottomSheet(getString(R.string.hint_choose_ward),
+                    wards.toArray(new String[0]),
+                    selection -> tvSelectedWard.setText(selection));
+        });
+        tvSelectedWard.setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            btnWardSelector.performClick();
         });
     }
 
@@ -436,17 +476,23 @@ public class CheckoutActivity extends BaseActivity {
 
     private void showOptionsBottomSheet(String title, String[] options, OnOptionSelected callback) {
         com.google.android.material.bottomsheet.BottomSheetDialog bottomSheetDialog = 
-                new com.google.android.material.bottomsheet.BottomSheetDialog(this);
+                new com.google.android.material.bottomsheet.BottomSheetDialog(this, R.style.BottomSheetDialogTheme);
         View view = getLayoutInflater().inflate(R.layout.layout_bottom_sheet_menu, null, false);
         
         TextView tvTitle = view.findViewById(R.id.tvSheetTitle);
         tvTitle.setText(title);
+
+        EditText etSearch = view.findViewById(R.id.etSearchOption);
+        etSearch.setVisibility(View.VISIBLE);
         
         androidx.recyclerview.widget.RecyclerView rvOptions = view.findViewById(R.id.rvSheetOptions);
         rvOptions.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(this));
+
+        List<String> originalOptions = java.util.Arrays.asList(options);
+        List<String> filteredOptions = new ArrayList<>(originalOptions);
         
         // Simple adapter for the BottomSheet
-        rvOptions.setAdapter(new androidx.recyclerview.widget.RecyclerView.Adapter<OptionViewHolder>() {
+        androidx.recyclerview.widget.RecyclerView.Adapter adapter = new androidx.recyclerview.widget.RecyclerView.Adapter<OptionViewHolder>() {
             @androidx.annotation.NonNull
             @Override
             public OptionViewHolder onCreateViewHolder(@androidx.annotation.NonNull android.view.ViewGroup parent, int viewType) {
@@ -456,17 +502,35 @@ public class CheckoutActivity extends BaseActivity {
 
             @Override
             public void onBindViewHolder(@androidx.annotation.NonNull OptionViewHolder holder, int position) {
-                holder.tvName.setText(options[position]);
+                String option = filteredOptions.get(position);
+                holder.tvName.setText(option);
                 holder.itemView.setOnClickListener(v -> {
-                    callback.onSelected(options[position]);
+                    callback.onSelected(option);
                     bottomSheetDialog.dismiss();
                 });
             }
 
             @Override
             public int getItemCount() {
-                return options.length;
+                return filteredOptions.size();
             }
+        };
+
+        rvOptions.setAdapter(adapter);
+
+        etSearch.addTextChangedListener(new android.text.TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String query = s.toString().toLowerCase().trim();
+                filteredOptions.clear();
+                for (String option : originalOptions) {
+                    if (option.toLowerCase().contains(query)) {
+                        filteredOptions.add(option);
+                    }
+                }
+                adapter.notifyDataSetChanged();
+            }
+            @Override public void afterTextChanged(android.text.Editable s) {}
         });
 
         bottomSheetDialog.setContentView(view);
@@ -487,11 +551,6 @@ public class CheckoutActivity extends BaseActivity {
         etPhone.setText(prefs.getString(KEY_PHONE, ""));
         etEmail.setText(prefs.getString(KEY_EMAIL, ""));
         
-        String savedCountry = prefs.getString(KEY_COUNTRY, "");
-        if (!TextUtils.isEmpty(savedCountry)) {
-            tvSelectedCountry.setText(savedCountry);
-        }
-
         String savedCity = prefs.getString("city", "");
         if (!TextUtils.isEmpty(savedCity)) {
             tvSelectedCity.setText(savedCity);
@@ -500,6 +559,11 @@ public class CheckoutActivity extends BaseActivity {
         String savedDistrict = prefs.getString(KEY_DISTRICT, "");
         if (!TextUtils.isEmpty(savedDistrict)) {
             tvSelectedDistrict.setText(savedDistrict);
+        }
+
+        String savedWard = prefs.getString("ward", "");
+        if (!TextUtils.isEmpty(savedWard)) {
+            tvSelectedWard.setText(savedWard);
         }
 
         etAddress.setText(prefs.getString(KEY_ADDRESS, ""));
@@ -514,15 +578,24 @@ public class CheckoutActivity extends BaseActivity {
         if (btnAddAddress != null) {
             btnAddAddress.setOnClickListener(v -> {
                 v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                showShippingStep();
-                if (llCountrySelector != null) llCountrySelector.setVisibility(View.VISIBLE);
-                sectionTitle.setVisibility(View.VISIBLE);
+                Intent intent = new Intent(this, AddAddressActivity.class);
+                startActivity(intent);
             });
         }
 
         btnChangeAddress.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-            showAddressSelectionBottomSheet();
+            showAddressSummaryStep();
+        });
+
+        btnAddPaymentCard.setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            showAddCardBottomSheet();
+        });
+
+        btnChangePaymentCard.setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            showCardSelectionBottomSheet();
         });
 
         layoutAddCard.setOnClickListener(v -> {
@@ -550,7 +623,7 @@ public class CheckoutActivity extends BaseActivity {
         if (layoutAddCard != null) {
             layoutAddCard.setOnClickListener(v -> {
                 v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                startActivity(new Intent(CheckoutActivity.this, PaymentCardsActivity.class));
+                showAddCardBottomSheet();
             });
         }
 
@@ -577,9 +650,15 @@ public class CheckoutActivity extends BaseActivity {
             showShippingStep();
             
             // Show large selectors back
-            if (llCountrySelector != null) llCountrySelector.setVisibility(View.VISIBLE);
             sectionTitle.setVisibility(View.VISIBLE);
         });
+
+        if (cardOrderSummary != null) {
+            cardOrderSummary.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                showAddressSummaryStep();
+            });
+        }
 
         btnAction.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
@@ -603,6 +682,11 @@ public class CheckoutActivity extends BaseActivity {
         rbBank.setChecked(selectedRb == rbBank);
         rbMomo.setChecked(selectedRb == rbMomo);
         rbZaloPay.setChecked(selectedRb == rbZaloPay);
+        
+        if (paymentCardAdapter != null) {
+            selectedCard = null;
+            paymentCardAdapter.setSelectedCard(null);
+        }
     }
 
     private boolean validateShippingInfo() {
@@ -618,16 +702,16 @@ public class CheckoutActivity extends BaseActivity {
             etEmail.setError(getString(R.string.error_required_field));
             return false;
         }
-        if (tvSelectedCountry.getText().toString().contains("Choose")) {
-            ToastUtils.showCustomToast(this, "Please select a country");
-            return false;
-        }
         if (tvSelectedCity.getText().toString().contains("Choose")) {
             ToastUtils.showCustomToast(this, "Please select a city");
             return false;
         }
         if (tvSelectedDistrict.getText().toString().contains("Choose")) {
             ToastUtils.showCustomToast(this, "Please select a district");
+            return false;
+        }
+        if (tvSelectedWard.getText().toString().contains("Choose")) {
+            ToastUtils.showCustomToast(this, "Please select a ward");
             return false;
         }
         if (TextUtils.isEmpty(etAddress.getText())) {
@@ -643,11 +727,24 @@ public class CheckoutActivity extends BaseActivity {
         editor.putString(KEY_NAME, etFullName.getText().toString());
         editor.putString(KEY_PHONE, etPhone.getText().toString());
         editor.putString(KEY_EMAIL, etEmail.getText().toString());
-        editor.putString(KEY_COUNTRY, tvSelectedCountry.getText().toString());
         editor.putString("city", tvSelectedCity.getText().toString());
         editor.putString(KEY_DISTRICT, tvSelectedDistrict.getText().toString());
+        editor.putString("ward", tvSelectedWard.getText().toString());
         editor.putString(KEY_ADDRESS, etAddress.getText().toString());
         editor.apply();
+    }
+
+    private void showAddressSelectionStep() {
+        isPaymentStep = true;
+        containerShipping.setVisibility(View.GONE);
+        containerPayment.setVisibility(View.GONE);
+        layoutDefaultAddress.setVisibility(View.GONE);
+        containerAddressSelection.setVisibility(View.VISIBLE);
+        if (sectionTitle != null) {
+            sectionTitle.setVisibility(View.VISIBLE);
+            sectionTitle.setText(R.string.checkout_shipping_to);
+        }
+        btnAction.setVisibility(View.GONE);
     }
 
     private void showPaymentStep() {
@@ -657,6 +754,9 @@ public class CheckoutActivity extends BaseActivity {
         layoutDefaultAddress.setVisibility(View.GONE);
         containerPayment.setVisibility(View.VISIBLE);
         
+        // Load and show saved cards
+        loadSavedCards();
+
         // Hide the top section title as it's now inside containerPayment
         if (sectionTitle != null) sectionTitle.setVisibility(View.GONE);
 
@@ -669,11 +769,20 @@ public class CheckoutActivity extends BaseActivity {
             // Manually entered info
             tvSummaryFullName.setText(etFullName.getText().toString());
             String addressText = etAddress.getText().toString() + ", " +
+                    tvSelectedWard.getText().toString() + ", " +
                     tvSelectedDistrict.getText().toString() + ", " +
                     tvSelectedCity.getText().toString();
             tvSummaryAddress.setText(addressText);
             tvSummaryPhone.setText(etPhone.getText().toString());
         }
+        
+        if (selectedSize != null && !selectedSize.isEmpty()) {
+            tvSummarySize.setVisibility(View.VISIBLE);
+            tvSummarySize.setText(getString(R.string.label_size) + ": " + selectedSize);
+        } else {
+            tvSummarySize.setVisibility(View.GONE);
+        }
+
         tvSummaryTotal.setText(totalPrice != null ? totalPrice : "");
 
         if (totalPrice != null) {
@@ -683,23 +792,72 @@ public class CheckoutActivity extends BaseActivity {
         }
     }
 
-    private void showShippingStep() {
-        isPaymentStep = false;
-        containerShipping.setVisibility(View.VISIBLE);
-        containerAddressSelection.setVisibility(View.GONE);
-        containerPayment.setVisibility(View.GONE);
-        layoutDefaultAddress.setVisibility(View.GONE);
-        sectionTitle.setVisibility(View.VISIBLE);
-        sectionTitle.setText(R.string.checkout_shipping_title);
-        if (totalPrice != null) {
-            btnAction.setText(getString(R.string.btn_continue_payment) + " (" + totalPrice + ")");
+    private void showCardSelectionBottomSheet() {
+        com.google.android.material.bottomsheet.BottomSheetDialog bottomSheetDialog = 
+                new com.google.android.material.bottomsheet.BottomSheetDialog(this, R.style.BottomSheetDialogTheme);
+        View view = getLayoutInflater().inflate(R.layout.layout_address_selection_bottom_sheet, null);
+        bottomSheetDialog.setContentView(view);
+
+        TextView tvTitle = view.findViewById(R.id.tvBottomSheetTitle);
+        if (tvTitle != null) tvTitle.setText(R.string.payment_card_select_title);
+
+        RecyclerView rvCards = view.findViewById(R.id.rvBottomSheetAddresses);
+        rvCards.setLayoutManager(new LinearLayoutManager(this));
+
+        com.example.saive.adapters.PaymentCardAdapter adapter = new com.example.saive.adapters.PaymentCardAdapter(savedCards, card -> {
+            selectedCard = card;
+            updateDefaultCardUI();
+            rbCod.setChecked(false);
+            rbBank.setChecked(false);
+            rbMomo.setChecked(false);
+            rbZaloPay.setChecked(false);
+            bottomSheetDialog.dismiss();
+        });
+        adapter.setSelectedCard(selectedCard);
+        rvCards.setAdapter(adapter);
+
+        androidx.appcompat.widget.AppCompatButton btnAdd = view.findViewById(R.id.btnAddNewAddress);
+        if (btnAdd != null) {
+            btnAdd.setText(R.string.payment_method_add_card);
+            btnAdd.setOnClickListener(v -> {
+                bottomSheetDialog.dismiss();
+                showAddCardBottomSheet();
+            });
+        }
+
+        bottomSheetDialog.show();
+    }
+
+    private void updateDefaultCardUI() {
+        if (selectedCard != null) {
+            layoutDefaultPaymentCard.setVisibility(View.VISIBLE);
+            layoutAddCard.setVisibility(View.GONE);
+            btnChangePaymentCard.setVisibility(View.VISIBLE);
+            tvDefaultCardNumber.setText(selectedCard.getCardNumber());
+            tvDefaultCardHolder.setText(selectedCard.getCardHolderName());
         } else {
-            btnAction.setText(R.string.btn_continue_payment);
+            layoutDefaultPaymentCard.setVisibility(View.GONE);
+            layoutAddCard.setVisibility(View.VISIBLE);
+            btnChangePaymentCard.setVisibility(View.GONE);
+        }
+    }
+
+    private void loadSavedCards() {
+        savedCards = com.example.saive.utils.DataManager.getInstance(this).getPaymentCards();
+        if (savedCards != null && !savedCards.isEmpty()) {
+            if (selectedCard == null) {
+                selectedCard = savedCards.get(0);
+            }
+            updateDefaultCardUI();
+        } else {
+            layoutDefaultPaymentCard.setVisibility(View.GONE);
+            layoutAddCard.setVisibility(View.VISIBLE);
+            btnChangePaymentCard.setVisibility(View.GONE);
         }
     }
 
     private void processOrder() {
-        if (!rbCod.isChecked() && !rbBank.isChecked() && !rbMomo.isChecked() && !rbZaloPay.isChecked()) {
+        if (!rbCod.isChecked() && !rbBank.isChecked() && !rbMomo.isChecked() && !rbZaloPay.isChecked() && selectedCard == null) {
             ToastUtils.showCustomToast(this, "Please select a payment method");
             return;
         }

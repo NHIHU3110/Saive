@@ -206,9 +206,7 @@
     <string name="label_email">Email Address</string>
     <string name="label_address">Street Address</string>
     <string name="label_country">Country</string>
-    <string name="label_district">District / Province</string>
     <string name="hint_choose_country">Choose your country</string>
-    <string name="hint_choose_district">Choose your district</string>
     <string name="label_save_info">Save this information for next time</string>
     <string name="btn_continue_payment">CONTINUE TO PAYMENT</string>
     <string name="btn_place_order">PLACE ORDER</string>
@@ -224,14 +222,19 @@
     <string name="payment_zalopay_desc">Pay with your Zalo account</string>
     <string name="payment_cod_desc">Pay when you receive the package</string>
 
-    <string name="label_city">City</string>
-    <string name="hint_choose_city">Choose your city</string>
+    <string name="label_city">City / Province</string>
+    <string name="hint_choose_city">Choose your city/province</string>
+    <string name="label_district">District</string>
+    <string name="hint_choose_district">Choose your district</string>
+    <string name="label_ward">Ward / Commune</string>
+    <string name="hint_choose_ward">Choose your ward/commune</string>
     <string name="error_required_field">This field is required</string>
     <string name="error_invalid_email">Invalid email address</string>
     <string name="payment_method_cash">Cash</string>
     <string name="payment_method_card">Credit &amp; Debit Card</string>
     <string name="payment_method_add_card">Add Card</string>
     <string name="payment_method_more">More Payment Options</string>
+    <string name="payment_card_select_title">SELECT CARD</string>
     <string name="payment_success_title">ORDER PLACED SUCCESSFULLY</string>
     <string name="payment_success_desc">Thank you for choosing SAIVE. Your order has been received and is being prepared with care.</string>
     <string name="btn_continue_shopping">CONTINUE SHOPPING</string>
@@ -252,31 +255,138 @@
         <item>Ho Chi Minh City</item>
         <item>Hanoi</item>
         <item>Da Nang</item>
-        <item>Can Tho</item>
         <item>Hai Phong</item>
-        <item>Hue</item>
-        <item>Da Lat</item>
+        <item>Can Tho</item>
+        <item>An Giang</item>
+        <item>Ba Ria - Vung Tau</item>
+        <item>Bac Giang</item>
+        <item>Bac Kan</item>
+        <item>Bac Lieu</item>
+        <item>Bac Ninh</item>
+        <item>Ben Tre</item>
+        <item>Binh Dinh</item>
+        <item>Binh Duong</item>
+        <item>Binh Phuoc</item>
+        <item>Binh Thuan</item>
+        <item>Ca Mau</item>
+        <item>Cao Bang</item>
+        <item>Dak Lak</item>
+        <item>Dak Nong</item>
+        <item>Dien Bien</item>
+        <item>Dong Nai</item>
+        <item>Dong Thap</item>
+        <item>Gia Lai</item>
+        <item>Ha Giang</item>
+        <item>Ha Nam</item>
+        <item>Ha Tinh</item>
+        <item>Hai Duong</item>
+        <item>Hau Giang</item>
+        <item>Hoa Binh</item>
+        <item>Hung Yen</item>
+        <item>Khanh Hoa</item>
+        <item>Kien Giang</item>
+        <item>Kon Tum</item>
+        <item>Lai Chau</item>
+        <item>Lam Dong</item>
+        <item>Lang Son</item>
+        <item>Lao Cai</item>
+        <item>Long An</item>
+        <item>Nam Dinh</item>
+        <item>Nghe An</item>
+        <item>Ninh Binh</item>
+        <item>Ninh Thuan</item>
+        <item>Phu Tho</item>
+        <item>Phu Yen</item>
+        <item>Quang Binh</item>
+        <item>Quang Nam</item>
+        <item>Quang Ngai</item>
+        <item>Quang Ninh</item>
+        <item>Quang Tri</item>
+        <item>Soc Trang</item>
+        <item>Son La</item>
+        <item>Tay Ninh</item>
+        <item>Thai Binh</item>
+        <item>Thai Nguyen</item>
+        <item>Thanh Hoa</item>
+        <item>Thua Thien Hue</item>
+        <item>Tien Giang</item>
+        <item>Tra Vinh</item>
+        <item>Tuyen Quang</item>
+        <item>Vinh Long</item>
+        <item>Vinh Phuc</item>
+        <item>Yen Bai</item>
     </string-array>
 
     <string-array name="districts_hcm_array">
         <item>District 1</item>
         <item>District 3</item>
+        <item>District 4</item>
         <item>District 5</item>
+        <item>District 6</item>
         <item>District 7</item>
+        <item>District 8</item>
+        <item>District 10</item>
+        <item>District 11</item>
+        <item>District 12</item>
+        <item>Binh Tan District</item>
         <item>Binh Thanh District</item>
-        <item>Tan Binh District</item>
+        <item>Go Vap District</item>
         <item>Phu Nhuan District</item>
+        <item>Tan Binh District</item>
+        <item>Tan Phu District</item>
         <item>Thu Duc City</item>
+        <item>Binh Chanh District</item>
+        <item>Can Gio District</item>
+        <item>Cu Chi District</item>
+        <item>Hoc Mon District</item>
+        <item>Nha Be District</item>
+    </string-array>
+
+    <string-array name="wards_hcm_d1_array">
+        <item>Ben Nghe Ward</item>
+        <item>Ben Thanh Ward</item>
+        <item>Co Giang Ward</item>
+        <item>Cau Kho Ward</item>
+        <item>Cau Ong Lanh Ward</item>
+        <item>Da Kao Ward</item>
+        <item>Nguyen Cu Trinh Ward</item>
+        <item>Nguyen Thai Binh Ward</item>
+        <item>Pham Ngu Lao Ward</item>
+        <item>Tan Dinh Ward</item>
     </string-array>
 
     <string-array name="districts_hanoi_array">
-        <item>Hoan Kiem District</item>
         <item>Ba Dinh District</item>
+        <item>Bac Tu Liem District</item>
+        <item>Cau Giay District</item>
         <item>Dong Da District</item>
         <item>Hai Ba Trung District</item>
+        <item>Hoan Kiem District</item>
+        <item>Hoang Mai District</item>
+        <item>Long Bien District</item>
+        <item>Nam Tu Liem District</item>
         <item>Tay Ho District</item>
-        <item>Cau Giay District</item>
         <item>Thanh Xuan District</item>
+        <item>Ha Dong District</item>
+        <item>Son Tay Town</item>
+        <item>Ba Vi District</item>
+        <item>Chương Mỹ District</item>
+        <item>Dan Phuong District</item>
+        <item>Dong Anh District</item>
+        <item>Gia Lam District</item>
+        <item>Hoai Duc District</item>
+        <item>Me Linh District</item>
+        <item>My Duc District</item>
+        <item>Phu Xuyen District</item>
+        <item>Phuc Tho District</item>
+        <item>Quoc Oai District</item>
+        <item>Soc Son District</item>
+        <item>Thach That District</item>
+        <item>Quoc Oai District</item>
+        <item>Thanh Oai District</item>
+        <item>Thanh Tri District</item>
+        <item>Thuong Tin District</item>
+        <item>Ung Hoa District</item>
     </string-array>
     <!-- Address Management -->
     <string name="address_title">MY ADDRESSES</string>

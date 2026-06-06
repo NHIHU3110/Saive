@@ -206,9 +206,11 @@
     <string name="label_email">Địa chỉ Email</string>
     <string name="label_address">Địa chỉ cụ thể (Số nhà, tên đường)</string>
     <string name="label_country">Quốc gia</string>
-    <string name="label_district">Quận / Huyện / Tỉnh</string>
+    <string name="label_district">Quận / Huyện</string>
+    <string name="label_ward">Phường / Xã</string>
+    <string name="hint_choose_ward">Chọn phường/xã</string>
     <string name="hint_choose_country">Chọn quốc gia</string>
-    <string name="hint_choose_district">Chọn quận huyện</string>
+    <string name="hint_choose_district">Chọn quận/huyện</string>
     <string name="label_save_info">Lưu thông tin cho lần sau</string>
     <string name="btn_continue_payment">TIẾP TỤC THANH TOÁN</string>
     <string name="btn_place_order">ĐẶT HÀNG</string>
