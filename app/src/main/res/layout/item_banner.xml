@@ -53,7 +53,7 @@
             android:background="@color/colorMaroon"
             android:paddingHorizontal="32dp"
             android:paddingVertical="12dp"
-            android:text="VIEW COLLECTION"
+            android:text="@string/btn_view_collection"
             android:textColor="@color/colorCotton"
             android:textSize="11sp"
             android:textStyle="bold"

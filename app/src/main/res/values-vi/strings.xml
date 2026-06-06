@@ -512,5 +512,9 @@
     <string name="menu_payment_cards">Payment Cards</string>
     <string name="menu_empty_payment_cards">Empty Payment Cards</string>
     <string name="menu_dark_mode">Dark Mode</string>
+    <string name="btn_view_collection">XEM BỘ SƯU TẬP</string>
+    <string name="label_account_settings">CÀI ĐẶT TÀI KHOẢN</string>
+    <string name="label_preferences">TÙY CHỌN</string>
+    <string name="label_support_legal">HỖ TRỢ &amp; PHÁP LÝ</string>
 
 </resources>

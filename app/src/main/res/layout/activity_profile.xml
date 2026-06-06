@@ -170,7 +170,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/TextAppearance.Saive.Caption"
-                    android:text="ACCOUNT SETTINGS"
+                    android:text="@string/label_account_settings"
                     android:textColor="@color/colorSand"
                     android:textSize="10sp"
                     android:letterSpacing="0.2" />
@@ -367,7 +367,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
                     style="@style/TextAppearance.Saive.Caption"
-                    android:text="PREFERENCES"
+                    android:text="@string/label_preferences"
                     android:textColor="@color/colorSand"
                     android:textSize="10sp"
                     android:letterSpacing="0.2" />
@@ -490,7 +490,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
                     style="@style/TextAppearance.Saive.Caption"
-                    android:text="SUPPORT &amp; LEGAL"
+                    android:text="@string/label_support_legal"
                     android:textColor="@color/colorSand"
                     android:textSize="10sp"
                     android:letterSpacing="0.2" />
