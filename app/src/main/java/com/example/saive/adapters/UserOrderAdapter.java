@@ -80,9 +80,19 @@ public class UserOrderAdapter extends RecyclerView.Adapter<UserOrderAdapter.Orde
                 holder.tvSeeMore.setVisibility(View.VISIBLE);
                 holder.tvSeeMore.setText("Xem thêm (+" + (items.size() - 1) + " sản phẩm)");
                 holder.tvSeeMore.setOnClickListener(v -> {
-                    holder.tvSeeMore.setVisibility(View.GONE);
-                    for (int i = 1; i < holder.itemsContainer.getChildCount(); i++) {
-                        holder.itemsContainer.getChildAt(i).setVisibility(View.VISIBLE);
+                    boolean isExpanded = holder.itemsContainer.getChildAt(1).getVisibility() == View.VISIBLE;
+                    if (isExpanded) {
+                        // Thu gọn
+                        for (int i = 1; i < holder.itemsContainer.getChildCount(); i++) {
+                            holder.itemsContainer.getChildAt(i).setVisibility(View.GONE);
+                        }
+                        holder.tvSeeMore.setText("Xem thêm (+" + (items.size() - 1) + " sản phẩm)");
+                    } else {
+                        // Mở rộng
+                        for (int i = 1; i < holder.itemsContainer.getChildCount(); i++) {
+                            holder.itemsContainer.getChildAt(i).setVisibility(View.VISIBLE);
+                        }
+                        holder.tvSeeMore.setText("Thu gọn");
                     }
                 });
             } else {
