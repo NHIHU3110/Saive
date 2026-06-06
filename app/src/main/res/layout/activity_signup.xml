@@ -129,6 +129,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:hint="@string/label_confirm_password"
+                app:hintTextColor="@color/colorGrayText"
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etConfirmPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:inputType="textPassword"
+                    android:paddingHorizontal="0dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:hint="@string/label_phone"
                 app:hintTextColor="@color/colorGrayText">
 
@@ -141,15 +159,35 @@
                     android:paddingHorizontal="0dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <CheckBox
-                android:id="@+id/cbTerms"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:buttonTint="@color/colorMaroon"
-                android:text="@string/auth_terms_agree"
-                android:textColor="@color/colorGrayText"
-                android:textSize="12sp" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/cbTerms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/colorMaroon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/auth_terms_agree"
+                    android:textColor="@color/colorGrayText"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvTermsLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/auth_terms_link"
+                    android:textColor="@color/colorMaroon"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
         </LinearLayout>
 

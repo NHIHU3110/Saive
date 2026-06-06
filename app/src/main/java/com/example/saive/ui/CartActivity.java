@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
@@ -27,12 +28,14 @@ public class CartActivity extends BaseActivity {
     private RecyclerView rvCartItems;
     private View emptyStateCart;
     private TextView tvSubtotal, tvTotalPrice, tvDiscountValue;
-    private View layoutDiscount;
+    private View layoutDiscount, layoutExpandableDetails, layoutTotalToggle;
+    private ImageView ivExpandArrow;
     private EditText etCoupon;
     private View btnApplyCoupon;
     private CartAdapter adapter;
     private CartManager cartManager;
 
+    private boolean isSummaryExpanded = false;
     private double currentDiscountRate = 0;
     private String appliedCouponCode = "";
 
@@ -90,10 +93,20 @@ public class CartActivity extends BaseActivity {
         tvTotalPrice = findViewById(R.id.tvTotalPrice);
         tvDiscountValue = findViewById(R.id.tvDiscountValue);
         layoutDiscount = findViewById(R.id.layoutDiscount);
+        layoutExpandableDetails = findViewById(R.id.layoutExpandableDetails);
+        layoutTotalToggle = findViewById(R.id.layoutTotalToggle);
+        ivExpandArrow = findViewById(R.id.ivExpandArrow);
         etCoupon = findViewById(R.id.etCoupon);
         btnApplyCoupon = findViewById(R.id.btnApplyCoupon);
         View btnBack = findViewById(R.id.btnBack);
         View btnCheckout = findViewById(R.id.btnCheckout);
+
+        if (layoutTotalToggle != null) {
+            layoutTotalToggle.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                toggleSummaryExpansion();
+            });
+        }
 
         // Navigation Bar Items
         View navFavorite = findViewById(R.id.navFavorite);
@@ -253,7 +266,8 @@ public class CartActivity extends BaseActivity {
                 }
 
                 @Override
-                public void onQuantityChanged() {
+                public void onQuantityChanged(Product product) {
+                    cartManager.updateQuantity(product, product.getQuantity());
                     updateTotal();
                 }
 
@@ -322,6 +336,22 @@ public class CartActivity extends BaseActivity {
             dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         }
         dialog.show();
+    }
+
+    private void toggleSummaryExpansion() {
+        isSummaryExpanded = !isSummaryExpanded;
+        
+        if (layoutExpandableDetails != null) {
+            if (isSummaryExpanded) {
+                layoutExpandableDetails.setVisibility(View.VISIBLE);
+                if (ivExpandArrow != null) ivExpandArrow.setRotation(180);
+            } else {
+                layoutExpandableDetails.setVisibility(View.GONE);
+                if (ivExpandArrow != null) ivExpandArrow.setRotation(0);
+            }
+            
+            android.transition.TransitionManager.beginDelayedTransition(findViewById(R.id.checkoutContainer));
+        }
     }
 
     private void updateTotal() {

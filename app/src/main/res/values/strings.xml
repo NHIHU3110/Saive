@@ -89,6 +89,7 @@
     <string name="auth_login_title">Login</string>
     <string name="auth_signup_title">Sign up</string>
     <string name="label_password">Password</string>
+    <string name="label_confirm_password">Confirm Password</string>
     <string name="label_name">Name</string>
     <string name="label_phone">Phone number</string>
     <string name="checkout_select_address">Select Shipping Address</string>
@@ -101,7 +102,11 @@
     <string name="menu_remember_me">Remember me</string>
     <string name="auth_no_account">Don\'t have an account? Sign up</string>
     <string name="auth_has_account">Already have an account? Login</string>
-    <string name="auth_terms_agree">I agree the Terms &amp; Conditions</string>
+    <string name="auth_terms_agree">I agree the </string>
+    <string name="auth_terms_link">Terms &amp; Conditions</string>
+    <string name="terms_title">Terms &amp; Conditions</string>
+    <string name="terms_content">Welcome to SAIVE. By using our app, you agree to the following terms:\n\n1. Use of Service: You must provide accurate information.\n2. Privacy: Your data is protected per our policy.\n3. Content: All designs are property of SAIVE.\n4. Liability: We are not liable for indirect damages.\n\nThank you for choosing SAIVE.</string>
+    <string name="btn_close">Close</string>
     <string name="menu_delete_account">DELETE ACCOUNT</string>
     <string name="dialog_delete_account_title">Delete Account</string>
     <string name="dialog_delete_account_message">Are you sure you want to permanently delete your account? This action cannot be undone.</string>

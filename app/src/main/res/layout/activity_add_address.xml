@@ -139,19 +139,140 @@
                 android:textColor="@color/colorSand"
                 android:textSize="11sp" />
 
-            <EditText
-                android:id="@+id/etPhone"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_edittext"
-                android:hint="@string/hint_phone_number"
-                android:inputType="phone"
-                android:paddingHorizontal="16dp"
-                android:textColor="@color/colorNoirBlack"
-                android:textSize="14sp" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp">
 
-            <!-- Street Address -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+84"
+                    android:textColor="@color/colorSand"
+                    android:textSize="14sp"
+                    android:paddingEnd="8dp" />
+
+                <EditText
+                    android:id="@+id/etPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:hint="9 số còn lại"
+                    android:inputType="phone"
+                    android:maxLength="9"
+                    android:textColor="@color/colorNoirBlack"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Country Selector -->
+            <TextView
+                style="@style/TextAppearance.Saive.Nav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/label_country"
+                android:textColor="@color/colorSand"
+                android:textSize="11sp" />
+
+            <RelativeLayout
+                android:id="@+id/btnCountrySelector"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_edittext"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingHorizontal="16dp">
+
+                <TextView
+                    android:id="@+id/tvSelectedCountry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@+id/ivCountryArrow"
+                    android:text="@string/hint_choose_country"
+                    android:textColor="@color/colorNoirBlack"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/ivCountryArrow"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_chevron_down"
+                    app:tint="@color/colorSand" />
+            </RelativeLayout>
+
+            <!-- City and District -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearance.Saive.Nav"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_city"
+                        android:textColor="@color/colorSand"
+                        android:textSize="11sp" />
+
+                    <AutoCompleteTextView
+                        android:id="@+id/etCity"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/bg_edittext"
+                        android:hint="@string/hint_city"
+                        android:paddingHorizontal="16dp"
+                        android:textColor="@color/colorNoirBlack"
+                        android:textSize="14sp"
+                        android:completionThreshold="1" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearance.Saive.Nav"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_district"
+                        android:textColor="@color/colorSand"
+                        android:textSize="11sp" />
+
+                    <AutoCompleteTextView
+                        android:id="@+id/etDistrict"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/bg_edittext"
+                        android:hint="@string/hint_district"
+                        android:paddingHorizontal="16dp"
+                        android:textColor="@color/colorNoirBlack"
+                        android:textSize="14sp"
+                        android:completionThreshold="1" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Street Address (Now at the end) -->
             <TextView
                 style="@style/TextAppearance.Saive.Nav"
                 android:layout_width="wrap_content"
@@ -173,68 +294,6 @@
                 android:padding="16dp"
                 android:textColor="@color/colorNoirBlack"
                 android:textSize="14sp" />
-
-            <!-- City and District (Simplified as spinners or text for now) -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/TextAppearance.Saive.Nav"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/label_city"
-                        android:textColor="@color/colorSand"
-                        android:textSize="11sp" />
-
-                    <EditText
-                        android:id="@+id/etCity"
-                        android:layout_width="match_parent"
-                        android:layout_height="52dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@drawable/bg_edittext"
-                        android:hint="@string/hint_city"
-                        android:paddingHorizontal="16dp"
-                        android:textColor="@color/colorNoirBlack"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/TextAppearance.Saive.Nav"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/label_district"
-                        android:textColor="@color/colorSand"
-                        android:textSize="11sp" />
-
-                    <EditText
-                        android:id="@+id/etDistrict"
-                        android:layout_width="match_parent"
-                        android:layout_height="52dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@drawable/bg_edittext"
-                        android:hint="@string/hint_district"
-                        android:paddingHorizontal="16dp"
-                        android:textColor="@color/colorNoirBlack"
-                        android:textSize="14sp" />
-                </LinearLayout>
-            </LinearLayout>
 
             <CheckBox
                 android:id="@+id/cbDefault"

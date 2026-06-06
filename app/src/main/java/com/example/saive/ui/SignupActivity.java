@@ -1,6 +1,7 @@
 package com.example.saive.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -19,8 +20,9 @@ import com.example.saive.utils.ImageUtils;
 
 public class SignupActivity extends BaseActivity {
 
-    private EditText etName, etEmail, etPassword, etPhone;
+    private EditText etName, etEmail, etPassword, etConfirmPassword, etPhone;
     private CheckBox cbTerms;
+    private TextView tvTermsLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +47,10 @@ public class SignupActivity extends BaseActivity {
         etName = findViewById(R.id.etName);
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
+        etConfirmPassword = findViewById(R.id.etConfirmPassword);
         etPhone = findViewById(R.id.etPhone);
         cbTerms = findViewById(R.id.cbTerms);
+        tvTermsLink = findViewById(R.id.tvTermsLink);
         View btnSignup = findViewById(R.id.btnSignup);
         TextView tvLoginLink = findViewById(R.id.tvLoginLink);
 
@@ -56,6 +60,10 @@ public class SignupActivity extends BaseActivity {
                     performSignup();
                 }
             });
+        }
+
+        if (tvTermsLink != null) {
+            tvTermsLink.setOnClickListener(v -> showTermsPopup());
         }
 
         if (tvLoginLink != null) {
@@ -69,6 +77,7 @@ public class SignupActivity extends BaseActivity {
         String name = etName.getText().toString().trim();
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
+        String confirmPassword = etConfirmPassword.getText().toString().trim();
         String phone = etPhone.getText().toString().trim();
 
         if (TextUtils.isEmpty(name)) {
@@ -96,6 +105,11 @@ public class SignupActivity extends BaseActivity {
             return false;
         }
 
+        if (!password.equals(confirmPassword)) {
+            etConfirmPassword.setError("Passwords do not match");
+            return false;
+        }
+
         if (TextUtils.isEmpty(phone)) {
             etPhone.setError("Phone number is required");
             return false;
@@ -109,11 +123,40 @@ public class SignupActivity extends BaseActivity {
         return true;
     }
 
+    private void showTermsPopup() {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_terms, null);
+        builder.setView(dialogView);
+
+        android.app.AlertDialog dialog = builder.create();
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(android.graphics.Color.TRANSPARENT));
+        }
+
+        View btnClose = dialogView.findViewById(R.id.btnCloseTerms);
+        if (btnClose != null) {
+            btnClose.setOnClickListener(v -> dialog.dismiss());
+        }
+
+        dialog.show();
+    }
+
     private void performSignup() {
-        // TODO: Implement actual signup logic (Firebase/API)
-        showCustomToast("Signing up...");
+        String email = etEmail.getText().toString().trim();
+        String password = etPassword.getText().toString().trim();
+        String name = etName.getText().toString().trim();
+
+        // Lưu thông tin để có thể đăng nhập ở màn hình Login
+        SharedPreferences prefs = getSharedPreferences("user_prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("user_email", email);
+        editor.putString("user_password", password);
+        editor.putString("user_name", name);
+        editor.apply();
+
+        showCustomToast("Signup successful! Please login.");
         
-        Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+        Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();

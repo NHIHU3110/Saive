@@ -145,22 +145,20 @@ public class LoginActivity extends BaseActivity {
             return;
         }
 
-        // Đọc password hiện tại (mặc định là user123 nếu chưa reset)
         SharedPreferences prefs = getSharedPreferences("user_prefs", MODE_PRIVATE);
-        String currentPassword = prefs.getString("user_password", "user123");
+        String savedEmail = prefs.getString("user_email", "user@gmail.com");
+        String savedPassword = prefs.getString("user_password", "user123");
 
-        if (email.equals("user@gmail.com") && password.equals(currentPassword)) {
+        if (email.equals(savedEmail) && password.equals(savedPassword)) {
             SharedPreferences.Editor editor = prefs.edit();
             editor.putBoolean("is_logged_in", true);
-
+            editor.putString("saved_email", email);
+            editor.putString("saved_password", password);
+            
             if (cbRememberMe.isChecked()) {
                 editor.putBoolean("remember_me", true);
-                editor.putString("saved_email", email);
-                editor.putString("saved_password", password);
             } else {
                 editor.putBoolean("remember_me", false);
-                editor.remove("saved_email");
-                editor.remove("saved_password");
             }
 
             editor.apply();

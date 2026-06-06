@@ -517,6 +517,18 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
+                <!-- Payment Method Section Label Moved Here -->
+                <TextView
+                    android:id="@+id/tvPaymentMethodLabel"
+                    style="@style/TextAppearance.Saive.SectionHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/checkout_payment_title"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorNoirBlack"
+                    android:layout_marginBottom="16dp"
+                    android:textStyle="bold" />
+
                 <RadioGroup
                     android:id="@+id/rgPaymentMethods"
                     android:layout_width="match_parent"

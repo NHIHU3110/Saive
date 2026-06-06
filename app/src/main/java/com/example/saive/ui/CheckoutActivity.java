@@ -508,8 +508,9 @@ public class CheckoutActivity extends BaseActivity {
         containerShipping.setVisibility(View.GONE);
         containerAddressSelection.setVisibility(View.GONE);
         containerPayment.setVisibility(View.VISIBLE);
-        sectionTitle.setVisibility(View.VISIBLE);
-        sectionTitle.setText(R.string.checkout_payment_title);
+        
+        // Hide the top section title as it's now inside containerPayment
+        if (sectionTitle != null) sectionTitle.setVisibility(View.GONE);
 
         // Update Order Summary
         if (selectedAddress != null) {

@@ -56,7 +56,7 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnNegative"
-                style="@style/TextAppearance.Saive.Label"
+                style="@style/TextAppearance.Saive.Nav"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
@@ -65,11 +65,13 @@
                 android:text="Cancel"
                 android:textColor="@color/colorSand"
                 android:textAllCaps="false"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:letterSpacing="0.1"
+                android:stateListAnimator="@null" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnPositive"
-                style="@style/TextAppearance.Saive.Label"
+                style="@style/TextAppearance.Saive.Nav"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
@@ -79,7 +81,9 @@
                 android:textColor="@color/white"
                 android:textAllCaps="false"
                 android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:letterSpacing="0.1"
+                android:stateListAnimator="@null" />
 
         </LinearLayout>
     </LinearLayout>

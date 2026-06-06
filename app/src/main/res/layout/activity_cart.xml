@@ -86,79 +86,76 @@
         android:layout_height="wrap_content"
         android:background="@color/colorMaroon"
         android:paddingHorizontal="24dp"
-        android:paddingTop="24dp"
-        android:paddingBottom="32dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="24dp"
         android:elevation="16dp"
         app:layout_constraintBottom_toTopOf="@id/bottomNav">
 
-        <!-- Coupon Section -->
+        <!-- Expandable Summary Details -->
         <LinearLayout
-            android:id="@+id/couponContainer"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/bg_rounded_white_8dp"
-            android:backgroundTint="@color/colorOnMaroonContainer"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingStart="16dp"
-            android:paddingEnd="6dp"
-            android:transitionName="coupon_transition"
-            app:layout_constraintBottom_toTopOf="@id/layoutSummary"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_coupon"
-                app:tint="@color/colorOnMaroonSecondary" />
-
-            <EditText
-                android:id="@+id/etCoupon"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginStart="12dp"
-                android:background="@android:color/transparent"
-                android:hint="@string/promo_code_hint"
-                android:autofillHints="none"
-                android:imeOptions="actionDone"
-                android:inputType="textCapCharacters"
-                android:maxLines="1"
-                style="@style/TextAppearance.Saive.Nav"
-                android:textSize="13sp"
-                android:letterSpacing="0.05"
-                android:textColor="@color/colorOnMaroon"
-                android:textColorHint="@color/colorOnMaroonSecondary" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnApplyCoupon"
-                android:layout_width="wrap_content"
-                android:layout_height="44dp"
-                android:background="@drawable/bg_rounded_white_8dp"
-                android:backgroundTint="@color/colorOnMaroon"
-                android:text="@string/btn_apply"
-                android:textAllCaps="true"
-                android:textColor="@color/colorMaroon"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:paddingHorizontal="20dp"
-                android:elevation="2dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layoutSummary"
+            android:id="@+id/layoutExpandableDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginBottom="28dp"
-            app:layout_constraintBottom_toTopOf="@id/btnCheckout"
-            app:layout_constraintTop_toBottomOf="@id/couponContainer">
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Coupon Section -->
+            <LinearLayout
+                android:id="@+id/couponContainer"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/bg_rounded_white_8dp"
+                android:backgroundTint="@color/colorOnMaroonContainer"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingEnd="6dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_coupon"
+                    app:tint="@color/colorOnMaroonSecondary" />
+
+                <EditText
+                    android:id="@+id/etCoupon"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginStart="12dp"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/promo_code_hint"
+                    android:autofillHints="none"
+                    android:imeOptions="actionDone"
+                    android:inputType="textCapCharacters"
+                    android:maxLines="1"
+                    style="@style/TextAppearance.Saive.Nav"
+                    android:textSize="13sp"
+                    android:letterSpacing="0.05"
+                    android:textColor="@color/colorOnMaroon"
+                    android:textColorHint="@color/colorOnMaroonSecondary" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnApplyCoupon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:background="@drawable/bg_rounded_white_8dp"
+                    android:backgroundTint="@color/colorOnMaroon"
+                    android:text="@string/btn_apply"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorMaroon"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:paddingHorizontal="20dp"
+                    android:elevation="2dp" />
+            </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="14dp">
+                android:layout_marginBottom="12dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -166,8 +163,7 @@
                     style="@style/TextAppearance.Saive.Caption"
                     android:text="@string/label_item_total"
                     android:textColor="@color/colorOnMaroonSecondary"
-                    android:textSize="14sp"
-                    android:letterSpacing="0.02" />
+                    android:textSize="14sp" />
                 <TextView
                     android:id="@+id/tvSubtotal"
                     android:layout_width="wrap_content"
@@ -177,26 +173,23 @@
                     style="@style/TextAppearance.Saive.Nav"
                     android:text="0 ₫"
                     android:textColor="@color/colorOnMaroon"
-                    android:textSize="15sp"
-                    android:letterSpacing="0.05" />
+                    android:textSize="15sp" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/layoutDiscount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="14dp"
+                android:layout_marginBottom="12dp"
                 android:visibility="gone">
                 <TextView
-                    android:id="@+id/tvDiscountLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     style="@style/TextAppearance.Saive.Caption"
                     android:text="@string/label_discount"
                     android:textColor="@color/colorOnMaroonSecondary"
-                    android:textSize="14sp"
-                    android:letterSpacing="0.02" />
+                    android:textSize="14sp" />
                 <TextView
                     android:id="@+id/tvDiscountValue"
                     android:layout_width="wrap_content"
@@ -206,14 +199,13 @@
                     style="@style/TextAppearance.Saive.Nav"
                     android:text="-0 ₫"
                     android:textColor="@color/colorGreen"
-                    android:textSize="15sp"
-                    android:letterSpacing="0.05" />
+                    android:textSize="15sp" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp">
+                android:layout_marginBottom="12dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -221,8 +213,7 @@
                     style="@style/TextAppearance.Saive.Caption"
                     android:text="@string/label_delivery"
                     android:textColor="@color/colorOnMaroonSecondary"
-                    android:textSize="14sp"
-                    android:letterSpacing="0.02" />
+                    android:textSize="14sp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -238,41 +229,58 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:background="@color/colorOnMaroonDivider"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="16dp"
                 android:alpha="0.3" />
+        </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    style="@style/TextAppearance.Saive.Nav"
-                    android:text="@string/label_total"
-                    android:letterSpacing="0.02"
-                    android:textColor="@color/colorOnMaroon"
-                    android:textSize="17sp"
-                    android:textStyle="bold" />
-                <TextView
-                    android:id="@+id/tvTotalPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    style="@style/TextAppearance.Saive.Nav"
-                    android:text="0 ₫"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorOnMaroon"
-                    android:textSize="22sp"
-                    android:letterSpacing="0.02" />
-            </RelativeLayout>
+        <!-- Main Total Row (Always Visible) -->
+        <LinearLayout
+            android:id="@+id/layoutTotalToggle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingVertical="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground"
+            app:layout_constraintTop_toBottomOf="@id/layoutExpandableDetails">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                style="@style/TextAppearance.Saive.Nav"
+                android:text="@string/label_total"
+                android:letterSpacing="0.02"
+                android:textColor="@color/colorOnMaroon"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvTotalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                style="@style/TextAppearance.Saive.Nav"
+                android:text="0 ₫"
+                android:textStyle="bold"
+                android:textColor="@color/colorOnMaroon"
+                android:textSize="22sp" />
+
+            <ImageView
+                android:id="@+id/ivExpandArrow"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_chevron_down"
+                app:tint="@color/colorOnMaroon" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnCheckout"
             android:layout_width="match_parent"
             android:layout_height="56dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/bg_rounded_white_8dp"
             android:backgroundTint="@color/colorOnMaroonContainer"
             android:text="@string/btn_payment"
@@ -282,6 +290,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:stateListAnimator="@null"
+            app:layout_constraintTop_toBottomOf="@id/layoutTotalToggle"
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

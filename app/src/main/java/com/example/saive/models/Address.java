@@ -10,6 +10,7 @@ public class Address implements Serializable {
     private String streetAddress;
     private String city;
     private String district;
+    private String country;
     private boolean isDefault;
 
     public Address(String id, String label, String fullName, String phoneNumber, String streetAddress, String city, String district, boolean isDefault) {
@@ -21,6 +22,7 @@ public class Address implements Serializable {
         this.city = city;
         this.district = district;
         this.isDefault = isDefault;
+        this.country = "Vietnam"; // Default
     }
 
     public String getId() { return id; }
@@ -30,11 +32,13 @@ public class Address implements Serializable {
     public String getStreetAddress() { return streetAddress; }
     public String getCity() { return city; }
     public String getDistrict() { return district; }
+    public String getCountry() { return country; }
     public boolean isDefault() { return isDefault; }
 
     public void setDefault(boolean aDefault) { isDefault = aDefault; }
+    public void setCountry(String country) { this.country = country; }
 
     public String getFullDisplayAddress() {
-        return streetAddress + ", " + district + ", " + city;
+        return streetAddress + ", " + district + ", " + city + (country != null ? ", " + country : "");
     }
 }

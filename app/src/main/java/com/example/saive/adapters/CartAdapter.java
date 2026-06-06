@@ -28,7 +28,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     public interface OnCartChangeListener {
         void onRemove(int position);
-        void onQuantityChanged();
+        void onQuantityChanged(Product product);
         void onVariantClick(int position, Product product);
     }
 
@@ -91,22 +91,24 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         holder.btnPlus.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             int newQty = product.getQuantity() + 1;
-            animateQuantityChange(holder.tvQuantity, newQty, product);
+            product.setQuantity(newQty);
+            animateQuantityChange(holder.tvQuantity, newQty);
             holder.btnMinus.setEnabled(true);
             holder.btnMinus.setAlpha(1.0f);
-            if (listener != null) listener.onQuantityChanged();
+            if (listener != null) listener.onQuantityChanged(product);
         });
 
         holder.btnMinus.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             if (product.getQuantity() > 1) {
                 int newQty = product.getQuantity() - 1;
-                animateQuantityChange(holder.tvQuantity, newQty, product);
+                product.setQuantity(newQty);
+                animateQuantityChange(holder.tvQuantity, newQty);
                 if (newQty == 1) {
                     holder.btnMinus.setEnabled(false);
                     holder.btnMinus.setAlpha(0.3f);
                 }
-                if (listener != null) listener.onQuantityChanged();
+                if (listener != null) listener.onQuantityChanged(product);
             }
         });
 
@@ -216,14 +218,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         endAction.run();
     }
 
-    private void animateQuantityChange(TextView tv, int newQty, Product product) {
+    private void animateQuantityChange(TextView tv, int newQty) {
         AlphaAnimation fadeOut = new AlphaAnimation(1.0f, 0.0f);
         fadeOut.setDuration(150);
         fadeOut.setAnimationListener(new Animation.AnimationListener() {
             @Override public void onAnimationStart(Animation animation) {}
             @Override public void onAnimationRepeat(Animation animation) {}
             @Override public void onAnimationEnd(Animation animation) {
-                product.setQuantity(newQty);
                 tv.setText(String.valueOf(newQty));
                 AlphaAnimation fadeIn = new AlphaAnimation(0.0f, 1.0f);
                 fadeIn.setDuration(150);
