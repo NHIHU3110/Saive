@@ -42,9 +42,9 @@ public class ReviewManagementActivity extends BaseActivity {
         
         // Add sample data if empty for demo purposes
         if (reviewList.isEmpty()) {
-            reviewList.add(new Review("Alice Johnson", 5.0f, "Absolutely stunning design! The quality is top-notch.", "12 Oct 2023", null));
-            reviewList.add(new Review("Mark Spencer", 4.0f, "Great fit, but the delivery was a bit slow.", "15 Oct 2023", null));
-            reviewList.add(new Review("Sophie Chen", 2.0f, "Color doesn't match the picture well.", "20 Oct 2023", null));
+            reviewList.add(new Review("Classic Trench Coat", "Alice Johnson", 5.0f, "Absolutely stunning design! The quality is top-notch.", "12 Oct 2023", null));
+            reviewList.add(new Review("Modern Blazer", "Mark Spencer", 4.0f, "Great fit, but the delivery was a bit slow.", "15 Oct 2023", null));
+            reviewList.add(new Review("Silk Dress", "Sophie Chen", 2.0f, "Color doesn't match the picture well.", "20 Oct 2023", null));
             DataManager.getInstance(this).saveReviews(reviewList);
         }
 

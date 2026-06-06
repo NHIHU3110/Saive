@@ -52,6 +52,8 @@
     <string name="explore_piece">EXPLORE PIECE</string>
     <string name="add_to_wardrobe">ADD TO WARDROBE</string>
     <string name="added_to_wardrobe">IN WARDROBE</string>
+    <string name="btn_add_to_wardrobe">ADD TO WARDROBE</string>
+    <string name="btn_remove_wardrobe">REMOVE FROM WARDROBE</string>
 
     <!-- Editorial Card Titles -->
     <string name="editorial_title_1">TIMELESS CRAFT</string>
@@ -236,6 +238,22 @@
     <string name="error_select_district">Please select district</string>
     <string name="error_select_ward">Please select ward</string>
     <string name="error_invalid_email">Invalid email address</string>
+    <string name="tab_active">Active</string>
+    <string name="tab_completed">Completed</string>
+    <string name="tab_cancelled">Cancelled</string>
+    <string name="btn_track_order">Track Order</string>
+    <string name="btn_leave_review">Leave Review</string>
+    <string name="btn_reorder">Re-Order</string>
+    <string name="order_item_attributes">Size: %1$s | Qty: %2$dpcs</string>
+
+    <string name="error_name_required">Name is required</string>
+    <string name="error_email_required">Email is required</string>
+    <string name="error_password_required">Password is required</string>
+    <string name="error_password_short">Password must be at least 6 characters</string>
+    <string name="error_passwords_not_match">Passwords do not match</string>
+    <string name="error_phone_required">Phone number is required</string>
+    <string name="error_agree_terms">Please agree to the Terms &amp; Conditions</string>
+    <string name="toast_signup_success">Signup successful! Please login.</string>
     <string name="payment_method_cash">Cash</string>
     <string name="payment_method_card">Credit &amp; Debit Card</string>
     <string name="payment_method_add_card">Add Card</string>

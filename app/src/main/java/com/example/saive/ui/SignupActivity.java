@@ -81,42 +81,42 @@ public class SignupActivity extends BaseActivity {
         String phone = etPhone.getText().toString().trim();
 
         if (TextUtils.isEmpty(name)) {
-            etName.setError("Name is required");
+            etName.setError(getString(R.string.error_name_required));
             return false;
         }
 
         if (TextUtils.isEmpty(email)) {
-            etEmail.setError("Email is required");
+            etEmail.setError(getString(R.string.error_email_required));
             return false;
         }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            etEmail.setError("Please enter a valid email");
+            etEmail.setError(getString(R.string.error_invalid_email));
             return false;
         }
 
         if (TextUtils.isEmpty(password)) {
-            etPassword.setError("Password is required");
+            etPassword.setError(getString(R.string.error_password_required));
             return false;
         }
 
         if (password.length() < 6) {
-            etPassword.setError("Password must be at least 6 characters");
+            etPassword.setError(getString(R.string.error_password_short));
             return false;
         }
 
         if (!password.equals(confirmPassword)) {
-            etConfirmPassword.setError("Passwords do not match");
+            etConfirmPassword.setError(getString(R.string.error_passwords_not_match));
             return false;
         }
 
         if (TextUtils.isEmpty(phone)) {
-            etPhone.setError("Phone number is required");
+            etPhone.setError(getString(R.string.error_phone_required));
             return false;
         }
 
         if (!cbTerms.isChecked()) {
-            showCustomToast("Please agree to the Terms & Conditions");
+            showCustomToast(getString(R.string.error_agree_terms));
             return false;
         }
 
@@ -154,7 +154,7 @@ public class SignupActivity extends BaseActivity {
         editor.putString("user_name", name);
         editor.apply();
 
-        showCustomToast("Signup successful! Please login.");
+        showCustomToast(getString(R.string.toast_signup_success));
         
         Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

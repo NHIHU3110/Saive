@@ -53,17 +53,35 @@ public class CollectionDetailActivity extends BaseActivity {
         if (bottomNav == null) return;
 
         // Navigation Item Clicks
-        findViewById(R.id.navHome).setOnClickListener(v -> navigateToMain(""));
+        View navHome = findViewById(R.id.navHome);
+        if (navHome != null) {
+            navHome.setOnClickListener(v -> navigateToMain(""));
+        }
 
-        findViewById(R.id.centerActionButton).setOnClickListener(v -> navigateToMain(""));
+        View centerActionButton = findViewById(R.id.centerActionButton);
+        if (centerActionButton != null) {
+            centerActionButton.setOnClickListener(v -> navigateToMain(""));
+        }
 
-        findViewById(R.id.navProfile).setOnClickListener(v -> navigateToProfile());
+        View navProfile = findViewById(R.id.navProfile);
+        if (navProfile != null) {
+            navProfile.setOnClickListener(v -> navigateToProfile());
+        }
 
-        findViewById(R.id.navWardrobe).setOnClickListener(v -> navigateToMain("OPEN_WARDROBE"));
+        View navWardrobe = findViewById(R.id.navWardrobe);
+        if (navWardrobe != null) {
+            navWardrobe.setOnClickListener(v -> navigateToMain("OPEN_WARDROBE"));
+        }
         
-        findViewById(R.id.navFavorite).setOnClickListener(v -> navigateToMain("OPEN_FAVORITES"));
+        View navFavorite = findViewById(R.id.navFavorite);
+        if (navFavorite != null) {
+            navFavorite.setOnClickListener(v -> navigateToMain("OPEN_FAVORITES"));
+        }
         
-        findViewById(R.id.navNotify).setOnClickListener(v -> navigateToMain("OPEN_NOTIFICATIONS"));
+        View navNotify = findViewById(R.id.navNotify);
+        if (navNotify != null) {
+            navNotify.setOnClickListener(v -> navigateToMain("OPEN_NOTIFICATIONS"));
+        }
     }
 
     private void initViews() {

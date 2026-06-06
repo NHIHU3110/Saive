@@ -140,6 +140,10 @@
             android:name=".ui.NotificationManagementActivity"
             android:exported="false"
             android:theme="@style/Theme.Saive" />
+        <activity
+            android:name=".ui.LeaveReviewActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Saive" />
     </application>
 
 </manifest>

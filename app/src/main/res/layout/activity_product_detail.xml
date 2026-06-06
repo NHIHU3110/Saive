@@ -360,7 +360,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         style="@style/TextAppearance.Saive.Caption"
-                        android:text="CUSTOMER REVIEWS"
+                        android:text="@string/label_reviews"
                         android:textColor="@color/colorMaroon"
                         android:letterSpacing="0.2" />
 
@@ -370,7 +370,7 @@
                         android:layout_height="40dp"
                         android:backgroundTint="@color/colorMaroon"
                         android:paddingHorizontal="20dp"
-                        android:text="Write a review"
+                        android:text="@string/label_write_review"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:textSize="13sp"

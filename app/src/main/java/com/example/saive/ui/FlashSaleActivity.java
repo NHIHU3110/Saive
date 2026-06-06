@@ -98,6 +98,9 @@ public class FlashSaleActivity extends BaseActivity {
     }
 
     private void setupNavigation() {
+        View bottomNav = findViewById(R.id.bottomNav);
+        if (bottomNav == null) return;
+
         View navFavorite = findViewById(R.id.navFavorite);
         if (navFavorite != null) {
             navFavorite.setOnClickListener(v -> navigateToMain("SHOW_FAVORITES"));

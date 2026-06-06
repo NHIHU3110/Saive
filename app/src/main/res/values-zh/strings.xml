@@ -43,7 +43,7 @@
     <string name="nav_profile">个人资料</string>
     <string name="nav_search">搜索</string>
     <string name="nav_shop">商店</string>
-    <string name="nav_archive">COLLECTION</string>
+    <string name="nav_archive">系列</string>
     <string name="nav_about">关于</string>
     <string name="wardrobe_header">我的衣橱</string>
     <string name="wardrobe_empty_search_title">未找到单品</string>
@@ -89,6 +89,7 @@
     <string name="auth_login_title">登录</string>
     <string name="auth_signup_title">注册</string>
     <string name="label_password">密码</string>
+    <string name="label_confirm_password">确认密码</string>
     <string name="label_name">姓名</string>
     <string name="label_phone">电话号码</string>
     <string name="checkout_select_address">选择收货地址</string>
@@ -102,6 +103,10 @@
     <string name="auth_no_account">还没有账号？注册</string>
     <string name="auth_has_account">已有账号？登录</string>
     <string name="auth_terms_agree">我同意条款与条件</string>
+    <string name="auth_terms_link">条款与条件</string>
+    <string name="terms_title">条款与条件</string>
+    <string name="terms_content">欢迎来到 SAIVE。通过使用我们的应用程序，您同意以下条款：\n\n1. 服务使用：您必须提供准确的信息。\n2. 隐私：您的数据根据我们的政策受到保护。\n3. 内容：所有设计均归 SAIVE 所有。\n4. 责任：我们对间接损失不承担责任。\n\n感谢您选择 SAIVE。</string>
+    <string name="btn_close">关闭</string>
     <string name="menu_delete_account">删除账号</string>
     <string name="dialog_delete_account_title">删除账号</string>
     <string name="dialog_delete_account_message">您确定要永久删除您的账号吗？此操作无法撤销。</string>
