@@ -29,8 +29,8 @@ public class MyOrdersActivity extends BaseActivity {
         setContentView(R.layout.activity_my_orders);
 
         if (getWindow() != null) {
-            getWindow().setStatusBarColor(android.graphics.Color.WHITE);
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            getWindow().setStatusBarColor(getResources().getColor(R.color.colorMaroon));
+            getWindow().getDecorView().setSystemUiVisibility(0);
         }
 
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());

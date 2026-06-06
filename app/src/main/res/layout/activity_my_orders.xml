@@ -8,7 +8,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorBeigeBg"
+        android:background="@color/colorMaroon"
         app:elevation="0dp">
 
         <LinearLayout
@@ -26,7 +26,7 @@
                 android:layout_height="40dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_back"
-                app:tint="@color/colorNoirBlack" />
+                app:tint="@color/white" />
 
             <TextView
                 style="@style/TextAppearance.Saive.SectionHeader"
@@ -36,7 +36,7 @@
                 android:layout_marginEnd="40dp"
                 android:gravity="center"
                 android:text="@string/menu_my_orders"
-                android:textColor="@color/colorNoirBlack"
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -46,12 +46,12 @@
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabIndicatorColor="@color/colorMaroon"
-            app:tabSelectedTextColor="@color/colorMaroon"
-            app:tabTextColor="@color/colorGrayText"
+            app:tabIndicatorColor="@color/white"
+            app:tabSelectedTextColor="@color/white"
+            app:tabTextColor="@color/colorOnMaroonSecondary"
             app:tabIndicatorFullWidth="false"
             app:tabRippleColor="@android:color/transparent"
-            android:background="@color/colorBeigeBg"
+            android:background="@color/colorMaroon"
             app:tabMode="fixed" />
 
     </com.google.android.material.appbar.AppBarLayout>

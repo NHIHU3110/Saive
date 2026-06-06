@@ -8,7 +8,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorBeigeBg"
+        android:background="@color/colorMaroon"
         app:elevation="0dp">
 
         <LinearLayout
@@ -26,7 +26,7 @@
                 android:layout_height="40dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_back"
-                app:tint="@color/colorNoirBlack" />
+                app:tint="@color/white" />
 
             <TextView
                 style="@style/TextAppearance.Saive.SectionHeader"
@@ -36,7 +36,7 @@
                 android:layout_marginEnd="40dp"
                 android:gravity="center"
                 android:text="@string/track_order_title"
-                android:textColor="@color/colorNoirBlack"
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -77,7 +77,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Order Details"
+                android:text="@string/track_order_title"
                 android:textColor="@color/colorNoirBlack"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -90,7 +90,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Expected Delivery Date"
+                    android:text="@string/label_expected_delivery_date"
                     android:textColor="@color/colorGrayText"/>
                 <TextView
                     android:id="@+id/expectedDelivery"
@@ -109,7 +109,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tracking ID"
+                    android:text="@string/label_tracking_id"
                     android:textColor="@color/colorGrayText"/>
                 <TextView
                     android:id="@+id/orderId"
@@ -128,7 +128,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Payment Method"
+                    android:text="@string/label_payment_method"
                     android:textColor="@color/colorGrayText"/>
                 <TextView
                     android:id="@+id/paymentMethod"
@@ -148,7 +148,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Shipping Address"
+                    android:text="@string/label_shipping_address"
                     android:textColor="@color/colorGrayText"
                     android:layout_marginBottom="4dp"/>
                 <TextView
@@ -164,7 +164,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Order Status"
+                android:text="@string/label_order_status"
                 android:textColor="@color/colorNoirBlack"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -214,7 +214,7 @@
                             android:id="@+id/textPlaced"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Order Placed"
+                            android:text="@string/order_placed"
                             android:textColor="@color/colorNoirBlack"
                             android:textStyle="bold"/>
                         <TextView
@@ -269,7 +269,7 @@
                             android:id="@+id/textProgress"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="In Progress"
+                            android:text="@string/label_in_progress"
                             android:textColor="@color/colorNoirBlack"
                             android:textStyle="bold"/>
                         <TextView
@@ -324,7 +324,7 @@
                             android:id="@+id/textShipped"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Shipped"
+                            android:text="@string/order_status_shipped"
                             android:textColor="@color/colorGrayText"
                             android:textStyle="bold"/>
                         <TextView
@@ -373,7 +373,7 @@
                             android:id="@+id/textDelivered"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Delivered"
+                            android:text="@string/order_delivered_success"
                             android:textColor="@color/colorGrayText"
                             android:textStyle="bold"/>
                         <TextView

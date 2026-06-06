@@ -312,7 +312,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         style="@style/TextAppearance.Saive.Caption"
-                        android:text="QUANTITY"
+                        android:text="@string/label_quantity"
                         android:textColor="@color/colorMaroon" />
 
                     <LinearLayout
@@ -358,7 +358,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
                     style="@style/TextAppearance.Saive.Caption"
-                    android:text="Complete the Look"
+                    android:text="@string/label_complete_look"
                     android:textColor="@color/colorMaroon" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -499,7 +499,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 style="@style/TextAppearance.Saive.Nav"
-                android:text="ADD TO BAG"
+                android:text="@string/btn_add_to_bag"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textStyle="bold"

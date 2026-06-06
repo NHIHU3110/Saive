@@ -477,19 +477,19 @@
     <string name="btn_payment">Payment</string>
     <string name="promo_code_hint">Promo code</string>
     <!-- Coupon Screen -->
-    <string name="coupon_available_title">Voucher hiện có</string>
-    <string name="coupon_search_hint">Tìm kiếm ưu đãi...</string>
-    <string name="coupon_copy">SAO CHÉP</string>
-    <string name="coupon_valid_until">Hạn dùng: %1$s</string>
-    <string name="coupon_off">GIẢM</string>
-    <string name="coupon_no_coupons">CHƯA CÓ VOUCHER</string>
+    <string name="coupon_available_title">Available Vouchers</string>
+    <string name="coupon_search_hint">Search for offers...</string>
+    <string name="coupon_copy">COPY</string>
+    <string name="coupon_valid_until">Valid until: %1$s</string>
+    <string name="coupon_off">OFF</string>
+    <string name="coupon_no_coupons">NO VOUCHERS YET</string>
 
     <!-- Coupon Detail -->
-    <string name="coupon_detail_how_to">Cách sử dụng</string>
-    <string name="coupon_detail_steps">• Sao chép mã bên dưới.\n• Vào giỏ hàng hoặc trang thanh toán.\n• Dán mã vào ô \'Mã giảm giá\'.\n• Tận hưởng ưu đãi độc quyền từ Saive!</string>
-    <string name="coupon_detail_your_code">MÃ CỦA BẠN</string>
-    <string name="coupon_detail_copy_use">Sao chép &amp; Dùng ngay</string>
-    <string name="coupon_detail_welcome_desc">Nhận ưu đãi 20% cho đơn hàng đầu tiên</string>
+    <string name="coupon_detail_how_to">How to use</string>
+    <string name="coupon_detail_steps">• Copy the code below.\n• Go to your cart or checkout page.\n• Paste the code into the \'Coupon code\' box.\n• Enjoy exclusive offers from Saive!</string>
+    <string name="coupon_detail_your_code">YOUR CODE</string>
+    <string name="coupon_detail_copy_use">Copy &amp; Use Now</string>
+    <string name="coupon_detail_welcome_desc">Get 20% off on your first order</string>
 
     <!-- Address Labels -->
     <string name="label_address_label">Address Label</string>
@@ -732,4 +732,45 @@
     <string name="cat_orders">Orders</string>
     <string name="cat_system">System</string>
     <string name="cat_update">Update</string>
+    <string name="btn_add_to_bag">ADD TO BAG</string>
+    <string name="label_quantity">QUANTITY</string>
+    <string name="order_empty_title">NO ORDERS YET</string>
+    <string name="coupon_header">VOUCHERS</string>
+    <string name="admin_notification_mgmt">NOTIFICATION MGMT</string>
+    <string name="admin_review_mgmt">REVIEW MODERATION</string>
+    <string name="admin_login_title">LOGIN ADMIN</string>
+    <string name="admin_send_notification">SEND NOTIFICATION</string>
+    <string name="admin_create_notification">CREATE NOTIFICATION</string>
+    <string name="admin_send_broadcast">SEND BROADCAST</string>
+    <string name="label_select_option">SELECT OPTION</string>
+    <string name="hint_phone_remaining">9 remaining digits</string>
+    <string name="admin_no_reviews">No reviews to moderate</string>
+    <string name="hint_search_history">Search history...</string>
+    <string name="label_upload_images">UPLOAD IMAGES (MAX 3)</string>
+    <string name="hint_price_vnd">Price (VND)</string>
+    <string name="hint_sku">SKU</string>
+    <string name="hint_product_name">Product Name</string>
+    <string name="hint_material_story">Material Story &amp; Details</string>
+    <string name="label_add_photo">add photo</string>
+    <string name="label_how_is_order">How is your order?</string>
+    <string name="label_overall_rating">Your overall rating</string>
+    <string name="label_detailed_review">Add detailed review</string>
+    <string name="label_admin_premium_control">Premium Control Panel</string>
+    <string name="label_restricted_access">Restricted Access</string>
+    <string name="label_inventory_stock">Stock: %1$d</string>
+    <string name="label_midnight_curation">The Midnight Curation</string>
+    <string name="label_saive_footer">SAIVE v1.0.4 • EST 2022</string>
+    <string name="label_limited_time_drops">Limited Time Drops</string>
+    <string name="label_expected_delivery_date">Expected Delivery Date</string>
+    <string name="label_tracking_id">Tracking ID</string>
+    <string name="label_payment_method">Payment Method</string>
+    <string name="label_order_status">Order Status</string>
+    <string name="label_in_progress">In Progress</string>
+    <string name="label_view_more_products">View more (+%1$d products)</string>
+    <string name="label_added_to_cart">Added to cart</string>
+    <string name="label_products_vn">Sản phẩm</string>
+    <string name="label_expires_in_days">Expires in %1$d days</string>
+    <string name="label_add_new_card">Add New Card</string>
+    <string name="label_save_card">SAVE CARD</string>
+    <string name="label_card_details">Card Details</string>
 </resources>

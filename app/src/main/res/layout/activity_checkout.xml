@@ -149,7 +149,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:text="347/61 Minh Phung, Quan 11, Ho Chi Minh"
+                            tools:text="347/61 Minh Phung, Quan 11, Ho Chi Minh"
                             android:textColor="@color/colorGrayText"
                             android:textSize="13sp" />
 
@@ -158,7 +158,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:text="0366549188"
+                            tools:text="0366549188"
                             android:textColor="@color/colorGrayText"
                             android:textSize="13sp" />
 

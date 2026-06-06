@@ -21,10 +21,8 @@ public class OrderTrackingActivity extends BaseActivity {
         setContentView(R.layout.activity_order_tracking);
 
         if (getWindow() != null) {
-            getWindow().setStatusBarColor(getResources().getColor(R.color.colorBeigeBg));
-            getWindow().getDecorView().setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            );
+            getWindow().setStatusBarColor(getResources().getColor(R.color.colorMaroon));
+            getWindow().getDecorView().setSystemUiVisibility(0);
         }
 
         ImageView btnBack = findViewById(R.id.btnBack);

@@ -35,7 +35,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:letterSpacing="0.2"
-                android:text="Add New Card"
+                android:text="@string/label_add_new_card"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 style="@style/TextAppearance.Saive.Label"
-                android:text="Card Details"
+                android:text="@string/label_card_details"
                 android:textColor="@color/colorSand" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -164,7 +164,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:layout_marginTop="40dp"
-                android:text="SAVE CARD"
+                android:text="@string/label_save_card"
                 style="@style/TextAppearance.Saive.Nav"
                 android:textColor="@color/white"
                 android:letterSpacing="0.2"
