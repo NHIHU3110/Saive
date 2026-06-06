@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorMaroon"
+        app:liftOnScroll="false"
         app:elevation="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,6 +19,7 @@
             android:paddingHorizontal="16dp"
             android:paddingTop="54dp"
             android:paddingBottom="16dp">
+            <!-- ... nội dung title giữ nguyên ... -->
 
             <ImageView
                 android:id="@+id/btnBack"
@@ -60,7 +62,115 @@
             android:orientation="vertical"
             android:padding="24dp">
 
-            <!-- Address Selector / Saved Address -->
+            <!-- Default Address Section -->
+            <LinearLayout
+                android:id="@+id/layoutDefaultAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="24dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/TextAppearance.Saive.SectionHeader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Shipping Address"
+                        android:textColor="@color/colorMaroon"
+                        android:textSize="14sp"
+                        android:letterSpacing="0.1" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/btnAddAddress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ADD"
+                            android:textColor="@color/colorMaroon"
+                            android:textStyle="bold"
+                            android:textSize="12sp"
+                            android:padding="4dp"
+                            android:layout_marginEnd="8dp"/>
+
+                        <TextView
+                            android:id="@+id/btnChangeAddress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="CHANGE"
+                            android:textColor="@color/colorMaroon"
+                            android:textStyle="bold"
+                            android:textSize="12sp"
+                            android:padding="4dp" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/colorMaroon"
+                    app:cardBackgroundColor="@color/white">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:id="@+id/tvDefaultAddressLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="HOME"
+                            android:textColor="@color/colorMaroon"
+                            android:textStyle="bold"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tvDefaultName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="HUYNH THAO NHI"
+                            android:textColor="@color/colorNoirBlack"
+                            android:textStyle="bold"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tvDefaultAddress"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="347/61 Minh Phung, Quan 11, Ho Chi Minh"
+                            android:textColor="@color/colorGrayText"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/tvDefaultPhone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="0366549188"
+                            android:textColor="@color/colorGrayText"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!-- Hide the old address selector and country/city selectors if needed,
+                 or keep them as backup. I'll hide them for now to match the "default address" request -->
             <LinearLayout
                 android:id="@+id/containerAddressSelection"
                 android:layout_width="match_parent"
@@ -120,71 +230,17 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/llCountrySelector"
+                android:id="@+id/llCitySelector"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+                <!-- City Selector (Large Header Style) -->
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutCity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
                     android:paddingBottom="16dp">
-
-                <TextView
-                    android:id="@+id/tvCountryLabel"
-                    style="@style/TextAppearance.Saive.Header"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/label_country"
-                    android:textSize="12sp"
-                    android:alpha="0.6"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tvSelectedCountry"
-                    style="@style/TextAppearance.Saive.SectionHeader"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/hint_choose_country"
-                    android:textSize="22sp"
-                    android:layout_marginTop="4dp"
-                    app:layout_constraintEnd_toStartOf="@+id/btnCountrySelector"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvCountryLabel" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnCountrySelector"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:insetLeft="0dp"
-                    android:insetTop="0dp"
-                    android:insetRight="0dp"
-                    android:insetBottom="0dp"
-                    app:icon="@drawable/ic_arrow_right"
-                    app:iconGravity="textStart"
-                    app:iconPadding="0dp"
-                    app:iconTint="@color/colorOnMaroon"
-                    app:cornerRadius="20dp"
-                    android:backgroundTint="@color/colorMaroon"
-                    app:layout_constraintBottom_toBottomOf="@id/tvSelectedCountry"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tvSelectedCountry" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorLightGray"
-                android:layout_marginBottom="24dp" />
-
-            <!-- City Selector (Large Header Style) -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/layoutCity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="16dp">
 
                 <TextView
                     android:id="@+id/tvCityLabel"

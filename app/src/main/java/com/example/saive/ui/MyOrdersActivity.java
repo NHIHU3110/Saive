@@ -43,7 +43,11 @@ public class MyOrdersActivity extends BaseActivity {
             emptyState.setVisibility(View.GONE);
             rvOrders.setVisibility(View.VISIBLE);
             rvOrders.setLayoutManager(new LinearLayoutManager(this));
-            rvOrders.setAdapter(new UserOrderAdapter(orderList));
+            rvOrders.setAdapter(new UserOrderAdapter(orderList, order -> {
+                Intent intent = new Intent(MyOrdersActivity.this, OrderTrackingActivity.class);
+                intent.putExtra("orderId", order.getOrderId());
+                startActivity(intent);
+            }));
         }
     }
 }

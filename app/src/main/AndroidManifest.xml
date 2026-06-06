@@ -16,6 +16,9 @@
             android:name=".ui.PaymentCardsActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.AddPaymentCardActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.ResetPasswordActivity"
             android:exported="false" />
         <activity

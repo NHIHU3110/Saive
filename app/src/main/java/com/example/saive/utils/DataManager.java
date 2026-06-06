@@ -21,6 +21,7 @@ public class DataManager {
     private static final String KEY_USERS = "users";
     private static final String KEY_REVIEWS = "reviews";
     private static final String KEY_FLASH_SALE = "flash_sale";
+    private static final String KEY_PAYMENT_CARDS = "payment_cards";
 
     private static DataManager instance;
     private Context context;
@@ -80,6 +81,16 @@ public class DataManager {
 
     public void saveOrders(List<AdminOrder> orders) {
         prefs.edit().putString(KEY_ORDERS, gson.toJson(orders)).apply();
+    }
+
+    public AdminOrder getOrderById(String orderId) {
+        List<AdminOrder> orders = getOrders();
+        for (AdminOrder order : orders) {
+            if (order.getOrderId().equals(orderId)) {
+                return order;
+            }
+        }
+        return null;
     }
 
     public void updateOrderStatus(String orderId, String newStatus) {
@@ -173,5 +184,23 @@ public class DataManager {
 
     public String getFlashSale(String productId) {
         return prefs.getString(KEY_FLASH_SALE + "_" + productId, null);
+    }
+
+    // --- Payment Cards ---
+    public List<com.example.saive.models.PaymentCard> getPaymentCards() {
+        String json = prefs.getString(KEY_PAYMENT_CARDS, null);
+        if (json == null) return new ArrayList<>();
+        Type type = new TypeToken<ArrayList<com.example.saive.models.PaymentCard>>() {}.getType();
+        return gson.fromJson(json, type);
+    }
+
+    public void savePaymentCards(List<com.example.saive.models.PaymentCard> cards) {
+        prefs.edit().putString(KEY_PAYMENT_CARDS, gson.toJson(cards)).apply();
+    }
+
+    public void addPaymentCard(com.example.saive.models.PaymentCard card) {
+        List<com.example.saive.models.PaymentCard> cards = getPaymentCards();
+        cards.add(card);
+        savePaymentCards(cards);
     }
 }

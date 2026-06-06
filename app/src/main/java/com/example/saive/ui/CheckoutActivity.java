@@ -56,6 +56,8 @@ public class CheckoutActivity extends BaseActivity {
     private View layoutCod, layoutBank, layoutMomo, layoutZaloPay;
     private RadioButton rbCod, rbBank, rbMomo, rbZaloPay;
     private TextView tvSummaryFullName, tvSummaryAddress, tvSummaryPhone, tvSummaryTotal;
+    private TextView tvDefaultAddressLabel, tvDefaultName, tvDefaultAddress, tvDefaultPhone;
+    private View btnChangeAddress, btnAddAddress, layoutDefaultAddress;
     private CheckoutAddressAdapter addressAdapter;
     private List<Address> addressList = new ArrayList<>();
     private Address selectedAddress;
@@ -151,20 +153,137 @@ public class CheckoutActivity extends BaseActivity {
 
     private void showAddressSelectionStep() {
         isPaymentStep = false;
-        containerAddressSelection.setVisibility(View.VISIBLE);
+        containerAddressSelection.setVisibility(View.GONE); // Use popup instead
         containerShipping.setVisibility(View.GONE);
         containerPayment.setVisibility(View.GONE);
+        layoutDefaultAddress.setVisibility(View.VISIBLE);
         
-        // Hide large selectors in selection mode to focus on saved address
+        // Update the default card UI
+        updateDefaultAddressUI();
+
+        // Hide large selectors
         if (llCountrySelector != null) llCountrySelector.setVisibility(View.GONE);
         sectionTitle.setVisibility(View.GONE);
 
-        setupAddressList();
         if (totalPrice != null) {
             btnAction.setText(getString(R.string.btn_continue_payment) + " (" + totalPrice + ")");
         } else {
             btnAction.setText(R.string.btn_continue_payment);
         }
+    }
+
+    private void updateDefaultAddressUI() {
+        if (selectedAddress != null) {
+            tvDefaultAddressLabel.setText(selectedAddress.getLabel().toUpperCase());
+            tvDefaultName.setText(selectedAddress.getFullName());
+            tvDefaultAddress.setText(selectedAddress.getFullDisplayAddress());
+            tvDefaultPhone.setText(selectedAddress.getPhoneNumber());
+        }
+    }
+
+    private void showAddressSelectionBottomSheet() {
+        com.google.android.material.bottomsheet.BottomSheetDialog bottomSheetDialog = 
+                new com.google.android.material.bottomsheet.BottomSheetDialog(this, R.style.BottomSheetDialogTheme);
+        View view = getLayoutInflater().inflate(R.layout.layout_address_selection_bottom_sheet, null);
+        bottomSheetDialog.setContentView(view);
+
+        RecyclerView rvAddresses = view.findViewById(R.id.rvBottomSheetAddresses);
+        rvAddresses.setLayoutManager(new LinearLayoutManager(this));
+        
+        CheckoutAddressAdapter adapter = new CheckoutAddressAdapter(addressList, selectedAddress, address -> {
+            selectedAddress = address;
+            updateDefaultAddressUI();
+            bottomSheetDialog.dismiss();
+        });
+        rvAddresses.setAdapter(adapter);
+
+        view.findViewById(R.id.btnAddNewAddress).setOnClickListener(v -> {
+            bottomSheetDialog.dismiss();
+            showShippingStep();
+            if (llCountrySelector != null) llCountrySelector.setVisibility(View.VISIBLE);
+            sectionTitle.setVisibility(View.VISIBLE);
+        });
+
+        bottomSheetDialog.show();
+    }
+
+    private void showAddCardBottomSheet() {
+        com.google.android.material.bottomsheet.BottomSheetDialog bottomSheetDialog = 
+                new com.google.android.material.bottomsheet.BottomSheetDialog(this, R.style.BottomSheetDialogTheme);
+        View view = getLayoutInflater().inflate(R.layout.layout_add_card_bottom_sheet, null);
+        bottomSheetDialog.setContentView(view);
+
+        android.widget.EditText etCardNumber = view.findViewById(R.id.etCardNumber);
+        android.widget.EditText etCardHolder = view.findViewById(R.id.etCardHolder);
+        android.widget.EditText etExpiry = view.findViewById(R.id.etExpiry);
+        
+        TextView tvPreviewNumber = view.findViewById(R.id.tvCardNumber);
+        TextView tvPreviewHolder = view.findViewById(R.id.tvCardHolder);
+        TextView tvPreviewExpiry = view.findViewById(R.id.tvExpiryDate);
+
+        etCardNumber.addTextChangedListener(new android.text.TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String val = s.toString().replaceAll(" ", "");
+                if (val.isEmpty()) {
+                    tvPreviewNumber.setText("**** **** **** ****");
+                } else {
+                    StringBuilder formatted = new StringBuilder();
+                    for (int i = 0; i < val.length(); i++) {
+                        if (i > 0 && i % 4 == 0) formatted.append(" ");
+                        formatted.append(val.charAt(i));
+                    }
+                    tvPreviewNumber.setText(formatted.toString());
+                }
+            }
+            @Override public void afterTextChanged(android.text.Editable s) {}
+        });
+
+        etCardHolder.addTextChangedListener(new android.text.TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
+                tvPreviewHolder.setText(s.toString().isEmpty() ? "CARD HOLDER" : s.toString().toUpperCase());
+            }
+            @Override public void afterTextChanged(android.text.Editable s) {}
+        });
+
+        etExpiry.addTextChangedListener(new android.text.TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String input = s.toString();
+                if (input.length() == 2 && before < count && !input.contains("/")) {
+                    etExpiry.setText(input + "/");
+                    etExpiry.setSelection(etExpiry.getText().length());
+                }
+                tvPreviewExpiry.setText(s.toString().isEmpty() ? "MM/YY" : s.toString());
+            }
+            @Override public void afterTextChanged(android.text.Editable s) {}
+        });
+
+        view.findViewById(R.id.btnSaveCard).setOnClickListener(v -> {
+            String number = etCardNumber.getText().toString().trim();
+            String holder = etCardHolder.getText().toString().trim();
+            String expiry = etExpiry.getText().toString().trim();
+
+            if (number.length() < 12) {
+                ToastUtils.showCustomToast(this, "Invalid card number");
+                return;
+            }
+
+            com.example.saive.models.PaymentCard card = new com.example.saive.models.PaymentCard(
+                    String.valueOf(System.currentTimeMillis()),
+                    number,
+                    holder,
+                    expiry,
+                    "VISA"
+            );
+
+            com.example.saive.utils.DataManager.getInstance(this).addPaymentCard(card);
+            bottomSheetDialog.dismiss();
+            ToastUtils.showCustomToast(this, "Card added successfully");
+        });
+
+        bottomSheetDialog.show();
     }
 
     private void setupAddressList() {
@@ -222,6 +341,14 @@ public class CheckoutActivity extends BaseActivity {
         tvSummaryAddress = findViewById(R.id.tvSummaryAddress);
         tvSummaryPhone = findViewById(R.id.tvSummaryPhone);
         tvSummaryTotal = findViewById(R.id.tvSummaryTotal);
+
+        layoutDefaultAddress = findViewById(R.id.layoutDefaultAddress);
+        tvDefaultAddressLabel = findViewById(R.id.tvDefaultAddressLabel);
+        tvDefaultName = findViewById(R.id.tvDefaultName);
+        tvDefaultAddress = findViewById(R.id.tvDefaultAddress);
+        tvDefaultPhone = findViewById(R.id.tvDefaultPhone);
+        btnChangeAddress = findViewById(R.id.btnChangeAddress);
+        btnAddAddress = findViewById(R.id.btnAddAddress);
 
         findViewById(R.id.btnBack).setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
@@ -384,6 +511,25 @@ public class CheckoutActivity extends BaseActivity {
     }
 
     private void setupListeners() {
+        if (btnAddAddress != null) {
+            btnAddAddress.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                showShippingStep();
+                if (llCountrySelector != null) llCountrySelector.setVisibility(View.VISIBLE);
+                sectionTitle.setVisibility(View.VISIBLE);
+            });
+        }
+
+        btnChangeAddress.setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            showAddressSelectionBottomSheet();
+        });
+
+        layoutAddCard.setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            showAddCardBottomSheet();
+        });
+
         layoutCod.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             selectPaymentMethod(rbCod);
@@ -436,8 +582,9 @@ public class CheckoutActivity extends BaseActivity {
         });
 
         btnAction.setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             if (!isPaymentStep) {
-                if (containerAddressSelection.getVisibility() == View.VISIBLE) {
+                if (layoutDefaultAddress.getVisibility() == View.VISIBLE) {
                     showPaymentStep();
                 } else if (validateShippingInfo()) {
                     if (cbSaveInfo.isChecked()) {
@@ -507,6 +654,7 @@ public class CheckoutActivity extends BaseActivity {
         isPaymentStep = true;
         containerShipping.setVisibility(View.GONE);
         containerAddressSelection.setVisibility(View.GONE);
+        layoutDefaultAddress.setVisibility(View.GONE);
         containerPayment.setVisibility(View.VISIBLE);
         
         // Hide the top section title as it's now inside containerPayment
@@ -540,6 +688,7 @@ public class CheckoutActivity extends BaseActivity {
         containerShipping.setVisibility(View.VISIBLE);
         containerAddressSelection.setVisibility(View.GONE);
         containerPayment.setVisibility(View.GONE);
+        layoutDefaultAddress.setVisibility(View.GONE);
         sectionTitle.setVisibility(View.VISIBLE);
         sectionTitle.setText(R.string.checkout_shipping_title);
         if (totalPrice != null) {

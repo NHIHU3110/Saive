@@ -15,9 +15,15 @@ import java.util.List;
 public class UserOrderAdapter extends RecyclerView.Adapter<UserOrderAdapter.OrderViewHolder> {
 
     private List<AdminOrder> orderList;
+    private OnOrderClickListener listener;
 
-    public UserOrderAdapter(List<AdminOrder> orderList) {
+    public interface OnOrderClickListener {
+        void onOrderClick(AdminOrder order);
+    }
+
+    public UserOrderAdapter(List<AdminOrder> orderList, OnOrderClickListener listener) {
         this.orderList = orderList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -46,6 +52,12 @@ public class UserOrderAdapter extends RecyclerView.Adapter<UserOrderAdapter.Orde
         } else {
             holder.tvStatus.setTextColor(android.graphics.Color.GRAY);
         }
+
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onOrderClick(order);
+            }
+        });
     }
 
     @Override
