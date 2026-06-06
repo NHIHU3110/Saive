@@ -40,7 +40,7 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Product product = products.get(position);
         holder.tvName.setText(product.getName());
-        holder.tvPrice.setText(product.getPrice());
+        holder.tvPrice.setText(com.example.saive.utils.PriceFormatter.formatPrice(product.getPrice()));
         ImageUtils.setSafeImage(holder.ivProduct, product.getImageResId());
         
         // Mock stock

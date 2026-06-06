@@ -65,13 +65,20 @@ public class FlashSaleGridAdapter extends RecyclerView.Adapter<FlashSaleGridAdap
             holder.btnAddToCart.setColorFilter(textColor);
         }
         
-        // Discount badge mock logic (could be added to Product model later)
-        if (position % 2 == 0) {
-            holder.tvDiscount.setText(holder.itemView.getContext().getString(R.string.discount_format, 40));
+        // Discount badge logic
+        if (product.getOriginalPrice() != null) {
+            holder.tvDiscount.setVisibility(View.VISIBLE);
+            try {
+                double original = PriceFormatter.parsePrice(product.getOriginalPrice());
+                double current = PriceFormatter.parsePrice(product.getPrice());
+                int percent = (int) (100 - (current * 100 / original));
+                holder.tvDiscount.setText("-" + percent + "%");
+            } catch (Exception e) {
+                holder.tvDiscount.setText("SALE");
+            }
         } else {
-            holder.tvDiscount.setText(holder.itemView.getContext().getString(R.string.discount_format, 25));
+            holder.tvDiscount.setVisibility(View.GONE);
         }
-        holder.tvDiscount.setVisibility(View.VISIBLE);
 
         try {
             ImageUtils.setSafeImage(holder.ivProduct, product.getImageResId());

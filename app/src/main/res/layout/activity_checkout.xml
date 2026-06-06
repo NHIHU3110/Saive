@@ -705,27 +705,42 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
                             android:padding="16dp">
 
-                            <TextView
-                                android:id="@+id/tvDefaultCardNumber"
-                                style="@style/TextAppearance.Saive.Label"
-                                android:layout_width="wrap_content"
+                            <LinearLayout
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:textStyle="bold"
-                                android:textColor="@color/colorNoirBlack"
-                                tools:text="**** **** **** 4242" />
+                                android:layout_weight="1"
+                                android:orientation="vertical">
 
-                            <TextView
-                                android:id="@+id/tvDefaultCardHolder"
-                                style="@style/TextAppearance.Saive.Label"
+                                <TextView
+                                    android:id="@+id/tvDefaultCardNumber"
+                                    style="@style/TextAppearance.Saive.Label"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/colorNoirBlack"
+                                    android:textStyle="bold"
+                                    tools:text="**** **** **** 4242" />
+
+                                <TextView
+                                    android:id="@+id/tvDefaultCardHolder"
+                                    style="@style/TextAppearance.Saive.Label"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:alpha="0.7"
+                                    android:textColor="@color/colorNoirBlack"
+                                    tools:text="HUYNH THAO NHI" />
+                            </LinearLayout>
+
+                            <RadioButton
+                                android:id="@+id/rbDefaultCard"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:alpha="0.7"
-                                android:textColor="@color/colorNoirBlack"
-                                tools:text="HUYNH THAO NHI" />
+                                android:buttonTint="@color/colorMaroon"
+                                android:clickable="false" />
 
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>

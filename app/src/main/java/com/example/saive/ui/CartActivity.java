@@ -359,25 +359,19 @@ public class CartActivity extends BaseActivity {
         double discountAmount = subtotal * currentDiscountRate;
         double total = subtotal - discountAmount;
 
-        tvSubtotal.setText(formatCurrency(subtotal));
+        tvSubtotal.setText(com.example.saive.utils.PriceFormatter.formatPrice(subtotal));
         
         if (currentDiscountRate > 0) {
             layoutDiscount.setVisibility(View.VISIBLE);
-            tvDiscountValue.setText("-" + formatCurrency(discountAmount));
+            tvDiscountValue.setText("-" + com.example.saive.utils.PriceFormatter.formatPrice(discountAmount));
         } else {
             layoutDiscount.setVisibility(View.GONE);
         }
         
-        tvTotalPrice.setText(formatCurrency(total));
+        tvTotalPrice.setText(com.example.saive.utils.PriceFormatter.formatPrice(total));
     }
 
-    private String formatCurrency(double amount) {
-        DecimalFormatSymbols symbols = new DecimalFormatSymbols(new Locale("vi", "VN"));
-        symbols.setGroupingSeparator('.');
-        symbols.setDecimalSeparator(',');
-        DecimalFormat formatter = new DecimalFormat("#,###", symbols);
-        return formatter.format(amount) + " ₫";
-    }
+
 
     private void checkEmptyState() {
         if (cartManager.getCartItems().isEmpty()) {

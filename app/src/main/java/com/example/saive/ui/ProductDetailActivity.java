@@ -44,7 +44,7 @@ public class ProductDetailActivity extends BaseActivity {
     private ImageButton btnFavorite, btnShare;
     private View btnCart;
     private LottieAnimationView lottieFavorite;
-    private TextView tvProductName, tvPrice, tvDescription, tvWardrobeAction, btnWriteReview, btnSeeMore, tvCartBadge, tvQuantity;
+    private TextView tvProductName, tvPrice, tvOriginalPrice, tvDescription, tvWardrobeAction, btnWriteReview, btnSeeMore, tvCartBadge, tvQuantity;
     private View btnAddToWardrobe, sizeSelectionContainer, colorSelectionContainer;
     private ImageButton btnDecrease, btnIncrease;
     private RecyclerView rvCompleteLook, rvReviews;
@@ -126,6 +126,7 @@ public class ProductDetailActivity extends BaseActivity {
         
         tvProductName = findViewById(R.id.tvProductName);
         tvPrice = findViewById(R.id.tvPrice);
+        tvOriginalPrice = findViewById(R.id.tvOriginalPrice);
         tvDescription = findViewById(R.id.tvDescription);
         btnSeeMore = findViewById(R.id.btnSeeMore);
         btnWriteReview = findViewById(R.id.btnWriteReview);
@@ -170,18 +171,38 @@ public class ProductDetailActivity extends BaseActivity {
             currentProduct = new Product("Amor Mystique", "1.200.000 ₫", R.mipmap.model1, "Perfume");
         }
         
+        // Reset selections when opening detail to force user to choose
+        currentProduct.setSelectedSize(null);
+        currentProduct.setSelectedColor(null);
+        
         tvProductName.setText(currentProduct.getName());
         tvPrice.setText(PriceFormatter.formatPrice(currentProduct.getPrice()));
+        
+        if (currentProduct.getOriginalPrice() != null) {
+            tvOriginalPrice.setText(PriceFormatter.formatPrice(currentProduct.getOriginalPrice()));
+            tvOriginalPrice.setVisibility(View.VISIBLE);
+            tvOriginalPrice.setPaintFlags(tvOriginalPrice.getPaintFlags() | android.graphics.Paint.STRIKE_THRU_TEXT_FLAG);
+        } else {
+            tvOriginalPrice.setVisibility(View.GONE);
+        }
+
         tvDescription.setText(currentProduct.getDescription());
         ImageUtils.setSafeImage(ivHero, currentProduct.getImageResId());
 
         // Toggle Size/Color selection based on category
-        boolean isGlasses = currentProduct.getCategory() != null && currentProduct.getCategory().toLowerCase().contains("glasses");
-        if (sizeSelectionContainer != null) sizeSelectionContainer.setVisibility(isGlasses ? View.GONE : View.VISIBLE);
-        if (colorSelectionContainer != null) colorSelectionContainer.setVisibility(isGlasses ? View.VISIBLE : View.GONE);
+        String category = currentProduct.getCategory() != null ? currentProduct.getCategory().toLowerCase() : "";
+        boolean isGlasses = category.contains("glasses");
+        boolean isPerfume = category.contains("perfume");
+
+        if (sizeSelectionContainer != null) {
+            sizeSelectionContainer.setVisibility((isGlasses || isPerfume) ? View.GONE : View.VISIBLE);
+        }
+        if (colorSelectionContainer != null) {
+            colorSelectionContainer.setVisibility(isPerfume ? View.GONE : View.VISIBLE);
+        }
 
         // Check if already in wardrobe
-        isAddedToWardrobe = CartManager.getInstance(this).getCartItems().contains(currentProduct);
+        updateWardrobeStatus();
     }
 
     private void setupReviews() {
@@ -239,8 +260,8 @@ public class ProductDetailActivity extends BaseActivity {
         }
 
         if (btnWriteReview != null) {
-            boolean hasPurchased = checkProductPurchased();
-            btnWriteReview.setVisibility(hasPurchased ? View.VISIBLE : View.GONE);
+            // Tạm thời ẩn nút viết đánh giá theo yêu cầu
+            btnWriteReview.setVisibility(View.GONE);
             btnWriteReview.setOnClickListener(v -> showWriteReviewDialog());
         }
 
@@ -363,51 +384,68 @@ public class ProductDetailActivity extends BaseActivity {
         for (View view : views) {
             if (view != null) {
                 view.setOnClickListener(v -> {
-                    v.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK);
+                    // Hiệu ứng rung nhẹ
+                    v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+                    
+                    // Reset trạng thái các nút khác
                     for (View other : views) {
                         other.setSelected(false);
-                        if (!isSize) {
-                            // For colors, maybe remove a border
-                        }
                     }
+                    
+                    // Kích hoạt trạng thái chọn cho nút hiện tại
                     v.setSelected(true);
+                    
+                    if (isSize && v instanceof TextView) {
+                        TextView tv = (TextView) v;
+                        currentProduct.setSelectedSize(tv.getText().toString());
+                    } else if (!isSize && v.getTag() != null) {
+                        currentProduct.setSelectedColor(v.getTag().toString());
+                    }
+                    
+                    updateWardrobeStatus();
                 });
             }
         }
     }
 
-    private void toggleWardrobe() {
-        CartManager cartManager = CartManager.getInstance(this);
-        if (isAddedToWardrobe) {
-            cartManager.removeProduct(currentProduct);
-            ToastUtils.showCustomToast(this, "Removed from Wardrobe");
-        } else {
-            cartManager.addProduct(currentProduct, selectedQuantity);
-            ToastUtils.showCustomToast(this, "Added to Wardrobe");
-        }
-        isAddedToWardrobe = !isAddedToWardrobe;
+    private void updateWardrobeStatus() {
+        isAddedToWardrobe = CartManager.getInstance(this).isProductInCart(currentProduct);
         updateWardrobeUI();
     }
 
-    private void updateWardrobeUI() {
-        if (isAddedToWardrobe) {
-            btnAddToWardrobe.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.colorMaroon)));
-            ivWardrobeIcon.setColorFilter(ContextCompat.getColor(this, android.R.color.white));
-            tvWardrobeAction.setText(R.string.btn_remove_wardrobe);
-            tvWardrobeAction.setTextColor(ContextCompat.getColor(this, android.R.color.white));
-        } else {
-            btnAddToWardrobe.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, android.R.color.white)));
-            ivWardrobeIcon.setColorFilter(ContextCompat.getColor(this, R.color.colorMaroon));
-            tvWardrobeAction.setText(R.string.btn_add_to_wardrobe);
-            tvWardrobeAction.setTextColor(ContextCompat.getColor(this, R.color.colorMaroon));
+    private void toggleWardrobe() {
+        // Kiểm tra chọn size nếu container đang hiển thị
+        if (sizeSelectionContainer.getVisibility() == View.VISIBLE && currentProduct.getSelectedSize() == null) {
+            ToastUtils.showCustomToast(this, "Vui lòng chọn kích thước (Size)");
+            return;
         }
+        // Kiểm tra chọn màu nếu container đang hiển thị
+        if (colorSelectionContainer.getVisibility() == View.VISIBLE && currentProduct.getSelectedColor() == null) {
+            ToastUtils.showCustomToast(this, "Vui lòng chọn màu sắc (Color)");
+            return;
+        }
+
+        CartManager cartManager = CartManager.getInstance(this);
+        cartManager.addProduct(currentProduct, selectedQuantity);
+        ToastUtils.showCustomToast(this, "Added to Wardrobe");
+        
+        updateWardrobeStatus();
+    }
+
+    private void updateWardrobeUI() {
+        // Luôn hiển thị trạng thái ADD TO BAG để khuyến khích mua thêm
+        btnAddToWardrobe.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, android.R.color.white)));
+        ivWardrobeIcon.setColorFilter(ContextCompat.getColor(this, R.color.colorMaroon));
+        tvWardrobeAction.setText(R.string.btn_add_to_wardrobe);
+        tvWardrobeAction.setTextColor(ContextCompat.getColor(this, R.color.colorMaroon));
     }
 
     private void setupCompleteTheLook() {
         List<Product> products = new ArrayList<>();
-        products.add(new Product("L'Amour Luxe", "2.100.000 ₫", R.mipmap.model2, "Perfume"));
+        // Sản phẩm đang giảm giá (có giá gốc)
+        products.add(new Product("L'Amour Luxe", "1.450.000 ₫", "2.100.000 ₫", R.mipmap.model2, "Perfume"));
         products.add(new Product("Elite Essence", "1.850.000 ₫", R.mipmap.model1, "Perfume"));
-        products.add(new Product("Mystic Bloom", "1.500.000 ₫", R.mipmap.model2, "Perfume"));
+        products.add(new Product("Mystic Bloom", "990.000 ₫", "1.500.000 ₫", R.mipmap.model2, "Perfume"));
 
         FlashProductAdapter adapter = new FlashProductAdapter(products);
         

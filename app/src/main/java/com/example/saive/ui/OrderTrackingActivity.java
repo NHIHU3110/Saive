@@ -77,7 +77,13 @@ public class OrderTrackingActivity extends BaseActivity {
 
                         tvName.setText(item.getName());
                         tvPrice.setText(item.getPrice());
-                        tvAttributes.setText("Size: " + item.getSize() + " | Qty: " + item.getQuantity());
+                        String attributes = "Size: " + item.getSize();
+                        if (item.getColor() != null && !item.getColor().isEmpty()) {
+                            attributes += " | Color: " + item.getColor();
+                        }
+                        attributes += " | Qty: " + item.getQuantity();
+                        
+                        tvAttributes.setText(attributes);
                         ivItem.setImageResource(item.getImageResId() != 0 ? item.getImageResId() : R.mipmap.model1);
 
                         if (i > 0) {
@@ -119,7 +125,13 @@ public class OrderTrackingActivity extends BaseActivity {
 
                     tvName.setText(order.getItemsSummary());
                     tvPrice.setText(order.getTotalAmount());
-                    tvAttributes.setText("Size: " + order.getSize() + " | Qty: " + order.getQuantity());
+                    String attributes = "Size: " + order.getSize();
+                    if (order.getColor() != null && !order.getColor().isEmpty()) {
+                        attributes += " | Color: " + order.getColor();
+                    }
+                    attributes += " | Qty: " + order.getQuantity();
+                    
+                    tvAttributes.setText(attributes);
                     ivItem.setImageResource(order.getProductImageResId() != 0 ? order.getProductImageResId() : R.mipmap.model1);
                     
                     itemsContainer.addView(itemView);

@@ -226,12 +226,13 @@ public class FlashSaleActivity extends BaseActivity {
     private void setupProducts() {
         allProducts = DataManager.getInstance(this).getFlashSaleProducts();
         if (allProducts.isEmpty()) {
-            allProducts.add(new Product("NYLON WEATHER", "300000", R.mipmap.model1, getString(R.string.cat_all)));
-            allProducts.add(new Product("TWILL TEXTILE", "1000000", R.mipmap.model2, getString(R.string.cat_all)));
-            allProducts.add(new Product("STRUCTURED COAT", "4500000", R.mipmap.jacket1, getString(R.string.cat_jacket)));
-            allProducts.add(new Product("LINEN SHIRT", "1200000", R.mipmap.tshirt2, getString(R.string.cat_tshirt)));
-            allProducts.add(new Product("MODERN AVIATORS", "2100000", R.mipmap.sunglass1, getString(R.string.cat_sunglasses)));
-            allProducts.add(new Product("ARCHIVE PARKA", "5200000", R.mipmap.jacket2, getString(R.string.cat_jacket)));
+            allProducts.add(new Product("NYLON WEATHER", "300.000", "500.000", R.mipmap.model1, getString(R.string.cat_all)));
+            allProducts.add(new Product("TWILL TEXTILE", "1.000.000", "1.500.000", R.mipmap.model2, getString(R.string.cat_all)));
+            allProducts.add(new Product("STRUCTURED COAT", "4.500.000", "6.000.000", R.mipmap.jacket1, getString(R.string.cat_jacket)));
+            allProducts.add(new Product("LINEN SHIRT", "1.200.000", R.mipmap.tshirt2, getString(R.string.cat_tshirt)));
+            allProducts.add(new Product("MODERN AVIATORS", "2.100.000", "2.800.000", R.mipmap.sunglass1, getString(R.string.cat_sunglasses)));
+            allProducts.add(new Product("ARCHIVE PARKA", "5.200.000", R.mipmap.jacket2, getString(R.string.cat_jacket)));
+            DataManager.getInstance(this).saveFlashSaleProducts(allProducts);
         }
 
         adapter = new FlashSaleGridAdapter(allProducts);

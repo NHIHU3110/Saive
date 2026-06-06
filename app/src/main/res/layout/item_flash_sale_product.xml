@@ -10,11 +10,11 @@
         android:id="@+id/cardProduct"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:cardCornerRadius="0dp"
+        app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
         app:strokeWidth="0dp"
         app:cardBackgroundColor="@color/colorNoirBlack"
-        app:layout_constraintDimensionRatio="1:1.4"
+        app:layout_constraintDimensionRatio="3:4"
         app:layout_constraintTop_toTopOf="parent">
 
         <FrameLayout
@@ -33,10 +33,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top|start"
-                android:layout_margin="12dp"
+                android:layout_margin="8dp"
                 android:background="@color/colorMaroon"
-                android:paddingHorizontal="8dp"
-                android:paddingVertical="4dp"
+                android:paddingHorizontal="6dp"
+                android:paddingVertical="2dp"
                 android:text="-40%"
                 style="@style/TextAppearance.Saive.Caption"
                 android:textColor="@color/colorOnMaroon"
@@ -50,7 +50,7 @@
                 android:layout_height="28dp"
                 android:layout_gravity="top|end"
                 android:layout_margin="8dp"
-                android:background="@drawable/bg_square_trans"
+                android:background="@android:color/transparent"
                 android:padding="4dp"
                 android:src="@drawable/ic_favorite"
                 app:tint="@color/white"
@@ -61,84 +61,39 @@
 
     <TextView
         android:id="@+id/tvProductName"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="4dp"
+        android:layout_marginTop="8dp"
         style="@style/TextAppearance.Saive.ProductTitle"
         android:text="NYLON WEATHER"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:textColor="@color/colorFlashProductName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/quantityContainer"
         app:layout_constraintTop_toBottomOf="@id/cardProduct" />
 
     <TextView
-        android:id="@+id/tvProductPrice"
-        android:layout_width="0dp"
+        android:id="@+id/tvOriginalPrice"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="4dp"
-        style="@style/TextAppearance.Saive.Thin"
-        android:text="$30.00 USD"
-        android:textColor="@color/colorFlashProductName"
+        android:layout_marginTop="2dp"
+        android:fontFamily="sans-serif-light"
+        tools:text="400.000 đ"
+        android:textColor="@color/colorGrayText"
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/quantityContainer"
         app:layout_constraintTop_toBottomOf="@id/tvProductName" />
 
-    <LinearLayout
-        android:id="@+id/quantityContainer"
-        android:layout_width="wrap_content"
-        android:layout_height="28dp"
-        android:background="@drawable/bg_rounded_white_8dp"
-        android:backgroundTint="#15FFFFFF"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingHorizontal="4dp"
-        app:layout_constraintBottom_toBottomOf="@id/tvProductPrice"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvProductName">
-
-        <ImageButton
-            android:id="@+id/btnDecrease"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_minus"
-            android:padding="4dp"
-            android:scaleType="fitCenter"
-            app:tint="@color/colorCotton" />
-
-        <TextView
-            android:id="@+id/tvQuantity"
-            android:layout_width="20dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="1"
-            android:textColor="@color/colorCotton"
-            android:textSize="11sp"
-            android:textStyle="bold" />
-
-        <ImageButton
-            android:id="@+id/btnIncrease"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_plus"
-            android:padding="4dp"
-            android:scaleType="fitCenter"
-            app:tint="@color/colorCotton" />
-
-        <ImageButton
-            android:id="@+id/btnAddToCart"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="2dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:padding="4dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_cart"
-            app:tint="@color/colorCotton" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/tvProductPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        style="@style/TextAppearance.Saive.Thin"
+        android:text="$30.00 USD"
+        android:textColor="@color/colorMaroon"
+        android:textSize="11sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvOriginalPrice" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

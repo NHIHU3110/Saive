@@ -76,25 +76,29 @@ public class CartManager {
     public void addProduct(Product product, int quantity) {
         boolean exists = false;
         for (Product item : cartItems) {
-            if (item.getName().equals(product.getName())) {
+            // Kiểm tra trùng cả Tên, Size và Màu sắc
+            if (isSameVariant(item, product)) {
                 item.setQuantity(item.getQuantity() + quantity);
                 exists = true;
                 break;
             }
         }
         if (!exists) {
-            product.setQuantity(quantity);
-            cartItems.add(product);
+            // Tạo một bản sao để tránh tham chiếu đến đối tượng cũ
+            Product newProduct = new Product(product.getName(), product.getPrice(), product.getOriginalPrice(), product.getImageResId(), product.getCategory());
+            newProduct.setSelectedSize(product.getSelectedSize());
+            newProduct.setSelectedColor(product.getSelectedColor());
+            newProduct.setQuantity(quantity);
+            cartItems.add(newProduct);
         }
         saveCartItems();
         notifyListeners();
     }
 
     public void removeProduct(Product product) {
-        // Find by name to ensure correct removal after deserialization
         Product itemToRemove = null;
         for (Product item : cartItems) {
-            if (item.getName().equals(product.getName())) {
+            if (isSameVariant(item, product)) {
                 itemToRemove = item;
                 break;
             }
@@ -106,9 +110,30 @@ public class CartManager {
         }
     }
 
+    public boolean isProductInCart(Product product) {
+        for (Product item : cartItems) {
+            if (isSameVariant(item, product)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isSameVariant(Product p1, Product p2) {
+        if (p1 == null || p2 == null) return false;
+        
+        boolean sameName = p1.getName().equals(p2.getName());
+        boolean sameSize = (p1.getSelectedSize() == null && p2.getSelectedSize() == null) ||
+                           (p1.getSelectedSize() != null && p1.getSelectedSize().equals(p2.getSelectedSize()));
+        boolean sameColor = (p1.getSelectedColor() == null && p2.getSelectedColor() == null) ||
+                            (p1.getSelectedColor() != null && p1.getSelectedColor().equals(p2.getSelectedColor()));
+        
+        return sameName && sameSize && sameColor;
+    }
+
     public void updateQuantity(Product product, int newQuantity) {
         for (Product item : cartItems) {
-            if (item.getName().equals(product.getName())) {
+            if (isSameVariant(item, product)) {
                 if (newQuantity <= 0) {
                     removeProduct(item);
                 } else {
@@ -128,14 +153,7 @@ public class CartManager {
     public double getTotalPrice() {
         double total = 0;
         for (Product item : cartItems) {
-            try {
-                String priceStr = item.getPrice().replaceAll("[^\\d]", "");
-                if (!priceStr.isEmpty()) {
-                    total += Double.parseDouble(priceStr) * item.getQuantity();
-                }
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-            }
+            total += PriceFormatter.parsePrice(item.getPrice()) * item.getQuantity();
         }
         return total;
     }

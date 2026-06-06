@@ -67,7 +67,19 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
         holder.tvName.setText(product.getName());
         holder.tvCategory.setText(product.getCategory());
-        holder.tvPrice.setText(product.getPrice());
+        holder.tvPrice.setText(com.example.saive.utils.PriceFormatter.formatPrice(product.getPrice()));
+        
+        // Handle Flash Sale Price (Original vs Current)
+        if (product.getOriginalPrice() != null) {
+            holder.tvOriginalPrice.setVisibility(View.VISIBLE);
+            holder.tvOriginalPrice.setText(com.example.saive.utils.PriceFormatter.formatPrice(product.getOriginalPrice()));
+            holder.tvOriginalPrice.setPaintFlags(holder.tvOriginalPrice.getPaintFlags() | android.graphics.Paint.STRIKE_THRU_TEXT_FLAG);
+            holder.tvPrice.setTextColor(androidx.core.content.ContextCompat.getColor(holder.itemView.getContext(), R.color.colorMaroon));
+        } else {
+            holder.tvOriginalPrice.setVisibility(View.GONE);
+            holder.tvPrice.setTextColor(androidx.core.content.ContextCompat.getColor(holder.itemView.getContext(), R.color.colorNoirBlack));
+        }
+
         holder.tvQuantity.setText(String.valueOf(product.getQuantity()));
 
         // Display Variant (Size or Color)
@@ -241,7 +253,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivProduct, ivDeleteIcon;
-        TextView tvName, tvCategory, tvPrice, tvQuantity, tvVariantLabel;
+        TextView tvName, tvCategory, tvPrice, tvOriginalPrice, tvQuantity, tvVariantLabel;
         ImageButton btnMinus, btnPlus;
         View swipeForeground, swipeBackground, variantContainer;
 
@@ -251,6 +263,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             tvName = itemView.findViewById(R.id.tvName);
             tvCategory = itemView.findViewById(R.id.tvCategory);
             tvPrice = itemView.findViewById(R.id.tvPrice);
+            tvOriginalPrice = itemView.findViewById(R.id.tvOriginalPrice);
             tvQuantity = itemView.findViewById(R.id.tvQuantity);
             tvVariantLabel = itemView.findViewById(R.id.tvVariantLabel);
             btnMinus = itemView.findViewById(R.id.btnMinus);

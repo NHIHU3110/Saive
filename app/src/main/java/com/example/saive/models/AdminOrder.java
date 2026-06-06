@@ -9,6 +9,7 @@ public class AdminOrder {
     private String timeAgo;
     private int productImageResId;
     private String size;
+    private String color;
     private int quantity;
     private String paymentMethod;
     private String shippingAddress;
@@ -23,6 +24,7 @@ public class AdminOrder {
         this.timeAgo = timeAgo;
         this.productImageResId = 0;
         this.size = "L";
+        this.color = "Black";
         this.quantity = 1;
         this.paymentMethod = "Momo";
         this.shippingAddress = "123 Le Loi, District 1, HCMC, Vietnam";
@@ -54,6 +56,7 @@ public class AdminOrder {
     public String getTimeAgo() { return timeAgo; }
     public int getProductImageResId() { return productImageResId; }
     public String getSize() { return size; }
+    public String getColor() { return color; }
     public int getQuantity() { return quantity; }
     public String getPaymentMethod() { return paymentMethod; }
     public String getShippingAddress() { return shippingAddress; }

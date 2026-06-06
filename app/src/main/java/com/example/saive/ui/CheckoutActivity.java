@@ -54,7 +54,7 @@ public class CheckoutActivity extends BaseActivity {
     private Button btnAction;
     private RadioGroup rgPaymentMethods;
     private View layoutCod, layoutBank, layoutMomo, layoutZaloPay;
-    private RadioButton rbCod, rbBank, rbMomo, rbZaloPay;
+    private RadioButton rbCod, rbBank, rbMomo, rbZaloPay, rbDefaultCard;
     private TextView tvSummaryFullName, tvSummaryAddress, tvSummaryPhone, tvSummarySize, tvSummaryTotal;
     private com.google.android.material.card.MaterialCardView cardOrderSummary;
     private TextView tvDefaultAddressLabel, tvDefaultName, tvDefaultAddress, tvDefaultPhone;
@@ -362,6 +362,7 @@ public class CheckoutActivity extends BaseActivity {
         rbBank = findViewById(R.id.rbBank);
         rbMomo = findViewById(R.id.rbMomo);
         rbZaloPay = findViewById(R.id.rbZaloPay);
+        rbDefaultCard = findViewById(R.id.rbDefaultCard);
 
         layoutAddCard = findViewById(R.id.layoutAddCard);
 
@@ -603,6 +604,16 @@ public class CheckoutActivity extends BaseActivity {
             showAddCardBottomSheet();
         });
 
+        layoutDefaultPaymentCard.setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            selectPaymentMethod(rbDefaultCard);
+        });
+
+        rbDefaultCard.setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            selectPaymentMethod(rbDefaultCard);
+        });
+
         layoutCod.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             selectPaymentMethod(rbCod);
@@ -682,10 +693,13 @@ public class CheckoutActivity extends BaseActivity {
         rbBank.setChecked(selectedRb == rbBank);
         rbMomo.setChecked(selectedRb == rbMomo);
         rbZaloPay.setChecked(selectedRb == rbZaloPay);
+        rbDefaultCard.setChecked(selectedRb == rbDefaultCard);
         
         if (paymentCardAdapter != null) {
-            selectedCard = null;
-            paymentCardAdapter.setSelectedCard(null);
+            if (selectedRb != rbDefaultCard) {
+                selectedCard = null;
+                paymentCardAdapter.setSelectedCard(null);
+            }
         }
     }
 
@@ -807,10 +821,7 @@ public class CheckoutActivity extends BaseActivity {
         com.example.saive.adapters.PaymentCardAdapter adapter = new com.example.saive.adapters.PaymentCardAdapter(savedCards, card -> {
             selectedCard = card;
             updateDefaultCardUI();
-            rbCod.setChecked(false);
-            rbBank.setChecked(false);
-            rbMomo.setChecked(false);
-            rbZaloPay.setChecked(false);
+            selectPaymentMethod(rbDefaultCard);
             bottomSheetDialog.dismiss();
         });
         adapter.setSelectedCard(selectedCard);
@@ -857,7 +868,7 @@ public class CheckoutActivity extends BaseActivity {
     }
 
     private void processOrder() {
-        if (!rbCod.isChecked() && !rbBank.isChecked() && !rbMomo.isChecked() && !rbZaloPay.isChecked() && selectedCard == null) {
+        if (!rbCod.isChecked() && !rbBank.isChecked() && !rbMomo.isChecked() && !rbZaloPay.isChecked() && !rbDefaultCard.isChecked()) {
             com.example.saive.utils.ToastUtils.showCustomToast(this, "Please select a payment method");
             return;
         }
@@ -904,7 +915,7 @@ public class CheckoutActivity extends BaseActivity {
         if (rbBank.isChecked()) paymentMethod = "Bank Transfer";
         else if (rbMomo.isChecked()) paymentMethod = "Momo";
         else if (rbZaloPay.isChecked()) paymentMethod = "ZaloPay";
-        else if (selectedCard != null) paymentMethod = "Card (**** " + selectedCard.getCardNumber().substring(Math.max(0, selectedCard.getCardNumber().length() - 4)) + ")";
+        else if (rbDefaultCard.isChecked() && selectedCard != null) paymentMethod = "Card (**** " + selectedCard.getCardNumber().substring(Math.max(0, selectedCard.getCardNumber().length() - 4)) + ")";
 
         // Lấy giá trị tổng tiền từ TextView nếu biến totalPrice bị null
         String finalPrice = (totalPrice != null) ? totalPrice : tvSummaryTotal.getText().toString();

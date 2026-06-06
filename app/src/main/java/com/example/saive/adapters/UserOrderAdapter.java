@@ -38,7 +38,7 @@ public class UserOrderAdapter extends RecyclerView.Adapter<UserOrderAdapter.Orde
     @Override
     public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
         AdminOrder order = orderList.get(position);
-        holder.tvTotal.setText(order.getTotalAmount());
+        holder.tvTotal.setText(com.example.saive.utils.PriceFormatter.formatPrice(order.getTotalAmount()));
         
         // Set action button text based on status
         String status = order.getStatus() != null ? order.getStatus().toUpperCase() : "PENDING";
@@ -66,7 +66,7 @@ public class UserOrderAdapter extends RecyclerView.Adapter<UserOrderAdapter.Orde
                 TextView tvPrice = itemView.findViewById(R.id.tvItemPrice);
 
                 tvName.setText(item.getName());
-                tvPrice.setText(item.getPrice());
+                tvPrice.setText(com.example.saive.utils.PriceFormatter.formatPrice(item.getPrice()));
                 tvAttributes.setText("Size: " + item.getSize() + " | Qty: " + item.getQuantity());
                 ivItem.setImageResource(item.getImageResId() != 0 ? item.getImageResId() : R.mipmap.model1);
 
@@ -108,7 +108,7 @@ public class UserOrderAdapter extends RecyclerView.Adapter<UserOrderAdapter.Orde
             TextView tvPrice = itemView.findViewById(R.id.tvItemPrice);
 
             tvName.setText(order.getItemsSummary());
-            tvPrice.setText(order.getTotalAmount());
+            tvPrice.setText(com.example.saive.utils.PriceFormatter.formatPrice(order.getTotalAmount()));
             tvAttributes.setText("Size: " + order.getSize() + " | Qty: " + order.getQuantity());
             ivItem.setImageResource(order.getProductImageResId() != 0 ? order.getProductImageResId() : R.mipmap.model1);
             holder.itemsContainer.addView(itemView);
