@@ -3,24 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorCotton"
-    android:clipChildren="false"
-    android:clipToPadding="false">
+    android:background="@color/colorBeigeBg">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorMaroon"
-        app:elevation="4dp">
+        android:background="@color/colorBeigeBg"
+        app:elevation="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingHorizontal="@dimen/spacing_large"
+            android:paddingHorizontal="24dp"
             android:paddingTop="54dp"
-            android:paddingBottom="16dp">
+            android:paddingBottom="8dp">
 
             <ImageButton
                 android:id="@+id/btnBack"
@@ -28,8 +26,7 @@
                 android:layout_height="40dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_back"
-                android:layout_marginBottom="-8dp"
-                app:tint="@color/white" />
+                app:tint="@color/colorNoirBlack" />
 
             <TextView
                 style="@style/TextAppearance.Saive.SectionHeader"
@@ -38,10 +35,10 @@
                 android:layout_weight="1"
                 android:layout_marginEnd="40dp"
                 android:gravity="center"
-                android:letterSpacing="0.1"
                 android:text="@string/track_order_title"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textColor="@color/colorNoirBlack"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -49,271 +46,348 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipChildren="false"
-        android:clipToPadding="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="24dp"
-            android:clipChildren="false"
-            android:clipToPadding="false">
+            android:padding="24dp">
 
-            <com.google.android.material.card.MaterialCardView
+            <LinearLayout
+                android:id="@+id/itemsContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="0dp"
-                app:strokeWidth="1dp"
-                app:strokeColor="@color/colorLightGray"
-                app:cardBackgroundColor="@color/white">
+                android:orientation="vertical"
+                android:layout_marginBottom="8dp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
+            <TextView
+                android:id="@+id/tvSeeMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Xem thêm (+2 sản phẩm)"
+                android:textColor="@color/colorMaroon"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif-medium"
+                android:paddingVertical="8dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone" />
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:id="@+id/orderId"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            style="@style/TextAppearance.Saive.Nav"
-                            android:text="@string/label_order_id_format"
-                            android:textColor="@color/colorGrayText" />
-                        <TextView
-                            android:id="@+id/paymentInfo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            style="@style/TextAppearance.Saive.Nav"
-                            android:text="Cash on Delivery $99.00"
-                            android:textColor="@color/colorGrayText" />
-                    </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Order Details"
+                android:textColor="@color/colorNoirBlack"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp"/>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/colorLightGray"
-                        android:layout_marginVertical="16dp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <com.google.android.material.imageview.ShapeableImageView
-                            android:id="@+id/productImage"
-                            android:layout_width="80dp"
-                            android:layout_height="100dp"
-                            android:scaleType="centerCrop"
-                            android:src="@mipmap/model1"
-                            android:background="@color/colorNoir"
-                            app:shapeAppearanceOverlay="@style/ShapeAppearance.Saive.ProductImage" />
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_marginStart="16dp"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/productName"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                style="@style/TextAppearance.Saive.Label"
-                                android:text="Oversized Linen Shirt"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
-                            <TextView
-                                android:id="@+id/expectedDelivery"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                style="@style/TextAppearance.Saive.Thin"
-                                android:text="@string/label_expected_delivery"
-                                android:textSize="13sp"
-                                android:alpha="0.6" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <View
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorLightGray"
-                android:layout_marginVertical="32dp" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Expected Delivery Date"
+                    android:textColor="@color/colorGrayText"/>
+                <TextView
+                    android:id="@+id/expectedDelivery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="03 Sep 2023"
+                    android:textColor="@color/colorNoirBlack"
+                    android:textStyle="bold"/>
+            </RelativeLayout>
 
-            <!-- Timeline -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tracking ID"
+                    android:textColor="@color/colorGrayText"/>
+                <TextView
+                    android:id="@+id/orderId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="TRK452126542"
+                    android:textColor="@color/colorNoirBlack"
+                    android:textStyle="bold"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Payment Method"
+                    android:textColor="@color/colorGrayText"/>
+                <TextView
+                    android:id="@+id/paymentMethod"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="Credit Card"
+                    android:textColor="@color/colorNoirBlack"
+                    android:textStyle="bold"/>
+            </RelativeLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingStart="12dp"
-                android:paddingBottom="100dp"
-                android:clipToPadding="false"
-                android:clipChildren="false">
-
-                <!-- Step 1 -->
-                <LinearLayout
+                android:layout_marginBottom="32dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Shipping Address"
+                    android:textColor="@color/colorGrayText"
+                    android:layout_marginBottom="4dp"/>
+                <TextView
+                    android:id="@+id/shippingAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
-                    <FrameLayout
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content"
-                        android:clipChildren="false"
-                        android:clipToPadding="false">
-                        <View
-                            android:layout_width="2dp"
-                            android:layout_height="100dp"
-                            android:layout_gravity="center_horizontal"
-                            android:background="@color/colorMaroon"
-                            android:layout_marginTop="25dp" />
+                    android:text="123 Fashion Ave, Design District, NY 10001, USA"
+                    android:textColor="@color/colorNoirBlack"
+                    android:textStyle="bold"
+                    android:lineSpacingExtra="2dp"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Order Status"
+                android:textColor="@color/colorNoirBlack"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="24dp"/>
+
+            <!-- Status Timeline -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Placed -->
+                <LinearLayout
+                    android:id="@+id/stepPlaced"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
                         <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
+                            android:id="@+id/circlePlaced"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
                             android:background="@drawable/bg_circle_black"
                             android:backgroundTint="@color/colorMaroon"
-                            android:padding="12dp"
-                            android:src="@drawable/ic_cart"
+                            android:padding="4dp"
+                            android:src="@drawable/ic_check_circle"
                             app:tint="@color/white" />
-                    </FrameLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginStart="24dp"
-                        android:layout_gravity="top"
-                        android:paddingBottom="50dp">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            style="@style/TextAppearance.Saive.Label"
-                            android:text="@string/order_placed"
-                            android:textColor="@color/colorMaroon"
-                            android:textSize="16sp" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            style="@style/TextAppearance.Saive.Thin"
-                            android:text="June 10, 2018 | 03:45 pm"
-                            android:textColor="@color/colorNoirBlack"
-                            android:textSize="14sp" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <!-- Step 2 (In Transit) -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
-                    <FrameLayout
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content"
-                        android:clipChildren="false"
-                        android:clipToPadding="false">
                         <View
+                            android:id="@+id/linePlaced"
                             android:layout_width="2dp"
-                            android:layout_height="100dp"
-                            android:layout_gravity="center_horizontal"
-                            android:background="@color/colorLightGray"
-                            android:layout_marginTop="25dp" />
-                        <View
-                            android:layout_width="2dp"
-                            android:layout_height="25dp"
-                            android:layout_gravity="center_horizontal"
+                            android:layout_height="match_parent"
+                            android:minHeight="40dp"
                             android:background="@color/colorMaroon" />
-                        <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:background="@drawable/bg_circle_black"
-                            android:backgroundTint="@color/colorMaroon"
-                            android:padding="12dp"
-                            android:src="@drawable/ic_pin_drop"
-                            app:tint="@color/white" />
-                    </FrameLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginStart="24dp"
-                        android:layout_gravity="top"
-                        android:paddingBottom="50dp">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            style="@style/TextAppearance.Saive.Label"
-                            android:text="@string/order_in_transit"
-                            android:textColor="@color/colorMaroon"
-                            android:textSize="16sp" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            style="@style/TextAppearance.Saive.Thin"
-                            android:text="Reached at Jackline Tower, New York"
-                            android:textColor="@color/colorNoirBlack"
-                            android:textSize="14sp" />
                     </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginStart="16dp"
+                        android:paddingBottom="24dp">
+                        <TextView
+                            android:id="@+id/textPlaced"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Order Placed"
+                            android:textColor="@color/colorNoirBlack"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="23 Aug 2023, 04:25 PM"
+                            android:textColor="@color/colorGrayText"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_all"
+                        app:tint="@color/colorGrayText"/>
                 </LinearLayout>
 
-                <!-- Step 3 (Delivered) -->
+                <!-- In Progress -->
                 <LinearLayout
+                    android:id="@+id/stepProgress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:clipChildren="false"
-                    android:clipToPadding="false">
-                    <FrameLayout
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:clipChildren="false"
-                        android:clipToPadding="false">
-                        <View
-                            android:layout_width="2dp"
-                            android:layout_height="25dp"
-                            android:layout_gravity="center_horizontal"
-                            android:background="@color/colorLightGray" />
-                        <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:background="@drawable/bg_circle_black"
-                            android:backgroundTint="@color/white"
-                            android:padding="12dp"
-                            android:src="@drawable/ic_plus"
-                            android:rotation="45"
-                            app:tint="@color/colorLightGray" />
-                    </FrameLayout>
+                    android:orientation="horizontal">
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+                        <ImageView
+                            android:id="@+id/circleProgress"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:background="@drawable/bg_circle_black"
+                            android:backgroundTint="@color/colorMaroon"
+                            android:padding="4dp"
+                            android:src="@drawable/ic_check_circle"
+                            app:tint="@color/white" />
+                        <View
+                            android:id="@+id/lineProgress"
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:minHeight="40dp"
+                            android:background="@color/colorLightGray" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginStart="16dp"
+                        android:paddingBottom="24dp">
+                        <TextView
+                            android:id="@+id/textProgress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="In Progress"
+                            android:textColor="@color/colorNoirBlack"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="23 Aug 2023, 09:54 PM"
+                            android:textColor="@color/colorGrayText"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_package"
+                        app:tint="@color/colorGrayText"/>
+                </LinearLayout>
+
+                <!-- Shipped -->
+                <LinearLayout
+                    android:id="@+id/stepShipped"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+                        <ImageView
+                            android:id="@+id/circleShipped"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:background="@drawable/bg_circle_black"
+                            android:backgroundTint="@color/colorLightGray"
+                            android:padding="4dp"
+                            android:src="@drawable/ic_check_circle"
+                            app:tint="@color/white" />
+                        <View
+                            android:id="@+id/lineShipped"
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:minHeight="40dp"
+                            android:background="@color/colorLightGray" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginStart="16dp"
+                        android:paddingBottom="24dp">
+                        <TextView
+                            android:id="@+id/textShipped"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Shipped"
+                            android:textColor="@color/colorGrayText"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Expected 02 Sep 2023"
+                            android:textColor="@color/colorGrayText"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_pin_drop"
+                        app:tint="@color/colorGrayText"/>
+                </LinearLayout>
+
+                <!-- Delivered -->
+                <LinearLayout
+                    android:id="@+id/stepDelivered"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="40dp"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_marginStart="24dp"
-                        android:layout_gravity="center_vertical">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            style="@style/TextAppearance.Saive.Label"
-                            android:text="@string/order_delivered_success"
-                            android:textColor="@color/colorGrayText"
-                            android:textSize="16sp" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            style="@style/TextAppearance.Saive.Thin"
-                            android:text="@string/order_not_delivered"
-                            android:textColor="@color/colorNoirBlack"
-                            android:textSize="14sp"
-                            android:alpha="0.5" />
+                        android:gravity="center_horizontal">
+                        <ImageView
+                            android:id="@+id/circleDelivered"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:background="@drawable/bg_circle_black"
+                            android:backgroundTint="@color/colorLightGray"
+                            android:padding="4dp"
+                            android:src="@drawable/ic_check_circle"
+                            app:tint="@color/white" />
                     </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginStart="16dp"
+                        android:paddingBottom="24dp">
+                        <TextView
+                            android:id="@+id/textDelivered"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Delivered"
+                            android:textColor="@color/colorGrayText"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="23 Aug 2023, 2023"
+                            android:textColor="@color/colorGrayText"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_plus"
+                        app:tint="@color/colorGrayText"/>
                 </LinearLayout>
 
             </LinearLayout>

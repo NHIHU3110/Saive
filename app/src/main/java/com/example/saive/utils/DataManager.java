@@ -83,6 +83,12 @@ public class DataManager {
         prefs.edit().putString(KEY_ORDERS, gson.toJson(orders)).apply();
     }
 
+    public void addOrder(AdminOrder order) {
+        List<AdminOrder> orders = getOrders();
+        orders.add(0, order);
+        saveOrders(orders);
+    }
+
     public AdminOrder getOrderById(String orderId) {
         List<AdminOrder> orders = getOrders();
         for (AdminOrder order : orders) {
