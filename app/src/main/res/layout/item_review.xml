@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             style="@style/TextAppearance.Saive.Label"
-            android:text="NHI HUYNH"
+            android:text="@string/mock_user_name"
             android:textColor="@color/colorNoirBlack"
             android:textSize="13sp"
             android:letterSpacing="0.1" />
@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/TextAppearance.Saive.Nav"
-            android:text="24 OCT 2023"
+            android:text="@string/mock_review_date"
             android:alpha="0.4"
             android:textSize="11sp" />
     </LinearLayout>
@@ -51,7 +51,7 @@
         android:layout_marginTop="12dp"
         style="@style/TextAppearance.Saive.Light"
         android:lineSpacingExtra="4dp"
-        android:text="The material is incredible. It feels so soft and looks very elegant."
+        android:text="@string/mock_review_comment"
         android:textColor="@color/colorNoirBlack"
         android:textSize="15sp"
         android:alpha="0.9" />

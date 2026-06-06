@@ -73,10 +73,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         // Display Variant (Size or Color)
         if (product.getCategory() != null && product.getCategory().toLowerCase().contains("glasses")) {
             String color = product.getSelectedColor() != null ? product.getSelectedColor() : "Black";
-            holder.tvVariantLabel.setText("Color: " + color);
+            holder.tvVariantLabel.setText(holder.itemView.getContext().getString(R.string.label_color_format, color));
         } else {
             String size = product.getSelectedSize() != null ? product.getSelectedSize() : "M";
-            holder.tvVariantLabel.setText("Size: " + size);
+            holder.tvVariantLabel.setText(holder.itemView.getContext().getString(R.string.label_size_format, size));
         }
 
         holder.variantContainer.setOnClickListener(v -> {

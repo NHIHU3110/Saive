@@ -167,7 +167,7 @@
                     android:layout_marginTop="8dp"
                     android:gravity="center"
                     android:paddingHorizontal="40dp"
-                    android:text="Discover our latest collection of premium silk and wool pieces designed for your everyday luxury."
+                    android:text="@string/col_subheadline_default"
                     android:textColor="@color/colorGrayText"
                     android:textSize="14sp"
                     app:layout_constraintTop_toBottomOf="@id/tvHeadline" />
@@ -179,7 +179,7 @@
                     android:layout_marginTop="24dp"
                     android:backgroundTint="@color/colorMaroon"
                     android:paddingHorizontal="32dp"
-                    android:text="SHOP THE COLLECTION"
+                    android:text="@string/col_btn_shop"
                     android:textColor="@color/white"
                     app:cornerRadius="24dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -210,7 +210,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Pure Silk"
+                        android:text="@string/col_feature_1"
                         android:textSize="10sp"
                         android:textColor="@color/colorNoirBlack" />
                 </LinearLayout>
@@ -230,7 +230,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Premium Quality"
+                        android:text="@string/col_feature_2"
                         android:textSize="10sp"
                         android:textColor="@color/colorNoirBlack" />
                 </LinearLayout>
@@ -250,7 +250,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Local Sourcing"
+                        android:text="@string/col_feature_3"
                         android:textSize="10sp"
                         android:textColor="@color/colorNoirBlack" />
                 </LinearLayout>
@@ -270,7 +270,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Eco-Friendly"
+                        android:text="@string/col_feature_4"
                         android:textSize="10sp"
                         android:textColor="@color/colorNoirBlack" />
                 </LinearLayout>
@@ -287,7 +287,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Why Saive?"
+                    android:text="@string/col_why_saive"
                     android:textColor="@color/colorNoirBlack"
                     android:textSize="24sp"
                     android:textStyle="bold"
@@ -299,7 +299,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:gravity="center"
-                    android:text="We believe in slow fashion. Every piece is crafted with care, ensuring longevity and timeless style that transcends seasons."
+                    android:text="@string/col_why_desc"
                     android:textColor="@color/colorGrayText"
                     android:textSize="14sp"
                     app:layout_constraintTop_toBottomOf="@id/tvWhyTitle" />
@@ -330,7 +330,7 @@
                     android:id="@+id/tvCollectionProductsTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Shop the Collection"
+                    android:text="@string/col_shop_collection"
                     android:textColor="@color/colorNoirBlack"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -366,7 +366,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="© 2024 SAIVE. All rights reserved."
+                    android:text="@string/col_copyright"
                     android:textColor="@color/colorTransWhite"
                     android:textSize="12sp" />
             </LinearLayout>

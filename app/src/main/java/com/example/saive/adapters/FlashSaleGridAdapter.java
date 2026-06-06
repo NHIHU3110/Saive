@@ -18,6 +18,7 @@ import com.example.saive.models.Product;
 import com.example.saive.ui.ProductDetailActivity;
 import com.example.saive.utils.CartManager;
 import com.example.saive.utils.FavoriteManager;
+import com.example.saive.utils.PriceFormatter;
 import com.example.saive.utils.ImageUtils;
 import com.example.saive.utils.ToastUtils;
 import java.util.List;
@@ -53,7 +54,7 @@ public class FlashSaleGridAdapter extends RecyclerView.Adapter<FlashSaleGridAdap
         Product product = productList.get(position);
 
         holder.tvName.setText(product.getName().toUpperCase());
-        holder.tvPrice.setText(product.getPrice());
+        holder.tvPrice.setText(PriceFormatter.formatPrice(product.getPrice()));
 
         if (textColor != -1) {
             holder.tvName.setTextColor(textColor);
@@ -66,9 +67,9 @@ public class FlashSaleGridAdapter extends RecyclerView.Adapter<FlashSaleGridAdap
         
         // Discount badge mock logic (could be added to Product model later)
         if (position % 2 == 0) {
-            holder.tvDiscount.setText("-40%");
+            holder.tvDiscount.setText(holder.itemView.getContext().getString(R.string.discount_format, 40));
         } else {
-            holder.tvDiscount.setText("-25%");
+            holder.tvDiscount.setText(holder.itemView.getContext().getString(R.string.discount_format, 25));
         }
         holder.tvDiscount.setVisibility(View.VISIBLE);
 
@@ -83,7 +84,7 @@ public class FlashSaleGridAdapter extends RecyclerView.Adapter<FlashSaleGridAdap
 
         // Local quantity state for the item card
         final int[] itemQuantity = {1};
-        holder.tvQuantity.setText("1");
+        holder.tvQuantity.setText(R.string.quantity_default);
 
         holder.btnDecrease.setOnClickListener(v -> {
             if (itemQuantity[0] > 1) {
@@ -100,11 +101,11 @@ public class FlashSaleGridAdapter extends RecyclerView.Adapter<FlashSaleGridAdap
         holder.btnAddToCart.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             CartManager.getInstance(v.getContext()).addProduct(product, itemQuantity[0]);
-            ToastUtils.showCustomToast(v.getContext(), "Added " + itemQuantity[0] + " to wardrobe");
+            ToastUtils.showCustomToast(v.getContext(), v.getContext().getString(R.string.toast_added_to_wardrobe, itemQuantity[0]));
             
             // Reset quantity after adding
             itemQuantity[0] = 1;
-            holder.tvQuantity.setText("1");
+            holder.tvQuantity.setText(R.string.quantity_default);
         });
 
         holder.itemView.setOnClickListener(v -> {

@@ -108,14 +108,14 @@ public class SearchActivity extends BaseActivity {
     private void setupData() {
         allProducts = new ArrayList<>();
         // Mock all products from the app
-        allProducts.add(new Product("Structured Wool Coat", "1.200.000 ₫", R.mipmap.jacket1, "Jackets"));
-        allProducts.add(new Product("Linen Overshirt", "850.000 ₫", R.mipmap.tshirt1, "T-shirts"));
-        allProducts.add(new Product("Tailored Trousers", "1.100.000 ₫", R.mipmap.pant1, "Jeans"));
-        allProducts.add(new Product("Modern Aviators", "450.000 ₫", R.mipmap.sunglass1, "Glasses"));
-        allProducts.add(new Product("Archive Parka", "2.100.000 ₫", R.mipmap.jacket2, "Jackets"));
-        allProducts.add(new Product("Silk Blouse", "850.000 ₫", R.mipmap.tshirt1, "T-shirts"));
-        allProducts.add(new Product("Minimalist Bomber", "1.500.000 ₫", R.mipmap.jacket3, "Jackets"));
-        allProducts.add(new Product("Oversized Tee", "450.000 ₫", R.mipmap.tshirt2, "T-shirts"));
+        allProducts.add(new Product(getString(R.string.prod_noir_coat), getString(R.string.price_1150), R.mipmap.jacket1, getString(R.string.cat_jacket)));
+        allProducts.add(new Product(getString(R.string.prod_min_knit), getString(R.string.price_950), R.mipmap.tshirt1, getString(R.string.cat_tshirt)));
+        allProducts.add(new Product(getString(R.string.prod_city_trousers), getString(R.string.price_1150), R.mipmap.pant1, getString(R.string.cat_jeans)));
+        allProducts.add(new Product(getString(R.string.prod_archive_tote), getString(R.string.price_1800), R.mipmap.sunglass1, getString(R.string.cat_sunglasses)));
+        allProducts.add(new Product(getString(R.string.prod_autumn_trench), getString(R.string.price_2250), R.mipmap.jacket2, getString(R.string.cat_jacket)));
+        allProducts.add(new Product(getString(R.string.prod_silk_blazer), getString(R.string.price_2850), R.mipmap.tshirt1, getString(R.string.cat_tshirt)));
+        allProducts.add(new Product(getString(R.string.prod_double_blazer), getString(R.string.price_2850), R.mipmap.jacket3, getString(R.string.cat_jacket)));
+        allProducts.add(new Product(getString(R.string.prod_min_top), getString(R.string.price_550), R.mipmap.tshirt2, getString(R.string.cat_tshirt)));
     }
 
     private void setupListeners() {

@@ -95,8 +95,8 @@ public class AddAddressActivity extends BaseActivity {
 
         btnDistrictSelector.setOnClickListener(v -> {
             String city = tvSelectedCity.getText().toString();
-            if (city.equals("Chọn tỉnh thành")) {
-                ToastUtils.showCustomToast(this, "Vui lòng chọn tỉnh thành trước");
+            if (city.equals(getString(R.string.hint_choose_city))) {
+                ToastUtils.showCustomToast(this, getString(R.string.error_select_city_first));
                 return;
             }
             showLocationDialog("District", com.example.saive.utils.LocationProvider.getDistricts(this, city));
@@ -105,8 +105,8 @@ public class AddAddressActivity extends BaseActivity {
         btnWardSelector.setOnClickListener(v -> {
             String city = tvSelectedCity.getText().toString();
             String district = tvSelectedDistrict.getText().toString();
-            if (district.equals("Chọn quận huyện")) {
-                ToastUtils.showCustomToast(this, "Vui lòng chọn quận huyện trước");
+            if (district.equals(getString(R.string.hint_choose_district))) {
+                ToastUtils.showCustomToast(this, getString(R.string.error_select_district_first));
                 return;
             }
             showLocationDialog("Ward", com.example.saive.utils.LocationProvider.getWards(this, city, district));
@@ -118,9 +118,9 @@ public class AddAddressActivity extends BaseActivity {
         View view = getLayoutInflater().inflate(R.layout.layout_bottom_sheet_menu, null, false);
 
         TextView tvTitle = view.findViewById(R.id.tvSheetTitle);
-        if (type.equals("City")) tvTitle.setText("Chọn tỉnh thành");
-        else if (type.equals("District")) tvTitle.setText("Chọn quận huyện");
-        else tvTitle.setText("Chọn phường xã");
+        if (type.equals("City")) tvTitle.setText(R.string.hint_choose_city);
+        else if (type.equals("District")) tvTitle.setText(R.string.hint_choose_district);
+        else tvTitle.setText(R.string.hint_choose_ward);
 
         RecyclerView rvOptions = view.findViewById(R.id.rvSheetOptions);
         rvOptions.setLayoutManager(new LinearLayoutManager(this));
@@ -140,11 +140,11 @@ public class AddAddressActivity extends BaseActivity {
                 holder.itemView.setOnClickListener(v -> {
                     if (type.equals("City")) {
                         tvSelectedCity.setText(option);
-                        tvSelectedDistrict.setText("Chọn quận huyện");
-                        tvSelectedWard.setText("Choose your ward/commune");
+                        tvSelectedDistrict.setText(R.string.hint_choose_district);
+                        tvSelectedWard.setText(R.string.hint_choose_ward);
                     } else if (type.equals("District")) {
                         tvSelectedDistrict.setText(option);
-                        tvSelectedWard.setText("Choose your ward/commune");
+                        tvSelectedWard.setText(R.string.hint_choose_ward);
                     } else {
                         tvSelectedWard.setText(option);
                     }
@@ -200,14 +200,14 @@ public class AddAddressActivity extends BaseActivity {
         int activeText = getResources().getColor(R.color.white);
         int inactiveText = getResources().getColor(R.color.colorSand);
 
-        chipHome.setBackgroundTintList(android.content.res.ColorStateList.valueOf(selectedLabel.equals("Home") ? activeBg : inactiveBg));
-        chipHome.setTextColor(selectedLabel.equals("Home") ? activeText : inactiveText);
+        chipHome.setBackgroundTintList(android.content.res.ColorStateList.valueOf(selectedLabel.equalsIgnoreCase("Home") ? activeBg : inactiveBg));
+        chipHome.setTextColor(selectedLabel.equalsIgnoreCase("Home") ? activeText : inactiveText);
 
-        chipOffice.setBackgroundTintList(android.content.res.ColorStateList.valueOf(selectedLabel.equals("Office") ? activeBg : inactiveBg));
-        chipOffice.setTextColor(selectedLabel.equals("Office") ? activeText : inactiveText);
+        chipOffice.setBackgroundTintList(android.content.res.ColorStateList.valueOf(selectedLabel.equalsIgnoreCase("Office") ? activeBg : inactiveBg));
+        chipOffice.setTextColor(selectedLabel.equalsIgnoreCase("Office") ? activeText : inactiveText);
 
-        chipOther.setBackgroundTintList(android.content.res.ColorStateList.valueOf(selectedLabel.equals("Other") ? activeBg : inactiveBg));
-        chipOther.setTextColor(selectedLabel.equals("Other") ? activeText : inactiveText);
+        chipOther.setBackgroundTintList(android.content.res.ColorStateList.valueOf(selectedLabel.equalsIgnoreCase("Other") ? activeBg : inactiveBg));
+        chipOther.setTextColor(selectedLabel.equalsIgnoreCase("Other") ? activeText : inactiveText);
     }
 
     private void saveAddress() {
@@ -229,19 +229,19 @@ public class AddAddressActivity extends BaseActivity {
             return;
         }
         if (phonePart.length() < 9) {
-            etPhone.setError("Vui lòng nhập 9 chữ số");
+            etPhone.setError(getString(R.string.error_phone_length));
             return;
         }
-        if (city.equals("Chọn tỉnh thành")) {
-            ToastUtils.showCustomToast(this, "Vui lòng chọn tỉnh thành");
+        if (city.equals(getString(R.string.hint_choose_city))) {
+            ToastUtils.showCustomToast(this, getString(R.string.error_select_city));
             return;
         }
-        if (district.equals("Chọn quận huyện")) {
-            ToastUtils.showCustomToast(this, "Vui lòng chọn quận huyện");
+        if (district.equals(getString(R.string.hint_choose_district))) {
+            ToastUtils.showCustomToast(this, getString(R.string.error_select_district));
             return;
         }
-        if (ward.equals("Choose your ward/commune")) {
-            ToastUtils.showCustomToast(this, "Vui lòng chọn phường xã");
+        if (ward.equals(getString(R.string.hint_choose_ward))) {
+            ToastUtils.showCustomToast(this, getString(R.string.error_select_ward));
             return;
         }
         if (TextUtils.isEmpty(street)) {

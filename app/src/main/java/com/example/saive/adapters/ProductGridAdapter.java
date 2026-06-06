@@ -17,6 +17,7 @@ import com.example.saive.R;
 import com.example.saive.models.Product;
 import com.example.saive.ui.ProductDetailActivity;
 import com.example.saive.utils.CartManager;
+import com.example.saive.utils.PriceFormatter;
 import com.example.saive.utils.ImageUtils;
 import com.example.saive.utils.ToastUtils;
 
@@ -55,7 +56,7 @@ public class ProductGridAdapter extends RecyclerView.Adapter<ProductGridAdapter.
         ImageUtils.setSafeImage(holder.ivProduct, product.getImageResId());
 
         holder.tvName.setText(product.getName().toUpperCase());
-        holder.tvPrice.setText(product.getPrice());
+        holder.tvPrice.setText(PriceFormatter.formatPrice(product.getPrice()));
 
         // Local quantity state for the item card
         final int[] itemQuantity = {1};
@@ -102,7 +103,8 @@ public class ProductGridAdapter extends RecyclerView.Adapter<ProductGridAdapter.
         holder.btnAddToCart.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             CartManager.getInstance(v.getContext()).addProduct(product, itemQuantity[0]);
-            ToastUtils.showCustomToast(v.getContext(), "Added " + itemQuantity[0] + " to wardrobe");
+            String toastMsg = v.getContext().getString(R.string.toast_added_to_wardrobe, itemQuantity[0]);
+            ToastUtils.showCustomToast(v.getContext(), toastMsg);
             
             // Reset quantity after adding
             itemQuantity[0] = 1;

@@ -84,7 +84,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Total Amount"
+                android:text="@string/label_total_amount"
                 style="@style/TextAppearance.Saive.Caption"
                 android:textSize="11sp"
                 android:textColor="@color/colorSand" />

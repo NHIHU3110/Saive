@@ -94,7 +94,7 @@ public class PaymentCardsActivity extends BaseActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String val = s.toString().replaceAll(" ", "");
                 if (val.isEmpty()) {
-                    tvPreviewNumber.setText("**** **** **** ****");
+                    tvPreviewNumber.setText(R.string.card_preview_number);
                 } else {
                     StringBuilder formatted = new StringBuilder();
                     for (int i = 0; i < val.length(); i++) {
@@ -113,7 +113,7 @@ public class PaymentCardsActivity extends BaseActivity {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                tvPreviewHolder.setText(s.toString().isEmpty() ? "CARD HOLDER" : s.toString().toUpperCase());
+                tvPreviewHolder.setText(s.toString().isEmpty() ? getString(R.string.card_preview_holder) : s.toString().toUpperCase());
             }
             @Override
             public void afterTextChanged(Editable s) {}
@@ -129,7 +129,7 @@ public class PaymentCardsActivity extends BaseActivity {
                     etExpiry.setText(input + "/");
                     etExpiry.setSelection(etExpiry.getText().length());
                 }
-                tvPreviewExpiry.setText(s.toString().isEmpty() ? "MM/YY" : s.toString());
+                tvPreviewExpiry.setText(s.toString().isEmpty() ? getString(R.string.card_preview_expiry) : s.toString());
             }
             @Override
             public void afterTextChanged(Editable s) {}
@@ -141,7 +141,7 @@ public class PaymentCardsActivity extends BaseActivity {
             String expiry = etExpiry.getText().toString().trim();
 
             if (number.length() < 12) {
-                showCustomToast("Invalid card number");
+                showCustomToast(getString(R.string.error_invalid_card_number));
                 return;
             }
 
@@ -156,7 +156,7 @@ public class PaymentCardsActivity extends BaseActivity {
             DataManager.getInstance(this).addPaymentCard(card);
             loadCards();
             bottomSheetDialog.dismiss();
-            showCustomToast("Card added successfully");
+            showCustomToast(getString(R.string.toast_card_added));
         });
 
         bottomSheetDialog.show();

@@ -156,7 +156,7 @@ public class CartActivity extends BaseActivity {
 
         btnCheckout.setOnClickListener(v -> {
             if (cartManager.getCartItems().isEmpty()) {
-                ToastUtils.showCustomToast(this, "Giỏ hàng đang trống");
+                ToastUtils.showCustomToast(this, getString(R.string.cart_empty_error));
                 return;
             }
             Intent intent = new Intent(CartActivity.this, CheckoutActivity.class);
@@ -194,7 +194,7 @@ public class CartActivity extends BaseActivity {
     private void applyCoupon() {
         String code = etCoupon.getText().toString().trim().toUpperCase();
         if (code.isEmpty()) {
-            ToastUtils.showCustomToast(this, "Vui lòng nhập mã giảm giá");
+            ToastUtils.showCustomToast(this, getString(R.string.coupon_empty));
             return;
         }
 
@@ -202,35 +202,35 @@ public class CartActivity extends BaseActivity {
         if (code.equals("WELCOME20")) {
             currentDiscountRate = 0.20;
             appliedCouponCode = code;
-            ToastUtils.showCustomToast(this, "Đã áp dụng mã giảm giá 20%");
+            ToastUtils.showCustomToast(this, getString(R.string.toast_coupon_applied_percent, 20));
         } else if (code.equals("SILK15")) {
             currentDiscountRate = 0.15;
             appliedCouponCode = code;
-            ToastUtils.showCustomToast(this, "Đã áp dụng mã giảm giá 15%");
+            ToastUtils.showCustomToast(this, getString(R.string.toast_coupon_applied_percent, 15));
         } else if (code.equals("REWARD10")) {
             currentDiscountRate = 0.10;
             appliedCouponCode = code;
-            ToastUtils.showCustomToast(this, "Đã áp dụng mã giảm giá 10%");
+            ToastUtils.showCustomToast(this, getString(R.string.toast_coupon_applied_percent, 10));
         } else if (code.equals("ARCHIVE25")) {
             currentDiscountRate = 0.25;
             appliedCouponCode = code;
-            ToastUtils.showCustomToast(this, "Đã áp dụng mã giảm giá 25%");
+            ToastUtils.showCustomToast(this, getString(R.string.toast_coupon_applied_percent, 25));
         } else if (code.equals("SAIVE_S24_EXTRA")) {
             currentDiscountRate = 0.15; // Giảm 15%
             appliedCouponCode = code;
-            ToastUtils.showCustomToast(this, "Đã áp dụng mã giảm giá 15%");
+            ToastUtils.showCustomToast(this, getString(R.string.toast_coupon_applied_percent, 15));
         } else if (code.equals("SAIVE10")) {
             currentDiscountRate = 0.10; // Giảm 10%
             appliedCouponCode = code;
-            ToastUtils.showCustomToast(this, "Đã áp dụng mã giảm giá 10%");
+            ToastUtils.showCustomToast(this, getString(R.string.toast_coupon_applied_percent, 10));
         } else if (code.equals("WELCOME5")) {
             currentDiscountRate = 0.05; // Giảm 5%
             appliedCouponCode = code;
-            ToastUtils.showCustomToast(this, "Đã áp dụng mã giảm giá 5%");
+            ToastUtils.showCustomToast(this, getString(R.string.toast_coupon_applied_percent, 5));
         } else {
             currentDiscountRate = 0;
             appliedCouponCode = "";
-            ToastUtils.showCustomToast(this, "Mã giảm giá không hợp lệ");
+            ToastUtils.showCustomToast(this, getString(R.string.coupon_invalid));
         }
         
         updateTotal();
@@ -251,10 +251,10 @@ public class CartActivity extends BaseActivity {
                 public void onRemove(int position) {
                     DialogUtils.showCustomAlertDialog(
                             CartActivity.this,
-                            "Xóa sản phẩm",
-                            "Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng?",
-                            "Xóa",
-                            "Hủy",
+                            getString(R.string.dialog_remove_item_title),
+                            getString(R.string.dialog_remove_item_msg),
+                            getString(R.string.dialog_remove),
+                            getString(R.string.dialog_cancel),
                             () -> {
                                 Product product = cartItems.get(position);
                                 cartManager.removeProduct(product);
@@ -286,7 +286,7 @@ public class CartActivity extends BaseActivity {
     private void showVariantSelectionDialog(int position, Product product) {
         boolean isGlasses = product.getCategory() != null && product.getCategory().toLowerCase().contains("glasses");
         String[] options = isGlasses ? new String[]{"Black", "Tortoise", "Gold", "Silver"} : new String[]{"XS", "S", "M", "L", "XL"};
-        String title = isGlasses ? "Chọn màu sắc" : "Chọn kích cỡ";
+        String title = isGlasses ? getString(R.string.label_select_color) : getString(R.string.label_select_size);
         String currentSelection = isGlasses ? product.getSelectedColor() : product.getSelectedSize();
 
         View dialogView = getLayoutInflater().inflate(R.layout.layout_variant_selection, null);
@@ -383,8 +383,8 @@ public class CartActivity extends BaseActivity {
         if (cartManager.getCartItems().isEmpty()) {
             rvCartItems.setVisibility(View.GONE);
             emptyStateCart.setVisibility(View.VISIBLE);
-            tvSubtotal.setText("0 ₫");
-            tvTotalPrice.setText("0 ₫");
+            tvSubtotal.setText(R.string.price_zero_format);
+            tvTotalPrice.setText(R.string.price_zero_format);
             layoutDiscount.setVisibility(View.GONE);
         }
     }

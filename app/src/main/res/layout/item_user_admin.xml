@@ -57,7 +57,7 @@
                 android:id="@+id/tvUserRole"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="VIP CUSTOMER"
+                android:text="@string/label_user_role_vip"
                 style="@style/TextAppearance.Saive.Label"
                 android:textSize="9sp"
                 android:textColor="@color/colorMaroon"

@@ -19,6 +19,7 @@ import com.example.saive.R;
 import com.example.saive.base.BaseActivity;
 import com.example.saive.models.Product;
 import com.example.saive.utils.CartManager;
+import com.example.saive.utils.PriceFormatter;
 import com.example.saive.utils.ImageUtils;
 
 import com.example.saive.adapters.FlashProductAdapter;
@@ -170,7 +171,7 @@ public class ProductDetailActivity extends BaseActivity {
         }
         
         tvProductName.setText(currentProduct.getName());
-        tvPrice.setText(currentProduct.getPrice());
+        tvPrice.setText(PriceFormatter.formatPrice(currentProduct.getPrice()));
         tvDescription.setText(currentProduct.getDescription());
         ImageUtils.setSafeImage(ivHero, currentProduct.getImageResId());
 

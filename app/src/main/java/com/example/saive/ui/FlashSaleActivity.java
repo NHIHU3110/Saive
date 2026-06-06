@@ -198,15 +198,15 @@ public class FlashSaleActivity extends BaseActivity {
 
                 @Override
                 public void onFinish() {
-                    if (tvHour != null) tvHour.setText("00");
-                    if (tvMinute != null) tvMinute.setText("00");
-                    if (tvSecond != null) tvSecond.setText("00");
+                    if (tvHour != null) tvHour.setText(R.string.timer_default);
+                    if (tvMinute != null) tvMinute.setText(R.string.timer_default);
+                    if (tvSecond != null) tvSecond.setText(R.string.timer_default);
                 }
             }.start();
         } else {
-            if (tvHour != null) tvHour.setText("00");
-            if (tvMinute != null) tvMinute.setText("00");
-            if (tvSecond != null) tvSecond.setText("00");
+            if (tvHour != null) tvHour.setText(R.string.timer_default);
+            if (tvMinute != null) tvMinute.setText(R.string.timer_default);
+            if (tvSecond != null) tvSecond.setText(R.string.timer_default);
         }
     }
 
@@ -223,12 +223,12 @@ public class FlashSaleActivity extends BaseActivity {
     private void setupProducts() {
         allProducts = DataManager.getInstance(this).getFlashSaleProducts();
         if (allProducts.isEmpty()) {
-            allProducts.add(new Product("NYLON WEATHER", "$30.00 USD", R.mipmap.model1, "Men's Clothing"));
-            allProducts.add(new Product("TWILL TEXTILE", "$100.00 USD", R.mipmap.model2, "Men's Clothing"));
-            allProducts.add(new Product("STRUCTURED COAT", "$450.00 USD", R.mipmap.jacket1, "Outerwear"));
-            allProducts.add(new Product("LINEN SHIRT", "$120.00 USD", R.mipmap.tshirt2, "Shirts"));
-            allProducts.add(new Product("MODERN AVIATORS", "$210.00 USD", R.mipmap.sunglass1, "Accessories"));
-            allProducts.add(new Product("ARCHIVE PARKA", "$520.00 USD", R.mipmap.jacket2, "Outerwear"));
+            allProducts.add(new Product("NYLON WEATHER", "300000", R.mipmap.model1, getString(R.string.cat_all)));
+            allProducts.add(new Product("TWILL TEXTILE", "1000000", R.mipmap.model2, getString(R.string.cat_all)));
+            allProducts.add(new Product("STRUCTURED COAT", "4500000", R.mipmap.jacket1, getString(R.string.cat_jacket)));
+            allProducts.add(new Product("LINEN SHIRT", "1200000", R.mipmap.tshirt2, getString(R.string.cat_tshirt)));
+            allProducts.add(new Product("MODERN AVIATORS", "2100000", R.mipmap.sunglass1, getString(R.string.cat_sunglasses)));
+            allProducts.add(new Product("ARCHIVE PARKA", "5200000", R.mipmap.jacket2, getString(R.string.cat_jacket)));
         }
 
         adapter = new FlashSaleGridAdapter(allProducts);

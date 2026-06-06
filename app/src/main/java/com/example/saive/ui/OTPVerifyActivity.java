@@ -61,15 +61,15 @@ public class OTPVerifyActivity extends BaseActivity {
             String entered = getEnteredOtp();
 
             if (TextUtils.isEmpty(entered)) {
-                showCustomToast("Please enter OTP");
+                showCustomToast(getString(R.string.error_enter_otp));
                 return;
             }
             if (entered.length() < 6) {
-                showCustomToast("OTP must be 6 digits");
+                showCustomToast(getString(R.string.error_otp_length));
                 return;
             }
             if (!entered.equals(correctOtp)) {
-                showCustomToast("Invalid OTP");
+                showCustomToast(getString(R.string.error_invalid_otp));
                 return;
             }
 
@@ -82,7 +82,7 @@ public class OTPVerifyActivity extends BaseActivity {
             String newOtp = String.valueOf((int)(Math.random() * 900000) + 100000);
             correctOtp = newOtp;
             clearOtpFields();
-            showCustomToast("New OTP: " + newOtp);
+            showCustomToast(getString(R.string.toast_new_otp, newOtp));
         });
     }
 

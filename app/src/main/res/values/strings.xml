@@ -229,6 +229,12 @@
     <string name="label_ward">Ward / Commune</string>
     <string name="hint_choose_ward">Choose your ward/commune</string>
     <string name="error_required_field">This field is required</string>
+    <string name="error_phone_length">Please enter 9 digits</string>
+    <string name="error_select_city_first">Please select city/province first</string>
+    <string name="error_select_district_first">Please select district first</string>
+    <string name="error_select_city">Please select city</string>
+    <string name="error_select_district">Please select district</string>
+    <string name="error_select_ward">Please select ward</string>
     <string name="error_invalid_email">Invalid email address</string>
     <string name="payment_method_cash">Cash</string>
     <string name="payment_method_card">Credit &amp; Debit Card</string>
@@ -532,9 +538,39 @@
     <string name="admin_save_campaign">ACTIVATE FLASH SALE</string>
     <string name="admin_select_products">Select Products</string>
     <string name="admin_user_mgmt">USER DIRECTORY</string>
+    <string name="label_user_role_vip">VIP CUSTOMER</string>
+    <string name="label_user_role_admin">ADMIN</string>
+    <string name="label_user_role_customer">CUSTOMER</string>
     <string name="admin_logout_confirm">Select Logout to exit Admin</string>
     <string name="admin_inventory_title">INVENTORY MANAGEMENT</string>
     <string name="admin_order_mgmt">ORDER MANAGEMENT</string>
+    <string name="order_status_pending">Pending</string>
+    <string name="order_status_processing">Processing</string>
+    <string name="order_status_shipped">Shipped</string>
+    <string name="order_status_completed">Completed</string>
+    <string name="label_total_amount">Total Amount</string>
+    <string name="label_customer">CUSTOMER</string>
+    <string name="label_payment_momo_short">PAYMENT: MOMO</string>
+    <string name="btn_mark_shipped">MARK AS SHIPPED</string>
+    <string name="btn_export_invoice">EXPORT INVOICE (PDF)</string>
+    <string name="track_order_title">Track Order</string>
+    <string name="label_order_id_format">Order #%1$s</string>
+    <string name="label_expected_delivery">Exp. Delivery by %1$s</string>
+    <string name="order_placed">Order Placed</string>
+    <string name="order_in_transit">Order in transit</string>
+    <string name="order_delivered_success">Delivered Successfully</string>
+    <string name="order_not_delivered">Not Delivered yet</string>
+    <string name="order_items_count_format">%1$d Items: %2$s</string>
+
+    <string name="inventory_low_stock">Low Stock</string>
+    <string name="inventory_out_of_stock">Out of Stock</string>
+    <string name="label_shipping_address">Shipping Address</string>
+    <string name="btn_add">ADD</string>
+    <string name="btn_change">CHANGE</string>
+    <string name="label_add_new_plus">+ ADD NEW</string>
+    <string name="mock_user_name">NHI HUYNH</string>
+    <string name="mock_review_date">24 OCT 2023</string>
+    <string name="mock_review_comment">The material is incredible. It feels so soft and looks very elegant.</string>
 
     <string name="logout_title">Logout</string>
     <string name="logout_message">Are you sure you want to logout?</string>
@@ -601,6 +637,21 @@
     <string name="col_silk_subheadline">Fluidity meets structure. Sourced from traditional Vietnamese looms, our silk pieces redefine modern elegance.</string>
     <string name="col_silk_why_title">Vietnamese Heritage</string>
     <string name="col_silk_why_desc">Our silk is woven in Bao Loc, known for its incredible luster and durability. A material that breathes with the body.</string>
+
+    <!-- Essentials Collection -->
+    <string name="col_essentials_headline">THE ESSENTIALS</string>
+    <string name="col_essentials_subheadline">CURATED PIECES FOR EVERY DAY</string>
+    <string name="col_essentials_why_title">TIMELESS DESIGN</string>
+    <string name="col_essentials_why_desc">Built for longevity and versatility in any wardrobe.</string>
+    <string name="btn_shop_essentials">SHOP ESSENTIALS</string>
+
+    <!-- Urban Archive Collection -->
+    <string name="col_urban_headline">URBAN ARCHIVE</string>
+    <string name="col_urban_subheadline">LIMITED DROP: STREET ARCHITECTURE</string>
+    <string name="col_urban_why_title">STREET HERITAGE</string>
+    <string name="col_urban_why_desc">Exploring the intersection of function and form.</string>
+    <string name="btn_explore_drop">EXPLORE DROP</string>
+
     <string name="edit_profile_title">Edit Profile</string>
     <string name="change_profile_title">Change Profile</string>
     <string name="label_personal_information">Personal Information</string>
@@ -624,4 +675,43 @@
     <string name="label_account_settings">ACCOUNT SETTINGS</string>
     <string name="label_preferences">PREFERENCES</string>
     <string name="label_support_legal">SUPPORT &amp; LEGAL</string>
+
+    <string name="error_enter_otp">Please enter OTP</string>
+    <string name="error_otp_length">OTP must be 6 digits</string>
+    <string name="error_invalid_otp">Invalid OTP</string>
+    <string name="toast_new_otp">New OTP: %1$s</string>
+    <string name="btn_hide">HIDE</string>
+    <string name="btn_reject">REJECT</string>
+    <string name="btn_approve">APPROVE</string>
+    <string name="cart_empty_error">Your bag is empty</string>
+    <string name="toast_coupon_applied_percent">Coupon applied: %1$d%% off</string>
+    <string name="dialog_remove_item_title">Remove Item</string>
+    <string name="dialog_remove_item_msg">Are you sure you want to remove this item from the bag?</string>
+    <string name="dialog_remove">Remove</string>
+    <string name="label_select_size">Select Size</string>
+    <string name="label_select_color">Select Color</string>
+    <string name="price_zero_format">0 ₫</string>
+    <string name="label_color_format">Color: %1$s</string>
+    <string name="label_size_format">Size: %1$s</string>
+    <string name="timer_default">00</string>
+    <string name="discount_format">-%1$d%%</string>
+    <string name="toast_added_to_wardrobe">Added %1$d to wardrobe</string>
+    <string name="quantity_default">1</string>
+
+    <string name="card_preview_number">**** **** **** ****</string>
+    <string name="card_preview_holder">CARD HOLDER</string>
+    <string name="card_preview_expiry">MM/YY</string>
+    <string name="error_invalid_card_number">Invalid card number</string>
+    <string name="toast_card_added">Card added successfully</string>
+
+    <string name="coupon_detail_discount_format">Get %1$s OFF on your order</string>
+    <string name="toast_coupon_copied">Copied code %1$s</string>
+
+    <string name="label_select_category">SELECT CATEGORY</string>
+    <string name="error_select_category">Please select a category</string>
+    <string name="toast_notification_broadcasted">Notification broadcasted successfully</string>
+    <string name="cat_promotions">Promotions</string>
+    <string name="cat_orders">Orders</string>
+    <string name="cat_system">System</string>
+    <string name="cat_update">Update</string>
 </resources>

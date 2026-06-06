@@ -155,13 +155,13 @@ public class CollectionDetailActivity extends BaseActivity {
                 btnShopAll.setText(R.string.btn_shop_autumn);
             }
         } else if (titleUpper.contains("ESSENTIALS")) {
-            tvHeadline.setText("THE ESSENTIALS");
-            tvSubHeadline.setText("CURATED PIECES FOR EVERY DAY");
+            tvHeadline.setText(R.string.col_essentials_headline);
+            tvSubHeadline.setText(R.string.col_essentials_subheadline);
             ImageUtils.setSafeImage(ivHeroLeft, R.mipmap.model2);
             ImageUtils.setSafeImage(ivHeroRight, R.mipmap.atumncollection1);
             ImageUtils.setSafeImage(ivSectionModel, R.mipmap.jacket3);
-            tvWhyTitle.setText("TIMELESS DESIGN");
-            tvWhyDesc.setText("Built for longevity and versatility in any wardrobe.");
+            tvWhyTitle.setText(R.string.col_essentials_why_title);
+            tvWhyDesc.setText(R.string.col_essentials_why_desc);
             
             boolean isDarkMode = (getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK) == android.content.res.Configuration.UI_MODE_NIGHT_YES;
             
@@ -170,16 +170,16 @@ public class CollectionDetailActivity extends BaseActivity {
             if (btnShopAll != null) {
                 btnShopAll.setBackgroundTintList(android.content.res.ColorStateList.valueOf(isDarkMode ? Color.WHITE : Color.parseColor("#4A4A4A")));
                 btnShopAll.setTextColor(isDarkMode ? Color.BLACK : Color.WHITE);
-                btnShopAll.setText("SHOP ESSENTIALS");
+                btnShopAll.setText(R.string.btn_shop_essentials);
             }
         } else if (titleUpper.contains("URBAN ARCHIVE")) {
-            tvHeadline.setText("URBAN ARCHIVE");
-            tvSubHeadline.setText("LIMITED DROP: STREET ARCHITECTURE");
+            tvHeadline.setText(R.string.col_urban_headline);
+            tvSubHeadline.setText(R.string.col_urban_subheadline);
             ImageUtils.setSafeImage(ivHeroLeft, R.mipmap.banner2);
             ImageUtils.setSafeImage(ivHeroRight, R.mipmap.model1);
             ImageUtils.setSafeImage(ivSectionModel, R.mipmap.pant2);
-            tvWhyTitle.setText("STREET HERITAGE");
-            tvWhyDesc.setText("Exploring the intersection of function and form.");
+            tvWhyTitle.setText(R.string.col_urban_why_title);
+            tvWhyDesc.setText(R.string.col_urban_why_desc);
             
             boolean isDarkMode = (getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK) == android.content.res.Configuration.UI_MODE_NIGHT_YES;
             
@@ -188,7 +188,7 @@ public class CollectionDetailActivity extends BaseActivity {
             if (btnShopAll != null) {
                 btnShopAll.setBackgroundTintList(android.content.res.ColorStateList.valueOf(isDarkMode ? Color.WHITE : Color.parseColor("#1A1A1A")));
                 btnShopAll.setTextColor(isDarkMode ? Color.BLACK : Color.WHITE);
-                btnShopAll.setText("EXPLORE DROP");
+                btnShopAll.setText(R.string.btn_explore_drop);
             }
         } else {
             // COLLECTION 3: THE SILK STORY - Heritage Beige

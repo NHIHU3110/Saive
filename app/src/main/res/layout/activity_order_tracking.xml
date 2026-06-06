@@ -39,7 +39,7 @@
                 android:layout_marginEnd="40dp"
                 android:gravity="center"
                 android:letterSpacing="0.1"
-                android:text="Track Order"
+                android:text="@string/track_order_title"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
@@ -84,7 +84,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/TextAppearance.Saive.Nav"
-                            android:text="Order #66541324"
+                            android:text="@string/label_order_id_format"
                             android:textColor="@color/colorGrayText" />
                         <TextView
                             android:id="@+id/paymentInfo"
@@ -134,7 +134,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
                                 style="@style/TextAppearance.Saive.Thin"
-                                android:text="Exp. Delivery by Sun, June 11"
+                                android:text="@string/label_expected_delivery"
                                 android:textSize="13sp"
                                 android:alpha="0.6" />
                         </LinearLayout>
@@ -196,7 +196,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/TextAppearance.Saive.Label"
-                            android:text="Order Placed"
+                            android:text="@string/order_placed"
                             android:textColor="@color/colorMaroon"
                             android:textSize="16sp" />
                         <TextView
@@ -252,7 +252,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/TextAppearance.Saive.Label"
-                            android:text="Order in transit"
+                            android:text="@string/order_in_transit"
                             android:textColor="@color/colorMaroon"
                             android:textSize="16sp" />
                         <TextView
@@ -302,14 +302,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/TextAppearance.Saive.Label"
-                            android:text="Delivered Successfully"
+                            android:text="@string/order_delivered_success"
                             android:textColor="@color/colorGrayText"
                             android:textSize="16sp" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/TextAppearance.Saive.Thin"
-                            android:text="Not Delivered yet"
+                            android:text="@string/order_not_delivered"
                             android:textColor="@color/colorNoirBlack"
                             android:textSize="14sp"
                             android:alpha="0.5" />
