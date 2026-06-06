@@ -466,6 +466,7 @@
     <string name="label_new_collection">NEW COLLECTION</string>
     <string name="label_shop_now">SHOP NOW</string>
     <string name="label_flash_sale">Flash Sale</string>
+    <string name="label_sale">SALE</string>
     <string name="chip_linen">Linen</string>
     <string name="chip_silk">Silk</string>
     <string name="chip_noir">Noir</string>

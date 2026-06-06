@@ -4,7 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorCotton">
+    android:background="@color/colorCotton"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <View
+        android:id="@+id/topAccentBar"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@color/colorMaroon"
+        app:layout_constraintTop_toTopOf="parent"
+        android:translationZ="30dp"/>
 
     <!-- Top Navigation Bar (Sync with Home/Product Detail) -->
     <LinearLayout

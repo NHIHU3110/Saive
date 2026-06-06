@@ -7,11 +7,19 @@
     android:background="@color/colorCotton">
 
     <!-- Header Đồng bộ Home -->
+    <View
+        android:id="@+id/topAccentBar"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@color/colorMaroon"
+        app:layout_constraintTop_toTopOf="parent"
+        android:translationZ="30dp"/>
+
     <LinearLayout
         android:id="@+id/headerContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorCotton"
+        android:background="@color/colorCollectionMaroon"
         android:elevation="4dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -26,18 +34,18 @@
             android:layout_height="24dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/ic_back"
-            app:tint="@color/colorNoirBlack" />
+            app:tint="@color/colorIvory" />
 
         <TextView
             style="@style/TextAppearance.Saive.SectionHeader"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginEnd="40dp"
+            android:layout_weight="1"
             android:gravity="center"
             android:letterSpacing="0.02"
             android:text="@string/cart_title"
-            android:textColor="@color/colorNoirBlack"
+            android:textColor="@color/colorIvory"
             android:textSize="18sp" />
     </LinearLayout>
 

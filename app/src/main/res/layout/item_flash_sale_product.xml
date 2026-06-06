@@ -41,8 +41,8 @@
                 style="@style/TextAppearance.Saive.Caption"
                 android:textColor="@color/colorOnMaroon"
                 android:textSize="9sp"
-                android:visibility="gone"
-                tools:visibility="visible" />
+                android:visibility="visible"
+                tools:text="-40%" />
 
             <ImageButton
                 android:id="@+id/btnFavorite"

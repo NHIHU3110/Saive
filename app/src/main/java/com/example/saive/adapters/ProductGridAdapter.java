@@ -61,8 +61,24 @@ public class ProductGridAdapter extends RecyclerView.Adapter<ProductGridAdapter.
             holder.tvOriginalPrice.setVisibility(View.VISIBLE);
             holder.tvOriginalPrice.setText(PriceFormatter.formatPrice(product.getOriginalPrice()));
             holder.tvOriginalPrice.setPaintFlags(holder.tvOriginalPrice.getPaintFlags() | android.graphics.Paint.STRIKE_THRU_TEXT_FLAG);
+
+            // Show discount badge
+            if (holder.tvDiscountBadge != null) {
+                holder.tvDiscountBadge.setVisibility(View.VISIBLE);
+                try {
+                    double original = PriceFormatter.parsePrice(product.getOriginalPrice());
+                    double current = PriceFormatter.parsePrice(product.getPrice());
+                    int percent = (int) (100 - (current * 100 / original));
+                    holder.tvDiscountBadge.setText(holder.itemView.getContext().getString(R.string.discount_format, percent));
+                } catch (Exception e) {
+                    holder.tvDiscountBadge.setText(holder.itemView.getContext().getString(R.string.label_sale));
+                }
+            }
         } else {
             holder.tvOriginalPrice.setVisibility(View.GONE);
+            if (holder.tvDiscountBadge != null) {
+                holder.tvDiscountBadge.setVisibility(View.GONE);
+            }
         }
         holder.tvPrice.setText(PriceFormatter.formatPrice(product.getPrice()));
 
@@ -118,7 +134,7 @@ public class ProductGridAdapter extends RecyclerView.Adapter<ProductGridAdapter.
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivProduct;
-        TextView tvName, tvPrice, tvOriginalPrice;
+        TextView tvName, tvPrice, tvOriginalPrice, tvDiscountBadge;
         ImageButton btnFavorite;
 
         public ViewHolder(@NonNull View itemView) {
@@ -127,6 +143,7 @@ public class ProductGridAdapter extends RecyclerView.Adapter<ProductGridAdapter.
             tvName = itemView.findViewById(R.id.tvItemName);
             tvPrice = itemView.findViewById(R.id.tvItemPrice);
             tvOriginalPrice = itemView.findViewById(R.id.tvOriginalPrice);
+            tvDiscountBadge = itemView.findViewById(R.id.tvDiscountBadge);
             btnFavorite = itemView.findViewById(R.id.btnFavorite);
         }
     }

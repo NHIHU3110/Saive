@@ -229,9 +229,9 @@ public class FlashSaleActivity extends BaseActivity {
             allProducts.add(new Product("NYLON WEATHER", "300.000", "500.000", R.mipmap.model1, getString(R.string.cat_all)));
             allProducts.add(new Product("TWILL TEXTILE", "1.000.000", "1.500.000", R.mipmap.model2, getString(R.string.cat_all)));
             allProducts.add(new Product("STRUCTURED COAT", "4.500.000", "6.000.000", R.mipmap.jacket1, getString(R.string.cat_jacket)));
-            allProducts.add(new Product("LINEN SHIRT", "1.200.000", R.mipmap.tshirt2, getString(R.string.cat_tshirt)));
+            allProducts.add(new Product("LINEN SHIRT", "1.200.000", "1.800.000", R.mipmap.tshirt2, getString(R.string.cat_tshirt)));
             allProducts.add(new Product("MODERN AVIATORS", "2.100.000", "2.800.000", R.mipmap.sunglass1, getString(R.string.cat_sunglasses)));
-            allProducts.add(new Product("ARCHIVE PARKA", "5.200.000", R.mipmap.jacket2, getString(R.string.cat_jacket)));
+            allProducts.add(new Product("ARCHIVE PARKA", "5.200.000", "7.500.000", R.mipmap.jacket2, getString(R.string.cat_jacket)));
             DataManager.getInstance(this).saveFlashSaleProducts(allProducts);
         }
 

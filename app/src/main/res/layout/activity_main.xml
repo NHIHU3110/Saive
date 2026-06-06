@@ -9,6 +9,14 @@
     android:clipChildren="false"
     android:clipToPadding="false">
 
+    <View
+        android:id="@+id/topAccentBar"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@color/colorMaroon"
+        app:layout_constraintTop_toTopOf="parent"
+        android:translationZ="30dp"/>
+
     <!-- FIXED SEARCH BAR -->
     <LinearLayout
         android:id="@+id/searchBarWrapper"

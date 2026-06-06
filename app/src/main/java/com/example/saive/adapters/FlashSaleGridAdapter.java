@@ -1,5 +1,6 @@
 package com.example.saive.adapters;
 
+import android.graphics.Paint;
 import android.content.Intent;
 import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
@@ -56,13 +57,19 @@ public class FlashSaleGridAdapter extends RecyclerView.Adapter<FlashSaleGridAdap
         holder.tvName.setText(product.getName().toUpperCase());
         holder.tvPrice.setText(PriceFormatter.formatPrice(product.getPrice()));
 
+        if (product.getOriginalPrice() != null) {
+            holder.tvOriginalPrice.setVisibility(View.VISIBLE);
+            holder.tvOriginalPrice.setText(PriceFormatter.formatPrice(product.getOriginalPrice()));
+            holder.tvOriginalPrice.setPaintFlags(holder.tvOriginalPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        } else {
+            holder.tvOriginalPrice.setVisibility(View.GONE);
+        }
+
         if (textColor != -1) {
             holder.tvName.setTextColor(textColor);
             holder.tvPrice.setTextColor(textColor);
-            holder.tvQuantity.setTextColor(textColor);
-            holder.btnDecrease.setColorFilter(textColor);
-            holder.btnIncrease.setColorFilter(textColor);
-            holder.btnAddToCart.setColorFilter(textColor);
+            holder.tvOriginalPrice.setTextColor(textColor);
+            holder.tvOriginalPrice.setAlpha(0.6f);
         }
         
         // Discount badge logic
@@ -88,32 +95,6 @@ public class FlashSaleGridAdapter extends RecyclerView.Adapter<FlashSaleGridAdap
 
         boolean isFavorite = FavoriteManager.getInstance(holder.itemView.getContext()).isFavorite(product);
         updateFavoriteIcon(holder.btnFavorite, isFavorite);
-
-        // Local quantity state for the item card
-        final int[] itemQuantity = {1};
-        holder.tvQuantity.setText(R.string.quantity_default);
-
-        holder.btnDecrease.setOnClickListener(v -> {
-            if (itemQuantity[0] > 1) {
-                itemQuantity[0]--;
-                holder.tvQuantity.setText(String.valueOf(itemQuantity[0]));
-            }
-        });
-
-        holder.btnIncrease.setOnClickListener(v -> {
-            itemQuantity[0]++;
-            holder.tvQuantity.setText(String.valueOf(itemQuantity[0]));
-        });
-
-        holder.btnAddToCart.setOnClickListener(v -> {
-            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-            CartManager.getInstance(v.getContext()).addProduct(product, itemQuantity[0]);
-            ToastUtils.showCustomToast(v.getContext(), v.getContext().getString(R.string.toast_added_to_wardrobe, itemQuantity[0]));
-            
-            // Reset quantity after adding
-            itemQuantity[0] = 1;
-            holder.tvQuantity.setText(R.string.quantity_default);
-        });
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), ProductDetailActivity.class);
@@ -151,20 +132,17 @@ public class FlashSaleGridAdapter extends RecyclerView.Adapter<FlashSaleGridAdap
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivProduct;
-        TextView tvName, tvPrice, tvDiscount, tvQuantity;
-        ImageButton btnFavorite, btnDecrease, btnIncrease, btnAddToCart;
+        TextView tvName, tvPrice, tvOriginalPrice, tvDiscount;
+        ImageButton btnFavorite;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivProduct = itemView.findViewById(R.id.ivProduct);
             tvName = itemView.findViewById(R.id.tvProductName);
             tvPrice = itemView.findViewById(R.id.tvProductPrice);
+            tvOriginalPrice = itemView.findViewById(R.id.tvOriginalPrice);
             tvDiscount = itemView.findViewById(R.id.tvDiscountBadge);
             btnFavorite = itemView.findViewById(R.id.btnFavorite);
-            tvQuantity = itemView.findViewById(R.id.tvQuantity);
-            btnDecrease = itemView.findViewById(R.id.btnDecrease);
-            btnIncrease = itemView.findViewById(R.id.btnIncrease);
-            btnAddToCart = itemView.findViewById(R.id.btnAddToCart);
         }
     }
 }

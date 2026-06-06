@@ -900,12 +900,12 @@ public class MainActivity extends BaseActivity {
         rvFlashSale = findViewById(R.id.rvFlashSale);
         flashProductList = new ArrayList<>();
         
-        // Thêm các sản phẩm Flash Sale với hình ảnh đa dạng
-        flashProductList.add(new Product("Archived Wool Coat", "$320.00", R.mipmap.jacket1, getString(R.string.cat_jacket)));
-        flashProductList.add(new Product("Vintage Linen Shirt", "$120.00", R.mipmap.tshirt2, getString(R.string.cat_tshirt)));
-        flashProductList.add(new Product("Urban Shades", "$140.00", R.mipmap.sunglass4, getString(R.string.cat_sunglasses)));
-        flashProductList.add(new Product("Classic Chinos", "$95.00", R.mipmap.pant2, getString(R.string.cat_jeans)));
-        flashProductList.add(new Product("Retro Frames", "$150.00", R.mipmap.sunglass5, getString(R.string.cat_sunglasses)));
+        // Thêm các sản phẩm Flash Sale với hình ảnh đa dạng và giá gốc (sale)
+        flashProductList.add(new Product("Archived Wool Coat", "320.000", "500.000", R.mipmap.jacket1, getString(R.string.cat_jacket)));
+        flashProductList.add(new Product("Vintage Linen Shirt", "120.000", "200.000", R.mipmap.tshirt2, getString(R.string.cat_tshirt)));
+        flashProductList.add(new Product("Urban Shades", "140.000", "250.000", R.mipmap.sunglass4, getString(R.string.cat_sunglasses)));
+        flashProductList.add(new Product("Classic Chinos", "95.000", "150.000", R.mipmap.pant2, getString(R.string.cat_jeans)));
+        flashProductList.add(new Product("Retro Frames", "150.000", "280.000", R.mipmap.sunglass5, getString(R.string.cat_sunglasses)));
 
         FlashProductAdapter adapter = new FlashProductAdapter(flashProductList);
         adapter.setTextColor(ContextCompat.getColor(this, R.color.colorCotton));

@@ -70,9 +70,9 @@ public class FlashProductAdapter extends RecyclerView.Adapter<FlashProductAdapte
                     double original = PriceFormatter.parsePrice(product.getOriginalPrice());
                     double current = PriceFormatter.parsePrice(product.getPrice());
                     int percent = (int) (100 - (current * 100 / original));
-                    ((TextView) badge).setText("-" + percent + "%");
+                    ((TextView) badge).setText(holder.itemView.getContext().getString(R.string.discount_format, percent));
                 } catch (Exception e) {
-                    ((TextView) badge).setText("SALE");
+                    ((TextView) badge).setText(holder.itemView.getContext().getString(R.string.label_sale));
                 }
             }
         } else {
