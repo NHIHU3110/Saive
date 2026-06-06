@@ -222,6 +222,8 @@ public class ProductDetailActivity extends BaseActivity {
         }
 
         if (btnWriteReview != null) {
+            boolean hasPurchased = checkProductPurchased();
+            btnWriteReview.setVisibility(hasPurchased ? View.VISIBLE : View.GONE);
             btnWriteReview.setOnClickListener(v -> showWriteReviewDialog());
         }
 
@@ -361,6 +363,21 @@ public class ProductDetailActivity extends BaseActivity {
                 }
             });
         }
+    }
+
+    private boolean checkProductPurchased() {
+        if (currentProduct == null) return false;
+        
+        List<com.example.saive.models.AdminOrder> orders = com.example.saive.utils.DataManager.getInstance(this).getOrders();
+        String productName = currentProduct.getName();
+        
+        for (com.example.saive.models.AdminOrder order : orders) {
+            if (order.getItemsSummary() != null && order.getItemsSummary().contains(productName)) {
+                // In a real app, we might also check if status is "Delivered" or "Completed"
+                return true;
+            }
+        }
+        return false;
     }
 
     private void showWriteReviewDialog() {

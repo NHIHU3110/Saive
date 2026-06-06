@@ -19,7 +19,6 @@
             android:paddingHorizontal="16dp"
             android:paddingTop="54dp"
             android:paddingBottom="16dp">
-            <!-- ... nội dung title giữ nguyên ... -->
 
             <ImageView
                 android:id="@+id/btnBack"
@@ -31,7 +30,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"
                 app:tint="@color/colorOnMaroon" />
 
             <TextView
@@ -42,11 +40,10 @@
                 android:text="@string/btn_checkout"
                 android:textSize="18sp"
                 android:textColor="@color/colorOnMaroon"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/btnBack"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintTop_toTopOf="@+id/btnBack" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.appbar.AppBarLayout>

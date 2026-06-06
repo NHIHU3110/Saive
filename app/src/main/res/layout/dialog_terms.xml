@@ -11,11 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="28dp"
+        android:background="@color/white">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
 
             <TextView
                 android:id="@+id/tvTermsTitle"
@@ -25,8 +27,9 @@
                 android:layout_centerVertical="true"
                 android:text="@string/terms_title"
                 android:textColor="@color/colorMaroon"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.02" />
 
             <ImageButton
                 android:id="@+id/btnCloseTerms"
@@ -41,18 +44,31 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginTop="16dp">
+            android:layout_height="350dp"
+            android:scrollbarStyle="outsideOverlay"
+            android:scrollbars="vertical">
 
             <TextView
                 android:id="@+id/tvTermsContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:lineSpacingExtra="4dp"
+                android:lineSpacingMultiplier="1.4"
                 android:text="@string/terms_content"
-                android:textColor="@color/colorGrayText"
-                android:textSize="14sp" />
+                android:textColor="@color/colorNoirBlack"
+                android:textSize="15sp"
+                android:letterSpacing="0.01" />
         </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAcceptTerms"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/dialog_cancel"
+            android:visibility="gone"
+            app:cornerRadius="28dp"
+            app:backgroundTint="@color/colorMaroon" />
 
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
