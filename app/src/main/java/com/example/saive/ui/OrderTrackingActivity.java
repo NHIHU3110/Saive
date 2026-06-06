@@ -43,6 +43,24 @@ public class OrderTrackingActivity extends BaseActivity {
                 tvPaymentMethod.setText(order.getPaymentMethod());
                 tvShippingAddress.setText(order.getShippingAddress());
 
+                // Cập nhật ngày dự kiến (ví dụ: 3 ngày sau khi đặt)
+                TextView tvExpectedDelivery = findViewById(R.id.expectedDelivery);
+                if (tvExpectedDelivery != null) {
+                    tvExpectedDelivery.setText("Dự kiến: " + (order.getTimeAgo().equals("Just now") ? "Trong 3 ngày tới" : "Đang giao"));
+                }
+
+                // Cập nhật thời gian trong timeline
+                TextView tvTimePlaced = findViewById(R.id.textPlaced);
+                if (tvTimePlaced != null && tvTimePlaced.getParent() instanceof LinearLayout) {
+                    LinearLayout parent = (LinearLayout) tvTimePlaced.getParent();
+                    for (int i = 0; i < parent.getChildCount(); i++) {
+                        View child = parent.getChildAt(i);
+                        if (child instanceof TextView && child != tvTimePlaced) {
+                            ((TextView) child).setText(order.getTimeAgo().equals("Just now") ? "Hôm nay" : order.getTimeAgo());
+                        }
+                    }
+                }
+
                 itemsContainer.removeAllViews();
                 TextView tvSeeMore = findViewById(R.id.tvSeeMore);
 
@@ -72,9 +90,19 @@ public class OrderTrackingActivity extends BaseActivity {
                         tvSeeMore.setVisibility(View.VISIBLE);
                         tvSeeMore.setText("Xem thêm (+" + (items.size() - 1) + " sản phẩm)");
                         tvSeeMore.setOnClickListener(v -> {
-                            tvSeeMore.setVisibility(View.GONE);
-                            for (int i = 1; i < itemsContainer.getChildCount(); i++) {
-                                itemsContainer.getChildAt(i).setVisibility(View.VISIBLE);
+                            boolean isExpanded = itemsContainer.getChildAt(1).getVisibility() == View.VISIBLE;
+                            if (isExpanded) {
+                                // Thu gọn
+                                for (int i = 1; i < itemsContainer.getChildCount(); i++) {
+                                    itemsContainer.getChildAt(i).setVisibility(View.GONE);
+                                }
+                                tvSeeMore.setText("Xem thêm (+" + (items.size() - 1) + " sản phẩm)");
+                            } else {
+                                // Mở rộng
+                                for (int i = 1; i < itemsContainer.getChildCount(); i++) {
+                                    itemsContainer.getChildAt(i).setVisibility(View.VISIBLE);
+                                }
+                                tvSeeMore.setText("Thu gọn");
                             }
                         });
                     } else {

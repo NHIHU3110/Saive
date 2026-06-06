@@ -858,9 +858,78 @@ public class CheckoutActivity extends BaseActivity {
 
     private void processOrder() {
         if (!rbCod.isChecked() && !rbBank.isChecked() && !rbMomo.isChecked() && !rbZaloPay.isChecked() && selectedCard == null) {
-            ToastUtils.showCustomToast(this, "Please select a payment method");
+            com.example.saive.utils.ToastUtils.showCustomToast(this, "Please select a payment method");
             return;
         }
+
+        // 1. Chuẩn bị dữ liệu đơn hàng từ giỏ hàng
+        com.example.saive.utils.CartManager cartManager = com.example.saive.utils.CartManager.getInstance(this);
+        List<com.example.saive.models.Product> cartItems = cartManager.getCartItems();
+        
+        if (cartItems.isEmpty()) {
+            com.example.saive.utils.ToastUtils.showCustomToast(this, "Giỏ hàng trống!");
+            return;
+        }
+
+        List<com.example.saive.models.OrderItem> orderItems = new ArrayList<>();
+        StringBuilder summaryBuilder = new StringBuilder();
+        summaryBuilder.append(cartItems.size()).append(" Items: ");
+        
+        for (int i = 0; i < cartItems.size(); i++) {
+            com.example.saive.models.Product p = cartItems.get(i);
+            String itemSize = p.getSelectedSize();
+            if (itemSize == null || itemSize.isEmpty()) {
+                itemSize = (p.getCategory() != null && p.getCategory().toLowerCase().contains("glasses")) ? "One Size" : "M";
+            }
+            
+            orderItems.add(new com.example.saive.models.OrderItem(
+                p.getName(),
+                itemSize,
+                p.getQuantity(),
+                p.getPrice(),
+                p.getImageResId()
+            ));
+            
+            summaryBuilder.append(p.getName());
+            if (i < cartItems.size() - 1) summaryBuilder.append(", ");
+        }
+
+        // 2. Tạo đối tượng AdminOrder
+        String orderId = "#SA-" + (System.currentTimeMillis() % 1000000);
+        String customerName = selectedAddress != null ? selectedAddress.getFullName() : etFullName.getText().toString();
+        String shippingAddr = selectedAddress != null ? selectedAddress.getFullDisplayAddress() : 
+            (etAddress.getText().toString() + ", " + tvSelectedWard.getText() + ", " + tvSelectedDistrict.getText() + ", " + tvSelectedCity.getText());
+        
+        String paymentMethod = "COD";
+        if (rbBank.isChecked()) paymentMethod = "Bank Transfer";
+        else if (rbMomo.isChecked()) paymentMethod = "Momo";
+        else if (rbZaloPay.isChecked()) paymentMethod = "ZaloPay";
+        else if (selectedCard != null) paymentMethod = "Card (**** " + selectedCard.getCardNumber().substring(Math.max(0, selectedCard.getCardNumber().length() - 4)) + ")";
+
+        // Lấy giá trị tổng tiền từ TextView nếu biến totalPrice bị null
+        String finalPrice = (totalPrice != null) ? totalPrice : tvSummaryTotal.getText().toString();
+
+        String itemSizeLegacy = (selectedSize != null && !selectedSize.isEmpty()) ? selectedSize : cartItems.get(0).getSelectedSize();
+        if (itemSizeLegacy == null || itemSizeLegacy.isEmpty()) itemSizeLegacy = "M";
+
+        com.example.saive.models.AdminOrder newOrder = new com.example.saive.models.AdminOrder(
+            orderId,
+            customerName,
+            summaryBuilder.toString(),
+            finalPrice,
+            "PENDING",
+            "Just now",
+            cartItems.get(0).getImageResId(),
+            itemSizeLegacy,
+            cartManager.getItemCount(),
+            paymentMethod,
+            shippingAddr
+        );
+        newOrder.setItems(orderItems);
+
+        // 3. Lưu đơn hàng và xóa giỏ hàng
+        com.example.saive.utils.DataManager.getInstance(this).addOrder(newOrder);
+        cartManager.clearCart();
 
         showSuccessDialog();
     }
