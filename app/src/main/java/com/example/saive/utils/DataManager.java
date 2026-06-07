@@ -21,6 +21,7 @@ public class DataManager {
     private static final String KEY_USERS = "users";
     private static final String KEY_REVIEWS = "reviews";
     private static final String KEY_FLASH_SALE = "flash_sale";
+    private static final String KEY_PAYMENT_CARDS = "payment_cards";
 
     private static DataManager instance;
     private Context context;
@@ -173,5 +174,35 @@ public class DataManager {
 
     public String getFlashSale(String productId) {
         return prefs.getString(KEY_FLASH_SALE + "_" + productId, null);
+    }
+
+    // --- Payment Cards ---
+    public List<com.example.saive.models.PaymentCard> getPaymentCards() {
+        String json = prefs.getString(KEY_PAYMENT_CARDS, null);
+        if (json == null) {
+            List<com.example.saive.models.PaymentCard> initial = new ArrayList<>();
+            initial.add(new com.example.saive.models.PaymentCard("1234567890123456", "THAO NHI HUYNH", "12/26", "123", "VISA"));
+            return initial;
+        }
+        Type type = new TypeToken<ArrayList<com.example.saive.models.PaymentCard>>() {}.getType();
+        return gson.fromJson(json, type);
+    }
+
+    public void savePaymentCards(List<com.example.saive.models.PaymentCard> cards) {
+        prefs.edit().putString(KEY_PAYMENT_CARDS, gson.toJson(cards)).apply();
+    }
+
+    public void addPaymentCard(com.example.saive.models.PaymentCard card) {
+        List<com.example.saive.models.PaymentCard> cards = getPaymentCards();
+        cards.add(card);
+        savePaymentCards(cards);
+    }
+
+    public void removePaymentCard(int index) {
+        List<com.example.saive.models.PaymentCard> cards = getPaymentCards();
+        if (index >= 0 && index < cards.size()) {
+            cards.remove(index);
+            savePaymentCards(cards);
+        }
     }
 }

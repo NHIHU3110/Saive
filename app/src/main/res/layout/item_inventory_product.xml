@@ -6,7 +6,7 @@
     android:layout_marginBottom="16dp"
     app:cardCornerRadius="24dp"
     app:cardElevation="2dp"
-    app:cardBackgroundColor="@color/white"
+    app:cardBackgroundColor="?attr/colorSurface"
     app:strokeWidth="0dp">
 
     <LinearLayout
@@ -44,7 +44,7 @@
                 android:text="Velvet Evening Gown"
                 android:fontFamily="serif"
                 android:textStyle="bold"
-                android:textColor="@color/colorNoirBlack"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="16sp" />
 
             <TextView
@@ -78,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:text="Kho: 12"
                     android:fontFamily="sans-serif-light"
-                    android:textColor="@color/colorNoirBlack"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="11sp"
                     android:layout_marginStart="8dp" />
             </LinearLayout>

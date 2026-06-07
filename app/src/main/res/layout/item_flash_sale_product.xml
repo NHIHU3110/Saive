@@ -66,7 +66,7 @@
         android:layout_marginTop="12dp"
         style="@style/TextAppearance.Saive.ProductTitle"
         android:text="NYLON WEATHER"
-        android:textColor="@color/colorNoirBlack"
+        android:textColor="?attr/colorOnSurface"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cardProduct" />
@@ -78,7 +78,8 @@
         android:layout_marginTop="4dp"
         style="@style/TextAppearance.Saive.Thin"
         android:text="$30.00 USD"
-        android:textColor="#80000000"
+        android:textColor="?attr/colorOnSurface"
+        android:alpha="0.6"
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvProductName" />

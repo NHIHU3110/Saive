@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Backgrounds → tối -->
-    <color name="colorCotton">#1C1C1C</color>
-    <color name="colorIvory">#1C1C1C</color>
-    <color name="colorBeigeBg">#1C1C1C</color>
+    <color name="colorCotton">#121212</color>
+    <color name="colorIvory">#1A1A1A</color>
+    <color name="colorBeigeBg">#1E1E1E</color>
     <color name="colorGrayBg">#242424</color>
     <color name="colorSandLight">#242424</color>
-    <color name="colorUnreadBg">#242424</color>
+    <color name="colorUnreadBg">#2A2A2A</color>
     <color name="colorReadBg">#1C1C1C</color>
     <color name="colorCategoryBg">#2A1A1A</color>
 
@@ -17,10 +17,16 @@
     <color name="colorCollectionSandLight">#2A2A2A</color>
 
     <!-- Text → sáng -->
-    <color name="colorNoirBlack">#F0EDE5</color>
-    <color name="colorNoir">#F0EDE5</color>
-    <color name="colorGrayText">#999999</color>
-    <color name="colorGrey">#999999</color>
+    <color name="colorNoirBlack">#F5F5F5</color>
+    <color name="colorNoir">#F5F5F5</color>
+    <color name="colorGrayText">#B0B0B0</color>
+    <color name="colorGrey">#B0B0B0</color>
 
-    <color name="white">#2A2A2A</color>
+    <!-- Brand Colors (Keep but adjust if needed) -->
+    <color name="colorMaroon">#A52A2A</color> <!-- Slightly lighter for visibility on dark -->
+    <color name="colorSand">#C2B280</color>
+
+    <!-- Fix for Card backgrounds if they use white -->
+    <color name="white">#1E1E1E</color>
+    <color name="black">#FFFFFF</color>
 </resources>
