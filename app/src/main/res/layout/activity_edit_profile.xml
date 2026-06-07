@@ -7,14 +7,21 @@
     android:layout_height="match_parent"
     tools:context=".ui.EditProfileActivity">
 
+    <!-- Top Accent Bar -->
+    <View
+        android:id="@+id/topAccentBar"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@color/colorMaroon"
+        android:translationZ="30dp"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <!-- Header Bar với nút Back + Save -->
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/headerContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorCotton"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
         android:paddingHorizontal="@dimen/spacing_large"
         android:paddingTop="54dp"
         android:paddingBottom="14dp"
@@ -24,25 +31,31 @@
             android:id="@+id/btnBack"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:src="@drawable/ic_back"
             android:padding="8dp"
+            android:src="@drawable/ic_back"
             android:clickable="true"
             android:focusable="true"
             android:background="?attr/selectableItemBackgroundBorderless"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:tint="@color/colorNoirBlack" />
 
         <TextView
             style="@style/TextAppearance.Saive.SectionHeader"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
             android:letterSpacing="0.2"
             android:text="@string/edit_profile_title"
             android:textColor="@color/colorNoirBlack"
             android:textSize="14sp"
-            android:textStyle="bold" />
-    </LinearLayout>
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/editProfileScroll"

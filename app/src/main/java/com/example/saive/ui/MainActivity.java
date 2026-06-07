@@ -255,6 +255,24 @@ public class MainActivity extends BaseActivity {
 
         // Bắt đầu hiệu ứng vào cho UI chính
         startEntryAnimations();
+        updateStatusBar();
+    }
+
+    private void updateStatusBar() {
+        if (getWindow() != null) {
+            boolean isDarkMode = (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) 
+                    == Configuration.UI_MODE_NIGHT_YES;
+            
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorCotton));
+            
+            int flags = getWindow().getDecorView().getSystemUiVisibility();
+            if (isDarkMode) {
+                flags &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            } else {
+                flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            }
+            getWindow().getDecorView().setSystemUiVisibility(flags);
+        }
     }
 
     private void setupCartBadge() {
@@ -455,7 +473,6 @@ public class MainActivity extends BaseActivity {
 
         if (searchContainer != null) {
             searchContainer.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 Intent intent = new Intent(MainActivity.this, SearchActivity.class);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -464,7 +481,6 @@ public class MainActivity extends BaseActivity {
 
         if (btnCart != null) {
             btnCart.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 Intent intent = new Intent(MainActivity.this, CartActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -473,28 +489,24 @@ public class MainActivity extends BaseActivity {
 
         if (navHome != null) {
             navHome.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 showView(homeScroll);
             });
         }
 
         if (navWardrobe != null) {
             navWardrobe.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 showView(wardrobeContainer);
             });
         }
 
         if (navNotify != null) {
             navNotify.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 showView(notificationsContainer);
             });
         }
 
         if (navFavorite != null) {
             navFavorite.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 showView(favoritesContainer);
             });
         }
@@ -505,7 +517,6 @@ public class MainActivity extends BaseActivity {
         View btnExplore = findViewById(R.id.btnExploreLookbook);
 
         View.OnClickListener monochromeClickListener = v -> {
-            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             Intent intent = new Intent(MainActivity.this, CollectionsListActivity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -519,7 +530,6 @@ public class MainActivity extends BaseActivity {
         View ivMaterialStory = findViewById(R.id.ivMaterialStory);
         if (ivMaterialStory != null) {
             ivMaterialStory.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 Intent intent = new Intent(MainActivity.this, CollectionDetailActivity.class);
                 intent.putExtra("COLLECTION_TITLE", getString(R.string.material_story_title));
                 startActivity(intent);
@@ -528,7 +538,6 @@ public class MainActivity extends BaseActivity {
         
         if (navProfile != null) {
             navProfile.setOnClickListener(v -> {
-                v.performHapticFeedback(android.view.HapticFeedbackConstants.VIRTUAL_KEY);
                 updateNavHighlight(v);
                 navigateToProfile();
             });
@@ -538,7 +547,6 @@ public class MainActivity extends BaseActivity {
         View btnSortWardrobe = findViewById(R.id.btnSortWardrobe);
         if (btnSortWardrobe != null) {
             btnSortWardrobe.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 showSortPopup(v);
             });
         }
@@ -547,7 +555,6 @@ public class MainActivity extends BaseActivity {
         View btnNotificationSettings = findViewById(R.id.btnNotificationSettings);
         if (btnNotificationSettings != null) {
             btnNotificationSettings.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 showNotificationSortPopup(v);
             });
         }
@@ -555,7 +562,6 @@ public class MainActivity extends BaseActivity {
         // Home button (center) also toggles home view
         if (centerActionButton != null) {
             centerActionButton.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 showView(homeScroll);
             });
         }
@@ -563,7 +569,6 @@ public class MainActivity extends BaseActivity {
         View tvViewFullCuration = findViewById(R.id.tvViewFullCuration);
         if (tvViewFullCuration != null) {
             tvViewFullCuration.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 showView(wardrobeContainer);
             });
         }
@@ -575,7 +580,6 @@ public class MainActivity extends BaseActivity {
 
         if (tvNavShop != null) {
             tvNavShop.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 showView(wardrobeContainer);
                 animateNavIcon(navWardrobe);
             });
@@ -583,7 +587,6 @@ public class MainActivity extends BaseActivity {
 
         if (tvNavArchive != null) {
             tvNavArchive.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 Intent intent = new Intent(MainActivity.this, CollectionsListActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -592,7 +595,6 @@ public class MainActivity extends BaseActivity {
 
         if (tvNavAbout != null) {
             tvNavAbout.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 Intent intent = new Intent(MainActivity.this, AboutActivity.class);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -603,7 +605,6 @@ public class MainActivity extends BaseActivity {
         View bannerNewCollection = findViewById(R.id.wardrobeBannerContainer);
         if (bannerNewCollection != null) {
             bannerNewCollection.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 Intent intent = new Intent(MainActivity.this, CollectionsListActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -613,7 +614,6 @@ public class MainActivity extends BaseActivity {
         // Flash Sale Container Click
         if (flashSaleContainer != null) {
             flashSaleContainer.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 Intent intent = new Intent(MainActivity.this, FlashSaleActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -724,8 +724,6 @@ public class MainActivity extends BaseActivity {
 
             item.animate()
                     .alpha(isActive ? 1.0f : 0.5f)
-                    .scaleX(isActive ? 1.1f : 1.0f)
-                    .scaleY(isActive ? 1.1f : 1.0f)
                     .setDuration(250)
                     .start();
         }
@@ -902,14 +900,15 @@ public class MainActivity extends BaseActivity {
         rvFlashSale = findViewById(R.id.rvFlashSale);
         flashProductList = new ArrayList<>();
         
-        // Thêm các sản phẩm Flash Sale với hình ảnh đa dạng
-        flashProductList.add(new Product("Archived Wool Coat", "$320.00", R.mipmap.jacket1, getString(R.string.cat_jacket)));
-        flashProductList.add(new Product("Vintage Linen Shirt", "$120.00", R.mipmap.tshirt2, getString(R.string.cat_tshirt)));
-        flashProductList.add(new Product("Urban Shades", "$140.00", R.mipmap.sunglass4, getString(R.string.cat_sunglasses)));
-        flashProductList.add(new Product("Classic Chinos", "$95.00", R.mipmap.pant2, getString(R.string.cat_jeans)));
-        flashProductList.add(new Product("Retro Frames", "$150.00", R.mipmap.sunglass5, getString(R.string.cat_sunglasses)));
+        // Thêm các sản phẩm Flash Sale với hình ảnh đa dạng và giá gốc (sale)
+        flashProductList.add(new Product("Archived Wool Coat", "320.000", "500.000", R.mipmap.jacket1, getString(R.string.cat_jacket)));
+        flashProductList.add(new Product("Vintage Linen Shirt", "120.000", "200.000", R.mipmap.tshirt2, getString(R.string.cat_tshirt)));
+        flashProductList.add(new Product("Urban Shades", "140.000", "250.000", R.mipmap.sunglass4, getString(R.string.cat_sunglasses)));
+        flashProductList.add(new Product("Classic Chinos", "95.000", "150.000", R.mipmap.pant2, getString(R.string.cat_jeans)));
+        flashProductList.add(new Product("Retro Frames", "150.000", "280.000", R.mipmap.sunglass5, getString(R.string.cat_sunglasses)));
 
         FlashProductAdapter adapter = new FlashProductAdapter(flashProductList);
+        adapter.setTextColor(ContextCompat.getColor(this, R.color.colorCotton));
         // Thiết lập LinearLayoutManager nằm ngang
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         rvFlashSale.setLayoutManager(layoutManager);

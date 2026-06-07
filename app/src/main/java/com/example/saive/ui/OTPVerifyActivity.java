@@ -4,8 +4,12 @@ import static android.content.Intent.getIntent;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -21,8 +25,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 public class OTPVerifyActivity extends BaseActivity {
 
-    private TextInputEditText etOtp;
-    private TextInputLayout tilOtp;
+    private EditText etOtp1, etOtp2, etOtp3, etOtp4, etOtp5, etOtp6;
     private String correctOtp;
     private String email;
 
@@ -34,8 +37,17 @@ public class OTPVerifyActivity extends BaseActivity {
         correctOtp = getIntent().getStringExtra("otp");
         email = getIntent().getStringExtra("email");
 
-        tilOtp = findViewById(R.id.tilOtp);
-        etOtp = findViewById(R.id.etOtp);
+        etOtp1 = findViewById(R.id.etOtp1);
+        etOtp2 = findViewById(R.id.etOtp2);
+        etOtp3 = findViewById(R.id.etOtp3);
+        etOtp4 = findViewById(R.id.etOtp4);
+        etOtp5 = findViewById(R.id.etOtp5);
+        etOtp6 = findViewById(R.id.etOtp6);
+
+        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+
+        setupOtpInputs();
+
         View btnVerify = findViewById(R.id.btnVerify);
         TextView tvEmailHint = findViewById(R.id.tvEmailHint);
         TextView tvResend = findViewById(R.id.tvResend);
@@ -46,23 +58,21 @@ public class OTPVerifyActivity extends BaseActivity {
         }
 
         btnVerify.setOnClickListener(v -> {
-            String entered = etOtp.getText() != null
-                    ? etOtp.getText().toString().trim() : "";
+            String entered = getEnteredOtp();
 
             if (TextUtils.isEmpty(entered)) {
-                tilOtp.setError("Please enter OTP");
+                showCustomToast(getString(R.string.error_enter_otp));
                 return;
             }
             if (entered.length() < 6) {
-                tilOtp.setError("OTP must be 6 digits");
+                showCustomToast(getString(R.string.error_otp_length));
                 return;
             }
             if (!entered.equals(correctOtp)) {
-                tilOtp.setError("Invalid OTP");
+                showCustomToast(getString(R.string.error_invalid_otp));
                 return;
             }
 
-            tilOtp.setError(null);
             Intent intent = new Intent(OTPVerifyActivity.this, ResetPasswordActivity.class);
             intent.putExtra("email", email);
             startActivity(intent);
@@ -71,9 +81,85 @@ public class OTPVerifyActivity extends BaseActivity {
         tvResend.setOnClickListener(v -> {
             String newOtp = String.valueOf((int)(Math.random() * 900000) + 100000);
             correctOtp = newOtp;
-            tilOtp.setError(null);
-            etOtp.setText("");
-            showCustomToast("New OTP: " + newOtp);
+            clearOtpFields();
+            showCustomToast(getString(R.string.toast_new_otp, newOtp));
         });
+    }
+
+    private void setupOtpInputs() {
+        etOtp1.addTextChangedListener(new OtpTextWatcher(etOtp1, etOtp2));
+        etOtp2.addTextChangedListener(new OtpTextWatcher(etOtp2, etOtp3));
+        etOtp3.addTextChangedListener(new OtpTextWatcher(etOtp3, etOtp4));
+        etOtp4.addTextChangedListener(new OtpTextWatcher(etOtp4, etOtp5));
+        etOtp5.addTextChangedListener(new OtpTextWatcher(etOtp5, etOtp6));
+        etOtp6.addTextChangedListener(new OtpTextWatcher(etOtp6, null));
+
+        etOtp2.setOnKeyListener(new OtpKeyListener(etOtp2, etOtp1));
+        etOtp3.setOnKeyListener(new OtpKeyListener(etOtp3, etOtp2));
+        etOtp4.setOnKeyListener(new OtpKeyListener(etOtp4, etOtp3));
+        etOtp5.setOnKeyListener(new OtpKeyListener(etOtp5, etOtp4));
+        etOtp6.setOnKeyListener(new OtpKeyListener(etOtp6, etOtp5));
+    }
+
+    private String getEnteredOtp() {
+        return etOtp1.getText().toString().trim() +
+                etOtp2.getText().toString().trim() +
+                etOtp3.getText().toString().trim() +
+                etOtp4.getText().toString().trim() +
+                etOtp5.getText().toString().trim() +
+                etOtp6.getText().toString().trim();
+    }
+
+    private void clearOtpFields() {
+        etOtp1.setText("");
+        etOtp2.setText("");
+        etOtp3.setText("");
+        etOtp4.setText("");
+        etOtp5.setText("");
+        etOtp6.setText("");
+        etOtp1.requestFocus();
+    }
+
+    private class OtpTextWatcher implements TextWatcher {
+        private final View currentView;
+        private final View nextView;
+
+        public OtpTextWatcher(View currentView, View nextView) {
+            this.currentView = currentView;
+            this.nextView = nextView;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if (s.length() == 1 && nextView != null) {
+                nextView.requestFocus();
+            }
+        }
+    }
+
+    private class OtpKeyListener implements View.OnKeyListener {
+        private final EditText currentView;
+        private final EditText previousView;
+
+        public OtpKeyListener(EditText currentView, EditText previousView) {
+            this.currentView = currentView;
+            this.previousView = previousView;
+        }
+
+        @Override
+        public boolean onKey(View v, int keyCode, KeyEvent event) {
+            if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_DEL
+                    && currentView.getText().toString().isEmpty() && previousView != null) {
+                previousView.requestFocus();
+                return true;
+            }
+            return false;
+        }
     }
 }

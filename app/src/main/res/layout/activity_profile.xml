@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     android:background="@color/colorCotton">
 
+    <View
+        android:id="@+id/topAccentBar"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@color/colorMaroon"
+        app:layout_constraintTop_toTopOf="parent"
+        android:translationZ="30dp"/>
+
     <!-- Header Bar -->
     <LinearLayout
         android:id="@+id/headerContainer"
@@ -170,7 +178,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/TextAppearance.Saive.Caption"
-                    android:text="ACCOUNT SETTINGS"
+                    android:text="@string/label_account_settings"
                     android:textColor="@color/colorSand"
                     android:textSize="10sp"
                     android:letterSpacing="0.2" />
@@ -240,12 +248,13 @@
                             android:textColor="@color/colorNoirBlack"
                             android:textSize="14sp" />
                         <TextView
+                            android:id="@+id/tvSavedCollectionsCount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp"
                             android:background="@drawable/bg_circle_maroon"
                             android:paddingHorizontal="6dp"
-                            android:text="4"
+                            android:text="0"
                             android:textColor="@color/white"
                             android:textSize="10sp"
                             android:gravity="center" />
@@ -366,7 +375,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
                     style="@style/TextAppearance.Saive.Caption"
-                    android:text="PREFERENCES"
+                    android:text="@string/label_preferences"
                     android:textColor="@color/colorSand"
                     android:textSize="10sp"
                     android:letterSpacing="0.2" />
@@ -489,7 +498,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
                     style="@style/TextAppearance.Saive.Caption"
-                    android:text="SUPPORT &amp; LEGAL"
+                    android:text="@string/label_support_legal"
                     android:textColor="@color/colorSand"
                     android:textSize="10sp"
                     android:letterSpacing="0.2" />
@@ -533,7 +542,7 @@
                             app:tint="@color/colorLinen" />
                     </LinearLayout>
 
-                    <View android:layout_width="match_parent" android:layout_height="0.5dp" android:layout_marginHorizontal="16dp" android:background="@color/colorLinen" android:alpha="0.5" />
+                    <View android:layout_width="match_parent" android:layout_height="0.5dp" android:layout_marginHorizontal="16dp" android:background="@color/colorLinen" android:alpha="0.5" android:visibility="gone" />
 
                     <LinearLayout
                         android:id="@+id/btnDeleteAccount"
@@ -543,7 +552,8 @@
                         android:focusable="true"
                         android:background="@drawable/bg_menu_item"
                         android:gravity="center_vertical"
-                        android:paddingHorizontal="16dp">
+                        android:paddingHorizontal="16dp"
+                        android:visibility="gone">
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
@@ -583,7 +593,7 @@
                 android:layout_marginTop="24dp"
                 android:gravity="center"
                 style="@style/TextAppearance.Saive.Caption"
-                android:text="SAIVE v1.0.4 • EST 2022"
+                android:text="@string/label_saive_footer"
                 android:textColor="@color/colorSand"
                 android:textSize="9sp"
                 android:alpha="0.6" />

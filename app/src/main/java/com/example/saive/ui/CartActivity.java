@@ -5,14 +5,15 @@ import android.os.Bundle;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.saive.R;
 import com.example.saive.adapters.CartAdapter;
+import com.example.saive.base.BaseActivity;
 import com.example.saive.models.Product;
 import com.example.saive.utils.CartManager;
 import com.example.saive.utils.DialogUtils;
@@ -22,17 +23,19 @@ import java.text.DecimalFormatSymbols;
 import java.util.List;
 import java.util.Locale;
 
-public class CartActivity extends AppCompatActivity {
+public class CartActivity extends BaseActivity {
 
     private RecyclerView rvCartItems;
     private View emptyStateCart;
     private TextView tvSubtotal, tvTotalPrice, tvDiscountValue;
-    private View layoutDiscount;
+    private View layoutDiscount, layoutExpandableDetails, layoutTotalToggle;
+    private ImageView ivExpandArrow;
     private EditText etCoupon;
     private View btnApplyCoupon;
     private CartAdapter adapter;
     private CartManager cartManager;
 
+    private boolean isSummaryExpanded = false;
     private double currentDiscountRate = 0;
     private String appliedCouponCode = "";
 
@@ -40,10 +43,7 @@ public class CartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        // Setup status bar for full-bleed maroon header
-        getWindow().setStatusBarColor(getResources().getColor(R.color.colorMaroon));
-        getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        updateStatusBar();
 
         setContentView(R.layout.activity_cart);
 
@@ -51,6 +51,22 @@ public class CartActivity extends AppCompatActivity {
         setupCartList();
 
         handleIntent(getIntent());
+    }
+
+    private void updateStatusBar() {
+        boolean isDarkMode = (getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK) 
+                == android.content.res.Configuration.UI_MODE_NIGHT_YES;
+        
+        // Setup status bar for full-bleed maroon header
+        getWindow().setStatusBarColor(getResources().getColor(R.color.colorMaroon));
+        int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
+        
+        // In Dark Mode, colorMaroon becomes light beige, so we need dark icons
+        if (isDarkMode) {
+            flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+        }
+        
+        getWindow().getDecorView().setSystemUiVisibility(flags);
     }
 
     @Override
@@ -77,16 +93,70 @@ public class CartActivity extends AppCompatActivity {
         tvTotalPrice = findViewById(R.id.tvTotalPrice);
         tvDiscountValue = findViewById(R.id.tvDiscountValue);
         layoutDiscount = findViewById(R.id.layoutDiscount);
+        layoutExpandableDetails = findViewById(R.id.layoutExpandableDetails);
+        layoutTotalToggle = findViewById(R.id.layoutTotalToggle);
+        ivExpandArrow = findViewById(R.id.ivExpandArrow);
         etCoupon = findViewById(R.id.etCoupon);
         btnApplyCoupon = findViewById(R.id.btnApplyCoupon);
         View btnBack = findViewById(R.id.btnBack);
         View btnCheckout = findViewById(R.id.btnCheckout);
 
+        if (layoutTotalToggle != null) {
+            layoutTotalToggle.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                toggleSummaryExpansion();
+            });
+        }
+
+        // Navigation Bar Items
+        View navFavorite = findViewById(R.id.navFavorite);
+        View navWardrobe = findViewById(R.id.navWardrobe);
+        View navHome = findViewById(R.id.navHome);
+        View navNotify = findViewById(R.id.navNotify);
+        View navProfile = findViewById(R.id.navProfile);
+        View centerActionButton = findViewById(R.id.centerActionButton);
+
         btnBack.setOnClickListener(v -> finish());
+
+        // Navigation Listeners
+        navFavorite.setOnClickListener(v -> {
+            Intent intent = new Intent(CartActivity.this, MainActivity.class);
+            intent.putExtra("SHOW_FAVORITES", true);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+        });
+
+        navWardrobe.setOnClickListener(v -> {
+            Intent intent = new Intent(CartActivity.this, MainActivity.class);
+            intent.putExtra("SHOW_WARDROBE", true);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+        });
+
+        View.OnClickListener homeListener = v -> {
+            Intent intent = new Intent(CartActivity.this, MainActivity.class);
+            intent.putExtra("SHOW_HOME", true);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+        };
+        navHome.setOnClickListener(homeListener);
+        centerActionButton.setOnClickListener(homeListener);
+
+        navNotify.setOnClickListener(v -> {
+            Intent intent = new Intent(CartActivity.this, MainActivity.class);
+            intent.putExtra("SHOW_NOTIFICATIONS", true);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+        });
+
+        navProfile.setOnClickListener(v -> {
+            Intent intent = new Intent(CartActivity.this, ProfileActivity.class);
+            startActivity(intent);
+        });
 
         btnCheckout.setOnClickListener(v -> {
             if (cartManager.getCartItems().isEmpty()) {
-                ToastUtils.showCustomToast(this, "Giỏ hàng đang trống");
+                ToastUtils.showCustomToast(this, getString(R.string.cart_empty_error));
                 return;
             }
             Intent intent = new Intent(CartActivity.this, CheckoutActivity.class);
@@ -124,7 +194,7 @@ public class CartActivity extends AppCompatActivity {
     private void applyCoupon() {
         String code = etCoupon.getText().toString().trim().toUpperCase();
         if (code.isEmpty()) {
-            ToastUtils.showCustomToast(this, "Vui lòng nhập mã giảm giá");
+            ToastUtils.showCustomToast(this, getString(R.string.coupon_empty));
             return;
         }
 
@@ -132,35 +202,35 @@ public class CartActivity extends AppCompatActivity {
         if (code.equals("WELCOME20")) {
             currentDiscountRate = 0.20;
             appliedCouponCode = code;
-            ToastUtils.showCustomToast(this, "Đã áp dụng mã giảm giá 20%");
+            ToastUtils.showCustomToast(this, getString(R.string.toast_coupon_applied_percent, 20));
         } else if (code.equals("SILK15")) {
             currentDiscountRate = 0.15;
             appliedCouponCode = code;
-            ToastUtils.showCustomToast(this, "Đã áp dụng mã giảm giá 15%");
+            ToastUtils.showCustomToast(this, getString(R.string.toast_coupon_applied_percent, 15));
         } else if (code.equals("REWARD10")) {
             currentDiscountRate = 0.10;
             appliedCouponCode = code;
-            ToastUtils.showCustomToast(this, "Đã áp dụng mã giảm giá 10%");
+            ToastUtils.showCustomToast(this, getString(R.string.toast_coupon_applied_percent, 10));
         } else if (code.equals("ARCHIVE25")) {
             currentDiscountRate = 0.25;
             appliedCouponCode = code;
-            ToastUtils.showCustomToast(this, "Đã áp dụng mã giảm giá 25%");
+            ToastUtils.showCustomToast(this, getString(R.string.toast_coupon_applied_percent, 25));
         } else if (code.equals("SAIVE_S24_EXTRA")) {
             currentDiscountRate = 0.15; // Giảm 15%
             appliedCouponCode = code;
-            ToastUtils.showCustomToast(this, "Đã áp dụng mã giảm giá 15%");
+            ToastUtils.showCustomToast(this, getString(R.string.toast_coupon_applied_percent, 15));
         } else if (code.equals("SAIVE10")) {
             currentDiscountRate = 0.10; // Giảm 10%
             appliedCouponCode = code;
-            ToastUtils.showCustomToast(this, "Đã áp dụng mã giảm giá 10%");
+            ToastUtils.showCustomToast(this, getString(R.string.toast_coupon_applied_percent, 10));
         } else if (code.equals("WELCOME5")) {
             currentDiscountRate = 0.05; // Giảm 5%
             appliedCouponCode = code;
-            ToastUtils.showCustomToast(this, "Đã áp dụng mã giảm giá 5%");
+            ToastUtils.showCustomToast(this, getString(R.string.toast_coupon_applied_percent, 5));
         } else {
             currentDiscountRate = 0;
             appliedCouponCode = "";
-            ToastUtils.showCustomToast(this, "Mã giảm giá không hợp lệ");
+            ToastUtils.showCustomToast(this, getString(R.string.coupon_invalid));
         }
         
         updateTotal();
@@ -181,10 +251,10 @@ public class CartActivity extends AppCompatActivity {
                 public void onRemove(int position) {
                     DialogUtils.showCustomAlertDialog(
                             CartActivity.this,
-                            "Xóa sản phẩm",
-                            "Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng?",
-                            "Xóa",
-                            "Hủy",
+                            getString(R.string.dialog_remove_item_title),
+                            getString(R.string.dialog_remove_item_msg),
+                            getString(R.string.dialog_remove),
+                            getString(R.string.dialog_cancel),
                             () -> {
                                 Product product = cartItems.get(position);
                                 cartManager.removeProduct(product);
@@ -196,7 +266,8 @@ public class CartActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onQuantityChanged() {
+                public void onQuantityChanged(Product product) {
+                    cartManager.updateQuantity(product, product.getQuantity());
                     updateTotal();
                 }
 
@@ -215,7 +286,7 @@ public class CartActivity extends AppCompatActivity {
     private void showVariantSelectionDialog(int position, Product product) {
         boolean isGlasses = product.getCategory() != null && product.getCategory().toLowerCase().contains("glasses");
         String[] options = isGlasses ? new String[]{"Black", "Tortoise", "Gold", "Silver"} : new String[]{"XS", "S", "M", "L", "XL"};
-        String title = isGlasses ? "Chọn màu sắc" : "Chọn kích cỡ";
+        String title = isGlasses ? getString(R.string.label_select_color) : getString(R.string.label_select_size);
         String currentSelection = isGlasses ? product.getSelectedColor() : product.getSelectedSize();
 
         View dialogView = getLayoutInflater().inflate(R.layout.layout_variant_selection, null);
@@ -267,37 +338,47 @@ public class CartActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    private void toggleSummaryExpansion() {
+        isSummaryExpanded = !isSummaryExpanded;
+        
+        if (layoutExpandableDetails != null) {
+            if (isSummaryExpanded) {
+                layoutExpandableDetails.setVisibility(View.VISIBLE);
+                if (ivExpandArrow != null) ivExpandArrow.setRotation(180);
+            } else {
+                layoutExpandableDetails.setVisibility(View.GONE);
+                if (ivExpandArrow != null) ivExpandArrow.setRotation(0);
+            }
+            
+            android.transition.TransitionManager.beginDelayedTransition(findViewById(R.id.checkoutContainer));
+        }
+    }
+
     private void updateTotal() {
         double subtotal = cartManager.getTotalPrice();
         double discountAmount = subtotal * currentDiscountRate;
         double total = subtotal - discountAmount;
 
-        tvSubtotal.setText(formatCurrency(subtotal));
+        tvSubtotal.setText(com.example.saive.utils.PriceFormatter.formatPrice(subtotal));
         
         if (currentDiscountRate > 0) {
             layoutDiscount.setVisibility(View.VISIBLE);
-            tvDiscountValue.setText("-" + formatCurrency(discountAmount));
+            tvDiscountValue.setText("-" + com.example.saive.utils.PriceFormatter.formatPrice(discountAmount));
         } else {
             layoutDiscount.setVisibility(View.GONE);
         }
         
-        tvTotalPrice.setText(formatCurrency(total));
+        tvTotalPrice.setText(com.example.saive.utils.PriceFormatter.formatPrice(total));
     }
 
-    private String formatCurrency(double amount) {
-        DecimalFormatSymbols symbols = new DecimalFormatSymbols(new Locale("vi", "VN"));
-        symbols.setGroupingSeparator('.');
-        symbols.setDecimalSeparator(',');
-        DecimalFormat formatter = new DecimalFormat("#,###", symbols);
-        return formatter.format(amount) + " ₫";
-    }
+
 
     private void checkEmptyState() {
         if (cartManager.getCartItems().isEmpty()) {
             rvCartItems.setVisibility(View.GONE);
             emptyStateCart.setVisibility(View.VISIBLE);
-            tvSubtotal.setText("0 ₫");
-            tvTotalPrice.setText("0 ₫");
+            tvSubtotal.setText(R.string.price_zero_format);
+            tvTotalPrice.setText(R.string.price_zero_format);
             layoutDiscount.setVisibility(View.GONE);
         }
     }

@@ -104,7 +104,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="$12.8k"
+                                tools:text="$12.8k"
                                 style="@style/TextAppearance.Saive.Header"
                                 android:textSize="24sp"
                                 android:textColor="@color/colorNoirBlack"
@@ -112,7 +112,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="+15% UP"
+                                tools:text="+15% UP"
                                 android:textSize="10sp"
                                 android:fontFamily="sans-serif-medium"
                                 android:textColor="@color/colorMaroon"
@@ -145,7 +145,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="156"
+                                tools:text="156"
                                 style="@style/TextAppearance.Saive.Header"
                                 android:textSize="24sp"
                                 android:textColor="@color/white"
@@ -153,7 +153,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="8 PENDING"
+                                tools:text="8 PENDING"
                                 android:textSize="10sp"
                                 android:fontFamily="sans-serif-medium"
                                 android:textColor="@color/colorCotton"
@@ -206,7 +206,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
-                            android:text="M   T   W   T   F   S   S"
+                            tools:text="M   T   W   T   F   S   S"
                             style="@style/TextAppearance.Saive.Caption"
                             android:textSize="10sp"
                             android:layout_centerHorizontal="true"
@@ -248,18 +248,19 @@
                             android:paddingHorizontal="16dp">
                             <View android:layout_width="8dp" android:layout_height="8dp" android:background="@drawable/bg_circle_maroon"/>
                             <TextView
+                                android:id="@+id/tvOrderActivity"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:layout_marginStart="16dp"
-                                android:text="Order #1204 - Paid via Momo"
+                                tools:text="Order #1204 - Paid via Momo"
                                 style="@style/TextAppearance.Saive.Light"
                                 android:textSize="13sp"
                                 android:textColor="@color/colorNoirBlack"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Just now"
+                                tools:text="Just now"
                                 android:textSize="10sp"
                                 android:textColor="@color/colorSand"/>
                         </LinearLayout>
@@ -273,18 +274,19 @@
                             android:paddingHorizontal="16dp">
                             <View android:layout_width="8dp" android:layout_height="8dp" android:background="@drawable/bg_circle_black"/>
                             <TextView
+                                android:id="@+id/tvInventoryAlert"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:layout_marginStart="16dp"
-                                android:text="Inventory Alert: Silk Blazer (Low)"
+                                tools:text="Inventory Alert: Silk Blazer (Low)"
                                 style="@style/TextAppearance.Saive.Light"
                                 android:textSize="13sp"
                                 android:textColor="@color/colorNoirBlack"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="2h ago"
+                                tools:text="2h ago"
                                 android:textSize="10sp"
                                 android:textColor="@color/colorSand"/>
                         </LinearLayout>

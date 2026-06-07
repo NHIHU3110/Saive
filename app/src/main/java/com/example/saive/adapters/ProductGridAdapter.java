@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.saive.R;
 import com.example.saive.models.Product;
 import com.example.saive.ui.ProductDetailActivity;
-import com.example.saive.utils.CartManager;
+import com.example.saive.utils.PriceFormatter;
 import com.example.saive.utils.ImageUtils;
 import com.example.saive.utils.ToastUtils;
 
@@ -25,7 +25,7 @@ import java.util.List;
 public class ProductGridAdapter extends RecyclerView.Adapter<ProductGridAdapter.ViewHolder> {
 
     private List<Product> products;
-    private Integer textColor = null; // Dùng Integer để tránh xung đột với Color.WHITE (-1)
+    private Integer textColor = null;
 
     public ProductGridAdapter(List<Product> products) {
         this.products = products;
@@ -55,25 +55,48 @@ public class ProductGridAdapter extends RecyclerView.Adapter<ProductGridAdapter.
         ImageUtils.setSafeImage(holder.ivProduct, product.getImageResId());
 
         holder.tvName.setText(product.getName().toUpperCase());
-        holder.tvPrice.setText(product.getPrice());
+        
+        // Hiển thị giá gốc và giá giảm
+        if (product.getOriginalPrice() != null) {
+            holder.tvOriginalPrice.setVisibility(View.VISIBLE);
+            holder.tvOriginalPrice.setText(PriceFormatter.formatPrice(product.getOriginalPrice()));
+            holder.tvOriginalPrice.setPaintFlags(holder.tvOriginalPrice.getPaintFlags() | android.graphics.Paint.STRIKE_THRU_TEXT_FLAG);
+
+            // Show discount badge
+            if (holder.tvDiscountBadge != null) {
+                holder.tvDiscountBadge.setVisibility(View.VISIBLE);
+                try {
+                    double original = PriceFormatter.parsePrice(product.getOriginalPrice());
+                    double current = PriceFormatter.parsePrice(product.getPrice());
+                    int percent = (int) (100 - (current * 100 / original));
+                    holder.tvDiscountBadge.setText(holder.itemView.getContext().getString(R.string.discount_format, percent));
+                } catch (Exception e) {
+                    holder.tvDiscountBadge.setText(holder.itemView.getContext().getString(R.string.label_sale));
+                }
+            }
+        } else {
+            holder.tvOriginalPrice.setVisibility(View.GONE);
+            if (holder.tvDiscountBadge != null) {
+                holder.tvDiscountBadge.setVisibility(View.GONE);
+            }
+        }
+        holder.tvPrice.setText(PriceFormatter.formatPrice(product.getPrice()));
 
         if (textColor != null) {
             holder.tvName.setTextColor(textColor);
             holder.tvPrice.setTextColor(textColor);
-            holder.tvPrice.setAlpha(1.0f); // Đảm bảo giá tiền luôn nổi bật nhất
-            holder.btnAddToCart.setColorFilter(textColor);
+            holder.tvOriginalPrice.setTextColor(textColor);
+            holder.tvOriginalPrice.setAlpha(0.5f);
+        } else {
+            holder.tvName.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.colorNoirBlack));
+            holder.tvPrice.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.colorMaroon));
+            holder.tvOriginalPrice.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.colorGrayText));
         }
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), ProductDetailActivity.class);
             intent.putExtra("PRODUCT", product);
             v.getContext().startActivity(intent);
-        });
-
-        holder.btnAddToCart.setOnClickListener(v -> {
-            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-            CartManager.getInstance(v.getContext()).addProduct(product);
-            ToastUtils.showCustomToast(v.getContext(), "Added to wardrobe");
         });
 
         boolean isFavorite = FavoriteManager.getInstance(holder.itemView.getContext()).isFavorite(product);
@@ -96,12 +119,11 @@ public class ProductGridAdapter extends RecyclerView.Adapter<ProductGridAdapter.
 
     private void updateFavoriteIcon(ImageButton btn, boolean isFavorite) {
         if (isFavorite) {
-            btn.setImageResource(R.drawable.ic_favorite); // Assume ic_favorite is filled heart
+            btn.setImageResource(R.drawable.ic_favorite);
             btn.setColorFilter(ContextCompat.getColor(btn.getContext(), R.color.colorMaroon));
         } else {
-            btn.setImageResource(R.drawable.ic_favorite); // In some apps they use different icons, 
-                                                           // but based on prompt "white to red", we use same icon with tint
-            btn.setColorFilter(ContextCompat.getColor(btn.getContext(), R.color.white));
+            btn.setImageResource(R.drawable.ic_favorite); 
+            btn.setColorFilter(ContextCompat.getColor(btn.getContext(), R.color.colorGrey));
         }
     }
 
@@ -112,15 +134,16 @@ public class ProductGridAdapter extends RecyclerView.Adapter<ProductGridAdapter.
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivProduct;
-        TextView tvName, tvPrice;
-        ImageButton btnAddToCart, btnFavorite;
+        TextView tvName, tvPrice, tvOriginalPrice, tvDiscountBadge;
+        ImageButton btnFavorite;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivProduct = itemView.findViewById(R.id.ivProduct);
             tvName = itemView.findViewById(R.id.tvItemName);
             tvPrice = itemView.findViewById(R.id.tvItemPrice);
-            btnAddToCart = itemView.findViewById(R.id.btnAddToCart);
+            tvOriginalPrice = itemView.findViewById(R.id.tvOriginalPrice);
+            tvDiscountBadge = itemView.findViewById(R.id.tvDiscountBadge);
             btnFavorite = itemView.findViewById(R.id.btnFavorite);
         }
     }

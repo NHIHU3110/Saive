@@ -48,6 +48,11 @@
         <item name="android:navigationBarColor">@color/colorCotton</item>
     </style>
 
+    <style name="TransparentBottomSheetDialog" parent="Theme.Material3.DayNight.BottomSheetDialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
+
     <style name="CustomBottomSheetStyle" parent="Widget.Material3.BottomSheet">
         <item name="shapeAppearanceOverlay">@style/BottomSheetShapeAppearance</item>
         <item name="backgroundTint">@color/colorCotton</item>

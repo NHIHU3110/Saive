@@ -50,7 +50,8 @@
         android:textColor="@color/white"
         android:textAllCaps="false"
         android:textSize="16sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:stateListAnimator="@null" />
 
     <TextView
         android:id="@+id/btnViewOrder"

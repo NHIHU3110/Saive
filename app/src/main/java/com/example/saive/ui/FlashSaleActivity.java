@@ -5,12 +5,15 @@ import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -41,6 +44,7 @@ public class FlashSaleActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flash_sale);
 
@@ -50,11 +54,41 @@ public class FlashSaleActivity extends BaseActivity {
         setupCartBadge();
         setupNavigation();
         applyWindowInsets();
+        updateStatusBar();
+    }
+
+    private void updateStatusBar() {
+        if (getWindow() != null) {
+            boolean isDarkMode = (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) 
+                    == Configuration.UI_MODE_NIGHT_YES;
+            
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorCotton));
+            
+            int flags = getWindow().getDecorView().getSystemUiVisibility();
+            if (isDarkMode) {
+                flags &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            } else {
+                flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            }
+            getWindow().getDecorView().setSystemUiVisibility(flags);
+        }
     }
 
     private void applyWindowInsets() {
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content), (v, insets) -> {
+        View root = findViewById(R.id.flashSaleRoot);
+        ViewCompat.setOnApplyWindowInsetsListener(root, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            
+            View topBar = findViewById(R.id.topBar);
+            if (topBar != null) {
+                int paddingHorizontal = (int) (24 * getResources().getDisplayMetrics().density);
+                int paddingVertical = (int) (12 * getResources().getDisplayMetrics().density);
+                topBar.setPadding(paddingHorizontal, 
+                        systemBars.top + paddingVertical,
+                        paddingHorizontal, 
+                        paddingVertical);
+            }
+
             View bottomNav = findViewById(R.id.bottomNav);
             if (bottomNav != null) {
                 bottomNav.setPadding(0, 0, 0, systemBars.bottom);
@@ -64,6 +98,9 @@ public class FlashSaleActivity extends BaseActivity {
     }
 
     private void setupNavigation() {
+        View bottomNav = findViewById(R.id.bottomNav);
+        if (bottomNav == null) return;
+
         View navFavorite = findViewById(R.id.navFavorite);
         if (navFavorite != null) {
             navFavorite.setOnClickListener(v -> navigateToMain("SHOW_FAVORITES"));
@@ -118,16 +155,6 @@ public class FlashSaleActivity extends BaseActivity {
         tvSecond = findViewById(R.id.tvSecond);
         rvProducts = findViewById(R.id.rvFlashSaleProducts);
 
-        View topBar = findViewById(R.id.topBar);
-        ViewCompat.setOnApplyWindowInsetsListener(topBar, (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(v.getPaddingLeft(), 
-                    systemBars.top + (int)(12 * getResources().getDisplayMetrics().density),
-                    v.getPaddingRight(), 
-                    (int)(16 * getResources().getDisplayMetrics().density));
-            return insets;
-        });
-
         View ivBack = findViewById(R.id.ivBack);
         if (ivBack != null) {
             ivBack.setOnClickListener(v -> {
@@ -174,15 +201,15 @@ public class FlashSaleActivity extends BaseActivity {
 
                 @Override
                 public void onFinish() {
-                    if (tvHour != null) tvHour.setText("00");
-                    if (tvMinute != null) tvMinute.setText("00");
-                    if (tvSecond != null) tvSecond.setText("00");
+                    if (tvHour != null) tvHour.setText(R.string.timer_default);
+                    if (tvMinute != null) tvMinute.setText(R.string.timer_default);
+                    if (tvSecond != null) tvSecond.setText(R.string.timer_default);
                 }
             }.start();
         } else {
-            if (tvHour != null) tvHour.setText("00");
-            if (tvMinute != null) tvMinute.setText("00");
-            if (tvSecond != null) tvSecond.setText("00");
+            if (tvHour != null) tvHour.setText(R.string.timer_default);
+            if (tvMinute != null) tvMinute.setText(R.string.timer_default);
+            if (tvSecond != null) tvSecond.setText(R.string.timer_default);
         }
     }
 
@@ -199,15 +226,17 @@ public class FlashSaleActivity extends BaseActivity {
     private void setupProducts() {
         allProducts = DataManager.getInstance(this).getFlashSaleProducts();
         if (allProducts.isEmpty()) {
-            allProducts.add(new Product("NYLON WEATHER", "$30.00 USD", R.mipmap.model1, "Men's Clothing"));
-            allProducts.add(new Product("TWILL TEXTILE", "$100.00 USD", R.mipmap.model2, "Men's Clothing"));
-            allProducts.add(new Product("STRUCTURED COAT", "$450.00 USD", R.mipmap.jacket1, "Outerwear"));
-            allProducts.add(new Product("LINEN SHIRT", "$120.00 USD", R.mipmap.tshirt2, "Shirts"));
-            allProducts.add(new Product("MODERN AVIATORS", "$210.00 USD", R.mipmap.sunglass1, "Accessories"));
-            allProducts.add(new Product("ARCHIVE PARKA", "$520.00 USD", R.mipmap.jacket2, "Outerwear"));
+            allProducts.add(new Product("NYLON WEATHER", "300.000", "500.000", R.mipmap.model1, getString(R.string.cat_all)));
+            allProducts.add(new Product("TWILL TEXTILE", "1.000.000", "1.500.000", R.mipmap.model2, getString(R.string.cat_all)));
+            allProducts.add(new Product("STRUCTURED COAT", "4.500.000", "6.000.000", R.mipmap.jacket1, getString(R.string.cat_jacket)));
+            allProducts.add(new Product("LINEN SHIRT", "1.200.000", "1.800.000", R.mipmap.tshirt2, getString(R.string.cat_tshirt)));
+            allProducts.add(new Product("MODERN AVIATORS", "2.100.000", "2.800.000", R.mipmap.sunglass1, getString(R.string.cat_sunglasses)));
+            allProducts.add(new Product("ARCHIVE PARKA", "5.200.000", "7.500.000", R.mipmap.jacket2, getString(R.string.cat_jacket)));
+            DataManager.getInstance(this).saveFlashSaleProducts(allProducts);
         }
 
         adapter = new FlashSaleGridAdapter(allProducts);
+        adapter.setTextColor(ContextCompat.getColor(this, R.color.colorCotton));
         rvProducts.setLayoutManager(new GridLayoutManager(this, 2));
         rvProducts.setAdapter(adapter);
     }

@@ -83,6 +83,22 @@ public class DataManager {
         prefs.edit().putString(KEY_ORDERS, gson.toJson(orders)).apply();
     }
 
+    public void addOrder(AdminOrder order) {
+        List<AdminOrder> orders = getOrders();
+        orders.add(0, order);
+        saveOrders(orders);
+    }
+
+    public AdminOrder getOrderById(String orderId) {
+        List<AdminOrder> orders = getOrders();
+        for (AdminOrder order : orders) {
+            if (order.getOrderId().equals(orderId)) {
+                return order;
+            }
+        }
+        return null;
+    }
+
     public void updateOrderStatus(String orderId, String newStatus) {
         List<AdminOrder> orders = getOrders();
         for (AdminOrder order : orders) {
@@ -179,11 +195,7 @@ public class DataManager {
     // --- Payment Cards ---
     public List<com.example.saive.models.PaymentCard> getPaymentCards() {
         String json = prefs.getString(KEY_PAYMENT_CARDS, null);
-        if (json == null) {
-            List<com.example.saive.models.PaymentCard> initial = new ArrayList<>();
-            initial.add(new com.example.saive.models.PaymentCard("1234567890123456", "THAO NHI HUYNH", "12/26", "123", "VISA"));
-            return initial;
-        }
+        if (json == null) return new ArrayList<>();
         Type type = new TypeToken<ArrayList<com.example.saive.models.PaymentCard>>() {}.getType();
         return gson.fromJson(json, type);
     }
@@ -196,13 +208,5 @@ public class DataManager {
         List<com.example.saive.models.PaymentCard> cards = getPaymentCards();
         cards.add(card);
         savePaymentCards(cards);
-    }
-
-    public void removePaymentCard(int index) {
-        List<com.example.saive.models.PaymentCard> cards = getPaymentCards();
-        if (index >= 0 && index < cards.size()) {
-            cards.remove(index);
-            savePaymentCards(cards);
-        }
     }
 }

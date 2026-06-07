@@ -114,7 +114,7 @@ public class AddressListActivity extends BaseActivity {
             }
         } else if (addressList.isEmpty()) {
             // Add a dummy default address if list is empty for first time
-            addressList.add(new Address("1", "Home", "Thao Nhi Huynh", "+84 901 234 567", "123 Le Loi Street", "Ho Chi Minh City", "District 1", true));
+            addressList.add(new Address("1", "Home", "Thao Nhi Huynh", "+84 901 234 567", "123 Le Loi Street", "Ben Nghe Ward", "District 1", "Ho Chi Minh City", true));
             saveAddresses();
         }
     }

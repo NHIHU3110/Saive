@@ -86,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:text="14 : 20 : 05"
                 style="@style/TextAppearance.Saive.Header"
-                android:textColor="@color/white"
+                android:textColor="@color/colorCountdownText"
                 android:textSize="32sp"
                 android:layout_marginTop="8dp" />
         </LinearLayout>

@@ -44,10 +44,11 @@ public class AdminReviewAdapter extends RecyclerView.Adapter<AdminReviewAdapter.
 
         if (review.isApproved()) {
             holder.btnApprove.setVisibility(View.GONE);
-            holder.btnReject.setText("HIDE");
+            holder.btnReject.setText(holder.itemView.getContext().getString(R.string.btn_hide));
         } else {
             holder.btnApprove.setVisibility(View.VISIBLE);
-            holder.btnReject.setText("REJECT");
+            holder.btnApprove.setText(holder.itemView.getContext().getString(R.string.btn_approve));
+            holder.btnReject.setText(holder.itemView.getContext().getString(R.string.btn_reject));
         }
 
         holder.btnApprove.setOnClickListener(v -> listener.onApprove(review, position));

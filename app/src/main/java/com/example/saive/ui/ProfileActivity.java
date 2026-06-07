@@ -94,6 +94,21 @@ public class ProfileActivity extends BaseActivity {
             }
         }
 
+        // Cập nhật tên người dùng nếu đã đăng nhập
+        TextView tvUserName = findViewById(R.id.tvUserName);
+        if (tvUserName != null) {
+            if (isLoggedIn) {
+                String savedName = prefs.getString("user_name", "");
+                if (!savedName.isEmpty()) {
+                    tvUserName.setText(savedName);
+                } else {
+                    tvUserName.setText(R.string.profile_user_name);
+                }
+            } else {
+                tvUserName.setText(R.string.profile_user_name);
+            }
+        }
+
         // Update current language display
         if (tvCurrentLanguage != null) {
             SharedPreferences langPrefs = getSharedPreferences(LANG_PREFS, MODE_PRIVATE);
@@ -101,6 +116,13 @@ public class ProfileActivity extends BaseActivity {
             if (currentLang.equals("vi")) tvCurrentLanguage.setText(R.string.lang_vi);
             else if (currentLang.equals("zh")) tvCurrentLanguage.setText(R.string.lang_zh);
             else tvCurrentLanguage.setText(R.string.lang_en);
+        }
+
+        // Cập nhật số lượng bộ sưu tập đã lưu (Favorites)
+        TextView tvSavedCollectionsCount = findViewById(R.id.tvSavedCollectionsCount);
+        if (tvSavedCollectionsCount != null) {
+            int count = com.example.saive.utils.FavoriteManager.getInstance(this).getItemCount();
+            tvSavedCollectionsCount.setText(String.valueOf(count));
         }
     }
 

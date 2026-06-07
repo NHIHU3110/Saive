@@ -1,84 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="16dp"
     app:cardCornerRadius="16dp"
-    app:cardElevation="4dp">
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="@color/colorMaroon">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorMaroon"
+        android:layout_height="200dp"
         android:padding="24dp">
+
+        <ImageView
+            android:id="@+id/ivCardChip"
+            android:layout_width="48dp"
+            android:layout_height="32dp"
+            android:src="@android:drawable/ic_menu_agenda"
+            app:tint="@color/colorSand"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/tvCardType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="VISA"
+            style="@style/TextAppearance.Saive.Header"
             android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:letterSpacing="0.1"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
-
-        <ImageView
-            android:id="@+id/ivChip"
-            android:layout_width="48dp"
-            android:layout_height="36dp"
-            android:src="@drawable/ic_all"
-            android:alpha="0.8"
-            app:tint="@color/colorSand"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/tvCardNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="**** **** **** 1234"
+            android:text="**** **** **** 4242"
+            style="@style/TextAppearance.Saive.Header"
             android:textColor="@color/white"
             android:textSize="22sp"
-            android:letterSpacing="0.2"
-            app:layout_constraintBottom_toTopOf="@+id/tvCardHolderLabel"
+            android:letterSpacing="0.1"
+            app:layout_constraintTop_toBottomOf="@id/ivCardChip"
+            app:layout_constraintBottom_toTopOf="@id/tvCardHolder"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.6" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/tvCardHolderLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/label_card_holder"
-            android:textColor="@color/colorSand"
+            android:text="CARD HOLDER"
+            style="@style/TextAppearance.Saive.Caption"
+            android:textColor="@color/colorCotton"
             android:textSize="10sp"
-            android:textAllCaps="true"
-            app:layout_constraintBottom_toTopOf="@+id/tvCardHolder"
+            android:alpha="0.7"
+            app:layout_constraintBottom_toTopOf="@id/tvCardHolder"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/tvCardHolder"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="THAO NHI HUYNH"
+            android:text="HUYNH THAO NHI"
+            style="@style/TextAppearance.Saive.Nav"
             android:textColor="@color/white"
             android:textSize="14sp"
-            android:textStyle="bold"
+            android:textAllCaps="true"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tvExpiryDate" />
 
         <TextView
             android:id="@+id/tvExpiryLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/label_expiry_date"
-            android:textColor="@color/colorSand"
+            android:text="EXPIRES"
+            style="@style/TextAppearance.Saive.Caption"
+            android:textColor="@color/colorCotton"
             android:textSize="10sp"
-            android:textAllCaps="true"
-            app:layout_constraintBottom_toTopOf="@+id/tvExpiryDate"
+            android:alpha="0.7"
+            app:layout_constraintBottom_toTopOf="@id/tvExpiryDate"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
@@ -86,11 +90,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="12/26"
+            style="@style/TextAppearance.Saive.Nav"
             android:textColor="@color/white"
             android:textSize="14sp"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

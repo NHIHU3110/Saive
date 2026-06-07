@@ -1,6 +1,7 @@
 package com.example.saive.ui;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,8 +37,51 @@ public class CollectionDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collection_detail);
 
+        // Adjust status bar for dark mode if needed
+        boolean isDarkMode = (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
+        if (isDarkMode) {
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.id.topBar != 0 ? R.color.colorCotton : R.color.colorMaroon));
+        }
+
         initViews();
         loadCollectionData();
+        setupBottomNavigation();
+    }
+
+    private void setupBottomNavigation() {
+        View bottomNav = findViewById(R.id.bottomNav);
+        if (bottomNav == null) return;
+
+        // Navigation Item Clicks
+        View navHome = findViewById(R.id.navHome);
+        if (navHome != null) {
+            navHome.setOnClickListener(v -> navigateToMain(""));
+        }
+
+        View centerActionButton = findViewById(R.id.centerActionButton);
+        if (centerActionButton != null) {
+            centerActionButton.setOnClickListener(v -> navigateToMain(""));
+        }
+
+        View navProfile = findViewById(R.id.navProfile);
+        if (navProfile != null) {
+            navProfile.setOnClickListener(v -> navigateToProfile());
+        }
+
+        View navWardrobe = findViewById(R.id.navWardrobe);
+        if (navWardrobe != null) {
+            navWardrobe.setOnClickListener(v -> navigateToMain("OPEN_WARDROBE"));
+        }
+        
+        View navFavorite = findViewById(R.id.navFavorite);
+        if (navFavorite != null) {
+            navFavorite.setOnClickListener(v -> navigateToMain("OPEN_FAVORITES"));
+        }
+        
+        View navNotify = findViewById(R.id.navNotify);
+        if (navNotify != null) {
+            navNotify.setOnClickListener(v -> navigateToMain("OPEN_NOTIFICATIONS"));
+        }
     }
 
     private void initViews() {
@@ -99,10 +144,13 @@ public class CollectionDetailActivity extends BaseActivity {
             tvWhyTitle.setText(R.string.col_monochrome_why_title);
             tvWhyDesc.setText(R.string.col_monochrome_why_desc);
             
-            if (heroSection != null) heroSection.setBackgroundColor(Color.parseColor("#F2F2F2"));
-            if (productSection != null) productSection.setBackgroundColor(Color.parseColor("#F9F9F9"));
+            boolean isDarkMode = (getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK) == android.content.res.Configuration.UI_MODE_NIGHT_YES;
+            
+            if (heroSection != null) heroSection.setBackgroundColor(isDarkMode ? Color.parseColor("#242424") : Color.parseColor("#F2F2F2"));
+            if (productSection != null) productSection.setBackgroundColor(isDarkMode ? Color.parseColor("#1A1A1A") : Color.parseColor("#F9F9F9"));
             if (btnShopAll != null) {
-                btnShopAll.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.BLACK));
+                btnShopAll.setBackgroundTintList(android.content.res.ColorStateList.valueOf(isDarkMode ? Color.WHITE : Color.BLACK));
+                btnShopAll.setTextColor(isDarkMode ? Color.BLACK : Color.WHITE);
                 btnShopAll.setText(R.string.btn_shop_monochrome);
             }
         } else if (titleUpper.contains("AUTUMN") || titleUpper.contains("WINTER")) {
@@ -115,41 +163,50 @@ public class CollectionDetailActivity extends BaseActivity {
             tvWhyTitle.setText(R.string.col_autumn_why_title);
             tvWhyDesc.setText(R.string.col_autumn_why_desc);
             
-            if (heroSection != null) heroSection.setBackgroundColor(Color.parseColor("#FAF3E0"));
-            if (productSection != null) productSection.setBackgroundColor(Color.parseColor("#FFFBF0"));
+            boolean isDarkMode = (getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK) == android.content.res.Configuration.UI_MODE_NIGHT_YES;
+            
+            if (heroSection != null) heroSection.setBackgroundColor(isDarkMode ? Color.parseColor("#2A241A") : Color.parseColor("#FAF3E0"));
+            if (productSection != null) productSection.setBackgroundColor(isDarkMode ? Color.parseColor("#1F1B12") : Color.parseColor("#FFFBF0"));
             if (btnShopAll != null) {
-                btnShopAll.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#810100")));
+                btnShopAll.setBackgroundTintList(android.content.res.ColorStateList.valueOf(isDarkMode ? Color.parseColor("#D4C9B8") : Color.parseColor("#810100")));
+                btnShopAll.setTextColor(isDarkMode ? Color.BLACK : Color.WHITE);
                 btnShopAll.setText(R.string.btn_shop_autumn);
             }
         } else if (titleUpper.contains("ESSENTIALS")) {
-            tvHeadline.setText("THE ESSENTIALS");
-            tvSubHeadline.setText("CURATED PIECES FOR EVERY DAY");
+            tvHeadline.setText(R.string.col_essentials_headline);
+            tvSubHeadline.setText(R.string.col_essentials_subheadline);
             ImageUtils.setSafeImage(ivHeroLeft, R.mipmap.model2);
             ImageUtils.setSafeImage(ivHeroRight, R.mipmap.atumncollection1);
             ImageUtils.setSafeImage(ivSectionModel, R.mipmap.jacket3);
-            tvWhyTitle.setText("TIMELESS DESIGN");
-            tvWhyDesc.setText("Built for longevity and versatility in any wardrobe.");
+            tvWhyTitle.setText(R.string.col_essentials_why_title);
+            tvWhyDesc.setText(R.string.col_essentials_why_desc);
             
-            if (heroSection != null) heroSection.setBackgroundColor(Color.parseColor("#F0EDE3"));
-            if (productSection != null) productSection.setBackgroundColor(Color.parseColor("#F9F8F4"));
+            boolean isDarkMode = (getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK) == android.content.res.Configuration.UI_MODE_NIGHT_YES;
+            
+            if (heroSection != null) heroSection.setBackgroundColor(isDarkMode ? Color.parseColor("#24221F") : Color.parseColor("#F0EDE3"));
+            if (productSection != null) productSection.setBackgroundColor(isDarkMode ? Color.parseColor("#1C1B19") : Color.parseColor("#F9F8F4"));
             if (btnShopAll != null) {
-                btnShopAll.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#4A4A4A")));
-                btnShopAll.setText("SHOP ESSENTIALS");
+                btnShopAll.setBackgroundTintList(android.content.res.ColorStateList.valueOf(isDarkMode ? Color.WHITE : Color.parseColor("#4A4A4A")));
+                btnShopAll.setTextColor(isDarkMode ? Color.BLACK : Color.WHITE);
+                btnShopAll.setText(R.string.btn_shop_essentials);
             }
         } else if (titleUpper.contains("URBAN ARCHIVE")) {
-            tvHeadline.setText("URBAN ARCHIVE");
-            tvSubHeadline.setText("LIMITED DROP: STREET ARCHITECTURE");
+            tvHeadline.setText(R.string.col_urban_headline);
+            tvSubHeadline.setText(R.string.col_urban_subheadline);
             ImageUtils.setSafeImage(ivHeroLeft, R.mipmap.banner2);
             ImageUtils.setSafeImage(ivHeroRight, R.mipmap.model1);
             ImageUtils.setSafeImage(ivSectionModel, R.mipmap.pant2);
-            tvWhyTitle.setText("STREET HERITAGE");
-            tvWhyDesc.setText("Exploring the intersection of function and form.");
+            tvWhyTitle.setText(R.string.col_urban_why_title);
+            tvWhyDesc.setText(R.string.col_urban_why_desc);
             
-            if (heroSection != null) heroSection.setBackgroundColor(Color.parseColor("#E5E5E5"));
-            if (productSection != null) productSection.setBackgroundColor(Color.parseColor("#EFEFEF"));
+            boolean isDarkMode = (getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK) == android.content.res.Configuration.UI_MODE_NIGHT_YES;
+            
+            if (heroSection != null) heroSection.setBackgroundColor(isDarkMode ? Color.parseColor("#1A1A1A") : Color.parseColor("#E5E5E5"));
+            if (productSection != null) productSection.setBackgroundColor(isDarkMode ? Color.parseColor("#121212") : Color.parseColor("#EFEFEF"));
             if (btnShopAll != null) {
-                btnShopAll.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#1A1A1A")));
-                btnShopAll.setText("EXPLORE DROP");
+                btnShopAll.setBackgroundTintList(android.content.res.ColorStateList.valueOf(isDarkMode ? Color.WHITE : Color.parseColor("#1A1A1A")));
+                btnShopAll.setTextColor(isDarkMode ? Color.BLACK : Color.WHITE);
+                btnShopAll.setText(R.string.btn_explore_drop);
             }
         } else {
             // COLLECTION 3: THE SILK STORY - Heritage Beige
@@ -161,15 +218,19 @@ public class CollectionDetailActivity extends BaseActivity {
             tvWhyTitle.setText(R.string.col_silk_why_title);
             tvWhyDesc.setText(R.string.col_silk_why_desc);
             
-            if (heroSection != null) heroSection.setBackgroundColor(Color.parseColor("#EDEBDD"));
-            if (productSection != null) productSection.setBackgroundColor(Color.parseColor("#F5F4EE"));
+            boolean isDarkMode = (getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK) == android.content.res.Configuration.UI_MODE_NIGHT_YES;
+            
+            if (heroSection != null) heroSection.setBackgroundColor(isDarkMode ? Color.parseColor("#1E1D18") : Color.parseColor("#EDEBDD"));
+            if (productSection != null) productSection.setBackgroundColor(isDarkMode ? Color.parseColor("#151412") : Color.parseColor("#F5F4EE"));
             if (btnShopAll != null) {
-                btnShopAll.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#BC8F8F")));
+                btnShopAll.setBackgroundTintList(android.content.res.ColorStateList.valueOf(isDarkMode ? Color.parseColor("#D4C9B8") : Color.parseColor("#BC8F8F")));
+                btnShopAll.setTextColor(isDarkMode ? Color.BLACK : Color.WHITE);
                 btnShopAll.setText(R.string.btn_shop_silk);
             }
         }
 
-        productAdapter.setTextColor(Color.BLACK);
+        int adaptiveTextColor = ContextCompat.getColor(this, R.color.colorNoirBlack);
+        productAdapter.setTextColor(adaptiveTextColor);
         loadMockProducts(titleUpper);
         applyAnimations();
     }

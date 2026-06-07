@@ -4,7 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorCotton">
+    android:background="@color/colorCotton"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <View
+        android:id="@+id/topAccentBar"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@color/colorMaroon"
+        app:layout_constraintTop_toTopOf="parent"
+        android:translationZ="30dp"/>
 
     <!-- Top Navigation Bar (Sync with Home/Product Detail) -->
     <LinearLayout
@@ -109,7 +119,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav"
         app:layout_constraintTop_toBottomOf="@id/topBar">
 
         <LinearLayout
@@ -167,7 +177,7 @@
                     android:layout_marginTop="8dp"
                     android:gravity="center"
                     android:paddingHorizontal="40dp"
-                    android:text="Discover our latest collection of premium silk and wool pieces designed for your everyday luxury."
+                    android:text="@string/col_subheadline_default"
                     android:textColor="@color/colorGrayText"
                     android:textSize="14sp"
                     app:layout_constraintTop_toBottomOf="@id/tvHeadline" />
@@ -179,7 +189,7 @@
                     android:layout_marginTop="24dp"
                     android:backgroundTint="@color/colorMaroon"
                     android:paddingHorizontal="32dp"
-                    android:text="SHOP THE COLLECTION"
+                    android:text="@string/col_btn_shop"
                     android:textColor="@color/white"
                     app:cornerRadius="24dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -188,11 +198,10 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!-- Features Bar -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#10000000"
+                android:background="@color/colorOnMaroonContainer"
                 android:orientation="horizontal"
                 android:paddingVertical="20dp">
 
@@ -211,7 +220,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Pure Silk"
+                        android:text="@string/col_feature_1"
                         android:textSize="10sp"
                         android:textColor="@color/colorNoirBlack" />
                 </LinearLayout>
@@ -231,7 +240,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Premium Quality"
+                        android:text="@string/col_feature_2"
                         android:textSize="10sp"
                         android:textColor="@color/colorNoirBlack" />
                 </LinearLayout>
@@ -251,7 +260,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Local Sourcing"
+                        android:text="@string/col_feature_3"
                         android:textSize="10sp"
                         android:textColor="@color/colorNoirBlack" />
                 </LinearLayout>
@@ -271,7 +280,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Eco-Friendly"
+                        android:text="@string/col_feature_4"
                         android:textSize="10sp"
                         android:textColor="@color/colorNoirBlack" />
                 </LinearLayout>
@@ -288,7 +297,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Why Saive?"
+                    android:text="@string/col_why_saive"
                     android:textColor="@color/colorNoirBlack"
                     android:textSize="24sp"
                     android:textStyle="bold"
@@ -300,7 +309,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:gravity="center"
-                    android:text="We believe in slow fashion. Every piece is crafted with care, ensuring longevity and timeless style that transcends seasons."
+                    android:text="@string/col_why_desc"
                     android:textColor="@color/colorGrayText"
                     android:textSize="14sp"
                     app:layout_constraintTop_toBottomOf="@id/tvWhyTitle" />
@@ -331,7 +340,7 @@
                     android:id="@+id/tvCollectionProductsTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Shop the Collection"
+                    android:text="@string/col_shop_collection"
                     android:textColor="@color/colorNoirBlack"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -354,6 +363,7 @@
                 android:background="@color/colorNoirBlack"
                 android:orientation="vertical"
                 android:padding="40dp"
+                android:paddingBottom="40dp"
                 android:gravity="center">
 
                 <ImageView
@@ -366,12 +376,179 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="© 2024 SAIVE. All rights reserved."
+                    android:text="@string/col_copyright"
                     android:textColor="@color/colorTransWhite"
                     android:textSize="12sp" />
             </LinearLayout>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <!-- BOTTOM NAVIGATION -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorMaroon"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:elevation="16dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:id="@+id/navItemsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/navFavorite"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:alpha="0.5"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="@dimen/icon_size_nav"
+                    android:layout_height="@dimen/icon_size_nav"
+                    android:src="@drawable/ic_favorite"
+                    app:tint="@color/white" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nav_favorite"
+                    style="@style/TextAppearance.Saive.Nav"
+                    android:textSize="10sp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <!-- WARDROBE -->
+            <LinearLayout
+                android:id="@+id/navWardrobe"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:alpha="0.5"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="@dimen/icon_size_nav"
+                    android:layout_height="@dimen/icon_size_nav"
+                    android:src="@mipmap/hangericon"
+                    app:tint="@color/white" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nav_wardrobe"
+                    style="@style/TextAppearance.Saive.Nav"
+                    android:textSize="10sp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <!-- Item 2: HOME (ACTIVE AREA) -->
+            <LinearLayout
+                android:id="@+id/navHome"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="24dp" />
+            </LinearLayout>
+
+            <!-- NOTIFICATIONS -->
+            <FrameLayout
+                android:id="@+id/navNotify"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:alpha="0.5"
+                android:clickable="true"
+                android:focusable="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/icon_size_nav"
+                        android:layout_height="@dimen/icon_size_nav"
+                        android:src="@drawable/ic_notifications"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        style="@style/TextAppearance.Saive.Nav"
+                        android:textSize="10sp"
+                        android:text="@string/nav_notify"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+            </FrameLayout>
+
+            <!-- PROFILE -->
+            <LinearLayout
+                android:id="@+id/navProfile"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:alpha="0.5"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="@dimen/icon_size_nav"
+                    android:layout_height="@dimen/icon_size_nav"
+                    android:src="@drawable/ic_profile"
+                    app:tint="@color/white" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nav_profile"
+                    style="@style/TextAppearance.Saive.Nav"
+                    android:textSize="10sp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- SELECTION CIRCLE -->
+        <FrameLayout
+            android:id="@+id/centerActionButton"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:background="@drawable/bg_circle_white"
+            android:elevation="24dp"
+            app:layout_constraintBottom_toBottomOf="@id/navItemsContainer"
+            app:layout_constraintTop_toTopOf="@id/navItemsContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/saive_logo"
+                app:tint="@color/colorMaroon" />
+
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

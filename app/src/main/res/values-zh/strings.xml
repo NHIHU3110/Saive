@@ -43,7 +43,7 @@
     <string name="nav_profile">个人资料</string>
     <string name="nav_search">搜索</string>
     <string name="nav_shop">商店</string>
-    <string name="nav_archive">存档</string>
+    <string name="nav_archive">系列</string>
     <string name="nav_about">关于</string>
     <string name="wardrobe_header">我的衣橱</string>
     <string name="wardrobe_empty_search_title">未找到单品</string>
@@ -89,6 +89,7 @@
     <string name="auth_login_title">登录</string>
     <string name="auth_signup_title">注册</string>
     <string name="label_password">密码</string>
+    <string name="label_confirm_password">确认密码</string>
     <string name="label_name">姓名</string>
     <string name="label_phone">电话号码</string>
     <string name="checkout_select_address">选择收货地址</string>
@@ -102,6 +103,10 @@
     <string name="auth_no_account">还没有账号？注册</string>
     <string name="auth_has_account">已有账号？登录</string>
     <string name="auth_terms_agree">我同意条款与条件</string>
+    <string name="auth_terms_link">条款与条件</string>
+    <string name="terms_title">条款与条件</string>
+    <string name="terms_content">欢迎来到 SAIVE。通过使用我们的应用程序，您同意以下条款：\n\n1. 服务使用：您必须提供准确的信息。\n2. 隐私：您的数据根据我们的政策受到保护。\n3. 内容：所有设计均归 SAIVE 所有。\n4. 责任：我们对间接损失不承担责任。\n\n感谢您选择 SAIVE。</string>
+    <string name="btn_close">关闭</string>
     <string name="menu_delete_account">删除账号</string>
     <string name="dialog_delete_account_title">删除账号</string>
     <string name="dialog_delete_account_message">您确定要永久删除您的账号吗？此操作无法撤销。</string>
@@ -222,6 +227,12 @@
     <string name="label_city">城市</string>
     <string name="hint_choose_city">选择城市</string>
     <string name="error_required_field">请填写此项</string>
+    <string name="error_phone_length">请输入 9 位数字</string>
+    <string name="error_select_city_first">请先选择城市/省份</string>
+    <string name="error_select_district_first">请先选择区县</string>
+    <string name="error_select_city">请选择城市</string>
+    <string name="error_select_district">请选择区县</string>
+    <string name="error_select_ward">请选择街道/乡镇</string>
     <string name="error_invalid_email">电子邮箱地址无效</string>
     <string name="payment_method_cash">现金</string>
     <string name="payment_method_card">信用卡和借记卡</string>
@@ -419,6 +430,36 @@
     <string name="admin_logout_confirm">选择退出登录以退出管理端</string>
     <string name="admin_inventory_title">库存管理</string>
     <string name="admin_order_mgmt">订单管理</string>
+    <string name="order_status_pending">待处理</string>
+    <string name="order_status_processing">处理中</string>
+    <string name="order_status_shipped">已发货</string>
+    <string name="order_status_completed">已完成</string>
+    <string name="label_total_amount">总金额</string>
+    <string name="label_customer">客户</string>
+    <string name="label_payment_momo_short">付款方式: MOMO</string>
+    <string name="btn_mark_shipped">标记为已发货</string>
+    <string name="btn_export_invoice">导出账单 (PDF)</string>
+    <string name="track_order_title">追踪订单</string>
+    <string name="label_order_id_format">订单 #%1$s</string>
+    <string name="label_expected_delivery">预计送达时间 %1$s</string>
+    <string name="order_placed">已下单</string>
+    <string name="order_in_transit">运输中</string>
+    <string name="order_delivered_success">订单已成功送达</string>
+    <string name="order_not_delivered">尚未送达</string>
+    <string name="order_items_count_format">%1$d 件商品: %2$s</string>
+    <string name="label_user_role_vip">VIP 客户</string>
+    <string name="label_user_role_admin">管理员</string>
+    <string name="label_user_role_customer">客户</string>
+
+    <string name="inventory_low_stock">库存紧张</string>
+    <string name="inventory_out_of_stock">缺货</string>
+    <string name="label_shipping_address">收货地址</string>
+    <string name="btn_add">添加</string>
+    <string name="btn_change">修改</string>
+    <string name="label_add_new_plus">+ 添加新地址</string>
+    <string name="mock_user_name">胡志明妮</string>
+    <string name="mock_review_date">2023年10月24日</string>
+    <string name="mock_review_comment">材质非常出色。手感很柔软，看起来非常优雅。</string>
 
     <string name="logout_title">退出登录</string>
     <string name="logout_message">您确定要退出登录吗？</string>
@@ -485,33 +526,81 @@
     <string name="col_silk_subheadline">流动感与结构感的邂逅。源自越南传统织造，我们的丝绸单品重新定义现代优雅。</string>
     <string name="col_silk_why_title">越南传承</string>
     <string name="col_silk_why_desc">我们的丝绸织造于保禄，以惊人的光泽和耐用性闻名。一种随身体呼吸的材质。</string>
-    <string name="edit_profile_title">编辑个人资料</string>
-    <string name="change_profile_title">更改个人资料</string>
-    <string name="label_personal_information">个人信息</string>
-    <string name="change_photo_title">更换照片</string>
-    <string name="profile_birthday">生日</string>
-    <string name="profile_gender">性别</string>
-    <string name="profile_not_set">未设置</string>
-    <string name="profile_save">保存</string>
-    <string name="profile_save_changes">保存更改</string>
-    <string name="forgot_password_title">忘记密码</string>
-    <string name="label_detail_forgot_password">输入您的电子邮件以接收验证码</string>
-    <string name="forgot_password_back_to_login">返回登录</string>
-    <string name="verify_otp_title">验证 OTP</string>
-    <string name="label_detail_verify_otp">代码已发送至您的电子邮箱</string>
-    <string name="verify_opt_resend_code">重新发送代码</string>
-    <string name="new_password_title">新密码</string>
-    <string name="menu_payment_cards">付款卡</string>
-    <string name="menu_empty_payment_cards">尚无付款卡</string>
-    <string name="label_card_number">卡号</string>
-    <string name="label_card_holder">持卡人</string>
-    <string name="label_expiry_date">有效期</string>
-    <string name="label_cvv">CVV</string>
-    <string name="hint_card_number">xxxx xxxx xxxx xxxx</string>
-    <string name="hint_card_holder">HUYNH THAO NHI</string>
-    <string name="hint_expiry_date">MM/YY</string>
-    <string name="hint_cvv">***</string>
-    <string name="btn_add_card">添加卡片</string>
+
+    <!-- Essentials Collection -->
+    <string name="col_essentials_headline">必备单品</string>
+    <string name="col_essentials_subheadline">为您的每一天精心挑选</string>
+    <string name="col_essentials_why_title">永恒设计</string>
+    <string name="col_essentials_why_desc">为长久穿着和多功能搭配而生。</string>
+    <string name="btn_shop_essentials">选购必备系列</string>
+
+    <!-- Urban Archive Collection -->
+    <string name="col_urban_headline">都市档案</string>
+    <string name="col_urban_subheadline">限量发布：街头建筑</string>
+    <string name="col_urban_why_title">街头传承</string>
+    <string name="col_urban_why_desc">探索功能与形式的结合。</string>
+    <string name="btn_explore_drop">立即探索</string>
+
+    <string name="edit_profile_title">Edit Profile</string>
+    <string name="change_profile_title">Change Profile</string>
+    <string name="label_personal_information">Personal Information</string>
+    <string name="change_photo_title">Change Photo</string>
+    <string name="profile_birthday">Birthday</string>
+    <string name="profile_gender">Gender</string>
+    <string name="profile_not_set">Not set</string>
+    <string name="profile_save">Save</string>
+    <string name="profile_save_changes">Save Changes</string>
+    <string name="forgot_password_title">Forgot Password</string>
+    <string name="label_detail_forgot_password">Enter your email to receive a verification code</string>
+    <string name="forgot_password_back_to_login">Back to Login</string>
+    <string name="verify_otp_title">Verify OTP</string>
+    <string name="label_detail_verify_otp">Code send to your email</string>
+    <string name="verify_opt_resend_code">Resend Code</string>
+    <string name="new_password_title">New Password</string>
+    <string name="menu_payment_cards">Payment Cards</string>
+    <string name="menu_empty_payment_cards">Empty Payment Cards</string>
+    <string name="menu_dark_mode">Dark Mode</string>
+    <string name="btn_view_collection">查看系列</string>
+    <string name="label_account_settings">账号设置</string>
+    <string name="label_preferences">偏好设置</string>
+    <string name="label_support_legal">支持与法律</string>
+
+    <string name="error_enter_otp">请输入验证码</string>
+    <string name="error_otp_length">验证码必须为 6 位数字</string>
+    <string name="error_invalid_otp">验证码无效</string>
+    <string name="toast_new_otp">新验证码：%1$s</string>
+    <string name="btn_hide">隐藏</string>
+    <string name="btn_reject">拒绝</string>
+    <string name="btn_approve">批准</string>
+    <string name="cart_empty_error">您的购物袋是空的</string>
+    <string name="toast_coupon_applied_percent">优惠券已应用：享受 %1$d%% 折扣</string>
+    <string name="dialog_remove_item_title">移除商品</string>
+    <string name="dialog_remove_item_msg">您确定要从购物袋中移除此商品吗？</string>
+    <string name="dialog_remove">移除</string>
+    <string name="label_select_size">选择尺寸</string>
+    <string name="label_select_color">选择颜色</string>
+    <string name="price_zero_format">0 ₫</string>
+    <string name="label_color_format">颜色：%1$s</string>
+    <string name="label_size_format">尺寸：%1$s</string>
+    <string name="timer_default">00</string>
+    <string name="discount_format">-%1$d%%</string>
+    <string name="toast_added_to_wardrobe">已将 %1$d 件单品加入衣橱</string>
+    <string name="quantity_default">1</string>
+
+    <string name="card_preview_number">**** **** **** ****</string>
+    <string name="card_preview_holder">持卡人姓名</string>
+    <string name="card_preview_expiry">MM/YY</string>
+    <string name="error_invalid_card_number">无效的卡号</string>
     <string name="toast_card_added">卡片添加成功</string>
-    <string name="menu_dark_mode">深色模式</string>
+
+    <string name="coupon_detail_discount_format">您的订单立减 %1$s</string>
+    <string name="toast_coupon_copied">已复制代码 %1$s</string>
+
+    <string name="label_select_category">选择类别</string>
+    <string name="error_select_category">请选择一个类别</string>
+    <string name="toast_notification_broadcasted">通知已成功广播</string>
+    <string name="cat_promotions">促销</string>
+    <string name="cat_orders">订单</string>
+    <string name="cat_system">系统</string>
+    <string name="cat_update">更新</string>
 </resources>

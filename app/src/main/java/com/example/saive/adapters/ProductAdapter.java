@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ImageButton;
-import com.example.saive.utils.ToastUtils;
+
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,9 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.saive.R;
 import com.example.saive.models.Product;
 import com.example.saive.ui.ProductDetailActivity;
-import com.example.saive.utils.CartManager;
 import com.example.saive.utils.FavoriteManager;
 import com.example.saive.utils.ImageUtils;
+import com.example.saive.utils.PriceFormatter;
+import com.example.saive.utils.ToastUtils;
 
 import java.util.List;
 
@@ -44,22 +45,18 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         ImageUtils.setSafeImage(holder.ivProduct, product.getImageResId());
 
         holder.tvName.setText(product.getName().toUpperCase());
-        holder.tvPrice.setText(product.getPrice());
+        holder.tvPrice.setText(PriceFormatter.formatPrice(product.getPrice()));
+
+        if (product.getOriginalPrice() != null) {
+            holder.tvOriginalPrice.setText(PriceFormatter.formatPrice(product.getOriginalPrice()));
+            holder.tvOriginalPrice.setVisibility(View.VISIBLE);
+            holder.tvOriginalPrice.setPaintFlags(holder.tvOriginalPrice.getPaintFlags() | android.graphics.Paint.STRIKE_THRU_TEXT_FLAG);
+        } else {
+            holder.tvOriginalPrice.setVisibility(View.GONE);
+        }
 
         boolean isFavorite = FavoriteManager.getInstance(holder.itemView.getContext()).isFavorite(product);
         updateFavoriteIcon(holder.btnFavorite, isFavorite);
-
-        holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(v.getContext(), ProductDetailActivity.class);
-            intent.putExtra("PRODUCT", product);
-            v.getContext().startActivity(intent);
-        });
-
-        holder.btnAddToCart.setOnClickListener(v -> {
-            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-            CartManager.getInstance(v.getContext()).addProduct(product);
-            ToastUtils.showCustomToast(v.getContext(), "Added to cart");
-        });
 
         holder.btnFavorite.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
@@ -74,13 +71,19 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             }
             updateFavoriteIcon(holder.btnFavorite, newState);
         });
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), ProductDetailActivity.class);
+            intent.putExtra("PRODUCT", product);
+            v.getContext().startActivity(intent);
+        });
     }
 
     private void updateFavoriteIcon(ImageButton btn, boolean isFavorite) {
         if (isFavorite) {
             btn.setColorFilter(ContextCompat.getColor(btn.getContext(), R.color.colorMaroon));
         } else {
-            btn.setColorFilter(ContextCompat.getColor(btn.getContext(), R.color.colorCotton));
+            btn.setColorFilter(ContextCompat.getColor(btn.getContext(), R.color.colorAlwaysWhite));
         }
     }
 
@@ -91,15 +94,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     static class ProductViewHolder extends RecyclerView.ViewHolder {
         ImageView ivProduct;
-        TextView tvName, tvPrice;
-        ImageButton btnAddToCart, btnFavorite;
+        TextView tvName, tvPrice, tvOriginalPrice;
+        ImageButton btnFavorite;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
             ivProduct = itemView.findViewById(R.id.ivProduct);
             tvName = itemView.findViewById(R.id.tvItemName);
             tvPrice = itemView.findViewById(R.id.tvItemPrice);
-            btnAddToCart = itemView.findViewById(R.id.btnAddToCart);
+            tvOriginalPrice = itemView.findViewById(R.id.tvOriginalPrice);
             btnFavorite = itemView.findViewById(R.id.btnFavorite);
         }
     }

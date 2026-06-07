@@ -9,6 +9,8 @@
     android:clipChildren="false"
     android:clipToPadding="false">
 
+
+
     <!-- FIXED SEARCH BAR -->
     <LinearLayout
         android:id="@+id/searchBarWrapper"
@@ -57,7 +59,7 @@
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
                 android:text="0"
-                android:textColor="@color/white"
+                android:textColor="@color/colorOnMaroon"
                 android:textSize="8sp"
                 android:textStyle="bold"
                 android:visibility="gone"
@@ -206,7 +208,7 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="12dp"
                     android:fontFamily="serif"
-                    android:text="Limited Time Drops"
+                    android:text="@string/label_limited_time_drops"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="italic"
@@ -231,7 +233,7 @@
                         android:background="@drawable/bg_timer_box"
                         android:gravity="center"
                         android:text="00"
-                        android:textColor="@color/white"
+                        android:textColor="@color/colorCountdownText"
                         android:fontFamily="monospace"
                         android:textSize="13sp"
                         android:textStyle="bold" />
@@ -240,7 +242,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=":"
-                        android:textColor="@color/colorSand"
+                        android:textColor="@color/colorCountdownText"
                         android:layout_marginHorizontal="4dp"
                         android:textStyle="bold"/>
 
@@ -251,7 +253,7 @@
                         android:background="@drawable/bg_timer_box"
                         android:gravity="center"
                         android:text="00"
-                        android:textColor="@color/white"
+                        android:textColor="@color/colorCountdownText"
                         android:fontFamily="monospace"
                         android:textSize="13sp"
                         android:textStyle="bold" />
@@ -260,7 +262,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=":"
-                        android:textColor="@color/colorSand"
+                        android:textColor="@color/colorCountdownText"
                         android:layout_marginHorizontal="4dp"
                         android:textStyle="bold"/>
 
@@ -271,7 +273,7 @@
                         android:background="@drawable/bg_timer_box"
                         android:gravity="center"
                         android:text="00"
-                        android:textColor="@color/white"
+                        android:textColor="@color/colorCountdownText"
                         android:fontFamily="monospace"
                         android:textSize="13sp"
                         android:textStyle="bold" />
@@ -990,7 +992,7 @@
                     android:layout_width="@dimen/icon_size_nav"
                     android:layout_height="@dimen/icon_size_nav"
                     android:src="@drawable/ic_favorite"
-                    app:tint="@color/white" />
+                    app:tint="@color/colorOnMaroon" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -998,7 +1000,7 @@
                     style="@style/TextAppearance.Saive.Nav"
                     android:textSize="10sp"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/colorOnMaroon" />
             </LinearLayout>
 
             <!-- WARDROBE -->
@@ -1014,7 +1016,7 @@
                     android:layout_width="@dimen/icon_size_nav"
                     android:layout_height="@dimen/icon_size_nav"
                     android:src="@mipmap/hangericon"
-                    app:tint="@color/white" />
+                    app:tint="@color/colorOnMaroon" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -1022,7 +1024,7 @@
                     style="@style/TextAppearance.Saive.Nav"
                     android:textSize="10sp"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/colorOnMaroon" />
             </LinearLayout>
 
             <!-- Item 2: HOME (ACTIVE AREA) -->
@@ -1064,7 +1066,7 @@
                         android:layout_width="@dimen/icon_size_nav"
                         android:layout_height="@dimen/icon_size_nav"
                         android:src="@drawable/ic_notifications"
-                        app:tint="@color/white" />
+                        app:tint="@color/colorOnMaroon" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -1073,7 +1075,7 @@
                         style="@style/TextAppearance.Saive.Nav"
                         android:textSize="10sp"
                         android:text="@string/nav_notify"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/colorOnMaroon" />
                 </LinearLayout>
 
                 <View
@@ -1105,7 +1107,7 @@
                     android:layout_width="@dimen/icon_size_nav"
                     android:layout_height="@dimen/icon_size_nav"
                     android:src="@drawable/ic_profile"
-                    app:tint="@color/white" />
+                    app:tint="@color/colorOnMaroon" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -1113,7 +1115,7 @@
                     style="@style/TextAppearance.Saive.Nav"
                     android:textSize="10sp"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/colorOnMaroon" />
             </LinearLayout>
 
         </LinearLayout>

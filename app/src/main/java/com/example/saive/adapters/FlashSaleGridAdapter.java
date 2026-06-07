@@ -1,5 +1,6 @@
 package com.example.saive.adapters;
 
+import android.graphics.Paint;
 import android.content.Intent;
 import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
@@ -16,7 +17,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.saive.R;
 import com.example.saive.models.Product;
 import com.example.saive.ui.ProductDetailActivity;
+import com.example.saive.utils.CartManager;
 import com.example.saive.utils.FavoriteManager;
+import com.example.saive.utils.PriceFormatter;
 import com.example.saive.utils.ImageUtils;
 import com.example.saive.utils.ToastUtils;
 import java.util.List;
@@ -24,9 +27,15 @@ import java.util.List;
 public class FlashSaleGridAdapter extends RecyclerView.Adapter<FlashSaleGridAdapter.ViewHolder> {
 
     private List<Product> productList;
+    private int textColor = -1;
 
     public FlashSaleGridAdapter(List<Product> productList) {
         this.productList = productList;
+    }
+
+    public void setTextColor(int color) {
+        this.textColor = color;
+        notifyDataSetChanged();
     }
 
     public void updateList(List<Product> newList) {
@@ -46,15 +55,37 @@ public class FlashSaleGridAdapter extends RecyclerView.Adapter<FlashSaleGridAdap
         Product product = productList.get(position);
 
         holder.tvName.setText(product.getName().toUpperCase());
-        holder.tvPrice.setText(product.getPrice());
-        
-        // Discount badge mock logic (could be added to Product model later)
-        if (position % 2 == 0) {
-            holder.tvDiscount.setText("-40%");
+        holder.tvPrice.setText(PriceFormatter.formatPrice(product.getPrice()));
+
+        if (product.getOriginalPrice() != null) {
+            holder.tvOriginalPrice.setVisibility(View.VISIBLE);
+            holder.tvOriginalPrice.setText(PriceFormatter.formatPrice(product.getOriginalPrice()));
+            holder.tvOriginalPrice.setPaintFlags(holder.tvOriginalPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         } else {
-            holder.tvDiscount.setText("-25%");
+            holder.tvOriginalPrice.setVisibility(View.GONE);
         }
-        holder.tvDiscount.setVisibility(View.VISIBLE);
+
+        if (textColor != -1) {
+            holder.tvName.setTextColor(textColor);
+            holder.tvPrice.setTextColor(textColor);
+            holder.tvOriginalPrice.setTextColor(textColor);
+            holder.tvOriginalPrice.setAlpha(0.6f);
+        }
+        
+        // Discount badge logic
+        if (product.getOriginalPrice() != null) {
+            holder.tvDiscount.setVisibility(View.VISIBLE);
+            try {
+                double original = PriceFormatter.parsePrice(product.getOriginalPrice());
+                double current = PriceFormatter.parsePrice(product.getPrice());
+                int percent = (int) (100 - (current * 100 / original));
+                holder.tvDiscount.setText("-" + percent + "%");
+            } catch (Exception e) {
+                holder.tvDiscount.setText("SALE");
+            }
+        } else {
+            holder.tvDiscount.setVisibility(View.GONE);
+        }
 
         try {
             ImageUtils.setSafeImage(holder.ivProduct, product.getImageResId());
@@ -101,7 +132,7 @@ public class FlashSaleGridAdapter extends RecyclerView.Adapter<FlashSaleGridAdap
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivProduct;
-        TextView tvName, tvPrice, tvDiscount;
+        TextView tvName, tvPrice, tvOriginalPrice, tvDiscount;
         ImageButton btnFavorite;
 
         public ViewHolder(@NonNull View itemView) {
@@ -109,6 +140,7 @@ public class FlashSaleGridAdapter extends RecyclerView.Adapter<FlashSaleGridAdap
             ivProduct = itemView.findViewById(R.id.ivProduct);
             tvName = itemView.findViewById(R.id.tvProductName);
             tvPrice = itemView.findViewById(R.id.tvProductPrice);
+            tvOriginalPrice = itemView.findViewById(R.id.tvOriginalPrice);
             tvDiscount = itemView.findViewById(R.id.tvDiscountBadge);
             btnFavorite = itemView.findViewById(R.id.btnFavorite);
         }

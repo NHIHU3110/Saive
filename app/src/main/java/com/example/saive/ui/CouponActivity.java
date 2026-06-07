@@ -71,7 +71,7 @@ public class CouponActivity extends BaseActivity {
         MaterialButton btnCopy = view.findViewById(R.id.btnCopyDetail);
 
         tvTitle.setText(coupon.getTitle());
-        tvDiscount.setText("Get " + coupon.getDiscount() + " OFF on your order");
+        tvDiscount.setText(getString(R.string.coupon_detail_discount_format, coupon.getDiscount()));
         tvCode.setText(coupon.getCode());
 
         btnCopy.setOnClickListener(v -> {
@@ -79,7 +79,7 @@ public class CouponActivity extends BaseActivity {
             ClipData clip = ClipData.newPlainText("Coupon Code", coupon.getCode());
             clipboard.setPrimaryClip(clip);
             
-            showCustomToast("Đã sao chép mã " + coupon.getCode());
+            showCustomToast(getString(R.string.toast_coupon_copied, coupon.getCode()));
             
             if (getCallingActivity() != null) {
                 // Trả kết quả về cho CartActivity nếu được gọi bằng startActivityForResult

@@ -1,13 +1,13 @@
 package com.example.saive.adapters;
 
 import android.content.Intent;
+import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import com.example.saive.utils.ToastUtils;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,17 +15,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.saive.R;
 import com.example.saive.models.Product;
 import com.example.saive.ui.ProductDetailActivity;
-import com.example.saive.utils.CartManager;
+import com.example.saive.utils.PriceFormatter;
 import com.example.saive.utils.ImageUtils;
+import com.example.saive.utils.FavoriteManager;
+import com.example.saive.utils.ToastUtils;
+import androidx.core.content.ContextCompat;
 
 import java.util.List;
 
 public class FlashProductAdapter extends RecyclerView.Adapter<FlashProductAdapter.ViewHolder> {
 
     private List<Product> productList;
+    private int textColor = -1;
 
     public FlashProductAdapter(List<Product> productList) {
         this.productList = productList;
+    }
+
+    public void setTextColor(int color) {
+        this.textColor = color;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -46,13 +55,67 @@ public class FlashProductAdapter extends RecyclerView.Adapter<FlashProductAdapte
         ImageUtils.setSafeImage(holder.ivProduct, product.getImageResId());
 
         holder.tvName.setText(product.getName().toUpperCase());
-        holder.tvPrice.setText(product.getPrice());
+        holder.tvPrice.setText(PriceFormatter.formatPrice(product.getPrice()));
+
+        if (product.getOriginalPrice() != null) {
+            holder.tvOriginalPrice.setText(PriceFormatter.formatPrice(product.getOriginalPrice()));
+            holder.tvOriginalPrice.setVisibility(View.VISIBLE);
+            holder.tvOriginalPrice.setPaintFlags(holder.tvOriginalPrice.getPaintFlags() | android.graphics.Paint.STRIKE_THRU_TEXT_FLAG);
+            
+            // Show discount badge if it exists in the layout
+            View badge = holder.itemView.findViewById(R.id.tvDiscountBadge);
+            if (badge instanceof TextView) {
+                badge.setVisibility(View.VISIBLE);
+                try {
+                    double original = PriceFormatter.parsePrice(product.getOriginalPrice());
+                    double current = PriceFormatter.parsePrice(product.getPrice());
+                    int percent = (int) (100 - (current * 100 / original));
+                    ((TextView) badge).setText(holder.itemView.getContext().getString(R.string.discount_format, percent));
+                } catch (Exception e) {
+                    ((TextView) badge).setText(holder.itemView.getContext().getString(R.string.label_sale));
+                }
+            }
+        } else {
+            holder.tvOriginalPrice.setVisibility(View.GONE);
+            View badge = holder.itemView.findViewById(R.id.tvDiscountBadge);
+            if (badge != null) badge.setVisibility(View.GONE);
+        }
+
+        if (textColor != -1) {
+            holder.tvName.setTextColor(textColor);
+            holder.tvPrice.setTextColor(textColor);
+        }
+
+        boolean isFavorite = FavoriteManager.getInstance(holder.itemView.getContext()).isFavorite(product);
+        updateFavoriteIcon(holder.btnFavorite, isFavorite);
+
+        holder.btnFavorite.setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            FavoriteManager favoriteManager = FavoriteManager.getInstance(v.getContext());
+            boolean newState = !favoriteManager.isFavorite(product);
+            if (newState) {
+                favoriteManager.addFavorite(product);
+                ToastUtils.showCustomToast(v.getContext(), v.getContext().getString(R.string.toast_added_favorites));
+            } else {
+                favoriteManager.removeFavorite(product);
+                ToastUtils.showCustomToast(v.getContext(), v.getContext().getString(R.string.toast_removed_favorites));
+            }
+            updateFavoriteIcon(holder.btnFavorite, newState);
+        });
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), ProductDetailActivity.class);
             intent.putExtra("PRODUCT", product);
             v.getContext().startActivity(intent);
         });
+    }
+
+    private void updateFavoriteIcon(ImageButton btn, boolean isFavorite) {
+        if (isFavorite) {
+            btn.setColorFilter(ContextCompat.getColor(btn.getContext(), R.color.colorMaroon));
+        } else {
+            btn.setColorFilter(ContextCompat.getColor(btn.getContext(), R.color.colorAlwaysWhite));
+        }
     }
 
     @Override
@@ -62,13 +125,16 @@ public class FlashProductAdapter extends RecyclerView.Adapter<FlashProductAdapte
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivProduct;
-        TextView tvName, tvPrice;
+        TextView tvName, tvPrice, tvOriginalPrice;
+        ImageButton btnFavorite;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivProduct = itemView.findViewById(R.id.ivProduct);
             tvName = itemView.findViewById(R.id.tvProductName);
             tvPrice = itemView.findViewById(R.id.tvProductPrice);
+            tvOriginalPrice = itemView.findViewById(R.id.tvOriginalPrice);
+            btnFavorite = itemView.findViewById(R.id.btnFavorite);
         }
     }
 }

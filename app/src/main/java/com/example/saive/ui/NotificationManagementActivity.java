@@ -134,12 +134,19 @@ public class NotificationManagementActivity extends BaseActivity {
             bottomSheetDialog.setContentView(sheetView);
 
             TextView tvTitle = sheetView.findViewById(R.id.tvSheetTitle);
-            tvTitle.setText("SELECT CATEGORY");
+            tvTitle.setText(R.string.label_select_category);
 
             RecyclerView rvOptions = sheetView.findViewById(R.id.rvSheetOptions);
             rvOptions.setLayoutManager(new LinearLayoutManager(this));
 
-            BottomSheetOptionAdapter sheetAdapter = new BottomSheetOptionAdapter(categories, tvSelectedCategory.getText().toString(), option -> {
+            List<String> translatedCategories = Arrays.asList(
+                getString(R.string.cat_promotions),
+                getString(R.string.cat_orders),
+                getString(R.string.cat_system),
+                getString(R.string.cat_update)
+            );
+
+            BottomSheetOptionAdapter sheetAdapter = new BottomSheetOptionAdapter(translatedCategories, tvSelectedCategory.getText().toString(), option -> {
                 tvSelectedCategory.setText(option);
                 tvSelectedCategory.setTextColor(getResources().getColor(R.color.colorNoirBlack));
                 bottomSheetDialog.dismiss();
@@ -156,11 +163,11 @@ public class NotificationManagementActivity extends BaseActivity {
         View btnSend = dialogView.findViewById(R.id.btnSendNotification);
         btnSend.setOnClickListener(v -> {
             String category = tvSelectedCategory.getText().toString();
-            if (category.equals("Select Category")) {
-                Toast.makeText(this, "Please select a category", Toast.LENGTH_SHORT).show();
+            if (category.equals(getString(R.string.label_select_category)) || category.equals("Select Category")) {
+                Toast.makeText(this, R.string.error_select_category, Toast.LENGTH_SHORT).show();
                 return;
             }
-            Toast.makeText(this, "Notification broadcasted successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.toast_notification_broadcasted, Toast.LENGTH_SHORT).show();
             dialog.dismiss();
         });
 

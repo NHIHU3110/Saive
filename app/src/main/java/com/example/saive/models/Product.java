@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Product implements Serializable {
     private String name;
     private String price;
+    private String originalPrice;
     private int imageResId;
     private String category;
     private String description;
@@ -15,8 +16,13 @@ public class Product implements Serializable {
     private String selectedColor;
 
     public Product(String name, String price, int imageResId, String category) {
+        this(name, price, null, imageResId, category);
+    }
+
+    public Product(String name, String price, String originalPrice, int imageResId, String category) {
         this.name = name;
         this.price = price;
+        this.originalPrice = originalPrice;
         this.imageResId = imageResId;
         this.category = category;
         this.description = "A study of form and function. This piece is crafted from premium materials with meticulous attention to detail.";
@@ -34,6 +40,7 @@ public class Product implements Serializable {
 
     public String getName() { return name; }
     public String getPrice() { return price; }
+    public String getOriginalPrice() { return originalPrice; }
     public int getImageResId() { return imageResId; }
     public String getCategory() { return category; }
     public String getDescription() { return description; }

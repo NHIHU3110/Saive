@@ -10,17 +10,20 @@ public class Review implements Serializable {
     private String date;
     private List<String> imageUrls; // Can be local URIs or URLs
 
+    private String productName;
     private boolean isApproved;
 
-    public Review(String userName, float rating, String comment, String date, List<String> imageUrls) {
+    public Review(String productName, String userName, float rating, String comment, String date, List<String> imageUrls) {
+        this.productName = productName;
         this.userName = userName;
         this.rating = rating;
         this.comment = comment;
         this.date = date;
         this.imageUrls = imageUrls;
-        this.isApproved = false; // Default to false for moderation
+        this.isApproved = false;
     }
 
+    public String getProductName() { return productName; }
     public String getUserName() { return userName; }
     public float getRating() { return rating; }
     public String getComment() { return comment; }

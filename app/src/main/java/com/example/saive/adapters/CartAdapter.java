@@ -28,7 +28,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     public interface OnCartChangeListener {
         void onRemove(int position);
-        void onQuantityChanged();
+        void onQuantityChanged(Product product);
         void onVariantClick(int position, Product product);
     }
 
@@ -67,16 +67,28 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
         holder.tvName.setText(product.getName());
         holder.tvCategory.setText(product.getCategory());
-        holder.tvPrice.setText(product.getPrice());
+        holder.tvPrice.setText(com.example.saive.utils.PriceFormatter.formatPrice(product.getPrice()));
+        
+        // Handle Flash Sale Price (Original vs Current)
+        if (product.getOriginalPrice() != null) {
+            holder.tvOriginalPrice.setVisibility(View.VISIBLE);
+            holder.tvOriginalPrice.setText(com.example.saive.utils.PriceFormatter.formatPrice(product.getOriginalPrice()));
+            holder.tvOriginalPrice.setPaintFlags(holder.tvOriginalPrice.getPaintFlags() | android.graphics.Paint.STRIKE_THRU_TEXT_FLAG);
+            holder.tvPrice.setTextColor(androidx.core.content.ContextCompat.getColor(holder.itemView.getContext(), R.color.colorMaroon));
+        } else {
+            holder.tvOriginalPrice.setVisibility(View.GONE);
+            holder.tvPrice.setTextColor(androidx.core.content.ContextCompat.getColor(holder.itemView.getContext(), R.color.colorNoirBlack));
+        }
+
         holder.tvQuantity.setText(String.valueOf(product.getQuantity()));
 
         // Display Variant (Size or Color)
         if (product.getCategory() != null && product.getCategory().toLowerCase().contains("glasses")) {
             String color = product.getSelectedColor() != null ? product.getSelectedColor() : "Black";
-            holder.tvVariantLabel.setText("Color: " + color);
+            holder.tvVariantLabel.setText(holder.itemView.getContext().getString(R.string.label_color_format, color));
         } else {
             String size = product.getSelectedSize() != null ? product.getSelectedSize() : "M";
-            holder.tvVariantLabel.setText("Size: " + size);
+            holder.tvVariantLabel.setText(holder.itemView.getContext().getString(R.string.label_size_format, size));
         }
 
         holder.variantContainer.setOnClickListener(v -> {
@@ -91,22 +103,24 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         holder.btnPlus.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             int newQty = product.getQuantity() + 1;
-            animateQuantityChange(holder.tvQuantity, newQty, product);
+            product.setQuantity(newQty);
+            animateQuantityChange(holder.tvQuantity, newQty);
             holder.btnMinus.setEnabled(true);
             holder.btnMinus.setAlpha(1.0f);
-            if (listener != null) listener.onQuantityChanged();
+            if (listener != null) listener.onQuantityChanged(product);
         });
 
         holder.btnMinus.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             if (product.getQuantity() > 1) {
                 int newQty = product.getQuantity() - 1;
-                animateQuantityChange(holder.tvQuantity, newQty, product);
+                product.setQuantity(newQty);
+                animateQuantityChange(holder.tvQuantity, newQty);
                 if (newQty == 1) {
                     holder.btnMinus.setEnabled(false);
                     holder.btnMinus.setAlpha(0.3f);
                 }
-                if (listener != null) listener.onQuantityChanged();
+                if (listener != null) listener.onQuantityChanged(product);
             }
         });
 
@@ -216,14 +230,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         endAction.run();
     }
 
-    private void animateQuantityChange(TextView tv, int newQty, Product product) {
+    private void animateQuantityChange(TextView tv, int newQty) {
         AlphaAnimation fadeOut = new AlphaAnimation(1.0f, 0.0f);
         fadeOut.setDuration(150);
         fadeOut.setAnimationListener(new Animation.AnimationListener() {
             @Override public void onAnimationStart(Animation animation) {}
             @Override public void onAnimationRepeat(Animation animation) {}
             @Override public void onAnimationEnd(Animation animation) {
-                product.setQuantity(newQty);
                 tv.setText(String.valueOf(newQty));
                 AlphaAnimation fadeIn = new AlphaAnimation(0.0f, 1.0f);
                 fadeIn.setDuration(150);
@@ -240,7 +253,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivProduct, ivDeleteIcon;
-        TextView tvName, tvCategory, tvPrice, tvQuantity, tvVariantLabel;
+        TextView tvName, tvCategory, tvPrice, tvOriginalPrice, tvQuantity, tvVariantLabel;
         ImageButton btnMinus, btnPlus;
         View swipeForeground, swipeBackground, variantContainer;
 
@@ -250,6 +263,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             tvName = itemView.findViewById(R.id.tvName);
             tvCategory = itemView.findViewById(R.id.tvCategory);
             tvPrice = itemView.findViewById(R.id.tvPrice);
+            tvOriginalPrice = itemView.findViewById(R.id.tvOriginalPrice);
             tvQuantity = itemView.findViewById(R.id.tvQuantity);
             tvVariantLabel = itemView.findViewById(R.id.tvVariantLabel);
             btnMinus = itemView.findViewById(R.id.btnMinus);

@@ -37,7 +37,7 @@ public class AdminOrderAdapter extends RecyclerView.Adapter<AdminOrderAdapter.Vi
         holder.tvOrderId.setText(order.getOrderId());
         holder.tvCustomerName.setText(order.getCustomerName());
         holder.tvOrderItems.setText(order.getItemsSummary());
-        holder.tvOrderTotal.setText(order.getTotalAmount());
+        holder.tvOrderTotal.setText(com.example.saive.utils.PriceFormatter.formatPrice(order.getTotalAmount()));
         holder.tvStatus.setText(order.getStatus());
         
         holder.itemView.setOnClickListener(v -> listener.onOrderClick(order));

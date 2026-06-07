@@ -10,7 +10,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorMaroon"
+        app:liftOnScroll="false"
         app:elevation="0dp">
+
+        <View
+            android:id="@+id/topAccentBar"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@color/white"
+            android:alpha="0.2"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -29,8 +37,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"
-                app:tint="@color/white" />
+                app:tint="@color/colorOnMaroon" />
 
             <TextView
                 android:id="@+id/tvTitle"
@@ -39,12 +46,11 @@
                 android:layout_height="wrap_content"
                 android:text="@string/btn_checkout"
                 android:textSize="18sp"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/colorOnMaroon"
+                app:layout_constraintBottom_toBottomOf="@+id/btnBack"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintTop_toTopOf="@+id/btnBack" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -60,237 +66,151 @@
             android:orientation="vertical"
             android:padding="24dp">
 
-            <!-- Address Selector / Saved Address -->
+            <!-- Default Address Section -->
+            <LinearLayout
+                android:id="@+id/layoutDefaultAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="24dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/TextAppearance.Saive.SectionHeader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_shipping_address"
+                        android:textColor="@color/colorMaroon"
+                        android:textSize="14sp"
+                        android:letterSpacing="0.1" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/btnAddAddress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/btn_add"
+                            android:textColor="@color/colorMaroon"
+                            android:textStyle="bold"
+                            android:textSize="12sp"
+                            android:padding="4dp"
+                            android:layout_marginEnd="8dp"/>
+
+                        <TextView
+                            android:id="@+id/btnChangeAddress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/btn_change"
+                            android:textColor="@color/colorMaroon"
+                            android:textStyle="bold"
+                            android:textSize="12sp"
+                            android:padding="4dp" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/colorMaroon"
+                    app:cardBackgroundColor="@color/white">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:id="@+id/tvDefaultAddressLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/address_label_home"
+                            android:textColor="@color/colorMaroon"
+                            android:textStyle="bold"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tvDefaultName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/profile_user_name"
+                            android:textColor="@color/colorNoirBlack"
+                            android:textStyle="bold"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tvDefaultAddress"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            tools:text="347/61 Minh Phung, Quan 11, Ho Chi Minh"
+                            android:textColor="@color/colorGrayText"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/tvDefaultPhone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            tools:text="0366549188"
+                            android:textColor="@color/colorGrayText"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!-- New Address Selection Section -->
             <LinearLayout
                 android:id="@+id/containerAddressSelection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:layout_marginBottom="24dp"
                 android:visibility="gone">
 
-                <TextView
-                    style="@style/TextAppearance.Saive.SectionHeader"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/checkout_select_address"
-                    android:textColor="@color/colorNoirBlack"
-                    android:textSize="18sp"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="16dp"/>
-
-                <TextView
-                    style="@style/TextAppearance.Saive.SubLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/checkout_select_address_desc"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
-                    android:alpha="0.6"/>
+                    android:layout_marginBottom="12dp">
+                    <TextView
+                        style="@style/TextAppearance.Saive.SectionHeader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/checkout_select_address"
+                        android:textColor="@color/colorMaroon"
+                        android:textSize="14sp"
+                        android:letterSpacing="0.1" />
+                    <TextView
+                        android:id="@+id/btnAddFromCheckout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:text="@string/label_add_new_plus"
+                        android:textColor="@color/colorMaroon"
+                        android:textStyle="bold"
+                        android:textSize="12sp"
+                        android:padding="4dp" />
+                </RelativeLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvCheckoutAddresses"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:nestedScrollingEnabled="false"
-                    tools:listitem="@layout/item_checkout_address"/>
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnAddFromCheckout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="44dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
-                    android:background="@android:color/transparent"
-                    android:text="@string/checkout_add_new_address"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorMaroon"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colorLightGray"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginBottom="16dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llCountrySelector"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:paddingBottom="16dp">
-
-                <TextView
-                    android:id="@+id/tvCountryLabel"
-                    style="@style/TextAppearance.Saive.Header"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/label_country"
-                    android:textSize="12sp"
-                    android:alpha="0.6"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tvSelectedCountry"
-                    style="@style/TextAppearance.Saive.SectionHeader"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/hint_choose_country"
-                    android:textSize="22sp"
-                    android:layout_marginTop="4dp"
-                    app:layout_constraintEnd_toStartOf="@+id/btnCountrySelector"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvCountryLabel" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnCountrySelector"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:insetLeft="0dp"
-                    android:insetTop="0dp"
-                    android:insetRight="0dp"
-                    android:insetBottom="0dp"
-                    app:icon="@drawable/ic_arrow_right"
-                    app:iconGravity="textStart"
-                    app:iconPadding="0dp"
-                    app:iconTint="@color/white"
-                    app:cornerRadius="20dp"
-                    android:backgroundTint="@color/colorMaroon"
-                    app:layout_constraintBottom_toBottomOf="@id/tvSelectedCountry"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tvSelectedCountry" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorLightGray"
-                android:layout_marginBottom="24dp" />
-
-            <!-- City Selector (Large Header Style) -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/layoutCity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="16dp">
-
-                <TextView
-                    android:id="@+id/tvCityLabel"
-                    style="@style/TextAppearance.Saive.Header"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/label_city"
-                    android:textSize="12sp"
-                    android:alpha="0.6"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tvSelectedCity"
-                    style="@style/TextAppearance.Saive.SectionHeader"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/hint_choose_city"
-                    android:textSize="22sp"
-                    android:layout_marginTop="4dp"
-                    app:layout_constraintEnd_toStartOf="@+id/btnCitySelector"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvCityLabel" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnCitySelector"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:insetLeft="0dp"
-                    android:insetTop="0dp"
-                    android:insetRight="0dp"
-                    android:insetBottom="0dp"
-                    app:icon="@drawable/ic_arrow_right"
-                    app:iconGravity="textStart"
-                    app:iconPadding="0dp"
-                    app:iconTint="@color/white"
-                    app:cornerRadius="20dp"
-                    android:backgroundTint="@color/colorMaroon"
-                    app:layout_constraintBottom_toBottomOf="@id/tvSelectedCity"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tvSelectedCity" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorLightGray"
-                android:layout_marginBottom="24dp" />
-
-            <!-- District Selector (Large Header Style) -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/layoutDistrict"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="16dp">
-
-                <TextView
-                    android:id="@+id/tvDistrictLabel"
-                    style="@style/TextAppearance.Saive.Header"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/label_district"
-                    android:textSize="12sp"
-                    android:alpha="0.6"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tvSelectedDistrict"
-                    style="@style/TextAppearance.Saive.SectionHeader"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/hint_choose_district"
-                    android:textSize="22sp"
-                    android:layout_marginTop="4dp"
-                    app:layout_constraintEnd_toStartOf="@+id/btnDistrictSelector"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvDistrictLabel" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnDistrictSelector"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:insetLeft="0dp"
-                    android:insetTop="0dp"
-                    android:insetRight="0dp"
-                    android:insetBottom="0dp"
-                    app:icon="@drawable/ic_arrow_right"
-                    app:iconGravity="textStart"
-                    app:iconPadding="0dp"
-                    app:iconTint="@color/white"
-                    app:cornerRadius="20dp"
-                    android:backgroundTint="@color/colorMaroon"
-                    app:layout_constraintBottom_toBottomOf="@id/tvSelectedDistrict"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tvSelectedDistrict" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorLightGray"
-                android:layout_marginBottom="24dp" />
-
+                    android:nestedScrollingEnabled="false" />
             </LinearLayout>
 
             <TextView
@@ -309,7 +229,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -373,6 +294,138 @@
                         style="@style/TextAppearance.Saive.Label" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <!-- City Selector -->
+                <LinearLayout
+                    android:id="@+id/llCitySelector"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="16dp">
+
+                    <TextView
+                        style="@style/TextAppearance.Saive.SubLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_city"
+                        android:textColor="@color/colorGrayText"
+                        android:layout_marginBottom="8dp" />
+
+                    <RelativeLayout
+                        android:id="@+id/btnCitySelector"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:background="@drawable/bg_outline_gray_8dp"
+                        android:paddingHorizontal="16dp"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <TextView
+                            android:id="@+id/tvSelectedCity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:hint="@string/hint_choose_city"
+                            android:textColor="@color/colorNoirBlack"
+                            style="@style/TextAppearance.Saive.Label" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_chevron_down"
+                            app:tint="@color/colorGrayText" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <!-- District Selector -->
+                <LinearLayout
+                    android:id="@+id/llDistrictSelector"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="16dp">
+
+                    <TextView
+                        style="@style/TextAppearance.Saive.SubLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_district"
+                        android:textColor="@color/colorGrayText"
+                        android:layout_marginBottom="8dp" />
+
+                    <RelativeLayout
+                        android:id="@+id/btnDistrictSelector"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:background="@drawable/bg_outline_gray_8dp"
+                        android:paddingHorizontal="16dp"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <TextView
+                            android:id="@+id/tvSelectedDistrict"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:hint="@string/hint_choose_district"
+                            android:textColor="@color/colorNoirBlack"
+                            style="@style/TextAppearance.Saive.Label" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_chevron_down"
+                            app:tint="@color/colorGrayText" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <!-- Ward Selector -->
+                <LinearLayout
+                    android:id="@+id/llWardSelector"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="16dp">
+
+                    <TextView
+                        style="@style/TextAppearance.Saive.SubLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_ward"
+                        android:textColor="@color/colorGrayText"
+                        android:layout_marginBottom="8dp" />
+
+                    <RelativeLayout
+                        android:id="@+id/btnWardSelector"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:background="@drawable/bg_outline_gray_8dp"
+                        android:paddingHorizontal="16dp"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <TextView
+                            android:id="@+id/tvSelectedWard"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:hint="@string/hint_choose_ward"
+                            android:textColor="@color/colorNoirBlack"
+                            style="@style/TextAppearance.Saive.Label" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_chevron_down"
+                            app:tint="@color/colorGrayText" />
+                    </RelativeLayout>
+                </LinearLayout>
+
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
@@ -427,6 +480,7 @@
                     android:alpha="0.8" />
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardOrderSummary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -435,7 +489,10 @@
                     app:cardElevation="0dp"
                     app:strokeWidth="1dp"
                     app:strokeColor="@color/colorLightGray"
-                    app:cardBackgroundColor="?attr/colorSurface">
+                    app:cardBackgroundColor="@color/colorIvory"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -483,6 +540,16 @@
                             android:textColor="@color/colorNoirBlack"
                             tools:text="+84 901 234 567" />
 
+                        <TextView
+                            android:id="@+id/tvSummarySize"
+                            style="@style/TextAppearance.Saive.Label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:alpha="0.7"
+                            android:textColor="@color/colorNoirBlack"
+                            tools:text="Size: M" />
+
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
@@ -495,24 +562,39 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
                                 style="@style/TextAppearance.Saive.Label"
                                 android:text="@string/label_total"
                                 android:textStyle="bold"
-                                android:letterSpacing="0.1"
+                                android:letterSpacing="0.02"
                                 android:textColor="@color/colorNoirBlack" />
                             <TextView
                                 android:id="@+id/tvSummaryTotal"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
                                 style="@style/TextAppearance.Saive.SectionHeader"
                                 android:textColor="@color/colorMaroon"
-                                android:textSize="18sp"
+                                android:textSize="22sp"
+                                android:letterSpacing="0.02"
                                 tools:text="3.450.000 ₫" />
                         </RelativeLayout>
 
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
+
+                <!-- Payment Method Section Label Moved Here -->
+                <TextView
+                    android:id="@+id/tvPaymentMethodLabel"
+                    style="@style/TextAppearance.Saive.SectionHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/checkout_payment_title"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorNoirBlack"
+                    android:layout_marginBottom="16dp"
+                    android:textStyle="bold" />
 
                 <RadioGroup
                     android:id="@+id/rgPaymentMethods"
@@ -539,7 +621,7 @@
                         app:cardElevation="0dp"
                         app:strokeWidth="1dp"
                         app:strokeColor="@color/colorLightGray"
-                        app:cardBackgroundColor="?attr/colorSurface"
+                        app:cardBackgroundColor="@color/colorIvory"
                         android:clickable="true"
                         android:focusable="true">
 
@@ -571,14 +653,104 @@
                     </com.google.android.material.card.MaterialCardView>
 
                     <!-- Credit & Debit Card Section -->
-                    <TextView
-                        style="@style/TextAppearance.Saive.Header"
-                        android:layout_width="wrap_content"
+                    <RelativeLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/payment_method_card"
-                        android:textSize="14sp"
-                        android:textColor="@color/colorMaroon"
-                        android:alpha="0.8" />
+                        android:layout_marginTop="8dp">
+
+                        <TextView
+                            style="@style/TextAppearance.Saive.Header"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/payment_method_card"
+                            android:textSize="14sp"
+                            android:textColor="@color/colorMaroon"
+                            android:alpha="0.8" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/btnAddPaymentCard"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/btn_add"
+                                android:textColor="@color/colorMaroon"
+                                android:textStyle="bold"
+                                android:textSize="12sp"
+                                android:padding="4dp"
+                                android:layout_marginEnd="8dp"/>
+
+                            <TextView
+                                android:id="@+id/btnChangePaymentCard"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/btn_change"
+                                android:textColor="@color/colorMaroon"
+                                android:textStyle="bold"
+                                android:textSize="12sp"
+                                android:padding="4dp" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/layoutDefaultPaymentCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="24dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="0dp"
+                        app:strokeWidth="1dp"
+                        app:strokeColor="@color/colorLightGray"
+                        app:cardBackgroundColor="@color/colorIvory"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="16dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tvDefaultCardNumber"
+                                    style="@style/TextAppearance.Saive.Label"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/colorNoirBlack"
+                                    android:textStyle="bold"
+                                    tools:text="**** **** **** 4242" />
+
+                                <TextView
+                                    android:id="@+id/tvDefaultCardHolder"
+                                    style="@style/TextAppearance.Saive.Label"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:alpha="0.7"
+                                    android:textColor="@color/colorNoirBlack"
+                                    tools:text="HUYNH THAO NHI" />
+                            </LinearLayout>
+
+                            <RadioButton
+                                android:id="@+id/rbDefaultCard"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="@color/colorMaroon"
+                                android:clickable="false" />
+
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/layoutAddCard"
@@ -590,7 +762,9 @@
                         app:cardElevation="0dp"
                         app:strokeWidth="1dp"
                         app:strokeColor="@color/colorLightGray"
-                        app:cardBackgroundColor="?attr/colorSurface">
+                        app:cardBackgroundColor="@color/colorIvory"
+                        android:clickable="true"
+                        android:focusable="true">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -636,7 +810,7 @@
                         app:cardElevation="0dp"
                         app:strokeWidth="1dp"
                         app:strokeColor="@color/colorLightGray"
-                        app:cardBackgroundColor="?attr/colorSurface">
+                        app:cardBackgroundColor="@color/colorIvory">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -771,9 +945,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:background="@drawable/bg_rounded_white_8dp"
-                android:backgroundTint="#20FFFFFF"
+                android:backgroundTint="@color/colorOnMaroonContainer"
                 android:text="@string/btn_continue_payment"
-                android:textColor="@color/white"
+                android:textColor="@color/colorOnMaroon"
                 android:textAllCaps="false"
                 android:textSize="16sp"
                 android:textStyle="bold"

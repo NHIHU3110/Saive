@@ -47,7 +47,16 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
     public void onBindViewHolder(@NonNull FavoriteViewHolder holder, int position) {
         Product product = favoritesList.get(position);
         holder.tvName.setText(product.getName());
-        holder.tvPrice.setText(product.getPrice());
+        holder.tvPrice.setText(com.example.saive.utils.PriceFormatter.formatPrice(product.getPrice()));
+        
+        if (product.getOriginalPrice() != null) {
+            holder.tvOriginalPrice.setText(com.example.saive.utils.PriceFormatter.formatPrice(product.getOriginalPrice()));
+            holder.tvOriginalPrice.setVisibility(View.VISIBLE);
+            holder.tvOriginalPrice.setPaintFlags(holder.tvOriginalPrice.getPaintFlags() | android.graphics.Paint.STRIKE_THRU_TEXT_FLAG);
+        } else {
+            holder.tvOriginalPrice.setVisibility(View.GONE);
+        }
+
         holder.tvCategory.setText(product.getCategory());
         
         try {
@@ -84,7 +93,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
 
     static class FavoriteViewHolder extends RecyclerView.ViewHolder {
         ImageView ivProduct;
-        TextView tvName, tvPrice, tvCategory;
+        TextView tvName, tvPrice, tvOriginalPrice, tvCategory;
         ImageButton btnRemoveFavorite, btnAddToCart;
 
         public FavoriteViewHolder(@NonNull View itemView) {
@@ -92,6 +101,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
             ivProduct = itemView.findViewById(R.id.ivProduct);
             tvName = itemView.findViewById(R.id.tvName);
             tvPrice = itemView.findViewById(R.id.tvPrice);
+            tvOriginalPrice = itemView.findViewById(R.id.tvOriginalPrice);
             tvCategory = itemView.findViewById(R.id.tvCategory);
             btnRemoveFavorite = itemView.findViewById(R.id.btnRemoveFavorite);
             btnAddToCart = itemView.findViewById(R.id.btnAddToCart);

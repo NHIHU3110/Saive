@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.saive.utils.FavoriteManager;
 import com.example.saive.utils.ToastUtils;
+import com.example.saive.utils.DataManager;
 
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +20,7 @@ import com.example.saive.R;
 import com.example.saive.base.BaseActivity;
 import com.example.saive.models.Product;
 import com.example.saive.utils.CartManager;
+import com.example.saive.utils.PriceFormatter;
 import com.example.saive.utils.ImageUtils;
 
 import com.example.saive.adapters.FlashProductAdapter;
@@ -33,7 +35,6 @@ import java.util.Locale;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.airbnb.lottie.LottieAnimationView;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -43,13 +44,15 @@ public class ProductDetailActivity extends BaseActivity {
     private ImageButton btnFavorite, btnShare;
     private View btnCart;
     private LottieAnimationView lottieFavorite;
-    private TextView tvProductName, tvPrice, tvDescription, tvWardrobeAction, btnWriteReview, btnSeeMore, tvCartBadge;
+    private TextView tvProductName, tvPrice, tvOriginalPrice, tvDescription, tvWardrobeAction, btnWriteReview, btnSeeMore, tvCartBadge, tvQuantity;
     private View btnAddToWardrobe, sizeSelectionContainer, colorSelectionContainer;
+    private ImageButton btnDecrease, btnIncrease;
     private RecyclerView rvCompleteLook, rvReviews;
     private List<View> sizeViews, colorViews;
     
     private Product currentProduct;
     private boolean isAddedToWardrobe = false;
+    private int selectedQuantity = 1;
     private List<Review> reviewList;
     private ReviewAdapter reviewAdapter;
     private CartManager.OnCartChangeListener cartChangeListener;
@@ -123,9 +126,14 @@ public class ProductDetailActivity extends BaseActivity {
         
         tvProductName = findViewById(R.id.tvProductName);
         tvPrice = findViewById(R.id.tvPrice);
+        tvOriginalPrice = findViewById(R.id.tvOriginalPrice);
         tvDescription = findViewById(R.id.tvDescription);
         btnSeeMore = findViewById(R.id.btnSeeMore);
         btnWriteReview = findViewById(R.id.btnWriteReview);
+        
+        tvQuantity = findViewById(R.id.tvQuantity);
+        btnDecrease = findViewById(R.id.btnDecrease);
+        btnIncrease = findViewById(R.id.btnIncrease);
         
         rvCompleteLook = findViewById(R.id.rvCompleteLook);
         rvReviews = findViewById(R.id.rvReviews);
@@ -163,25 +171,61 @@ public class ProductDetailActivity extends BaseActivity {
             currentProduct = new Product("Amor Mystique", "1.200.000 ₫", R.mipmap.model1, "Perfume");
         }
         
+        // Reset selections when opening detail to force user to choose
+        currentProduct.setSelectedSize(null);
+        currentProduct.setSelectedColor(null);
+        
         tvProductName.setText(currentProduct.getName());
-        tvPrice.setText(currentProduct.getPrice());
+        tvPrice.setText(PriceFormatter.formatPrice(currentProduct.getPrice()));
+        
+        if (currentProduct.getOriginalPrice() != null) {
+            tvOriginalPrice.setText(PriceFormatter.formatPrice(currentProduct.getOriginalPrice()));
+            tvOriginalPrice.setVisibility(View.VISIBLE);
+            tvOriginalPrice.setPaintFlags(tvOriginalPrice.getPaintFlags() | android.graphics.Paint.STRIKE_THRU_TEXT_FLAG);
+        } else {
+            tvOriginalPrice.setVisibility(View.GONE);
+        }
+
         tvDescription.setText(currentProduct.getDescription());
         ImageUtils.setSafeImage(ivHero, currentProduct.getImageResId());
 
         // Toggle Size/Color selection based on category
-        boolean isGlasses = currentProduct.getCategory() != null && currentProduct.getCategory().toLowerCase().contains("glasses");
-        if (sizeSelectionContainer != null) sizeSelectionContainer.setVisibility(isGlasses ? View.GONE : View.VISIBLE);
-        if (colorSelectionContainer != null) colorSelectionContainer.setVisibility(isGlasses ? View.VISIBLE : View.GONE);
+        String category = currentProduct.getCategory() != null ? currentProduct.getCategory().toLowerCase() : "";
+        boolean isGlasses = category.contains("glasses");
+        boolean isPerfume = category.contains("perfume");
+
+        if (sizeSelectionContainer != null) {
+            sizeSelectionContainer.setVisibility((isGlasses || isPerfume) ? View.GONE : View.VISIBLE);
+        }
+        if (colorSelectionContainer != null) {
+            colorSelectionContainer.setVisibility(isPerfume ? View.GONE : View.VISIBLE);
+        }
 
         // Check if already in wardrobe
-        isAddedToWardrobe = CartManager.getInstance(this).getCartItems().contains(currentProduct);
+        updateWardrobeStatus();
     }
 
     private void setupReviews() {
+        if (currentProduct == null) return;
+        
+        String currentProductName = currentProduct.getName();
         reviewList = new ArrayList<>();
-        // Dữ liệu mẫu
-        reviewList.add(new Review("Nhi Huynh", 5.0f, "Chất liệu tuyệt vời, mặc rất thoải mái và sang trọng.", "24 Oct 2023", Arrays.asList("res://mipmap/model1")));
-        reviewList.add(new Review("Alex Dang", 4.5f, "Phom dáng đẹp, tuy nhiên màu sắc thực tế hơi đậm hơn ảnh một chút.", "15 Oct 2023", null));
+        
+        // Lấy tất cả reviews từ DataManager
+        List<Review> allReviews = DataManager.getInstance(this).getReviews();
+        
+        // Lọc reviews cho sản phẩm hiện tại
+        for (Review r : allReviews) {
+            if (currentProductName.equals(r.getProductName())) {
+                reviewList.add(r);
+            }
+        }
+
+        // Nếu không có review nào, thêm dữ liệu mẫu (cho sản phẩm cụ thể này)
+        if (reviewList.isEmpty()) {
+            reviewList.add(new Review(currentProductName, "Nhi Huynh", 5.0f, "Chất liệu tuyệt vời, mặc rất thoải mái và sang trọng.", "24 Oct 2023", java.util.Arrays.asList("res://mipmap/model1")));
+            reviewList.add(new Review(currentProductName, "Alex Dang", 4.5f, "Phom dáng đẹp, tuy nhiên màu sắc thực tế hơi đậm hơn ảnh một chút.", "15 Oct 2023", null));
+        }
 
         reviewAdapter = new ReviewAdapter(reviewList);
         rvReviews.setLayoutManager(new LinearLayoutManager(this));
@@ -216,6 +260,8 @@ public class ProductDetailActivity extends BaseActivity {
         }
 
         if (btnWriteReview != null) {
+            // Tạm thời ẩn nút viết đánh giá theo yêu cầu
+            btnWriteReview.setVisibility(View.GONE);
             btnWriteReview.setOnClickListener(v -> showWriteReviewDialog());
         }
 
@@ -250,168 +296,160 @@ public class ProductDetailActivity extends BaseActivity {
                     btnFavorite.setImageResource(R.drawable.ic_heart_thin);
                     btnFavorite.setColorFilter(ContextCompat.getColor(this, R.color.colorMaroon));
                 }
-                
-                ToastUtils.showCustomToast(this, newState ? getString(R.string.toast_added_favorites) : getString(R.string.toast_removed_favorites));
+            });
+        }
+
+        if (btnIncrease != null) {
+            btnIncrease.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                selectedQuantity++;
+                tvQuantity.setText(String.valueOf(selectedQuantity));
+            });
+        }
+
+        if (btnDecrease != null) {
+            btnDecrease.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                if (selectedQuantity > 1) {
+                    selectedQuantity--;
+                    tvQuantity.setText(String.valueOf(selectedQuantity));
+                }
             });
         }
 
         if (btnAddToWardrobe != null) {
             btnAddToWardrobe.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
-                
-                if (currentProduct != null) {
-                    if (!isAddedToWardrobe) {
-                        // Capture selected variant
-                        boolean isGlasses = currentProduct.getCategory() != null && currentProduct.getCategory().toLowerCase().contains("glasses");
-                        if (isGlasses) {
-                            for (View cv : colorViews) {
-                                if (cv != null && cv.isSelected()) {
-                                    currentProduct.setSelectedColor(cv.getTag().toString());
-                                    break;
-                                }
-                            }
-                        } else {
-                            for (View sv : sizeViews) {
-                                if (sv != null && sv.isSelected()) {
-                                    currentProduct.setSelectedSize(((TextView)sv).getText().toString());
-                                    break;
-                                }
-                            }
-                        }
-
-                        CartManager.getInstance(this).addProduct(currentProduct);
-                        isAddedToWardrobe = true;
-                        updateWardrobeUI();
-                        ToastUtils.showCustomToast(this, getString(R.string.added_to_wardrobe));
-                    } else {
-                        // Optionally remove or just show message
-                        ToastUtils.showCustomToast(this, getString(R.string.toast_already_in_wardrobe));
-                    }
-                }
-                
-                // Press effect
-                v.animate().scaleX(0.95f).scaleY(0.95f).setDuration(100).withEndAction(() -> {
-                    v.animate().scaleX(1.0f).scaleY(1.0f).setDuration(100).start();
-                }).start();
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                toggleWardrobe();
             });
         }
-
-        for (View sizeView : sizeViews) {
-            if (sizeView != null) {
-                sizeView.setOnClickListener(v -> {
-                    v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                    for (View sv : sizeViews) {
-                        if (sv != null) {
-                            sv.setSelected(false);
-                            ((TextView)sv).setTextColor(ContextCompat.getColor(this, R.color.colorNoirBlack));
-                        }
-                    }
-                    v.setSelected(true);
-                    ((TextView)v).setTextColor(ContextCompat.getColor(this, R.color.white));
-                });
-            }
-        }
-
-        for (View colorView : colorViews) {
-            if (colorView != null) {
-                colorView.setOnClickListener(v -> {
-                    v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                    for (View cv : colorViews) {
-                        if (cv != null) cv.setSelected(false);
-                    }
-                    v.setSelected(true);
-                });
-            }
-        }
-
-        ivHero.setOnClickListener(v -> {
-            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-        });
 
         if (btnSeeMore != null) {
             btnSeeMore.setOnClickListener(v -> {
-                if (tvDescription.getMaxLines() == 4) {
-                    tvDescription.setMaxLines(Integer.MAX_VALUE);
-                    btnSeeMore.setText(R.string.label_see_less);
-                } else {
-                    tvDescription.setMaxLines(4);
-                    btnSeeMore.setText(R.string.label_see_more);
-                }
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                // Implementation for see more
             });
         }
+
+        setupSelectionListeners(sizeViews, true);
+        setupSelectionListeners(colorViews, false);
+    }
+
+    private boolean checkProductPurchased() {
+        // Logic to check if user purchased this product
+        return true; // Simplified for now
     }
 
     private void showWriteReviewDialog() {
-        BottomSheetDialog dialog = new BottomSheetDialog(this, R.style.BottomSheetDialogTheme);
-        View view = getLayoutInflater().inflate(R.layout.layout_write_review, null);
-        dialog.setContentView(view);
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this, R.style.TransparentBottomSheetDialog);
+        View dialogView = getLayoutInflater().inflate(R.layout.layout_write_review, null);
+        bottomSheetDialog.setContentView(dialogView);
 
-        View btnSubmit = view.findViewById(R.id.btnSubmitReview);
-        View btnAddPhoto = view.findViewById(R.id.btnAddPhoto);
-        RatingBar ratingBarInput = view.findViewById(R.id.ratingBarInput);
-        EditText etComment = view.findViewById(R.id.etComment);
+        RatingBar ratingBar = dialogView.findViewById(R.id.ratingBarInput);
+        EditText etReview = dialogView.findViewById(R.id.etComment);
+        View btnSubmit = dialogView.findViewById(R.id.btnSubmitReview);
 
-        if (btnAddPhoto != null) {
-            btnAddPhoto.setOnClickListener(v -> {
-                ToastUtils.showCustomToast(this, getString(R.string.toast_photo_feature_later));
-            });
-        }
+        btnSubmit.setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            float rating = ratingBar.getRating();
+            String reviewText = etReview.getText().toString().trim();
+            
+            if (reviewText.isEmpty()) {
+                ToastUtils.showCustomToast(this, "Please enter your review");
+                return;
+            }
 
-        if (btnSubmit != null) {
-            btnSubmit.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                
-                String comment = etComment.getText().toString().trim();
-                float rating = ratingBarInput.getRating();
-                
-                if (comment.isEmpty()) {
-                    ToastUtils.showCustomToast(this, getString(R.string.toast_input_comment));
-                    return;
-                }
+            Review newReview = new Review(
+                currentProduct.getName(),
+                "Me", // In real app, get user name
+                rating,
+                reviewText,
+                new SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(new Date()),
+                null
+            );
 
-                String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
-                Review newReview = new Review(getString(R.string.review_user_you), rating, comment, currentDate, new ArrayList<>());
-                
-                reviewList.add(0, newReview);
-                reviewAdapter.notifyItemInserted(0);
-                rvReviews.scrollToPosition(0);
+            DataManager.getInstance(this).addReview(newReview);
+            reviewList.add(0, newReview);
+            reviewAdapter.notifyItemInserted(0);
+            rvReviews.scrollToPosition(0);
 
-                ToastUtils.showCustomToast(this, getString(R.string.toast_review_thanks));
-                dialog.dismiss();
-            });
-        }
+            bottomSheetDialog.dismiss();
+            ToastUtils.showCustomToast(this, "Review submitted successfully!");
+        });
 
-        dialog.show();
+        bottomSheetDialog.show();
     }
 
-    private void setupCompleteTheLook() {
-        if (rvCompleteLook != null) {
-            rvCompleteLook.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-            List<Product> suggestions = new ArrayList<>();
-            suggestions.add(new Product(getString(R.string.suggestion_trousers), "1.200.000 ₫", R.mipmap.banner3, "Pants"));
-            suggestions.add(new Product(getString(R.string.suggestion_loafers), "2.100.000 ₫", R.mipmap.model2, "Shoes"));
-            suggestions.add(new Product(getString(R.string.suggestion_scarf), "450.000 ₫", R.mipmap.model1, "Accessories"));
-            
-            FlashProductAdapter adapter = new FlashProductAdapter(suggestions);
-            rvCompleteLook.setAdapter(adapter);
+    private void setupSelectionListeners(List<View> views, boolean isSize) {
+        for (View view : views) {
+            if (view != null) {
+                view.setOnClickListener(v -> {
+                    // Hiệu ứng rung nhẹ
+                    v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+                    
+                    // Reset trạng thái các nút khác
+                    for (View other : views) {
+                        other.setSelected(false);
+                    }
+                    
+                    // Kích hoạt trạng thái chọn cho nút hiện tại
+                    v.setSelected(true);
+                    
+                    if (isSize && v instanceof TextView) {
+                        TextView tv = (TextView) v;
+                        currentProduct.setSelectedSize(tv.getText().toString());
+                    } else if (!isSize && v.getTag() != null) {
+                        currentProduct.setSelectedColor(v.getTag().toString());
+                    }
+                    
+                    updateWardrobeStatus();
+                });
+            }
         }
+    }
+
+    private void updateWardrobeStatus() {
+        isAddedToWardrobe = CartManager.getInstance(this).isProductInCart(currentProduct);
+        updateWardrobeUI();
+    }
+
+    private void toggleWardrobe() {
+        // Kiểm tra chọn size nếu container đang hiển thị
+        if (sizeSelectionContainer.getVisibility() == View.VISIBLE && currentProduct.getSelectedSize() == null) {
+            ToastUtils.showCustomToast(this, "Vui lòng chọn kích thước (Size)");
+            return;
+        }
+        // Kiểm tra chọn màu nếu container đang hiển thị
+        if (colorSelectionContainer.getVisibility() == View.VISIBLE && currentProduct.getSelectedColor() == null) {
+            ToastUtils.showCustomToast(this, "Vui lòng chọn màu sắc (Color)");
+            return;
+        }
+
+        CartManager cartManager = CartManager.getInstance(this);
+        cartManager.addProduct(currentProduct, selectedQuantity);
+        ToastUtils.showCustomToast(this, "Added to Wardrobe");
+        
+        updateWardrobeStatus();
     }
 
     private void updateWardrobeUI() {
-        if (isAddedToWardrobe) {
-            tvWardrobeAction.setText(R.string.added_to_wardrobe);
-            tvWardrobeAction.setTextColor(ContextCompat.getColor(this, R.color.colorMaroon));
-            ivWardrobeIcon.setColorFilter(ContextCompat.getColor(this, R.color.colorMaroon));
-            btnAddToWardrobe.setBackgroundResource(R.drawable.bg_rounded_white_8dp);
-            btnAddToWardrobe.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.colorCotton)));
-            btnAddToWardrobe.setElevation(0);
-        } else {
-            tvWardrobeAction.setText(R.string.add_to_wardrobe);
-            tvWardrobeAction.setTextColor(ContextCompat.getColor(this, R.color.white));
-            ivWardrobeIcon.setColorFilter(ContextCompat.getColor(this, R.color.white));
-            btnAddToWardrobe.setBackgroundResource(R.drawable.bg_rounded_maroon_12dp);
-            btnAddToWardrobe.setBackgroundTintList(null);
-            btnAddToWardrobe.setElevation(8 * getResources().getDisplayMetrics().density);
-        }
+        // Luôn hiển thị trạng thái ADD TO BAG để khuyến khích mua thêm
+        btnAddToWardrobe.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, android.R.color.white)));
+        ivWardrobeIcon.setColorFilter(ContextCompat.getColor(this, R.color.colorMaroon));
+        tvWardrobeAction.setText(R.string.btn_add_to_wardrobe);
+        tvWardrobeAction.setTextColor(ContextCompat.getColor(this, R.color.colorMaroon));
+    }
+
+    private void setupCompleteTheLook() {
+        List<Product> products = new ArrayList<>();
+        // Sản phẩm đang giảm giá (có giá gốc)
+        products.add(new Product("L'Amour Luxe", "1.450.000 ₫", "2.100.000 ₫", R.mipmap.model2, "Perfume"));
+        products.add(new Product("Elite Essence", "1.850.000 ₫", R.mipmap.model1, "Perfume"));
+        products.add(new Product("Mystic Bloom", "990.000 ₫", "1.500.000 ₫", R.mipmap.model2, "Perfume"));
+
+        FlashProductAdapter adapter = new FlashProductAdapter(products);
+        
+        rvCompleteLook.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        rvCompleteLook.setAdapter(adapter);
     }
 }

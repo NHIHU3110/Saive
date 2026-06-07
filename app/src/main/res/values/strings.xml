@@ -43,7 +43,7 @@
     <string name="nav_profile">PROFILE</string>
     <string name="nav_search">SEARCH</string>
     <string name="nav_shop">SHOP</string>
-    <string name="nav_archive">ARCHIVE</string>
+    <string name="nav_archive">COLLECTION</string>
     <string name="nav_about">ABOUT</string>
     <string name="wardrobe_header">MY WARDROBE</string>
     <string name="wardrobe_empty_search_title">NO PIECES FOUND</string>
@@ -52,6 +52,8 @@
     <string name="explore_piece">EXPLORE PIECE</string>
     <string name="add_to_wardrobe">ADD TO WARDROBE</string>
     <string name="added_to_wardrobe">IN WARDROBE</string>
+    <string name="btn_add_to_wardrobe">ADD TO WARDROBE</string>
+    <string name="btn_remove_wardrobe">REMOVE FROM WARDROBE</string>
 
     <!-- Editorial Card Titles -->
     <string name="editorial_title_1">TIMELESS CRAFT</string>
@@ -89,6 +91,7 @@
     <string name="auth_login_title">Login</string>
     <string name="auth_signup_title">Sign up</string>
     <string name="label_password">Password</string>
+    <string name="label_confirm_password">Confirm Password</string>
     <string name="label_name">Name</string>
     <string name="label_phone">Phone number</string>
     <string name="checkout_select_address">Select Shipping Address</string>
@@ -101,7 +104,11 @@
     <string name="menu_remember_me">Remember me</string>
     <string name="auth_no_account">Don\'t have an account? Sign up</string>
     <string name="auth_has_account">Already have an account? Login</string>
-    <string name="auth_terms_agree">I agree the Terms &amp; Conditions</string>
+    <string name="auth_terms_agree">I agree the </string>
+    <string name="auth_terms_link">Terms &amp; Conditions</string>
+    <string name="terms_title">Terms &amp; Conditions</string>
+    <string name="terms_content">Welcome to SAIVE. By using our app, you agree to the following terms:\n\n1. Use of Service: You must provide accurate information.\n2. Privacy: Your data is protected per our policy.\n3. Content: All designs are property of SAIVE.\n4. Liability: We are not liable for indirect damages.\n\nThank you for choosing SAIVE.</string>
+    <string name="btn_close">Close</string>
     <string name="menu_delete_account">DELETE ACCOUNT</string>
     <string name="dialog_delete_account_title">Delete Account</string>
     <string name="dialog_delete_account_message">Are you sure you want to permanently delete your account? This action cannot be undone.</string>
@@ -201,9 +208,7 @@
     <string name="label_email">Email Address</string>
     <string name="label_address">Street Address</string>
     <string name="label_country">Country</string>
-    <string name="label_district">District / Province</string>
     <string name="hint_choose_country">Choose your country</string>
-    <string name="hint_choose_district">Choose your district</string>
     <string name="label_save_info">Save this information for next time</string>
     <string name="btn_continue_payment">CONTINUE TO PAYMENT</string>
     <string name="btn_place_order">PLACE ORDER</string>
@@ -219,17 +224,41 @@
     <string name="payment_zalopay_desc">Pay with your Zalo account</string>
     <string name="payment_cod_desc">Pay when you receive the package</string>
 
-    <string name="label_city">City</string>
-    <string name="hint_choose_city">Choose your city</string>
+    <string name="label_city">City / Province</string>
+    <string name="hint_choose_city">Choose your city/province</string>
+    <string name="label_district">District</string>
+    <string name="hint_choose_district">Choose your district</string>
+    <string name="label_ward">Ward / Commune</string>
+    <string name="hint_choose_ward">Choose your ward/commune</string>
     <string name="error_required_field">This field is required</string>
+    <string name="error_phone_length">Please enter 9 digits</string>
+    <string name="error_select_city_first">Please select city/province first</string>
+    <string name="error_select_district_first">Please select district first</string>
+    <string name="error_select_city">Please select city</string>
+    <string name="error_select_district">Please select district</string>
+    <string name="error_select_ward">Please select ward</string>
     <string name="error_invalid_email">Invalid email address</string>
-    <string name="error_invalid_card">Invalid card number</string>
-    <string name="error_invalid_expiry">Invalid expiry date (MM/YY)</string>
-    <string name="error_invalid_cvv">Invalid CVV</string>
+    <string name="tab_active">Active</string>
+    <string name="tab_completed">Completed</string>
+    <string name="tab_cancelled">Cancelled</string>
+    <string name="btn_track_order">Track Order</string>
+    <string name="btn_leave_review">Leave Review</string>
+    <string name="btn_reorder">Re-Order</string>
+    <string name="order_item_attributes">Size: %1$s | Qty: %2$dpcs</string>
+
+    <string name="error_name_required">Name is required</string>
+    <string name="error_email_required">Email is required</string>
+    <string name="error_password_required">Password is required</string>
+    <string name="error_password_short">Password must be at least 6 characters</string>
+    <string name="error_passwords_not_match">Passwords do not match</string>
+    <string name="error_phone_required">Phone number is required</string>
+    <string name="error_agree_terms">Please agree to the Terms &amp; Conditions</string>
+    <string name="toast_signup_success">Signup successful! Please login.</string>
     <string name="payment_method_cash">Cash</string>
     <string name="payment_method_card">Credit &amp; Debit Card</string>
     <string name="payment_method_add_card">Add Card</string>
     <string name="payment_method_more">More Payment Options</string>
+    <string name="payment_card_select_title">SELECT CARD</string>
     <string name="payment_success_title">ORDER PLACED SUCCESSFULLY</string>
     <string name="payment_success_desc">Thank you for choosing SAIVE. Your order has been received and is being prepared with care.</string>
     <string name="btn_continue_shopping">CONTINUE SHOPPING</string>
@@ -250,31 +279,138 @@
         <item>Ho Chi Minh City</item>
         <item>Hanoi</item>
         <item>Da Nang</item>
-        <item>Can Tho</item>
         <item>Hai Phong</item>
-        <item>Hue</item>
-        <item>Da Lat</item>
+        <item>Can Tho</item>
+        <item>An Giang</item>
+        <item>Ba Ria - Vung Tau</item>
+        <item>Bac Giang</item>
+        <item>Bac Kan</item>
+        <item>Bac Lieu</item>
+        <item>Bac Ninh</item>
+        <item>Ben Tre</item>
+        <item>Binh Dinh</item>
+        <item>Binh Duong</item>
+        <item>Binh Phuoc</item>
+        <item>Binh Thuan</item>
+        <item>Ca Mau</item>
+        <item>Cao Bang</item>
+        <item>Dak Lak</item>
+        <item>Dak Nong</item>
+        <item>Dien Bien</item>
+        <item>Dong Nai</item>
+        <item>Dong Thap</item>
+        <item>Gia Lai</item>
+        <item>Ha Giang</item>
+        <item>Ha Nam</item>
+        <item>Ha Tinh</item>
+        <item>Hai Duong</item>
+        <item>Hau Giang</item>
+        <item>Hoa Binh</item>
+        <item>Hung Yen</item>
+        <item>Khanh Hoa</item>
+        <item>Kien Giang</item>
+        <item>Kon Tum</item>
+        <item>Lai Chau</item>
+        <item>Lam Dong</item>
+        <item>Lang Son</item>
+        <item>Lao Cai</item>
+        <item>Long An</item>
+        <item>Nam Dinh</item>
+        <item>Nghe An</item>
+        <item>Ninh Binh</item>
+        <item>Ninh Thuan</item>
+        <item>Phu Tho</item>
+        <item>Phu Yen</item>
+        <item>Quang Binh</item>
+        <item>Quang Nam</item>
+        <item>Quang Ngai</item>
+        <item>Quang Ninh</item>
+        <item>Quang Tri</item>
+        <item>Soc Trang</item>
+        <item>Son La</item>
+        <item>Tay Ninh</item>
+        <item>Thai Binh</item>
+        <item>Thai Nguyen</item>
+        <item>Thanh Hoa</item>
+        <item>Thua Thien Hue</item>
+        <item>Tien Giang</item>
+        <item>Tra Vinh</item>
+        <item>Tuyen Quang</item>
+        <item>Vinh Long</item>
+        <item>Vinh Phuc</item>
+        <item>Yen Bai</item>
     </string-array>
 
     <string-array name="districts_hcm_array">
         <item>District 1</item>
         <item>District 3</item>
+        <item>District 4</item>
         <item>District 5</item>
+        <item>District 6</item>
         <item>District 7</item>
+        <item>District 8</item>
+        <item>District 10</item>
+        <item>District 11</item>
+        <item>District 12</item>
+        <item>Binh Tan District</item>
         <item>Binh Thanh District</item>
-        <item>Tan Binh District</item>
+        <item>Go Vap District</item>
         <item>Phu Nhuan District</item>
+        <item>Tan Binh District</item>
+        <item>Tan Phu District</item>
         <item>Thu Duc City</item>
+        <item>Binh Chanh District</item>
+        <item>Can Gio District</item>
+        <item>Cu Chi District</item>
+        <item>Hoc Mon District</item>
+        <item>Nha Be District</item>
+    </string-array>
+
+    <string-array name="wards_hcm_d1_array">
+        <item>Ben Nghe Ward</item>
+        <item>Ben Thanh Ward</item>
+        <item>Co Giang Ward</item>
+        <item>Cau Kho Ward</item>
+        <item>Cau Ong Lanh Ward</item>
+        <item>Da Kao Ward</item>
+        <item>Nguyen Cu Trinh Ward</item>
+        <item>Nguyen Thai Binh Ward</item>
+        <item>Pham Ngu Lao Ward</item>
+        <item>Tan Dinh Ward</item>
     </string-array>
 
     <string-array name="districts_hanoi_array">
-        <item>Hoan Kiem District</item>
         <item>Ba Dinh District</item>
+        <item>Bac Tu Liem District</item>
+        <item>Cau Giay District</item>
         <item>Dong Da District</item>
         <item>Hai Ba Trung District</item>
+        <item>Hoan Kiem District</item>
+        <item>Hoang Mai District</item>
+        <item>Long Bien District</item>
+        <item>Nam Tu Liem District</item>
         <item>Tay Ho District</item>
-        <item>Cau Giay District</item>
         <item>Thanh Xuan District</item>
+        <item>Ha Dong District</item>
+        <item>Son Tay Town</item>
+        <item>Ba Vi District</item>
+        <item>Chương Mỹ District</item>
+        <item>Dan Phuong District</item>
+        <item>Dong Anh District</item>
+        <item>Gia Lam District</item>
+        <item>Hoai Duc District</item>
+        <item>Me Linh District</item>
+        <item>My Duc District</item>
+        <item>Phu Xuyen District</item>
+        <item>Phuc Tho District</item>
+        <item>Quoc Oai District</item>
+        <item>Soc Son District</item>
+        <item>Thach That District</item>
+        <item>Quoc Oai District</item>
+        <item>Thanh Oai District</item>
+        <item>Thanh Tri District</item>
+        <item>Thuong Tin District</item>
+        <item>Ung Hoa District</item>
     </string-array>
     <!-- Address Management -->
     <string name="address_title">MY ADDRESSES</string>
@@ -330,29 +466,31 @@
     <string name="label_new_collection">NEW COLLECTION</string>
     <string name="label_shop_now">SHOP NOW</string>
     <string name="label_flash_sale">Flash Sale</string>
+    <string name="label_sale">SALE</string>
     <string name="chip_linen">Linen</string>
     <string name="chip_silk">Silk</string>
     <string name="chip_noir">Noir</string>
     <string name="chip_ivory">Ivory</string>
     <string name="label_item_total">Item total:</string>
+    <string name="label_discount">Discount:</string>
     <string name="label_delivery">Delivery:</string>
     <string name="label_free">Free</string>
     <string name="btn_payment">Payment</string>
     <string name="promo_code_hint">Promo code</string>
     <!-- Coupon Screen -->
-    <string name="coupon_available_title">Voucher hiện có</string>
-    <string name="coupon_search_hint">Tìm kiếm ưu đãi...</string>
-    <string name="coupon_copy">SAO CHÉP</string>
-    <string name="coupon_valid_until">Hạn dùng: %1$s</string>
-    <string name="coupon_off">GIẢM</string>
-    <string name="coupon_no_coupons">CHƯA CÓ VOUCHER</string>
+    <string name="coupon_available_title">Available Vouchers</string>
+    <string name="coupon_search_hint">Search for offers...</string>
+    <string name="coupon_copy">COPY</string>
+    <string name="coupon_valid_until">Valid until: %1$s</string>
+    <string name="coupon_off">OFF</string>
+    <string name="coupon_no_coupons">NO VOUCHERS YET</string>
 
     <!-- Coupon Detail -->
-    <string name="coupon_detail_how_to">Cách sử dụng</string>
-    <string name="coupon_detail_steps">• Sao chép mã bên dưới.\n• Vào giỏ hàng hoặc trang thanh toán.\n• Dán mã vào ô \'Mã giảm giá\'.\n• Tận hưởng ưu đãi độc quyền từ Saive!</string>
-    <string name="coupon_detail_your_code">MÃ CỦA BẠN</string>
-    <string name="coupon_detail_copy_use">Sao chép &amp; Dùng ngay</string>
-    <string name="coupon_detail_welcome_desc">Nhận ưu đãi 20% cho đơn hàng đầu tiên</string>
+    <string name="coupon_detail_how_to">How to use</string>
+    <string name="coupon_detail_steps">• Copy the code below.\n• Go to your cart or checkout page.\n• Paste the code into the \'Coupon code\' box.\n• Enjoy exclusive offers from Saive!</string>
+    <string name="coupon_detail_your_code">YOUR CODE</string>
+    <string name="coupon_detail_copy_use">Copy &amp; Use Now</string>
+    <string name="coupon_detail_welcome_desc">Get 20% off on your first order</string>
 
     <!-- Address Labels -->
     <string name="label_address_label">Address Label</string>
@@ -419,9 +557,39 @@
     <string name="admin_save_campaign">ACTIVATE FLASH SALE</string>
     <string name="admin_select_products">Select Products</string>
     <string name="admin_user_mgmt">USER DIRECTORY</string>
+    <string name="label_user_role_vip">VIP CUSTOMER</string>
+    <string name="label_user_role_admin">ADMIN</string>
+    <string name="label_user_role_customer">CUSTOMER</string>
     <string name="admin_logout_confirm">Select Logout to exit Admin</string>
     <string name="admin_inventory_title">INVENTORY MANAGEMENT</string>
     <string name="admin_order_mgmt">ORDER MANAGEMENT</string>
+    <string name="order_status_pending">Pending</string>
+    <string name="order_status_processing">Processing</string>
+    <string name="order_status_shipped">Shipped</string>
+    <string name="order_status_completed">Completed</string>
+    <string name="label_total_amount">Total Amount</string>
+    <string name="label_customer">CUSTOMER</string>
+    <string name="label_payment_momo_short">PAYMENT: MOMO</string>
+    <string name="btn_mark_shipped">MARK AS SHIPPED</string>
+    <string name="btn_export_invoice">EXPORT INVOICE (PDF)</string>
+    <string name="track_order_title">Track Order</string>
+    <string name="label_order_id_format">Order #%1$s</string>
+    <string name="label_expected_delivery">Exp. Delivery by %1$s</string>
+    <string name="order_placed">Order Placed</string>
+    <string name="order_in_transit">Order in transit</string>
+    <string name="order_delivered_success">Delivered Successfully</string>
+    <string name="order_not_delivered">Not Delivered yet</string>
+    <string name="order_items_count_format">%1$d Items: %2$s</string>
+
+    <string name="inventory_low_stock">Low Stock</string>
+    <string name="inventory_out_of_stock">Out of Stock</string>
+    <string name="label_shipping_address">Shipping Address</string>
+    <string name="btn_add">ADD</string>
+    <string name="btn_change">CHANGE</string>
+    <string name="label_add_new_plus">+ ADD NEW</string>
+    <string name="mock_user_name">NHI HUYNH</string>
+    <string name="mock_review_date">24 OCT 2023</string>
+    <string name="mock_review_comment">The material is incredible. It feels so soft and looks very elegant.</string>
 
     <string name="logout_title">Logout</string>
     <string name="logout_message">Are you sure you want to logout?</string>
@@ -488,6 +656,21 @@
     <string name="col_silk_subheadline">Fluidity meets structure. Sourced from traditional Vietnamese looms, our silk pieces redefine modern elegance.</string>
     <string name="col_silk_why_title">Vietnamese Heritage</string>
     <string name="col_silk_why_desc">Our silk is woven in Bao Loc, known for its incredible luster and durability. A material that breathes with the body.</string>
+
+    <!-- Essentials Collection -->
+    <string name="col_essentials_headline">THE ESSENTIALS</string>
+    <string name="col_essentials_subheadline">CURATED PIECES FOR EVERY DAY</string>
+    <string name="col_essentials_why_title">TIMELESS DESIGN</string>
+    <string name="col_essentials_why_desc">Built for longevity and versatility in any wardrobe.</string>
+    <string name="btn_shop_essentials">SHOP ESSENTIALS</string>
+
+    <!-- Urban Archive Collection -->
+    <string name="col_urban_headline">URBAN ARCHIVE</string>
+    <string name="col_urban_subheadline">LIMITED DROP: STREET ARCHITECTURE</string>
+    <string name="col_urban_why_title">STREET HERITAGE</string>
+    <string name="col_urban_why_desc">Exploring the intersection of function and form.</string>
+    <string name="btn_explore_drop">EXPLORE DROP</string>
+
     <string name="edit_profile_title">Edit Profile</string>
     <string name="change_profile_title">Change Profile</string>
     <string name="label_personal_information">Personal Information</string>
@@ -506,15 +689,89 @@
     <string name="new_password_title">New Password</string>
     <string name="menu_payment_cards">Payment Cards</string>
     <string name="menu_empty_payment_cards">Empty Payment Cards</string>
-    <string name="label_card_number">Card Number</string>
-    <string name="label_card_holder">Card Holder</string>
-    <string name="label_expiry_date">Expiry Date</string>
-    <string name="label_cvv">CVV</string>
-    <string name="hint_card_number">xxxx xxxx xxxx xxxx</string>
-    <string name="hint_card_holder">THAO NHI HUYNH</string>
-    <string name="hint_expiry_date">MM/YY</string>
-    <string name="hint_cvv">***</string>
-    <string name="btn_add_card">ADD CARD</string>
-    <string name="toast_card_added">Card added successfully</string>
     <string name="menu_dark_mode">Dark Mode</string>
+    <string name="btn_view_collection">VIEW COLLECTION</string>
+    <string name="label_account_settings">ACCOUNT SETTINGS</string>
+    <string name="label_preferences">PREFERENCES</string>
+    <string name="label_support_legal">SUPPORT &amp; LEGAL</string>
+
+    <string name="error_enter_otp">Please enter OTP</string>
+    <string name="error_otp_length">OTP must be 6 digits</string>
+    <string name="error_invalid_otp">Invalid OTP</string>
+    <string name="toast_new_otp">New OTP: %1$s</string>
+    <string name="btn_hide">HIDE</string>
+    <string name="btn_reject">REJECT</string>
+    <string name="btn_approve">APPROVE</string>
+    <string name="cart_empty_error">Your bag is empty</string>
+    <string name="toast_coupon_applied_percent">Coupon applied: %1$d%% off</string>
+    <string name="dialog_remove_item_title">Remove Item</string>
+    <string name="dialog_remove_item_msg">Are you sure you want to remove this item from the bag?</string>
+    <string name="dialog_remove">Remove</string>
+    <string name="label_select_size">Select Size</string>
+    <string name="label_select_color">Select Color</string>
+    <string name="price_zero_format">0 ₫</string>
+    <string name="label_color_format">Color: %1$s</string>
+    <string name="label_size_format">Size: %1$s</string>
+    <string name="timer_default">00</string>
+    <string name="discount_format">-%1$d%%</string>
+    <string name="toast_added_to_wardrobe">Added %1$d to wardrobe</string>
+    <string name="quantity_default">1</string>
+
+    <string name="card_preview_number">**** **** **** ****</string>
+    <string name="card_preview_holder">CARD HOLDER</string>
+    <string name="card_preview_expiry">MM/YY</string>
+    <string name="error_invalid_card_number">Invalid card number</string>
+    <string name="toast_card_added">Card added successfully</string>
+
+    <string name="coupon_detail_discount_format">Get %1$s OFF on your order</string>
+    <string name="toast_coupon_copied">Copied code %1$s</string>
+
+    <string name="label_select_category">SELECT CATEGORY</string>
+    <string name="error_select_category">Please select a category</string>
+    <string name="toast_notification_broadcasted">Notification broadcasted successfully</string>
+    <string name="cat_promotions">Promotions</string>
+    <string name="cat_orders">Orders</string>
+    <string name="cat_system">System</string>
+    <string name="cat_update">Update</string>
+    <string name="btn_add_to_bag">ADD TO BAG</string>
+    <string name="label_quantity">QUANTITY</string>
+    <string name="order_empty_title">NO ORDERS YET</string>
+    <string name="coupon_header">VOUCHERS</string>
+    <string name="admin_notification_mgmt">NOTIFICATION MGMT</string>
+    <string name="admin_review_mgmt">REVIEW MODERATION</string>
+    <string name="admin_login_title">LOGIN ADMIN</string>
+    <string name="admin_send_notification">SEND NOTIFICATION</string>
+    <string name="admin_create_notification">CREATE NOTIFICATION</string>
+    <string name="admin_send_broadcast">SEND BROADCAST</string>
+    <string name="label_select_option">SELECT OPTION</string>
+    <string name="hint_phone_remaining">9 remaining digits</string>
+    <string name="admin_no_reviews">No reviews to moderate</string>
+    <string name="hint_search_history">Search history...</string>
+    <string name="label_upload_images">UPLOAD IMAGES (MAX 3)</string>
+    <string name="hint_price_vnd">Price (VND)</string>
+    <string name="hint_sku">SKU</string>
+    <string name="hint_product_name">Product Name</string>
+    <string name="hint_material_story">Material Story &amp; Details</string>
+    <string name="label_add_photo">add photo</string>
+    <string name="label_how_is_order">How is your order?</string>
+    <string name="label_overall_rating">Your overall rating</string>
+    <string name="label_detailed_review">Add detailed review</string>
+    <string name="label_admin_premium_control">Premium Control Panel</string>
+    <string name="label_restricted_access">Restricted Access</string>
+    <string name="label_inventory_stock">Stock: %1$d</string>
+    <string name="label_midnight_curation">The Midnight Curation</string>
+    <string name="label_saive_footer">SAIVE v1.0.4 • EST 2022</string>
+    <string name="label_limited_time_drops">Limited Time Drops</string>
+    <string name="label_expected_delivery_date">Expected Delivery Date</string>
+    <string name="label_tracking_id">Tracking ID</string>
+    <string name="label_payment_method">Payment Method</string>
+    <string name="label_order_status">Order Status</string>
+    <string name="label_in_progress">In Progress</string>
+    <string name="label_view_more_products">View more (+%1$d products)</string>
+    <string name="label_added_to_cart">Added to cart</string>
+    <string name="label_products_vn">Sản phẩm</string>
+    <string name="label_expires_in_days">Expires in %1$d days</string>
+    <string name="label_add_new_card">Add New Card</string>
+    <string name="label_save_card">SAVE CARD</string>
+    <string name="label_card_details">Card Details</string>
 </resources>

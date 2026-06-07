@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:fontFamily="sans-serif-light"
-        android:text="Added to cart"
+        android:text="@string/label_added_to_cart"
         android:textColor="#2D2D2D"
         android:textSize="14sp" />
 </LinearLayout>

@@ -16,6 +16,9 @@
             android:name=".ui.PaymentCardsActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.AddPaymentCardActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.ResetPasswordActivity"
             android:exported="false" />
         <activity
@@ -135,6 +138,10 @@
             android:theme="@style/Theme.Saive" />
         <activity
             android:name=".ui.NotificationManagementActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Saive" />
+        <activity
+            android:name=".ui.LeaveReviewActivity"
             android:exported="false"
             android:theme="@style/Theme.Saive" />
     </application>
