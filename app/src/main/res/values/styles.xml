@@ -119,7 +119,8 @@
     </style>
 
     <style name="OtpBoxStyle">
-        <item name="android:layout_width">45dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
         <item name="android:layout_height">54dp</item>
         <item name="android:layout_margin">4dp</item>
         <item name="android:background">@drawable/bg_rounded_white_8dp</item>

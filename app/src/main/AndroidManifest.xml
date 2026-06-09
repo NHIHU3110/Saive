@@ -53,12 +53,6 @@
             android:exported="false" />
         <activity
             android:name=".ui.LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.SignupActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.App.Starting">
             <intent-filter>
@@ -67,6 +61,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.SignupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true" />
         <activity
             android:name=".ui.ProfileActivity"
             android:exported="false" />
