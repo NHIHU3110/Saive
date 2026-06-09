@@ -619,7 +619,7 @@
     <string name="location_use_current">Sử dụng vị trí hiện tại</string>
     <string name="location_search_result">KẾT QUẢ TÌM KIẾM</string>
     <string name="address_select_map">Chọn từ bản đồ</string>
-    <string name="change_password_title">ĐỔI MẬT KHẨU</string>
+    <string name="change_password_title">Đổi mật khẩu</string>
     <string name="label_current_password">Mật khẩu hiện tại</string>
     <string name="link_forgot_password">Quên mật khẩu?</string>
     <string name="label_new_password">Mật khẩu mới</string>
