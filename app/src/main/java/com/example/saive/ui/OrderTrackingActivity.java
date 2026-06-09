@@ -21,8 +21,14 @@ public class OrderTrackingActivity extends BaseActivity {
         setContentView(R.layout.activity_order_tracking);
 
         if (getWindow() != null) {
-            getWindow().setStatusBarColor(getResources().getColor(R.color.colorMaroon));
-            getWindow().getDecorView().setSystemUiVisibility(0);
+            getWindow().setStatusBarColor(androidx.core.content.ContextCompat.getColor(this, R.color.colorHeaderBg));
+            boolean isDarkMode = (getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK)
+                    == android.content.res.Configuration.UI_MODE_NIGHT_YES;
+            int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
+            if (isDarkMode) {
+                flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            }
+            getWindow().getDecorView().setSystemUiVisibility(flags);
         }
 
         ImageView btnBack = findViewById(R.id.btnBack);
@@ -160,10 +166,10 @@ public class OrderTrackingActivity extends BaseActivity {
         ImageView circleDelivered = findViewById(R.id.circleDelivered);
         TextView textDelivered = findViewById(R.id.textDelivered);
 
-        int activeColor = getResources().getColor(R.color.colorMaroon);
-        int inactiveColor = getResources().getColor(R.color.colorLightGray);
-        int activeTextColor = getResources().getColor(R.color.colorNoirBlack);
-        int inactiveTextColor = getResources().getColor(R.color.colorGrayText);
+        int activeColor = androidx.core.content.ContextCompat.getColor(this, R.color.colorAccentBrand);
+        int inactiveColor = androidx.core.content.ContextCompat.getColor(this, R.color.colorLightGray);
+        int activeTextColor = androidx.core.content.ContextCompat.getColor(this, R.color.colorNoirBlack);
+        int inactiveTextColor = androidx.core.content.ContextCompat.getColor(this, R.color.colorGrayText);
 
         // Reset all to inactive
         circlePlaced.setBackgroundTintList(android.content.res.ColorStateList.valueOf(inactiveColor));

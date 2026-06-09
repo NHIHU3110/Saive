@@ -52,14 +52,14 @@
                 android:layout_marginTop="-2dp"
                 android:layout_marginEnd="-4dp"
                 android:background="@drawable/bg_rounded_white_8dp"
-                android:backgroundTint="@color/colorMaroon"
+                android:backgroundTint="@color/colorAccentBrand"
                 android:gravity="center"
                 android:minWidth="14dp"
                 android:minHeight="14dp"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
                 android:text="0"
-                android:textColor="@color/colorOnMaroon"
+                android:textColor="@color/colorAlwaysWhite"
                 android:textSize="8sp"
                 android:textStyle="bold"
                 android:visibility="gone"
@@ -324,7 +324,7 @@
                 <View
                     android:layout_width="2dp"
                     android:layout_height="300dp"
-                    android:background="@color/colorMaroon"
+                    android:background="@color/colorAccentBrand"
                     android:alpha="0.2"
                     android:rotation="45"
                     app:layout_constraintTop_toTopOf="parent"
@@ -384,7 +384,7 @@
                         android:layout_height="wrap_content"
                         style="@style/TextAppearance.Saive.Caption"
                         android:text="@string/label_editorial_02"
-                        android:textColor="@color/colorMaroon" />
+                        android:textColor="@color/colorAccentBrand" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -690,7 +690,7 @@
                     android:layout_gravity="center"
                     android:src="@drawable/ic_notifications"
                     android:alpha="0.2"
-                    app:tint="@color/colorMaroon" />
+                    app:tint="@color/colorAccentBrand" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -700,7 +700,7 @@
                     android:layout_marginEnd="40dp"
                     android:fontFamily="serif"
                     android:text="z\nz\n z"
-                    android:textColor="@color/colorMaroon"
+                    android:textColor="@color/colorAccentBrand"
                     android:textSize="14sp"
                     android:textStyle="italic"
                     android:alpha="0.4"/>
@@ -961,12 +961,11 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- BOTTOM NAVIGATION -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorMaroon"
+        android:background="@color/colorHeaderBg"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:elevation="16dp"
@@ -992,14 +991,14 @@
                     android:layout_width="@dimen/icon_size_nav"
                     android:layout_height="@dimen/icon_size_nav"
                     android:src="@drawable/ic_favorite"
-                    app:tint="@color/colorOnMaroon" />
+                    app:tint="@color/colorHeaderContent" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/nav_favorite"
                     style="@style/TextAppearance.Saive.Nav"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/colorOnMaroon" />
+                    android:textColor="@color/colorHeaderContent" />
             </LinearLayout>
 
             <!-- WARDROBE -->
@@ -1015,14 +1014,14 @@
                     android:layout_width="@dimen/icon_size_nav"
                     android:layout_height="@dimen/icon_size_nav"
                     android:src="@mipmap/hangericon"
-                    app:tint="@color/colorOnMaroon" />
+                    app:tint="@color/colorHeaderContent" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/nav_wardrobe"
                     style="@style/TextAppearance.Saive.Nav"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/colorOnMaroon" />
+                    android:textColor="@color/colorHeaderContent" />
             </LinearLayout>
 
             <!-- Item 2: HOME (ACTIVE AREA) -->
@@ -1064,7 +1063,7 @@
                         android:layout_width="@dimen/icon_size_nav"
                         android:layout_height="@dimen/icon_size_nav"
                         android:src="@drawable/ic_notifications"
-                        app:tint="@color/colorOnMaroon" />
+                        app:tint="@color/colorHeaderContent" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -1072,7 +1071,7 @@
                         android:layout_marginTop="4dp"
                         style="@style/TextAppearance.Saive.Nav"
                         android:text="@string/nav_notify"
-                        android:textColor="@color/colorOnMaroon" />
+                        android:textColor="@color/colorHeaderContent" />
                 </LinearLayout>
 
                 <View
@@ -1104,14 +1103,14 @@
                     android:layout_width="@dimen/icon_size_nav"
                     android:layout_height="@dimen/icon_size_nav"
                     android:src="@drawable/ic_profile"
-                    app:tint="@color/colorOnMaroon" />
+                    app:tint="@color/colorHeaderContent" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/nav_profile"
                     style="@style/TextAppearance.Saive.Nav"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/colorOnMaroon" />
+                    android:textColor="@color/colorHeaderContent" />
             </LinearLayout>
 
         </LinearLayout>
@@ -1136,7 +1135,7 @@
                 android:padding="16dp"
                 android:scaleType="fitCenter"
                 android:src="@mipmap/saive_logo"
-                app:tint="@color/colorMaroon" />
+                app:tint="@color/colorAccentBrand" />
 
         </FrameLayout>
 

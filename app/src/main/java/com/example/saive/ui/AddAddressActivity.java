@@ -51,10 +51,18 @@ public class AddAddressActivity extends BaseActivity {
         setContentView(R.layout.activity_add_address);
 
         if (getWindow() != null) {
-            getWindow().setStatusBarColor(getResources().getColor(R.color.colorMaroon));
-            getWindow().getDecorView().setSystemUiVisibility(
-                    getWindow().getDecorView().getSystemUiVisibility() & ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            );
+            getWindow().setStatusBarColor(androidx.core.content.ContextCompat.getColor(this, R.color.colorHeaderBg));
+            boolean isDarkMode = (getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK)
+                    == android.content.res.Configuration.UI_MODE_NIGHT_YES;
+            if (isDarkMode) {
+                getWindow().getDecorView().setSystemUiVisibility(
+                        getWindow().getDecorView().getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                );
+            } else {
+                getWindow().getDecorView().setSystemUiVisibility(
+                        getWindow().getDecorView().getSystemUiVisibility() & ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                );
+            }
         }
 
         tvTitle = findViewById(R.id.tvTitle);
@@ -210,10 +218,10 @@ public class AddAddressActivity extends BaseActivity {
     }
 
     private void updateChips() {
-        int activeBg = getResources().getColor(R.color.colorMaroon);
-        int inactiveBg = getResources().getColor(R.color.colorLinen);
-        int activeText = getResources().getColor(R.color.white);
-        int inactiveText = getResources().getColor(R.color.colorSand);
+        int activeBg = androidx.core.content.ContextCompat.getColor(this, R.color.colorAccentBrand);
+        int inactiveBg = androidx.core.content.ContextCompat.getColor(this, R.color.colorLinen);
+        int activeText = androidx.core.content.ContextCompat.getColor(this, R.color.colorAlwaysWhite);
+        int inactiveText = androidx.core.content.ContextCompat.getColor(this, R.color.colorSand);
 
         chipHome.setBackgroundTintList(android.content.res.ColorStateList.valueOf(selectedLabel.equalsIgnoreCase("Home") ? activeBg : inactiveBg));
         chipHome.setTextColor(selectedLabel.equalsIgnoreCase("Home") ? activeText : inactiveText);

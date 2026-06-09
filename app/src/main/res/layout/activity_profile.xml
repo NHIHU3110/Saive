@@ -245,9 +245,10 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp"
                             android:background="@drawable/bg_circle_maroon"
+                            android:backgroundTint="@color/colorAccentBrand"
                             android:paddingHorizontal="6dp"
                             android:text="0"
-                            android:textColor="@color/white"
+                            android:textColor="@color/colorAlwaysWhite"
                             android:textSize="10sp"
                             android:gravity="center" />
                         <ImageView
@@ -439,7 +440,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:checked="true"
-                            app:thumbTint="@color/colorMaroon"
+                            app:thumbTint="@color/colorAccentBrand"
                             app:trackTint="@color/colorLinen" />
                     </LinearLayout>
 
@@ -471,7 +472,7 @@
                             android:id="@+id/switchDarkMode"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:thumbTint="@color/colorMaroon"
+                            app:thumbTint="@color/colorAccentBrand"
                             app:trackTint="@color/colorLinen" />
                     </LinearLayout>
 
@@ -651,7 +652,7 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@android:drawable/ic_menu_delete"
-                            app:tint="@color/colorMaroon" />
+                            app:tint="@color/colorAccentBrand" />
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -659,7 +660,7 @@
                             android:layout_weight="1"
                             style="@style/TextAppearance.Saive.Light"
                             android:text="@string/menu_delete_account"
-                            android:textColor="@color/colorMaroon"
+                            android:textColor="@color/colorAccentBrand"
                             android:textSize="14sp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -674,10 +675,10 @@
                 android:layout_marginTop="48dp"
                 android:text="@string/menu_logout"
                 style="@style/TextAppearance.Saive.Nav"
-                android:textColor="@color/white"
+                android:textColor="@color/colorButtonText"
                 android:letterSpacing="0.2"
                 app:cornerRadius="12dp"
-                app:backgroundTint="@color/colorMaroon"
+                app:backgroundTint="@color/colorButtonBg"
                 app:elevation="4dp" />
 
             <TextView
@@ -699,7 +700,7 @@
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorMaroon"
+        android:background="@color/colorHeaderBg"
         android:elevation="16dp"
         android:clipChildren="false"
         android:clipToPadding="false"
@@ -725,14 +726,14 @@
                     android:layout_width="@dimen/icon_size_nav"
                     android:layout_height="@dimen/icon_size_nav"
                     android:src="@drawable/ic_favorite"
-                    app:tint="@color/colorOnMaroon" />
+                    app:tint="@color/colorHeaderContent" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/nav_favorite"
                     style="@style/TextAppearance.Saive.Nav"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/colorOnMaroon" />
+                    android:textColor="@color/colorHeaderContent" />
             </LinearLayout>
 
             <LinearLayout
@@ -747,14 +748,14 @@
                     android:layout_width="@dimen/icon_size_nav"
                     android:layout_height="@dimen/icon_size_nav"
                     android:src="@mipmap/hangericon"
-                    app:tint="@color/colorOnMaroon" />
+                    app:tint="@color/colorHeaderContent" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/nav_wardrobe"
                     style="@style/TextAppearance.Saive.Nav"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/colorOnMaroon" />
+                    android:textColor="@color/colorHeaderContent" />
             </LinearLayout>
 
             <!-- Item 2: HOME (PLACEHOLDER) -->
@@ -794,14 +795,14 @@
                         android:layout_width="@dimen/icon_size_nav"
                         android:layout_height="@dimen/icon_size_nav"
                         android:src="@drawable/ic_notifications"
-                        app:tint="@color/colorOnMaroon" />
+                        app:tint="@color/colorHeaderContent" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/nav_notify"
                         style="@style/TextAppearance.Saive.Nav"
                         android:layout_marginTop="4dp"
-                        android:textColor="@color/colorOnMaroon" />
+                        android:textColor="@color/colorHeaderContent" />
                 </LinearLayout>
 
                 <View
@@ -831,14 +832,14 @@
                     android:layout_width="@dimen/icon_size_nav"
                     android:layout_height="@dimen/icon_size_nav"
                     android:src="@drawable/ic_profile"
-                    app:tint="@color/colorOnMaroon" />
+                    app:tint="@color/colorHeaderContent" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/nav_profile"
                     style="@style/TextAppearance.Saive.Nav"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/colorOnMaroon" />
+                    android:textColor="@color/colorHeaderContent" />
             </LinearLayout>
 
         </LinearLayout>
@@ -863,7 +864,7 @@
                 android:padding="16dp"
                 android:scaleType="fitCenter"
                 android:src="@mipmap/saive_logo"
-                app:tint="@color/colorMaroon" />
+                app:tint="@color/colorAccentBrand" />
         </FrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

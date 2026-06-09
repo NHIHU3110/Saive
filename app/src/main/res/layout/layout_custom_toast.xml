@@ -17,7 +17,7 @@
         android:layout_height="36dp"
         app:cardCornerRadius="18dp"
         app:cardElevation="0dp"
-        app:cardBackgroundColor="@color/colorMaroon">
+        app:cardBackgroundColor="@color/colorAccentBrand">
 
         <ImageView
             android:id="@+id/toast_icon"

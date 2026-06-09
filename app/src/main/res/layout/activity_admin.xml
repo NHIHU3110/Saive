@@ -24,7 +24,7 @@
             android:paddingTop="54dp"
             android:paddingBottom="20dp"
             android:gravity="center_vertical"
-            android:background="@color/colorMaroon"
+            android:background="@color/colorHeaderBg"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
@@ -37,7 +37,7 @@
                 android:padding="10dp"
                 android:scaleType="centerInside"
                 android:src="@drawable/ic_menu"
-                app:tint="@color/colorMaroon" />
+                app:tint="@color/colorAccentBrand" />
 
             <TextView
                 android:layout_width="0dp"
@@ -47,7 +47,7 @@
                 android:text="@string/admin_dashboard_title"
                 style="@style/TextAppearance.Saive.SectionHeader"
                 android:textSize="18sp"
-                android:textColor="@color/white"
+                android:textColor="@color/colorHeaderContent"
                 android:letterSpacing="0.2" />
 
             <com.google.android.material.imageview.ShapeableImageView
@@ -115,7 +115,7 @@
                                 tools:text="+15% UP"
                                 android:textSize="10sp"
                                 android:fontFamily="sans-serif-medium"
-                                android:textColor="@color/colorMaroon"
+                                android:textColor="@color/colorAccentBrand"
                                 android:layout_marginTop="8dp"/>
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
@@ -127,7 +127,7 @@
                         android:layout_marginStart="8dp"
                         app:cardCornerRadius="24dp"
                         app:cardElevation="0dp"
-                        app:cardBackgroundColor="@color/colorMaroon"
+                        app:cardBackgroundColor="@color/colorButtonBg"
                         app:strokeWidth="0dp">
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -148,7 +148,7 @@
                                 tools:text="156"
                                 style="@style/TextAppearance.Saive.Header"
                                 android:textSize="24sp"
-                                android:textColor="@color/white"
+                                android:textColor="@color/colorButtonText"
                                 android:layout_marginTop="4dp"/>
                             <TextView
                                 android:layout_width="wrap_content"
@@ -196,9 +196,9 @@
                             <View android:layout_width="0dp" android:layout_height="40dp" android:layout_weight="1" android:layout_marginHorizontal="6dp" android:background="@color/colorLinen" android:alpha="0.5"/>
                             <View android:layout_width="0dp" android:layout_height="80dp" android:layout_weight="1" android:layout_marginHorizontal="6dp" android:background="@color/colorLinen" android:alpha="0.5"/>
                             <View android:layout_width="0dp" android:layout_height="60dp" android:layout_weight="1" android:layout_marginHorizontal="6dp" android:background="@color/colorLinen" android:alpha="0.5"/>
-                            <View android:layout_width="0dp" android:layout_height="120dp" android:layout_weight="1" android:layout_marginHorizontal="6dp" android:background="@color/colorMaroon"/>
+                            <View android:layout_width="0dp" android:layout_height="120dp" android:layout_weight="1" android:layout_marginHorizontal="6dp" android:background="@color/colorAccentBrand"/>
                             <View android:layout_width="0dp" android:layout_height="100dp" android:layout_weight="1" android:layout_marginHorizontal="6dp" android:background="@color/colorNoirBlack"/>
-                            <View android:layout_width="0dp" android:layout_height="140dp" android:layout_weight="1" android:layout_marginHorizontal="6dp" android:background="@color/colorMaroon" android:alpha="0.7"/>
+                            <View android:layout_width="0dp" android:layout_height="140dp" android:layout_weight="1" android:layout_marginHorizontal="6dp" android:background="@color/colorAccentBrand" android:alpha="0.7"/>
                             <View android:layout_width="0dp" android:layout_height="70dp" android:layout_weight="1" android:layout_marginHorizontal="6dp" android:background="@color/colorLinen" android:alpha="0.5"/>
                         </LinearLayout>
 
@@ -305,7 +305,7 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         android:background="@color/colorCotton"
-        app:itemIconTint="@color/colorMaroon"
+        app:itemIconTint="@color/colorAccentBrand"
         app:itemTextColor="@color/colorNoirBlack"
         app:itemShapeAppearanceOverlay="@style/ShapeAppearance.Saive.Small"
         app:itemShapeInsetStart="12dp"

@@ -10,7 +10,7 @@
         android:id="@+id/headerContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorCollectionMaroon"
+        android:background="@color/colorHeaderBg"
         android:elevation="4dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -25,7 +25,7 @@
             android:layout_height="24dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/ic_back"
-            app:tint="@color/colorIvory" />
+            app:tint="@color/colorHeaderContent" />
 
         <TextView
             style="@style/TextAppearance.Saive.SectionHeader"
@@ -36,7 +36,7 @@
             android:gravity="center"
             android:letterSpacing="0.02"
             android:text="@string/cart_title"
-            android:textColor="@color/colorIvory"
+            android:textColor="@color/colorHeaderContent"
             android:textSize="18sp" />
     </LinearLayout>
 
@@ -83,7 +83,7 @@
         android:id="@+id/checkoutContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorMaroon"
+        android:background="@color/colorContactCardBg"
         android:paddingHorizontal="24dp"
         android:paddingTop="20dp"
         android:paddingBottom="24dp"
@@ -106,7 +106,7 @@
                 android:layout_height="56dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/bg_rounded_white_8dp"
-                android:backgroundTint="@color/colorOnMaroonContainer"
+                android:backgroundTint="@color/colorLinen"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingStart="16dp"
@@ -116,7 +116,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/ic_coupon"
-                    app:tint="@color/colorOnMaroonSecondary" />
+                    app:tint="@color/colorContactCardLabel" />
 
                 <EditText
                     android:id="@+id/etCoupon"
@@ -133,18 +133,18 @@
                     style="@style/TextAppearance.Saive.Nav"
                     android:textSize="13sp"
                     android:letterSpacing="0.05"
-                    android:textColor="@color/colorOnMaroon"
-                    android:textColorHint="@color/colorOnMaroonSecondary" />
+                    android:textColor="@color/colorContactCardContent"
+                    android:textColorHint="@color/colorContactCardLabel" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnApplyCoupon"
                     android:layout_width="wrap_content"
                     android:layout_height="44dp"
                     android:background="@drawable/bg_rounded_white_8dp"
-                    android:backgroundTint="@color/colorOnMaroon"
+                    android:backgroundTint="@color/colorContactCardContent"
                     android:text="@string/btn_apply"
                     android:textAllCaps="true"
-                    android:textColor="@color/colorMaroon"
+                    android:textColor="@color/colorContactCardBg"
                     android:textSize="12sp"
                     android:textStyle="bold"
                     android:paddingHorizontal="20dp"
@@ -161,7 +161,7 @@
                     android:layout_centerVertical="true"
                     style="@style/TextAppearance.Saive.Caption"
                     android:text="@string/label_item_total"
-                    android:textColor="@color/colorOnMaroonSecondary"
+                    android:textColor="@color/colorContactCardLabel"
                     android:textSize="14sp" />
                 <TextView
                     android:id="@+id/tvSubtotal"
@@ -171,7 +171,7 @@
                     android:layout_centerVertical="true"
                     style="@style/TextAppearance.Saive.Nav"
                     android:text="0 ₫"
-                    android:textColor="@color/colorOnMaroon"
+                    android:textColor="@color/colorContactCardContent"
                     android:textSize="15sp" />
             </RelativeLayout>
 
@@ -187,7 +187,7 @@
                     android:layout_centerVertical="true"
                     style="@style/TextAppearance.Saive.Caption"
                     android:text="@string/label_discount"
-                    android:textColor="@color/colorOnMaroonSecondary"
+                    android:textColor="@color/colorContactCardLabel"
                     android:textSize="14sp" />
                 <TextView
                     android:id="@+id/tvDiscountValue"
@@ -211,7 +211,7 @@
                     android:layout_centerVertical="true"
                     style="@style/TextAppearance.Saive.Caption"
                     android:text="@string/label_delivery"
-                    android:textColor="@color/colorOnMaroonSecondary"
+                    android:textColor="@color/colorContactCardLabel"
                     android:textSize="14sp" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -220,14 +220,14 @@
                     android:layout_centerVertical="true"
                     style="@style/TextAppearance.Saive.Nav"
                     android:text="@string/label_free"
-                    android:textColor="@color/colorOnMaroonSecondary"
+                    android:textColor="@color/colorContactCardLabel"
                     android:textSize="14sp" />
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:background="@color/colorOnMaroonDivider"
+                android:background="@color/colorLinen"
                 android:layout_marginBottom="16dp"
                 android:alpha="0.3" />
         </LinearLayout>
@@ -252,7 +252,7 @@
                 style="@style/TextAppearance.Saive.Nav"
                 android:text="@string/label_total"
                 android:letterSpacing="0.02"
-                android:textColor="@color/colorOnMaroon"
+                android:textColor="@color/colorContactCardContent"
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
@@ -264,7 +264,7 @@
                 style="@style/TextAppearance.Saive.Nav"
                 android:text="0 ₫"
                 android:textStyle="bold"
-                android:textColor="@color/colorOnMaroon"
+                android:textColor="@color/colorContactCardContent"
                 android:textSize="22sp" />
 
             <ImageView
@@ -272,7 +272,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/ic_chevron_down"
-                app:tint="@color/colorOnMaroon" />
+                app:tint="@color/colorContactCardContent" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
@@ -281,11 +281,11 @@
             android:layout_height="56dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/bg_rounded_white_8dp"
-            android:backgroundTint="@color/colorOnMaroonContainer"
+            android:backgroundTint="@color/colorContactCardContent"
             android:text="@string/btn_payment"
             android:textAllCaps="false"
             style="@style/TextAppearance.Saive.Nav"
-            android:textColor="@color/colorOnMaroon"
+            android:textColor="@color/colorContactCardBg"
             android:textSize="16sp"
             android:textStyle="bold"
             android:stateListAnimator="@null"
@@ -299,7 +299,7 @@
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorMaroon"
+        android:background="@color/colorHeaderBg"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:elevation="16dp"
@@ -325,14 +325,14 @@
                     android:layout_width="@dimen/icon_size_nav"
                     android:layout_height="@dimen/icon_size_nav"
                     android:src="@drawable/ic_favorite"
-                    app:tint="@color/colorOnMaroon" />
+                    app:tint="@color/colorHeaderContent" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/nav_favorite"
                     style="@style/TextAppearance.Saive.Nav"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/colorOnMaroon" />
+                    android:textColor="@color/colorHeaderContent" />
             </LinearLayout>
 
             <!-- WARDROBE -->
@@ -348,14 +348,14 @@
                     android:layout_width="@dimen/icon_size_nav"
                     android:layout_height="@dimen/icon_size_nav"
                     android:src="@mipmap/hangericon"
-                    app:tint="@color/colorOnMaroon" />
+                    app:tint="@color/colorHeaderContent" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/nav_wardrobe"
                     style="@style/TextAppearance.Saive.Nav"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/colorOnMaroon" />
+                    android:textColor="@color/colorHeaderContent" />
             </LinearLayout>
 
             <!-- Item 2: HOME (ACTIVE AREA) -->
@@ -397,7 +397,7 @@
                         android:layout_width="@dimen/icon_size_nav"
                         android:layout_height="@dimen/icon_size_nav"
                         android:src="@drawable/ic_notifications"
-                        app:tint="@color/colorOnMaroon" />
+                        app:tint="@color/colorHeaderContent" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -405,7 +405,7 @@
                         android:layout_marginTop="4dp"
                         style="@style/TextAppearance.Saive.Nav"
                         android:text="@string/nav_notify"
-                        android:textColor="@color/colorOnMaroon" />
+                        android:textColor="@color/colorHeaderContent" />
                 </LinearLayout>
 
             </FrameLayout>
@@ -426,14 +426,14 @@
                     android:layout_width="@dimen/icon_size_nav"
                     android:layout_height="@dimen/icon_size_nav"
                     android:src="@drawable/ic_profile"
-                    app:tint="@color/colorOnMaroon" />
+                    app:tint="@color/colorHeaderContent" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/nav_profile"
                     style="@style/TextAppearance.Saive.Nav"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/colorOnMaroon" />
+                    android:textColor="@color/colorHeaderContent" />
             </LinearLayout>
 
         </LinearLayout>
@@ -458,7 +458,7 @@
                 android:padding="16dp"
                 android:scaleType="fitCenter"
                 android:src="@mipmap/saive_logo"
-                app:tint="@color/colorMaroon" />
+                app:tint="@color/colorAccentBrand" />
 
         </FrameLayout>
 

@@ -57,11 +57,11 @@ public class CartActivity extends BaseActivity {
         boolean isDarkMode = (getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK) 
                 == android.content.res.Configuration.UI_MODE_NIGHT_YES;
         
-        // Setup status bar for full-bleed maroon header
-        getWindow().setStatusBarColor(getResources().getColor(R.color.colorMaroon));
+        // Setup status bar for full-bleed header
+        getWindow().setStatusBarColor(androidx.core.content.ContextCompat.getColor(this, R.color.colorHeaderBg));
         int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
         
-        // In Dark Mode, colorMaroon becomes light beige, so we need dark icons
+        // In Dark Mode, colorHeaderBg becomes beige, so we need dark icons
         if (isDarkMode) {
             flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
         }

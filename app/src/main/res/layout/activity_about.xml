@@ -56,7 +56,7 @@
                 android:layout_marginTop="-2dp"
                 android:layout_marginEnd="-4dp"
                 android:background="@drawable/bg_rounded_white_8dp"
-                android:backgroundTint="@color/colorMaroon"
+                android:backgroundTint="@color/colorAccentBrand"
                 android:gravity="center"
                 android:minWidth="14dp"
                 android:minHeight="14dp"
@@ -370,7 +370,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorMaroon"
+                android:background="@color/colorContactCardBg"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:paddingHorizontal="48dp"
@@ -382,7 +382,7 @@
                     style="@style/TextAppearance.Saive.Editorial"
                     android:text="@string/about_philosophy_quote"
                     android:textAlignment="center"
-                    android:textColor="@color/colorCotton"
+                    android:textColor="@color/colorContactCardContent"
                     android:textSize="24sp" />
 
                 <TextView
@@ -391,7 +391,7 @@
                     android:layout_marginTop="32dp"
                     style="@style/TextAppearance.Saive.Nav"
                     android:text="@string/about_philosophy_sub"
-                    android:textColor="@color/colorCotton"
+                    android:textColor="@color/colorContactCardContent"
                     android:alpha="0.6"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -503,7 +503,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="—"
-                            android:textColor="@color/colorMaroon"
+                            android:textColor="@color/colorAccentBrand"
                             android:textSize="18sp" />
                         <TextView
                             android:layout_width="wrap_content"
@@ -526,7 +526,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="—"
-                            android:textColor="@color/colorMaroon"
+                            android:textColor="@color/colorAccentBrand"
                             android:textSize="18sp" />
                         <TextView
                             android:layout_width="wrap_content"
@@ -549,7 +549,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="—"
-                            android:textColor="@color/colorMaroon"
+                            android:textColor="@color/colorAccentBrand"
                             android:textSize="18sp" />
                         <TextView
                             android:layout_width="wrap_content"
@@ -572,7 +572,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="—"
-                            android:textColor="@color/colorMaroon"
+                            android:textColor="@color/colorAccentBrand"
                             android:textSize="18sp" />
                         <TextView
                             android:layout_width="wrap_content"

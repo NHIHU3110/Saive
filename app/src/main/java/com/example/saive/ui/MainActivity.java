@@ -778,7 +778,7 @@ public class MainActivity extends BaseActivity {
                 R.mipmap.atumncollection1,
                 Color.parseColor("#F0EDE3"),
                 false,
-                ContextCompat.getColor(this, R.color.colorMaroon),
+                androidx.core.content.ContextCompat.getColor(this, R.color.colorAccentBrand),
                 Notification.Type.DROP,
                 System.currentTimeMillis() - 2 * 3600 * 1000 // 2h ago
         ));
@@ -792,7 +792,7 @@ public class MainActivity extends BaseActivity {
                 R.mipmap.atumncollection2,
                 Color.parseColor("#FAF8F3"),
                 false,
-                ContextCompat.getColor(this, R.color.colorMaroon),
+                androidx.core.content.ContextCompat.getColor(this, R.color.colorAccentBrand),
                 Notification.Type.ORDER,
                 System.currentTimeMillis() - 24 * 3600 * 1000 // 1d ago
         ));

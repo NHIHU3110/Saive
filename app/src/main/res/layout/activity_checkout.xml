@@ -9,7 +9,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorMaroon"
+        android:background="@color/colorHeaderBg"
         app:liftOnScroll="false"
         app:elevation="0dp">
 
@@ -32,7 +32,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/colorOnMaroon" />
+                app:tint="@color/colorHeaderContent" />
 
             <TextView
                 android:id="@+id/tvTitle"
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/btn_checkout"
                 android:textSize="18sp"
-                android:textColor="@color/colorOnMaroon"
+                android:textColor="@color/colorHeaderContent"
                 app:layout_constraintBottom_toBottomOf="@+id/btnBack"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -78,7 +78,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/label_shipping_address"
-                        android:textColor="@color/colorMaroon"
+                        android:textColor="@color/colorAccentBrand"
                         android:textSize="14sp"
                         android:letterSpacing="0.1" />
 
@@ -93,7 +93,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/btn_add"
-                            android:textColor="@color/colorMaroon"
+                            android:textColor="@color/colorAccentBrand"
                             android:textStyle="bold"
                             android:textSize="12sp"
                             android:padding="4dp"
@@ -104,7 +104,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/btn_change"
-                            android:textColor="@color/colorMaroon"
+                            android:textColor="@color/colorAccentBrand"
                             android:textStyle="bold"
                             android:textSize="12sp"
                             android:padding="4dp" />
@@ -118,7 +118,7 @@
                     app:cardCornerRadius="12dp"
                     app:cardElevation="0dp"
                     app:strokeWidth="1dp"
-                    app:strokeColor="@color/colorMaroon"
+                    app:strokeColor="@color/colorAccentBrand"
                     app:cardBackgroundColor="@color/white">
 
                     <LinearLayout
@@ -132,7 +132,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/address_label_home"
-                            android:textColor="@color/colorMaroon"
+                            android:textColor="@color/colorAccentBrand"
                             android:textStyle="bold"
                             android:textSize="12sp" />
 
@@ -186,7 +186,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/checkout_select_address"
-                        android:textColor="@color/colorMaroon"
+                        android:textColor="@color/colorAccentBrand"
                         android:textSize="14sp"
                         android:letterSpacing="0.1" />
                     <TextView
@@ -195,7 +195,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:text="@string/label_add_new_plus"
-                        android:textColor="@color/colorMaroon"
+                        android:textColor="@color/colorAccentBrand"
                         android:textStyle="bold"
                         android:textSize="12sp"
                         android:padding="4dp" />
@@ -214,7 +214,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/checkout_shipping_title"
-                android:textColor="@color/colorMaroon"
+                android:textColor="@color/colorAccentBrand"
                 android:textSize="14sp"
                 android:letterSpacing="0.1" />
 
@@ -232,8 +232,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/label_full_name"
-                    app:boxStrokeColor="@color/colorMaroon"
-                    app:hintTextColor="@color/colorMaroon"
+                    app:boxStrokeColor="@color/colorAccentBrand"
+                    app:hintTextColor="@color/colorAccentBrand"
                     app:boxCornerRadiusTopStart="8dp"
                     app:boxCornerRadiusTopEnd="8dp"
                     app:boxCornerRadiusBottomStart="8dp"
@@ -253,8 +253,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:hint="@string/label_phone_number"
-                    app:boxStrokeColor="@color/colorMaroon"
-                    app:hintTextColor="@color/colorMaroon"
+                    app:boxStrokeColor="@color/colorAccentBrand"
+                    app:hintTextColor="@color/colorAccentBrand"
                     app:boxCornerRadiusTopStart="8dp"
                     app:boxCornerRadiusTopEnd="8dp"
                     app:boxCornerRadiusBottomStart="8dp"
@@ -274,8 +274,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:hint="@string/label_email"
-                    app:boxStrokeColor="@color/colorMaroon"
-                    app:hintTextColor="@color/colorMaroon"
+                    app:boxStrokeColor="@color/colorAccentBrand"
+                    app:hintTextColor="@color/colorAccentBrand"
                     app:boxCornerRadiusTopStart="8dp"
                     app:boxCornerRadiusTopEnd="8dp"
                     app:boxCornerRadiusBottomStart="8dp"
@@ -427,8 +427,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:hint="@string/label_address"
-                    app:boxStrokeColor="@color/colorMaroon"
-                    app:hintTextColor="@color/colorMaroon"
+                    app:boxStrokeColor="@color/colorAccentBrand"
+                    app:hintTextColor="@color/colorAccentBrand"
                     app:boxCornerRadiusTopStart="8dp"
                     app:boxCornerRadiusTopEnd="8dp"
                     app:boxCornerRadiusBottomStart="8dp"
@@ -451,7 +451,7 @@
                     android:layout_marginTop="12dp"
                     android:text="@string/label_save_info"
                     style="@style/TextAppearance.Saive.SubLabel"
-                    app:buttonTint="@color/colorMaroon" />
+                    app:buttonTint="@color/colorAccentBrand" />
 
             </LinearLayout>
 
@@ -471,7 +471,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/checkout_order_summary"
                     android:textSize="14sp"
-                    android:textColor="@color/colorMaroon"
+                    android:textColor="@color/colorAccentBrand"
                     android:alpha="0.8" />
 
                 <com.google.android.material.card.MaterialCardView
@@ -502,7 +502,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/checkout_shipping_to"
                             android:textSize="12sp"
-                            android:textColor="@color/colorMaroon"
+                            android:textColor="@color/colorAccentBrand"
                             android:alpha="0.6" />
 
                         <TextView
@@ -570,7 +570,7 @@
                                 android:layout_alignParentEnd="true"
                                 android:layout_centerVertical="true"
                                 style="@style/TextAppearance.Saive.SectionHeader"
-                                android:textColor="@color/colorMaroon"
+                                android:textColor="@color/colorAccentBrand"
                                 android:textSize="22sp"
                                 android:letterSpacing="0.02"
                                 tools:text="3.450.000 ₫" />
@@ -603,7 +603,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/payment_method_cash"
                         android:textSize="14sp"
-                        android:textColor="@color/colorMaroon"
+                        android:textColor="@color/colorAccentBrand"
                         android:alpha="0.8" />
 
                     <com.google.android.material.card.MaterialCardView
@@ -643,7 +643,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:clickable="false"
-                                android:buttonTint="@color/colorMaroon" />
+                                android:buttonTint="@color/colorAccentBrand" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
@@ -659,7 +659,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/payment_method_card"
                             android:textSize="14sp"
-                            android:textColor="@color/colorMaroon"
+                            android:textColor="@color/colorAccentBrand"
                             android:alpha="0.8" />
 
                         <LinearLayout
@@ -673,7 +673,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/btn_add"
-                                android:textColor="@color/colorMaroon"
+                                android:textColor="@color/colorAccentBrand"
                                 android:textStyle="bold"
                                 android:textSize="12sp"
                                 android:padding="4dp"
@@ -684,7 +684,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/btn_change"
-                                android:textColor="@color/colorMaroon"
+                                android:textColor="@color/colorAccentBrand"
                                 android:textStyle="bold"
                                 android:textSize="12sp"
                                 android:padding="4dp" />
@@ -741,7 +741,7 @@
                                 android:id="@+id/rbDefaultCard"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:buttonTint="@color/colorMaroon"
+                                android:buttonTint="@color/colorAccentBrand"
                                 android:clickable="false" />
 
                         </LinearLayout>
@@ -770,7 +770,7 @@
                                 android:layout_width="28dp"
                                 android:layout_height="28dp"
                                 android:src="@drawable/ic_plus"
-                                app:tint="@color/colorMaroon" />
+                                app:tint="@color/colorAccentBrand" />
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -794,7 +794,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/payment_method_more"
                         android:textSize="14sp"
-                        android:textColor="@color/colorMaroon"
+                        android:textColor="@color/colorAccentBrand"
                         android:alpha="0.8" />
 
                     <com.google.android.material.card.MaterialCardView
@@ -838,7 +838,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:clickable="false"
-                                    android:buttonTint="@color/colorMaroon" />
+                                    android:buttonTint="@color/colorAccentBrand" />
                             </LinearLayout>
 
                             <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/colorLightGray" android:layout_marginHorizontal="16dp"/>
@@ -869,7 +869,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:clickable="false"
-                                    android:buttonTint="@color/colorMaroon" />
+                                    android:buttonTint="@color/colorAccentBrand" />
                             </LinearLayout>
 
                             <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/colorLightGray" android:layout_marginHorizontal="16dp"/>
@@ -900,7 +900,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:clickable="false"
-                                    android:buttonTint="@color/colorMaroon" />
+                                    android:buttonTint="@color/colorAccentBrand" />
                             </LinearLayout>
 
                         </LinearLayout>
@@ -929,7 +929,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorMaroon"
+            android:background="@color/colorContactCardBg"
             android:paddingHorizontal="24dp"
             android:paddingTop="20dp"
             android:paddingBottom="32dp">
@@ -940,9 +940,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:background="@drawable/bg_rounded_white_8dp"
-                android:backgroundTint="@color/colorOnMaroonContainer"
+                android:backgroundTint="@color/colorContactCardContent"
                 android:text="@string/btn_continue_payment"
-                android:textColor="@color/colorOnMaroon"
+                android:textColor="@color/colorContactCardBg"
                 android:textAllCaps="false"
                 android:textSize="16sp"
                 android:textStyle="bold"

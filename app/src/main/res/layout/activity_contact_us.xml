@@ -9,12 +9,11 @@
     tools:context=".ui.ContactUsActivity"
     android:background="@color/colorCotton">
 
-    <!-- Header -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/colorMaroon"
+        app:cardBackgroundColor="@color/colorHeaderBg"
         app:cardCornerRadius="0dp"
         app:cardElevation="4dp"
         app:strokeWidth="0dp"
@@ -38,7 +37,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/colorAlwaysWhite" />
+                app:tint="@color/colorHeaderContent" />
 
             <TextView
                 android:id="@+id/tvToolbarTitle"
@@ -50,7 +49,7 @@
                 android:letterSpacing="0.05"
                 android:text="@string/menu_contact_us"
                 android:textAllCaps="true"
-                android:textColor="@color/colorAlwaysWhite"
+                android:textColor="@color/colorHeaderContent"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -94,7 +93,7 @@
                 android:layout_height="2dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
-                android:background="@color/colorMaroon" />
+                android:background="@color/colorAccentBrand" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -276,7 +275,7 @@
                 android:letterSpacing="0.1"
                 android:text="@string/contact_label_send_message"
                 android:textAllCaps="true"
-                android:textColor="@color/colorMaroon"
+                android:textColor="@color/colorAccentBrand"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="24dp" />
@@ -388,11 +387,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:text="@string/contact_btn_send"
-                android:textColor="@color/colorAlwaysWhite"
+                android:textColor="@color/colorButtonText"
                 android:textSize="14sp"
                 android:letterSpacing="0.1"
                 app:cornerRadius="12dp"
-                app:backgroundTint="@color/colorMaroon"
+                app:backgroundTint="@color/colorButtonBg"
                 app:elevation="4dp"
                 style="@style/TextAppearance.Saive.Nav" />
 

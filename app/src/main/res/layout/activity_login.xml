@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorMaroon">
+    android:background="@color/colorAuthBg">
 
     <!-- Logo and Header Area -->
     <LinearLayout
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/auth_login_title"
-            android:textColor="@color/colorMaroon"
+            android:textColor="@color/colorAccentBrand"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -126,7 +126,7 @@
             android:text="@string/menu_remember_me"
             android:textColor="@color/colorGrayText"
             android:textSize="12sp"
-            app:buttonTint="@color/colorMaroon"
+            app:buttonTint="@color/colorAccentBrand"
             app:layout_constraintBottom_toBottomOf="@id/tvForgotPassword"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvForgotPassword" />
@@ -137,7 +137,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_arrow_right"
-            app:backgroundTint="@color/colorMaroon"
+            app:backgroundTint="@color/colorAccentBrand"
             app:fabCustomSize="56dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

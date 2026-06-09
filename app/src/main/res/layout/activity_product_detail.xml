@@ -82,7 +82,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="4dp"
                 android:background="@drawable/bg_rounded_white_8dp"
-                android:backgroundTint="@color/colorMaroon"
+                android:backgroundTint="@color/colorAccentBrand"
                 android:gravity="center"
                 android:minWidth="16dp"
                 android:minHeight="16dp"
@@ -133,7 +133,7 @@
                     android:padding="10dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_heart_thin"
-                    app:tint="@color/colorMaroon" />
+                    app:tint="@color/colorAccentBrand" />
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/lottieFavorite"
@@ -202,7 +202,7 @@
                         android:layout_marginStart="12dp"
                         style="@style/TextAppearance.Saive.Editorial"
                         android:text="2.450.000 ₫"
-                        android:textColor="@color/colorMaroon" />
+                        android:textColor="@color/colorAccentBrand" />
                 </LinearLayout>
 
                 <View
@@ -218,7 +218,7 @@
                     android:layout_height="wrap_content"
                     style="@style/TextAppearance.Saive.Caption"
                     android:text="@string/label_description"
-                    android:textColor="@color/colorMaroon" />
+                    android:textColor="@color/colorAccentBrand" />
 
                 <TextView
                     android:id="@+id/tvDescription"
@@ -240,7 +240,7 @@
                     android:text="@string/label_see_more"
                     style="@style/TextAppearance.Saive.Nav"
                     android:textSize="12sp"
-                    android:textColor="@color/colorMaroon" />
+                    android:textColor="@color/colorAccentBrand" />
 
                 <!-- Size Selection -->
                 <LinearLayout
@@ -262,7 +262,7 @@
                             android:layout_centerVertical="true"
                             style="@style/TextAppearance.Saive.Caption"
                             android:text="@string/label_size"
-                            android:textColor="@color/colorMaroon" />
+                            android:textColor="@color/colorAccentBrand" />
 
                         <LinearLayout
                             android:id="@+id/btnSizeGuide"
@@ -315,7 +315,7 @@
                             android:layout_marginStart="16dp"
                             style="@style/TextAppearance.Saive.Caption"
                             android:textSize="11sp"
-                            android:textColor="@color/colorMaroon"
+                            android:textColor="@color/colorAccentBrand"
                             android:text="@string/inventory_low_stock"
                             android:visibility="gone"
                             tools:visibility="visible"/>
@@ -336,7 +336,7 @@
                         android:layout_marginTop="32dp"
                         style="@style/TextAppearance.Saive.Caption"
                         android:text="@string/label_color"
-                        android:textColor="@color/colorMaroon" />
+                        android:textColor="@color/colorAccentBrand" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -356,7 +356,7 @@
                             android:layout_marginStart="16dp"
                             style="@style/TextAppearance.Saive.Caption"
                             android:textSize="11sp"
-                            android:textColor="@color/colorMaroon"
+                            android:textColor="@color/colorAccentBrand"
                             android:text="@string/inventory_out_of_stock"
                             android:visibility="gone"
                             tools:visibility="visible"/>
@@ -377,7 +377,7 @@
                         android:layout_weight="1"
                         style="@style/TextAppearance.Saive.Caption"
                         android:text="@string/label_quantity"
-                        android:textColor="@color/colorMaroon" />
+                        android:textColor="@color/colorAccentBrand" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -423,7 +423,7 @@
                     android:layout_marginTop="40dp"
                     style="@style/TextAppearance.Saive.Caption"
                     android:text="@string/label_complete_look"
-                    android:textColor="@color/colorMaroon" />
+                    android:textColor="@color/colorAccentBrand" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvCompleteLook"
@@ -446,18 +446,18 @@
                         android:layout_weight="1"
                         style="@style/TextAppearance.Saive.Caption"
                         android:text="@string/label_reviews"
-                        android:textColor="@color/colorMaroon"
+                        android:textColor="@color/colorAccentBrand"
                         android:letterSpacing="0.2" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnWriteReview"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:backgroundTint="@color/colorMaroon"
+                        android:backgroundTint="@color/colorButtonBg"
                         android:paddingHorizontal="20dp"
                         android:text="@string/label_write_review"
                         android:textAllCaps="false"
-                        android:textColor="@color/white"
+                        android:textColor="@color/colorButtonText"
                         android:textSize="13sp"
                         app:cornerRadius="20dp"
                         app:elevation="2dp"
@@ -544,7 +544,7 @@
             android:layout_width="0dp"
             android:layout_height="54dp"
             android:layout_weight="1"
-            android:background="@drawable/bg_rounded_maroon_12dp"
+            android:background="@color/colorButtonBg"
             android:elevation="4dp"
             android:gravity="center"
             android:orientation="horizontal"
@@ -555,7 +555,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/ic_cart"
-                app:tint="@color/white" />
+                app:tint="@color/colorButtonText" />
 
             <TextView
                 android:id="@+id/tvWardrobeAction"
@@ -564,7 +564,7 @@
                 android:layout_marginStart="8dp"
                 style="@style/TextAppearance.Saive.Nav"
                 android:text="@string/btn_add_to_bag"
-                android:textColor="@color/white"
+                android:textColor="@color/colorButtonText"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:letterSpacing="0.05" />

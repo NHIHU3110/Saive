@@ -38,10 +38,18 @@ public class SignupActivity extends BaseActivity {
         ImageUtils.setSafeImage(ivGgIcon, R.mipmap.ggicon);
 
         if (getWindow() != null) {
-            getWindow().setStatusBarColor(getResources().getColor(R.color.colorMaroon));
-            getWindow().getDecorView().setSystemUiVisibility(
-                    getWindow().getDecorView().getSystemUiVisibility() & ~android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            );
+            getWindow().setStatusBarColor(androidx.core.content.ContextCompat.getColor(this, R.color.colorAuthBg));
+            boolean isDarkMode = (getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK)
+                    == android.content.res.Configuration.UI_MODE_NIGHT_YES;
+            if (isDarkMode) {
+                getWindow().getDecorView().setSystemUiVisibility(
+                        getWindow().getDecorView().getSystemUiVisibility() | android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                );
+            } else {
+                getWindow().getDecorView().setSystemUiVisibility(
+                        getWindow().getDecorView().getSystemUiVisibility() & ~android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                );
+            }
         }
 
         etName = findViewById(R.id.etName);

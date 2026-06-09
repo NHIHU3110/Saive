@@ -60,6 +60,7 @@ public class ProductDetailActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        updateStatusBar();
         androidx.activity.EdgeToEdge.enable(this);
         setContentView(R.layout.activity_product_detail);
 
@@ -88,6 +89,20 @@ public class ProductDetailActivity extends BaseActivity {
         updateWardrobeUI();
         updateCartBadge();
         setupCartObserver();
+    }
+
+    private void updateStatusBar() {
+        boolean isDarkMode = (getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK) 
+                == android.content.res.Configuration.UI_MODE_NIGHT_YES;
+        
+        // Product detail uses Cotton (Off-white/Black) header
+        getWindow().setStatusBarColor(androidx.core.content.ContextCompat.getColor(this, R.color.colorCotton));
+        
+        if (!isDarkMode) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        } else {
+            getWindow().getDecorView().setSystemUiVisibility(0);
+        }
     }
 
     private void setupCartObserver() {
@@ -283,7 +298,7 @@ public class ProductDetailActivity extends BaseActivity {
             boolean isFavorite = FavoriteManager.getInstance(this).isFavorite(currentProduct);
             btnFavorite.setSelected(isFavorite);
             btnFavorite.setImageResource(isFavorite ? R.drawable.ic_favorite : R.drawable.ic_heart_thin);
-            btnFavorite.setColorFilter(ContextCompat.getColor(this, R.color.colorMaroon));
+            btnFavorite.setColorFilter(ContextCompat.getColor(this, R.color.colorAccentBrand));
 
             btnFavorite.setOnClickListener(v -> {
                 v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
@@ -301,14 +316,14 @@ public class ProductDetailActivity extends BaseActivity {
                             btnFavorite.setVisibility(View.VISIBLE);
                             btnFavorite.setSelected(true);
                             btnFavorite.setImageResource(R.drawable.ic_favorite);
-                            btnFavorite.setColorFilter(ContextCompat.getColor(this, R.color.colorMaroon));
+                            btnFavorite.setColorFilter(ContextCompat.getColor(this, R.color.colorAccentBrand));
                         }
                     });
                 } else {
                     favoriteManager.removeFavorite(currentProduct);
                     btnFavorite.setSelected(false);
                     btnFavorite.setImageResource(R.drawable.ic_heart_thin);
-                    btnFavorite.setColorFilter(ContextCompat.getColor(this, R.color.colorMaroon));
+                    btnFavorite.setColorFilter(ContextCompat.getColor(this, R.color.colorAccentBrand));
                 }
             });
         }
@@ -486,10 +501,10 @@ public class ProductDetailActivity extends BaseActivity {
 
     private void updateWardrobeUI() {
         // Luôn hiển thị trạng thái ADD TO BAG để khuyến khích mua thêm
-        btnAddToWardrobe.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, android.R.color.white)));
-        ivWardrobeIcon.setColorFilter(ContextCompat.getColor(this, R.color.colorMaroon));
+        btnAddToWardrobe.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.colorButtonBg)));
+        ivWardrobeIcon.setColorFilter(ContextCompat.getColor(this, R.color.colorButtonText));
         tvWardrobeAction.setText(R.string.btn_add_to_wardrobe);
-        tvWardrobeAction.setTextColor(ContextCompat.getColor(this, R.color.colorMaroon));
+        tvWardrobeAction.setTextColor(ContextCompat.getColor(this, R.color.colorButtonText));
     }
 
     private void setupCompleteTheLook() {

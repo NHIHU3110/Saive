@@ -55,6 +55,18 @@
     <color name="colorCollectionBlue">#7CB9FF</color>
     <color name="colorCollectionGreen">#B1F2B3</color>
 
+    <!-- Full Screen Backgrounds (Maroon in Light -> Black in Dark) -->
+    <color name="colorAuthBg">@color/colorMaroon</color>
+
+    <!-- Adaptive Theme Colors for Quiet Luxury -->
+    <color name="colorHeaderBg">@color/colorMaroon</color>
+    <color name="colorHeaderContent">@color/colorAlwaysWhite</color>
+
+    <color name="colorButtonBg">@color/colorMaroon</color>
+    <color name="colorButtonText">@color/colorAlwaysWhite</color>
+
+    <color name="colorAccentBrand">@color/colorMaroon</color>
+
     <!-- Contact Card Adaptive Colors -->
     <color name="colorContactCardBg">@color/colorMaroon</color>
     <color name="colorContactCardContent">@color/colorAlwaysWhite</color>

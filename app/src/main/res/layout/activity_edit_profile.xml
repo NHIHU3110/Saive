@@ -97,7 +97,7 @@
                         android:layout_height="30dp"
                         android:layout_gravity="bottom|end"
                         android:layout_margin="2dp"
-                        android:background="@color/colorMaroon"
+                        android:background="@color/colorAccentBrand"
                         android:clickable="true"
                         android:focusable="true"
                         android:elevation="4dp">
@@ -123,7 +123,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:text="@string/change_photo_title"
-                    android:textColor="@color/colorMaroon"
+                    android:textColor="@color/colorAccentBrand"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -260,8 +260,8 @@
                     android:layout_marginTop="40dp"
                     android:letterSpacing="0.2"
                     android:text="@string/profile_save_changes"
-                    android:textColor="@color/white"
-                    app:backgroundTint="@color/colorMaroon"
+                    android:textColor="@color/colorButtonText"
+                    app:backgroundTint="@color/colorButtonBg"
                     app:cornerRadius="12dp"
                     app:elevation="4dp" />
 
