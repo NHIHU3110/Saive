@@ -54,4 +54,9 @@
     <color name="colorCollectionPink">#FFB5D0</color>
     <color name="colorCollectionBlue">#7CB9FF</color>
     <color name="colorCollectionGreen">#B1F2B3</color>
+
+    <!-- Contact Card Adaptive Colors -->
+    <color name="colorContactCardBg">@color/colorMaroon</color>
+    <color name="colorContactCardContent">@color/colorAlwaysWhite</color>
+    <color name="colorContactCardLabel">#D4C9B8</color>
 </resources>

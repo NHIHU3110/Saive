@@ -35,4 +35,9 @@
     <color name="colorOnMaroonSecondary">#B0FFFFFF</color>
     <color name="colorOnMaroonDivider">#20FFFFFF</color>
     <color name="colorOnMaroonContainer">#15FFFFFF</color>
+
+    <!-- Contact Card Adaptive Colors (Inverted for Dark Mode) -->
+    <color name="colorContactCardBg">#EDEBDD</color> <!-- Literal Beige -->
+    <color name="colorContactCardContent">#1A1A1A</color> <!-- Literal Black -->
+    <color name="colorContactCardLabel">#1A1A1A</color> <!-- Literal Black -->
 </resources>
