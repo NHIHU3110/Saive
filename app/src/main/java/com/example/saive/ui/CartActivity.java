@@ -284,7 +284,10 @@ public class CartActivity extends BaseActivity {
     }
 
     private void showVariantSelectionDialog(int position, Product product) {
-        boolean isGlasses = product.getCategory() != null && product.getCategory().toLowerCase().contains("glasses");
+        String category = product.getCategory() != null ? product.getCategory().toLowerCase() : "";
+        boolean isGlasses = category.contains("glasses");
+        boolean isPerfume = category.contains("perfume");
+        
         String[] options = isGlasses ? new String[]{"Black", "Tortoise", "Gold", "Silver"} : new String[]{"XS", "S", "M", "L", "XL"};
         String title = isGlasses ? getString(R.string.label_select_color) : getString(R.string.label_select_size);
         String currentSelection = isGlasses ? product.getSelectedColor() : product.getSelectedSize();
@@ -292,7 +295,16 @@ public class CartActivity extends BaseActivity {
         View dialogView = getLayoutInflater().inflate(R.layout.layout_variant_selection, null);
         TextView tvTitle = dialogView.findViewById(R.id.tvDialogTitle);
         LinearLayout optionsContainer = dialogView.findViewById(R.id.optionsContainer);
+        View btnSizeGuide = dialogView.findViewById(R.id.btnSizeGuide);
         tvTitle.setText(title);
+
+        if (btnSizeGuide != null) {
+            btnSizeGuide.setVisibility((isGlasses || isPerfume) ? View.GONE : View.VISIBLE);
+            btnSizeGuide.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                showSizeGuideDialog();
+            });
+        }
 
         AlertDialog dialog = new AlertDialog.Builder(this, R.style.Base_Theme_Saive).setView(dialogView).create();
 

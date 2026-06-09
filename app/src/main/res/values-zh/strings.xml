@@ -48,34 +48,24 @@
     <string name="wardrobe_header">我的衣橱</string>
     <string name="wardrobe_empty_search_title">未找到单品</string>
     <string name="wardrobe_empty_search_desc">我们找不到匹配您搜索的任何单品。\n请尝试其他关键词或类别。</string>
-
     <string name="explore_piece">探索单品</string>
     <string name="add_to_wardrobe">加入衣橱</string>
     <string name="added_to_wardrobe">已在衣橱中</string>
-
-    <!-- Editorial Card Titles -->
     <string name="editorial_title_1">永恒工艺</string>
     <string name="editorial_title_2">日常优雅</string>
     <string name="editorial_title_3">SAIVE 故事</string>
-
-    <!-- Editorial Card Stories -->
     <string name="editorial_story_1">为穿着而生，而非为了被取代。我们的理念专注于耐用性和永恒的手工艺设计。</string>
     <string name="editorial_story_2">日常优雅的宁静单品。通过同色系层搭研究纹理与光影。</string>
     <string name="editorial_story_3">为现代生活精心设计。从居家到城市的无缝切换。</string>
-
     <string name="editorial_material_1">越南传承工艺</string>
     <string name="editorial_material_2">生丝 • 有机棉</string>
     <string name="editorial_material_3">建筑形态</string>
-
-    <!-- Profile Screen -->
     <string name="profile_header">个人资料</string>
     <string name="profile_user_name">Huynh Thao Nhi</string>
     <string name="profile_location">越南胡志明市</string>
-
     <string name="stat_orders">订单</string>
     <string name="stat_collections">系列</string>
     <string name="stat_recent">最近查看</string>
-
     <string name="menu_my_orders">我的订单</string>
     <string name="menu_saved_collections">已存系列</string>
     <string name="menu_my_wardrobe">我的衣橱</string>
@@ -85,6 +75,40 @@
     <string name="menu_language">语言</string>
     <string name="menu_language_sub">中文</string>
     <string name="menu_about">关于 SAIVE</string>
+    <string name="menu_faq">常见问题 (FAQ)</string>
+    <string name="faq_subtitle">常见问题</string>
+    <string name="faq_q1">什么是 SAIVE？</string>
+    <string name="faq_a1">SAIVE 是一个诞生于西贡的静奢时尚品牌。我们相信美不需要喧嚣 —— 每个系列仅包含 12 件由可持续材料精心打造的单品。</string>
+    <string name="faq_q2">如何下单？</string>
+    <string name="faq_a2">浏览我们的系列，选择您的单品，选择尺寸和颜色，然后点击“加入购物袋”。准备就绪后，前往结账并填写您的送货和付款信息。</string>
+    <string name="faq_q3">接受哪些付款方式？</string>
+    <string name="faq_a3">我们接受货到付款 (COD)、Momo 钱包、ZaloPay、银行转账以及信用卡/借记卡。</string>
+    <string name="faq_q4">送货需要多长时间？</string>
+    <string name="faq_a4">越南境内的标准送货需要 3-5 个工作日。根据您所在地点的不同，可能提供快递选项。</string>
+    <string name="faq_q5">我可以退换货吗？</string>
+    <string name="faq_a5">是的。我们提供 30 天无理由退货政策。商品必须未经穿戴并保持原始状态。请联系我们以发起退货。</string>
+    <string name="faq_q6">如何追踪我的订单？</string>
+    <string name="faq_a6">前往 个人资料 → 我的订单，选择您的订单，然后点击“追踪订单”以查看实时送货状态。</string>
+    <string name="faq_q7">你们的材料是可持续的吗？</string>
+    <string name="faq_a7">当然。我们使用 100% 天然材料，包括来自欧洲无农药农场的亚麻、来自回收木纤维的天丝 (TENCEL) 以及可完全生物降解的竹纤维面料。</string>
+    <string name="faq_q8">如何使用优惠券代码？</string>
+    <string name="faq_a8">在结账过程中，在“促销代码”字段中输入您的优惠券代码并点击应用。折扣将反映在您的订单总额中。</string>
+    <string name="faq_q9">我可以将单品保存到我的衣橱吗？</string>
+    <string name="faq_a9">是的。点击任何产品上的衣橱图标即可保存。随时可以从底部导航的“衣橱”选项卡访问您保存的单品。</string>
+    <string name="faq_q10">如何联系客户支持？</string>
+    <string name="faq_a10">访问我们的“联系我们”页面或发送电子邮件至 hello@saive.vn。我们通常会在工作日的 24 小时内做出回复。</string>
+    <string name="menu_contact_us">联系我们</string>
+    <string name="contact_tagline">我们很乐意听取您的意见。</string>
+    <string name="contact_desc">通过以下任何渠道联系我们或直接向我们发送消息。</string>
+    <string name="contact_label_email">电子邮件</string>
+    <string name="contact_label_phone">电话</string>
+    <string name="contact_label_instagram">INSTAGRAM</string>
+    <string name="contact_label_send_message">发送消息</string>
+    <string name="contact_btn_send">发送消息</string>
+    <string name="contact_footer_note">我们通常会在工作日的 24 小时内做出回复。\n河内 · 西贡</string>
+    <string name="contact_error_fields">请填写所有字段</string>
+    <string name="contact_success_sent">消息已发送。我们将很快与您联系。</string>
+    <string name="contact_hint_message">告诉我们我们可以如何提供帮助...</string>
     <string name="menu_my_coupons">我的优惠券</string>
     <string name="auth_login_title">登录</string>
     <string name="auth_signup_title">注册</string>
@@ -112,14 +136,11 @@
     <string name="dialog_delete_account_message">您确定要永久删除您的账号吗？此操作无法撤销。</string>
     <string name="dialog_delete_confirm">删除</string>
     <string name="dialog_cancel">取消</string>
-
     <string name="section_recent">最近浏览</string>
     <string name="view_all">查看全部</string>
-
     <string name="col_minimalist">极简主义</string>
     <string name="col_silk_story">丝绸故事</string>
     <string name="col_winter_24">24 冬季</string>
-
     <string name="stat_orders_count">12</string>
     <string name="stat_collections_count">4</string>
     <string name="stat_recent_count">28</string>
@@ -169,7 +190,6 @@
     <string name="chip_linen_shirt">亚麻衬衫</string>
     <string name="chip_wool_coat">羊毛大衣</string>
     <string name="label_complete_look">完善搭配</string>
-    <!-- About Brand Strings -->
     <string name="about_hero_title">静谧。自信。\n不显山露水。</string>
     <string name="about_hero_subtitle">SAIVE · 静奢风 · 越南</string>
     <string name="about_origin_year">2022</string>
@@ -197,8 +217,6 @@
     <string name="about_commit_3">工匠公平薪酬</string>
     <string name="about_commit_4">终身维修保修</string>
     <string name="updating_language">正在更新语言...</string>
-
-    <!-- Checkout Strings -->
     <string name="checkout_shipping_title">收货信息</string>
     <string name="checkout_payment_title">付款方式</string>
     <string name="label_full_name">姓名</string>
@@ -214,7 +232,6 @@
     <string name="btn_place_order">下单</string>
     <string name="checkout_order_summary">订单摘要</string>
     <string name="checkout_shipping_to">配送至</string>
-
     <string name="payment_bank">银行转账</string>
     <string name="payment_momo">Momo 钱包</string>
     <string name="payment_zalopay">ZaloPay</string>
@@ -223,7 +240,6 @@
     <string name="payment_momo_desc">快速安全的移动支付</string>
     <string name="payment_zalopay_desc">使用您的 Zalo 账号支付</string>
     <string name="payment_cod_desc">收到包裹时付款</string>
-
     <string name="label_city">城市</string>
     <string name="hint_choose_city">选择城市</string>
     <string name="error_required_field">请填写此项</string>
@@ -242,8 +258,6 @@
     <string name="payment_success_desc">感谢您选择 SAIVE。您的订单已收到，我们正在精心准备。</string>
     <string name="btn_continue_shopping">继续购物</string>
     <string name="btn_view_order">查看订单状态</string>
-
-    <!-- Address Data -->
     <string-array name="countries_array">
         <item>越南</item>
         <item>新加坡</item>
@@ -253,7 +267,6 @@
         <item>韩国</item>
         <item>中国</item>
     </string-array>
-
     <string-array name="cities_vn_array">
         <item>胡志明市</item>
         <item>河内</item>
@@ -263,7 +276,6 @@
         <item>顺化</item>
         <item>大叻</item>
     </string-array>
-
     <string-array name="districts_hcm_array">
         <item>第一区</item>
         <item>第三区</item>
@@ -274,7 +286,6 @@
         <item>富润区</item>
         <item>守德市</item>
     </string-array>
-
     <string-array name="districts_hanoi_array">
         <item>还剑区</item>
         <item>巴亭区</item>
@@ -284,7 +295,6 @@
         <item>纸桥区</item>
         <item>青春区</item>
     </string-array>
-    <!-- 地址管理 -->
     <string name="address_title">我的地址</string>
     <string name="address_add_new">添加新地址</string>
     <string name="address_empty">尚无保存的地址。</string>
@@ -298,15 +308,11 @@
     <string name="address_label_home">家</string>
     <string name="address_label_office">公司</string>
     <string name="address_label_other">其他</string>
-
-    <!-- Collection Screen Strings -->
     <string name="collection_view_all">查看全部单品</string>
     <string name="collection_story_title">设计故事</string>
     <string name="collection_items_count">%1$d 件单品</string>
     <string name="nav_collections">系列</string>
     <string name="collection_filter">筛选与排序</string>
-
-    <!-- Collections List Screen -->
     <string name="collections_list_title">我们的\n系列</string>
     <string name="col_num_1">01</string>
     <string name="col_num_2">02</string>
@@ -328,7 +334,6 @@
     <string name="col_monochrome_title">单色\n系列</string>
     <string name="col_autumn_drop_title">秋季\n系列</string>
     <string name="col_autumn_drop_story">秋季发布：以温暖的质感和大地色系拥抱季节更迭。</string>
-
     <string name="btn_explore_collection">探索系列</string>
     <string name="bulletin_header">简报</string>
     <string name="posted_time">发布于 %1$s 前</string>
@@ -347,22 +352,17 @@
     <string name="label_free">免运费</string>
     <string name="btn_payment">付款</string>
     <string name="promo_code_hint">优惠券代码</string>
-    <!-- Coupon Screen -->
     <string name="coupon_available_title">可用优惠券</string>
     <string name="coupon_search_hint">搜索您的优惠券...</string>
     <string name="coupon_copy">复制</string>
     <string name="coupon_valid_until">有效期至: %1$s</string>
     <string name="coupon_off">折扣</string>
     <string name="coupon_no_coupons">暂无优惠券</string>
-
-    <!-- Coupon Detail -->
     <string name="coupon_detail_how_to">如何使用</string>
     <string name="coupon_detail_steps">• 复制下方代码。\n• 前往购物袋或结账页面。\n• 将代码粘贴到“优惠券”框中。\n• 享受 Saive 的专属优惠！</string>
     <string name="coupon_detail_your_code">您的代码</string>
     <string name="coupon_detail_copy_use">复制并立即使用</string>
     <string name="coupon_detail_welcome_desc">首单尊享 20% 折扣</string>
-
-    <!-- 地址标签 -->
     <string name="label_address_label">地址标签</string>
     <string name="hint_full_name">例如: Huynh Thao Nhi</string>
     <string name="hint_phone_number">+84 901 234 567</string>
@@ -450,7 +450,6 @@
     <string name="label_user_role_vip">VIP 客户</string>
     <string name="label_user_role_admin">管理员</string>
     <string name="label_user_role_customer">客户</string>
-
     <string name="inventory_low_stock">库存紧张</string>
     <string name="inventory_out_of_stock">缺货</string>
     <string name="label_shipping_address">收货地址</string>
@@ -460,7 +459,6 @@
     <string name="mock_user_name">胡志明妮</string>
     <string name="mock_review_date">2023年10月24日</string>
     <string name="mock_review_comment">材质非常出色。手感很柔软，看起来非常优雅。</string>
-
     <string name="logout_title">退出登录</string>
     <string name="logout_message">您确定要退出登录吗？</string>
     <string name="yes">是</string>
@@ -481,8 +479,6 @@
     <string name="col_feature_3">本地货源</string>
     <string name="col_feature_4">环保理念</string>
     <string name="col_copyright">© 2024 SAIVE. 保留所有权利。</string>
-
-    <!-- Product Mock Data -->
     <string name="price_3450">3,450,000 ₫</string>
     <string name="price_1150">1,150,000 ₫</string>
     <string name="price_950">950,000 ₫</string>
@@ -495,7 +491,6 @@
     <string name="price_1250">1,250,000 ₫</string>
     <string name="price_850">850,000 ₫</string>
     <string name="price_2100">2,100,000 ₫</string>
-
     <string name="prod_noir_coat">深黑羊毛大衣</string>
     <string name="prod_city_trousers">都市长裤</string>
     <string name="prod_min_knit">极简针织衫</string>
@@ -508,39 +503,28 @@
     <string name="prod_flowing_pants">垂坠阔腿裤</string>
     <string name="prod_min_top">极简上衣</string>
     <string name="prod_silk_blazer">丝绸西装</string>
-
-    <!-- Monochrome Collection -->
     <string name="col_monochrome_headline">空缺的\n艺术。</string>
     <string name="col_monochrome_subheadline">光与影的研究。深黑与纯白的极简廓形。</string>
     <string name="col_monochrome_why_title">纯粹极简</string>
     <string name="col_monochrome_why_desc">每一根线条都别具匠心。我们的单色系列专注于纯粹的形态和精湛的工艺。</string>
-
-    <!-- Autumn Collection -->
     <string name="col_autumn_headline">大地色的\n更迭。</string>
     <string name="col_autumn_subheadline">温暖的质感与层搭的形态。以高级羊毛混纺和浓郁色调迎接季节更迭。</string>
     <string name="col_autumn_why_title">季节温暖</string>
     <string name="col_autumn_why_desc">专为变幻的风季打造。我们使用高密度羊毛和保暖丝绸，让您兼具优雅与温暖。</string>
-
-    <!-- Silk Collection -->
     <string name="col_silk_headline">丝绸之\n筑。</string>
     <string name="col_silk_subheadline">流动感与结构感的邂逅。源自越南传统织造，我们的丝绸单品重新定义现代优雅。</string>
     <string name="col_silk_why_title">越南传承</string>
     <string name="col_silk_why_desc">我们的丝绸织造于保禄，以惊人的光泽和耐用性闻名。一种随身体呼吸的材质。</string>
-
-    <!-- Essentials Collection -->
     <string name="col_essentials_headline">必备单品</string>
     <string name="col_essentials_subheadline">为您的每一天精心挑选</string>
     <string name="col_essentials_why_title">永恒设计</string>
     <string name="col_essentials_why_desc">为长久穿着和多功能搭配而生。</string>
     <string name="btn_shop_essentials">选购必备系列</string>
-
-    <!-- Urban Archive Collection -->
     <string name="col_urban_headline">都市档案</string>
     <string name="col_urban_subheadline">限量发布：街头建筑</string>
     <string name="col_urban_why_title">街头传承</string>
     <string name="col_urban_why_desc">探索功能与形式的结合。</string>
     <string name="btn_explore_drop">立即探索</string>
-
     <string name="edit_profile_title">Edit Profile</string>
     <string name="change_profile_title">Change Profile</string>
     <string name="label_personal_information">Personal Information</string>
@@ -564,7 +548,6 @@
     <string name="label_account_settings">账号设置</string>
     <string name="label_preferences">偏好设置</string>
     <string name="label_support_legal">支持与法律</string>
-
     <string name="error_enter_otp">请输入验证码</string>
     <string name="error_otp_length">验证码必须为 6 位数字</string>
     <string name="error_invalid_otp">验证码无效</string>
@@ -586,16 +569,13 @@
     <string name="discount_format">-%1$d%%</string>
     <string name="toast_added_to_wardrobe">已将 %1$d 件单品加入衣橱</string>
     <string name="quantity_default">1</string>
-
     <string name="card_preview_number">**** **** **** ****</string>
     <string name="card_preview_holder">持卡人姓名</string>
     <string name="card_preview_expiry">MM/YY</string>
     <string name="error_invalid_card_number">无效的卡号</string>
     <string name="toast_card_added">卡片添加成功</string>
-
     <string name="coupon_detail_discount_format">您的订单立减 %1$s</string>
     <string name="toast_coupon_copied">已复制代码 %1$s</string>
-
     <string name="label_select_category">选择类别</string>
     <string name="error_select_category">请选择一个类别</string>
     <string name="toast_notification_broadcasted">通知已成功广播</string>
@@ -603,4 +583,114 @@
     <string name="cat_orders">订单</string>
     <string name="cat_system">系统</string>
     <string name="cat_update">更新</string>
+    <string name="label_card_number">卡号</string>
+    <string name="hint_card_number">0000 0000 0000 0000</string>
+    <string name="label_card_holder">持卡人</string>
+    <string name="hint_card_holder">姓名全称</string>
+    <string name="label_expiry_date">有效期</string>
+    <string name="hint_expiry_date">MM/YY</string>
+    <string name="label_cvv">CVV</string>
+    <string name="hint_cvv">123</string>
+    <string name="btn_add_card">添加卡片</string>
+    <string name="label_size_guide">尺码指南</string>
+    <string name="label_size_guide_short">尺码指南</string>
+    <string name="label_bust">胸围</string>
+    <string name="label_waist">腰围</string>
+    <string name="label_hip">臀围</string>
+    <string name="label_measurement_unit">cm</string>
+    <string name="label_compare_size">对比尺码</string>
+    <string name="label_compare_size_desc">与您的衣服进行对比</string>
+    <string name="label_length_guide">按款式的长度选择指南</string>
+    <string name="label_length_guide_desc">根据身高展示产品尺寸</string>
+    <string name="label_mysize_assist">MySize 助手</string>
+    <string name="label_mysize_assist_desc">查看为您推荐的尺码</string>
+    <string name="label_product">产品</string>
+    <string name="label_body">身体</string>
+    <string name="location_permission_title">您的位置在哪里？</string>
+    <string name="location_permission_desc">我们需要知道您的位置，以便推荐附近的配送服务。</string>
+    <string name="location_btn_allow">允许访问位置</string>
+    <string name="location_btn_manual">手动输入位置</string>
+    <string name="location_picker_title">输入您的位置</string>
+    <string name="location_search_hint">搜索位置</string>
+    <string name="location_use_current">使用我的当前位置</string>
+    <string name="location_search_result">搜索结果</string>
+    <string name="address_select_map">从地图选择</string>
+    <string name="change_password_title">修改密码</string>
+    <string name="label_current_password">当前密码</string>
+    <string name="link_forgot_password">忘记密码？</string>
+    <string name="label_new_password">新密码</string>
+    <string name="label_confirm_new_password">确认新密码</string>
+    <string name="btn_change_password">修改密码</string>
+    <string name="error_current_password_required">请输入当前密码</string>
+    <string name="error_current_password_incorrect">当前密码不正确</string>
+    <string name="error_new_password_required">请输入新密码</string>
+    <string name="error_new_password_min">新密码必须至少 6 个字符</string>
+    <string name="error_new_password_same">新密码不能与当前密码相同</string>
+    <string name="error_confirm_password_required">请确认您的新密码</string>
+    <string name="toast_password_changed">密码更新成功</string>
+    <string name="btn_add_to_wardrobe">加入衣橱</string>
+    <string name="btn_remove_wardrobe">从衣橱移除</string>
+    <string name="btn_continue_as_guest">以游客身份继续</string>
+    <string name="label_ward">街道 / 乡镇</string>
+    <string name="hint_choose_ward">选择街道/乡镇</string>
+    <string name="tab_active">进行中</string>
+    <string name="tab_completed">已完成</string>
+    <string name="tab_cancelled">已取消</string>
+    <string name="btn_track_order">追踪订单</string>
+    <string name="btn_leave_review">留下评价</string>
+    <string name="btn_reorder">再次下单</string>
+    <string name="order_item_attributes">尺寸: %1$s | 数量: %2$d件</string>
+    <string name="error_name_required">姓名不能为空</string>
+    <string name="error_email_required">电子邮箱不能为空</string>
+    <string name="error_password_required">密码不能为空</string>
+    <string name="error_password_short">密码至少需要 6 个字符</string>
+    <string name="error_passwords_not_match">密码不匹配</string>
+    <string name="error_phone_required">电话号码不能为空</string>
+    <string name="error_agree_terms">请同意条款与条件</string>
+    <string name="toast_signup_success">注册成功！请登录。</string>
+    <string name="payment_card_select_title">选择卡片</string>
+    <string name="label_sale">促销</string>
+    <string name="label_discount">折扣</string>
+    <string name="btn_add_to_bag">加入购物袋</string>
+    <string name="label_quantity">数量</string>
+    <string name="order_empty_title">暂无订单</string>
+    <string name="coupon_header">优惠券</string>
+    <string name="admin_notification_mgmt">通知管理</string>
+    <string name="admin_review_mgmt">评价管理</string>
+    <string name="admin_login_title">管理员登录</string>
+    <string name="admin_send_notification">发送通知</string>
+    <string name="admin_create_notification">创建通知</string>
+    <string name="admin_send_broadcast">发送广播通知</string>
+    <string name="label_select_option">选择选项</string>
+    <string name="hint_phone_remaining">剩余电话号码</string>
+    <string name="admin_no_reviews">暂无评价</string>
+    <string name="hint_search_history">搜索历史</string>
+    <string name="label_upload_images">上传图片</string>
+    <string name="hint_price_vnd">价格（VND）</string>
+    <string name="hint_sku">SKU 编码</string>
+    <string name="hint_product_name">产品名称</string>
+    <string name="hint_material_story">材质故事</string>
+    <string name="label_add_photo">添加照片</string>
+    <string name="label_how_is_order">订单情况如何？</string>
+    <string name="label_overall_rating">综合评分</string>
+    <string name="label_detailed_review">详细评价</string>
+    <string name="label_admin_premium_control">高级管理控制</string>
+    <string name="label_restricted_access">受限访问</string>
+    <string name="label_inventory_stock">库存</string>
+    <string name="label_midnight_curation">午夜精选</string>
+    <string name="label_saive_footer">SAIVE</string>
+    <string name="label_limited_time_drops">限时发布</string>
+    <string name="label_expected_delivery_date">预计送达日期</string>
+    <string name="label_tracking_id">物流单号</string>
+    <string name="label_payment_method">付款方式</string>
+    <string name="label_order_status">订单状态</string>
+    <string name="label_in_progress">进行中</string>
+    <string name="label_view_more_products">查看更多产品</string>
+    <string name="label_added_to_cart">已加入购物袋</string>
+    <string name="label_products_vn">越南产品</string>
+    <string name="label_expires_in_days">%1$d 天后到期</string>
+    <string name="label_add_new_card">添加新卡</string>
+    <string name="label_save_card">保存卡片</string>
+    <string name="label_card_details">卡片详情</string>
+    <string name="google_maps_key" translatable="false">YOUR_API_KEY_HERE</string>
 </resources>

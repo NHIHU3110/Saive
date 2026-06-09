@@ -38,7 +38,7 @@ public class LoginActivity extends BaseActivity {
         if (ivLogoView instanceof ImageView) {
             ImageUtils.setSafeImage((ImageView) ivLogoView, R.mipmap.saive_logo);
         }
-        
+
         if (ivLogoView != null) {
             ivLogoView.setOnClickListener(v -> {
                 long currentTime = System.currentTimeMillis();
@@ -76,6 +76,16 @@ public class LoginActivity extends BaseActivity {
         View btnLogin = findViewById(R.id.btnLogin);
         TextView tvSignUpLink = findViewById(R.id.tvSignUpLink);
         TextView tvForgotPassword = findViewById(R.id.tvForgotPassword);
+        TextView tvContinueAsGuest = findViewById(R.id.tvContinueAsGuest);
+
+        boolean returnResult = getIntent().getBooleanExtra("return_result", false);
+        if (returnResult && tvContinueAsGuest != null) {
+            tvContinueAsGuest.setVisibility(View.VISIBLE);
+            tvContinueAsGuest.setOnClickListener(v -> {
+                setResult(RESULT_OK);
+                finish();
+            });
+        }
 
         loadSavedCredentials();
 
@@ -154,7 +164,7 @@ public class LoginActivity extends BaseActivity {
             editor.putBoolean("is_logged_in", true);
             editor.putString("saved_email", email);
             editor.putString("saved_password", password);
-            
+
             if (cbRememberMe.isChecked()) {
                 editor.putBoolean("remember_me", true);
             } else {
@@ -164,12 +174,18 @@ public class LoginActivity extends BaseActivity {
             editor.apply();
             showCustomToast("Login Successful");
 
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            finish();
-        } else {
-            showCustomToast("Invalid email or password");
+            boolean returnResult = getIntent().getBooleanExtra("return_result", false);
+            if (returnResult) {
+                // Được gọi từ Checkout → trả kết quả về
+                setResult(RESULT_OK);
+                finish();
+            } else {
+                // Vào login trực tiếp từ Profile button → về MainActivity
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
+                finish();
+            }
         }
     }
 }

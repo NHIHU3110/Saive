@@ -975,7 +975,7 @@
         <LinearLayout
             android:id="@+id/navItemsContainer"
             android:layout_width="match_parent"
-            android:layout_height="72dp"
+            android:layout_height="@dimen/nav_bar_height"
             android:orientation="horizontal"
             android:gravity="center_vertical"
             app:layout_constraintTop_toTopOf="parent">
@@ -998,7 +998,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/nav_favorite"
                     style="@style/TextAppearance.Saive.Nav"
-                    android:textSize="10sp"
                     android:layout_marginTop="4dp"
                     android:textColor="@color/colorOnMaroon" />
             </LinearLayout>
@@ -1022,7 +1021,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/nav_wardrobe"
                     style="@style/TextAppearance.Saive.Nav"
-                    android:textSize="10sp"
                     android:layout_marginTop="4dp"
                     android:textColor="@color/colorOnMaroon" />
             </LinearLayout>
@@ -1073,7 +1071,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         style="@style/TextAppearance.Saive.Nav"
-                        android:textSize="10sp"
                         android:text="@string/nav_notify"
                         android:textColor="@color/colorOnMaroon" />
                 </LinearLayout>
@@ -1113,7 +1110,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/nav_profile"
                     style="@style/TextAppearance.Saive.Nav"
-                    android:textSize="10sp"
                     android:layout_marginTop="4dp"
                     android:textColor="@color/colorOnMaroon" />
             </LinearLayout>
@@ -1123,8 +1119,8 @@
         <!-- SELECTION CIRCLE (At Home - Index 2 - Bias 0.5) -->
         <FrameLayout
             android:id="@+id/centerActionButton"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="@dimen/center_action_size"
+            android:layout_height="@dimen/center_action_size"
             android:background="@drawable/bg_circle_white"
             android:elevation="24dp"
             android:transitionName="nav_circle"

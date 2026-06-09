@@ -48,34 +48,24 @@
     <string name="wardrobe_header">TỦ ĐỒ</string>
     <string name="wardrobe_empty_search_title">KHÔNG TÌM THẤY MÓN NÀO</string>
     <string name="wardrobe_empty_search_desc">Không có món nào khớp với tìm kiếm của bạn.\nThử từ khóa hoặc danh mục khác.</string>
-
     <string name="explore_piece">KHÁM PHÁ MÓN NÀY</string>
     <string name="add_to_wardrobe">THÊM VÀO TỦ ĐỒ</string>
     <string name="added_to_wardrobe">ĐÃ TRONG TỦ ĐỒ</string>
-
-    <!-- Editorial Card Titles -->
     <string name="editorial_title_1">NGHỀ THỦ CÔNG VƯỢT THỜI GIAN</string>
     <string name="editorial_title_2">VẺ ĐẸP THƯỜNG NGÀY</string>
     <string name="editorial_title_3">CÂU CHUYỆN SAIVE</string>
-
-    <!-- Editorial Card Stories -->
     <string name="editorial_story_1">Làm ra để mặc, không phải để thay. Triết lý của chúng tôi xoay quanh độ bền và thiết kế thủ công vượt thời gian.</string>
     <string name="editorial_story_2">Những món lặng lẽ cho vẻ đẹp thường ngày. Nghiên cứu về chất liệu và bóng tối qua cách phối tông màu.</string>
     <string name="editorial_story_3">Được thiết kế có chủ ý cho cuộc sống hiện đại. Những món chuyển tiếp liền mạch từ nhà ra phố.</string>
-
     <string name="editorial_material_1">Nghề thủ công di sản Việt Nam</string>
     <string name="editorial_material_2">Lụa thô • Cotton hữu cơ</string>
     <string name="editorial_material_3">Hình khối kiến trúc</string>
-
-    <!-- Profile Screen -->
     <string name="profile_header">HỒ SƠ</string>
     <string name="profile_user_name">Huỳnh Thảo Nhi</string>
     <string name="profile_location">Hồ Chí Minh, Việt Nam</string>
-
     <string name="stat_orders">Đơn hàng</string>
     <string name="stat_collections">Bộ sưu tập</string>
     <string name="stat_recent">Gần đây</string>
-
     <string name="menu_my_orders">Đơn hàng của tôi</string>
     <string name="menu_saved_collections">Bộ sưu tập đã lưu</string>
     <string name="menu_my_wardrobe">Tủ đồ của tôi</string>
@@ -85,6 +75,40 @@
     <string name="menu_language">Ngôn ngữ</string>
     <string name="menu_language_sub">Tiếng Việt</string>
     <string name="menu_about">Về SAIVE</string>
+    <string name="menu_faq">Câu hỏi thường gặp (FAQ)</string>
+    <string name="faq_subtitle">CÁC CÂU HỎI THƯỜNG GẶP</string>
+    <string name="faq_q1">SAIVE là gì?</string>
+    <string name="faq_a1">SAIVE là thương hiệu thời trang quiet luxury ra đời tại Sài Gòn. Chúng tôi tin rằng vẻ đẹp không cần phải ồn ào — mỗi bộ sưu tập chỉ gồm 12 món đồ được chế tác tỉ mỉ từ các chất liệu bền vững.</string>
+    <string name="faq_q2">Làm thế nào để đặt hàng?</string>
+    <string name="faq_a2">Duyệt qua các bộ sưu tập của chúng tôi, chọn món đồ bạn yêu thích, chọn kích cỡ và màu sắc, sau đó nhấn \'Thêm vào giỏ hàng\'. Khi đã sẵn sàng, hãy tiến hành thanh toán và điền thông tin giao hàng và thanh toán.</string>
+    <string name="faq_q3">Các phương thức thanh toán nào được chấp nhận?</string>
+    <string name="faq_a3">Chúng tôi chấp nhận Thanh toán khi nhận hàng (COD), Ví Momo, ZaloPay, Chuyển khoản ngân hàng và Thẻ tín dụng/ghi nợ.</string>
+    <string name="faq_q4">Thời gian giao hàng mất bao lâu?</string>
+    <string name="faq_a4">Giao hàng tiêu chuẩn trong nội thành Việt Nam mất từ 3–5 ngày làm việc. Tùy thuộc vào vị trí của bạn, có thể có các tùy chọn giao hàng nhanh.</string>
+    <string name="faq_q5">Tôi có thể trả lại hoặc đổi một món đồ không?</string>
+    <string name="faq_a5">Có. Chúng tôi cung cấp chính sách đổi trả trong vòng 30 ngày mà không cần lý do. Hàng phải chưa qua sử dụng và còn nguyên tình trạng ban đầu. Liên hệ với chúng tôi để bắt đầu quy trình đổi trả.</string>
+    <string name="faq_q6">Làm thế nào để theo dõi đơn hàng của tôi?</string>
+    <string name="faq_a6">Truy cập Hồ sơ → Đơn hàng của tôi, chọn đơn hàng của bạn và nhấn \'Theo dõi đơn hàng\' để xem trạng thái giao hàng theo thời gian thực.</string>
+    <string name="faq_q7">Chất liệu của các bạn có bền vững không?</string>
+    <string name="faq_a7">Hoàn toàn có. Chúng tôi sử dụng 100% chất liệu tự nhiên bao gồm linen từ các trang trại Châu Âu không thuốc trừ sâu, TENCEL từ sợi gỗ tái chế và vải tre có khả năng phân hủy hoàn toàn.</string>
+    <string name="faq_q8">Làm thế nào để sử dụng mã giảm giá?</string>
+    <string name="faq_a8">Trong quá trình thanh toán, hãy nhập mã giảm giá của bạn vào trường \'Mã khuyến mãi\' và nhấn Áp dụng. Mức giảm giá sẽ được phản ánh trong tổng đơn hàng của bạn.</string>
+    <string name="faq_q9">Tôi có thể lưu các món đồ vào tủ đồ của mình không?</string>
+    <string name="faq_a9">Có. Nhấn vào biểu tượng tủ đồ trên bất kỳ sản phẩm nào để lưu lại. Truy cập các món đồ đã lưu bất cứ lúc nào từ tab Tủ đồ trong thanh điều hướng dưới cùng.</string>
+    <string name="faq_q10">Làm thế nào để liên hệ với bộ phận hỗ trợ khách hàng?</string>
+    <string name="faq_a10">Truy cập trang Liên hệ với chúng tôi hoặc gửi email cho chúng tôi tại hello@saive.vn. Chúng tôi thường phản hồi trong vòng 24 giờ vào các ngày làm việc.</string>
+    <string name="menu_contact_us">Liên hệ với chúng tôi</string>
+    <string name="contact_tagline">Chúng tôi rất mong nhận được phản hồi từ bạn.</string>
+    <string name="contact_desc">Liên hệ qua bất kỳ kênh nào bên dưới hoặc gửi tin nhắn trực tiếp cho chúng tôi.</string>
+    <string name="contact_label_email">EMAIL</string>
+    <string name="contact_label_phone">ĐIỆN THOẠI</string>
+    <string name="contact_label_instagram">INSTAGRAM</string>
+    <string name="contact_label_send_message">GỬI TIN NHẮN</string>
+    <string name="contact_btn_send">GỬI TIN NHẮN</string>
+    <string name="contact_footer_note">Chúng tôi thường phản hồi trong vòng 24 giờ vào các ngày làm việc.\nHÀ NỘI · SÀI GÒN</string>
+    <string name="contact_error_fields">Vui lòng điền đầy đủ các trường</string>
+    <string name="contact_success_sent">Tin nhắn đã được gửi. Chúng tôi sẽ sớm liên hệ lại với bạn.</string>
+    <string name="contact_hint_message">Hãy cho chúng tôi biết chúng tôi có thể giúp gì cho bạn...</string>
     <string name="menu_my_coupons">Kho Voucher của tôi</string>
     <string name="auth_login_title">Đăng nhập</string>
     <string name="auth_signup_title">Đăng ký</string>
@@ -100,11 +124,12 @@
     <string name="menu_signup">Đăng ký</string>
     <string name="menu_forgot_password">Quên mật khẩu?</string>
     <string name="menu_remember_me">Ghi nhớ tôi</string>
+    <string name="btn_continue_as_guest">Tiếp tục với tư cách Khách</string>
     <string name="auth_no_account">Chưa có tài khoản? Đăng ký</string>
     <string name="auth_has_account">Đã có tài khoản? Đăng nhập</string>
     <string name="auth_terms_agree">Tôi đồng ý với </string>
-    <string name="auth_terms_link">Điều khoản &amp; Điều kiện</string>
-    <string name="terms_title">Điều khoản &amp; Điều kiện</string>
+    <string name="auth_terms_link">Điều khoản và Điều kiện</string>
+    <string name="terms_title">Điều khoản và Điều kiện</string>
     <string name="terms_content">Chào mừng bạn đến với SAIVE. Bằng cách sử dụng ứng dụng của chúng tôi, bạn đồng ý với các điều khoản sau:\n\n1. Sử dụng Dịch vụ: Bạn phải cung cấp thông tin chính xác.\n2. Quyền riêng tư: Dữ liệu của bạn được bảo vệ theo chính sách của chúng tôi.\n3. Nội dung: Tất cả các thiết kế là tài sản của SAIVE.\n4. Trách nhiệm pháp lý: Chúng tôi không chịu trách nhiệm cho các thiệt hại gián tiếp.\n\nCảm ơn bạn đã lựa chọn SAIVE.</string>
     <string name="btn_close">Đóng</string>
     <string name="menu_delete_account">XÓA TÀI KHOẢN</string>
@@ -112,14 +137,11 @@
     <string name="dialog_delete_account_message">Bạn có chắc chắn muốn xóa vĩnh viễn tài khoản của mình không? Hành động này không thể hoàn tác.</string>
     <string name="dialog_delete_confirm">Xóa</string>
     <string name="dialog_cancel">Hủy</string>
-
     <string name="section_recent">Đã xem gần đây</string>
     <string name="view_all">XEM TẤT CẢ</string>
-
     <string name="col_minimalist">Tối giản</string>
     <string name="col_silk_story">Câu chuyện lụa</string>
     <string name="col_winter_24">Đông \'24</string>
-
     <string name="stat_orders_count">12</string>
     <string name="stat_collections_count">4</string>
     <string name="stat_recent_count">28</string>
@@ -139,6 +161,20 @@
     <string name="label_origin">Xuất xứ</string>
     <string name="label_instructions">Hướng dẫn bảo quản</string>
     <string name="label_size">Kích cỡ</string>
+    <string name="label_size_guide">Hướng dẫn kích cỡ</string>
+    <string name="label_size_guide_short">Kích cỡ</string>
+    <string name="label_bust">Vòng ngực</string>
+    <string name="label_waist">Vòng eo</string>
+    <string name="label_hip">Vòng hông</string>
+    <string name="label_measurement_unit">cm</string>
+    <string name="label_compare_size">So sánh</string>
+    <string name="label_compare_size_desc">So sánh với trang phục của bạn</string>
+    <string name="label_length_guide">Hướng dẫn chọn chiều dài theo kiểu dáng</string>
+    <string name="label_length_guide_desc">Hình minh họa kích thước sản phẩm theo chiều cao</string>
+    <string name="label_mysize_assist">MySize ASSIST</string>
+    <string name="label_mysize_assist_desc">Xem kích thước được đề xuất cho bạn</string>
+    <string name="label_product">Sản phẩm</string>
+    <string name="label_body">Phần thân</string>
     <string name="label_total">Tổng cộng</string>
     <string name="label_reviews">ĐÁNH GIÁ</string>
     <string name="label_write_review">VIẾT ĐÁNH GIÁ</string>
@@ -169,7 +205,6 @@
     <string name="chip_linen_shirt">Áo sơ mi linen</string>
     <string name="chip_wool_coat">Áo khoác dạ</string>
     <string name="label_complete_look">HOÀN THIỆN BỘ TRANG PHỤC</string>
-    <!-- About Brand Strings -->
     <string name="about_hero_title">Lặng lẽ. Tự tin.\nKhông cần nói thêm.</string>
     <string name="about_hero_subtitle">SAIVE · QUIET LUXURY · VIỆT NAM</string>
     <string name="about_origin_year">2022</string>
@@ -197,8 +232,6 @@
     <string name="about_commit_3">Thù lao công bằng cho từng nghệ nhân</string>
     <string name="about_commit_4">Bảo hành sửa chữa trọn đời</string>
     <string name="updating_language">Đang cập nhật ngôn ngữ...</string>
-
-    <!-- Checkout Strings -->
     <string name="checkout_shipping_title">THÔNG TIN GIAO HÀNG</string>
     <string name="checkout_payment_title">HÌNH THỨC THANH TOÁN</string>
     <string name="label_full_name">Họ và Tên</string>
@@ -216,7 +249,6 @@
     <string name="btn_place_order">ĐẶT HÀNG</string>
     <string name="checkout_order_summary">TÓM TẮT ĐƠN HÀNG</string>
     <string name="checkout_shipping_to">Giao đến</string>
-
     <string name="payment_bank">Chuyển khoản ngân hàng</string>
     <string name="payment_momo">Ví Momo</string>
     <string name="payment_zalopay">ZaloPay</string>
@@ -225,7 +257,6 @@
     <string name="payment_momo_desc">Thanh toán nhanh qua ví điện tử</string>
     <string name="payment_zalopay_desc">Thanh toán bằng tài khoản Zalo</string>
     <string name="payment_cod_desc">Thanh toán khi bạn nhận được kiện hàng</string>
-
     <string name="label_city">Tỉnh / Thành phố</string>
     <string name="hint_choose_city">Chọn tỉnh thành</string>
     <string name="error_required_field">Vui lòng điền thông tin này</string>
@@ -237,15 +268,13 @@
     <string name="error_select_ward">Vui lòng chọn phường xã</string>
     <string name="error_invalid_email">Địa chỉ email không hợp lệ</string>
     <string name="payment_method_cash">Tiền mặt</string>
-    <string name="payment_method_card">Thẻ Tín dụng &amp; Ghi nợ</string>
+    <string name="payment_method_card">Thẻ Tín dụng và Ghi nợ</string>
     <string name="payment_method_add_card">Thêm thẻ</string>
     <string name="payment_method_more">Tùy chọn thanh toán khác</string>
     <string name="payment_success_title">ĐẶT HÀNG THÀNH CÔNG</string>
     <string name="payment_success_desc">Cảm ơn bạn đã lựa chọn SAIVE. Đơn hàng của bạn đã được tiếp nhận và đang được chuẩn bị chu đáo.</string>
     <string name="btn_continue_shopping">TIẾP TỤC MUA SẮM</string>
     <string name="btn_view_order">XEM TÌNH TRẠNG ĐƠN HÀNG</string>
-
-    <!-- Address Data -->
     <string-array name="countries_array">
         <item>Việt Nam</item>
         <item>Singapore</item>
@@ -255,7 +284,6 @@
         <item>Hàn Quốc</item>
         <item>Trung Quốc</item>
     </string-array>
-
     <string-array name="cities_vn_array">
         <item>Hồ Chí Minh</item>
         <item>Hà Nội</item>
@@ -265,7 +293,6 @@
         <item>Huế</item>
         <item>Đà Lạt</item>
     </string-array>
-
     <string-array name="districts_hcm_array">
         <item>Quận 1</item>
         <item>Quận 3</item>
@@ -276,7 +303,6 @@
         <item>Quận Phú Nhuận</item>
         <item>Thành phố Thủ Đức</item>
     </string-array>
-
     <string-array name="districts_hanoi_array">
         <item>Quận Hoàn Kiếm</item>
         <item>Quận Ba Đình</item>
@@ -286,7 +312,6 @@
         <item>Quận Cầu Giấy</item>
         <item>Quận Thanh Xuân</item>
     </string-array>
-    <!-- Address Management -->
     <string name="address_title">ĐỊA CHỈ CỦA TÔI</string>
     <string name="address_add_new">THÊM ĐỊA CHỈ MỚI</string>
     <string name="address_empty">Chưa có địa chỉ nào được lưu.</string>
@@ -300,15 +325,11 @@
     <string name="address_label_home">Nhà riêng</string>
     <string name="address_label_office">Văn phòng</string>
     <string name="address_label_other">Khác</string>
-
-    <!-- Collection Screen Strings -->
     <string name="collection_view_all">XEM TẤT CẢ CÁC MÓN</string>
     <string name="collection_story_title">CÂU CHUYỆN THIẾT KẾ</string>
     <string name="collection_items_count">%1$d MÓN</string>
     <string name="nav_collections">BỘ SƯU TẬP</string>
-    <string name="collection_filter">LỌC &amp; SẮP XẾP</string>
-
-    <!-- Collections List Screen -->
+    <string name="collection_filter">LỌC VÀ SẮP XẾP</string>
     <string name="collections_list_title">CÁC\nBỘ SƯU TẬP</string>
     <string name="col_num_1">01</string>
     <string name="col_num_2">02</string>
@@ -330,7 +351,6 @@
     <string name="col_monochrome_title">SERIES\nĐƠN SẮC</string>
     <string name="col_autumn_drop_title">BỘ SƯU TẬP\nMÙA THU</string>
     <string name="col_autumn_drop_story">Autumn Drop: Đón nhận sự chuyển giao với các chất liệu ấm áp và tông màu đất.</string>
-
     <string name="btn_explore_collection">KHÁM PHÁ BỘ SƯU TẬP</string>
     <string name="bulletin_header">BẢNG TIN</string>
     <string name="posted_time">Đã đăng %1$s trước</string>
@@ -350,22 +370,17 @@
     <string name="label_free">Miễn phí</string>
     <string name="btn_payment">Thanh toán</string>
     <string name="promo_code_hint">Mã giảm giá</string>
-    <!-- Coupon Screen -->
     <string name="coupon_available_title">Voucher hiện có</string>
     <string name="coupon_search_hint">Tìm kiếm ưu đãi...</string>
     <string name="coupon_copy">SAO CHÉP</string>
     <string name="coupon_valid_until">Hạn dùng: %1$s</string>
     <string name="coupon_off">GIẢM</string>
     <string name="coupon_no_coupons">CHƯA CÓ VOUCHER</string>
-
-    <!-- Coupon Detail -->
     <string name="coupon_detail_how_to">Cách sử dụng</string>
     <string name="coupon_detail_steps">• Sao chép mã bên dưới.\n• Vào giỏ hàng hoặc trang thanh toán.\n• Dán mã vào ô \'Mã giảm giá\'.\n• Tận hưởng ưu đãi độc quyền từ Saive!</string>
     <string name="coupon_detail_your_code">MÃ CỦA BẠN</string>
-    <string name="coupon_detail_copy_use">Sao chép &amp; Dùng ngay</string>
+    <string name="coupon_detail_copy_use">Sao chép và Dùng ngay</string>
     <string name="coupon_detail_welcome_desc">Nhận ưu đãi 20% cho đơn hàng đầu tiên</string>
-
-    <!-- Address Labels -->
     <string name="label_address_label">Loại địa chỉ</string>
     <string name="hint_full_name">vd: Huỳnh Thảo Nhi</string>
     <string name="hint_phone_number">+84 901 234 567</string>
@@ -403,7 +418,7 @@
     <string name="admin_push_notify">Gửi thông báo Push toàn hệ thống</string>
     <string name="admin_broadcast_push">THÔNG BÁO BROADCAST</string>
     <string name="admin_broadcast_desc">Thông điệp này sẽ được gửi tới tất cả người dùng ngay lập tức.</string>
-    <string name="admin_marketing_title">KHUYẾN MÃI &amp; VOUCHER</string>
+    <string name="admin_marketing_title">KHUYẾN MÃI VÀ VOUCHER</string>
     <string name="admin_add_voucher">TẠO VOUCHER MỚI</string>
     <string name="admin_voucher_name">Tên Voucher</string>
     <string name="admin_voucher_code">Mã giảm giá</string>
@@ -453,7 +468,6 @@
     <string name="label_user_role_vip">KHÁCH HÀNG VIP</string>
     <string name="label_user_role_admin">QUẢN TRỊ VIÊN</string>
     <string name="label_user_role_customer">KHÁCH HÀNG</string>
-
     <string name="inventory_low_stock">Sắp hết hàng</string>
     <string name="inventory_out_of_stock">Hết hàng</string>
     <string name="label_shipping_address">Địa chỉ giao hàng</string>
@@ -463,7 +477,6 @@
     <string name="mock_user_name">HUỲNH NHI</string>
     <string name="mock_review_date">24 THÁNG 10, 2023</string>
     <string name="mock_review_comment">Chất liệu thật tuyệt vời. Cảm giác rất mềm mại và trông rất sang trọng.</string>
-
     <string name="logout_title">Đăng xuất</string>
     <string name="logout_message">Bạn có chắc chắn muốn đăng xuất?</string>
     <string name="yes">Có</string>
@@ -484,8 +497,6 @@
     <string name="col_feature_3">Nguồn Gốc Địa Phương</string>
     <string name="col_feature_4">Thân Thiện Môi Trường</string>
     <string name="col_copyright">© 2024 SAIVE. Bảo lưu mọi quyền.</string>
-
-    <!-- Product Mock Data -->
     <string name="price_3450">3.450.000 ₫</string>
     <string name="price_1150">1.150.000 ₫</string>
     <string name="price_950">950.000 ₫</string>
@@ -498,7 +509,6 @@
     <string name="price_1250">1.250.000 ₫</string>
     <string name="price_850">850.000 ₫</string>
     <string name="price_2100">2.100.000 ₫</string>
-
     <string name="prod_noir_coat">Áo Khoác Dạ Noir</string>
     <string name="prod_city_trousers">Quần Tây City</string>
     <string name="prod_min_knit">Áo Len Tối Giản</string>
@@ -511,39 +521,28 @@
     <string name="prod_flowing_pants">Quần Ống Rộng</string>
     <string name="prod_min_top">Áo Tối Giản</string>
     <string name="prod_silk_blazer">Áo Blazer Lụa</string>
-
-    <!-- Monochrome Collection -->
     <string name="col_monochrome_headline">Nghệ Thuật\ncủa Sự Vắng Mặt.</string>
     <string name="col_monochrome_subheadline">Một nghiên cứu về ánh sáng và bóng tối. Những silhouette tối giản trong bảng màu noir sâu và ivory tinh khiết.</string>
     <string name="col_monochrome_why_title">Sự Tối Giản Thuần Khiết</string>
     <string name="col_monochrome_why_desc">Mọi đường nét đều có chủ ý. Dòng Monochrome tập trung vào sự thuần khiết của hình khối và chất lượng hoàn thiện.</string>
-
-    <!-- Autumn Collection -->
     <string name="col_autumn_headline">Sự Chuyển Giao\nMàu Đất.</string>
     <string name="col_autumn_subheadline">Chất liệu ấm áp và các lớp hình khối. Đón nhận sự thay đổi mùa với len hỗn hợp cao cấp và tông màu phong phú.</string>
     <string name="col_autumn_why_title">Sự Ấm Áp Theo Mùa</string>
     <string name="col_autumn_why_desc">Được chế tác cho những làn gió chuyển mùa. Chúng tôi sử dụng len mật độ cao và lụa giữ nhiệt để giữ bạn luôn thanh lịch và ấm áp.</string>
-
-    <!-- Silk Collection -->
     <string name="col_silk_headline">Kiến Trúc\ncủa Lụa.</string>
     <string name="col_silk_subheadline">Sự mềm mại gặp gỡ cấu trúc. Được lấy từ các khung dệt truyền thống Việt Nam, các món đồ lụa của chúng tôi tái định nghĩa sự sang trọng hiện đại.</string>
     <string name="col_silk_why_title">Di Sản Việt Nam</string>
     <string name="col_silk_why_desc">Lụa của chúng tôi được dệt tại Bảo Lộc, nổi tiếng với độ bóng và độ bền đáng kinh ngạc. Một chất liệu thở cùng cơ thể.</string>
-
-    <!-- Essentials Collection -->
     <string name="col_essentials_headline">CƠ BẢN</string>
     <string name="col_essentials_subheadline">NHỮNG MÓN ĐỒ TINH TUYỂN MỖI NGÀY</string>
     <string name="col_essentials_why_title">THIẾT KẾ VƯỢT THỜI GIAN</string>
     <string name="col_essentials_why_desc">Được xây dựng cho sự bền bỉ và linh hoạt trong mọi tủ đồ.</string>
     <string name="btn_shop_essentials">MUA DÒNG CƠ BẢN</string>
-
-    <!-- Urban Archive Collection -->
     <string name="col_urban_headline">DI SẢN ĐÔ THỊ</string>
     <string name="col_urban_subheadline">PHIÊN BẢN GIỚI HẠN: KIẾN TRÚC ĐƯỜNG PHỐ</string>
     <string name="col_urban_why_title">DI SẢN ĐƯỜNG PHỐ</string>
     <string name="col_urban_why_desc">Khám phá sự giao thoa giữa công năng và hình thái.</string>
     <string name="btn_explore_drop">KHÁM PHÁ NGAY</string>
-
     <string name="edit_profile_title">Chỉnh sửa hồ sơ</string>
     <string name="change_profile_title">Thay đổi hồ sơ</string>
     <string name="label_personal_information">Thông tin cá nhân</string>
@@ -566,8 +565,7 @@
     <string name="btn_view_collection">XEM BỘ SƯU TẬP</string>
     <string name="label_account_settings">CÀI ĐẶT TÀI KHOẢN</string>
     <string name="label_preferences">TÙY CHỌN</string>
-    <string name="label_support_legal">HỖ TRỢ &amp; PHÁP LÝ</string>
-
+    <string name="label_support_legal">HỖ TRỢ VÀ PHÁP LÝ</string>
     <string name="error_enter_otp">Vui lòng nhập mã OTP</string>
     <string name="error_otp_length">Mã OTP phải có 6 chữ số</string>
     <string name="error_invalid_otp">Mã OTP không hợp lệ</string>
@@ -589,16 +587,13 @@
     <string name="discount_format">-%1$d%%</string>
     <string name="toast_added_to_wardrobe">Đã thêm %1$d vào tủ đồ</string>
     <string name="quantity_default">1</string>
-
     <string name="card_preview_number">**** **** **** ****</string>
     <string name="card_preview_holder">TÊN CHỦ THẺ</string>
     <string name="card_preview_expiry">MM/YY</string>
     <string name="error_invalid_card_number">Số thẻ không hợp lệ</string>
     <string name="toast_card_added">Đã thêm thẻ thành công</string>
-
     <string name="coupon_detail_discount_format">Nhận ưu đãi %1$s cho đơn hàng của bạn</string>
     <string name="toast_coupon_copied">Đã sao chép mã %1$s</string>
-
     <string name="label_select_category">CHỌN DANH MỤC</string>
     <string name="error_select_category">Vui lòng chọn một danh mục</string>
     <string name="toast_notification_broadcasted">Đã gửi thông báo thành công</string>
@@ -606,4 +601,96 @@
     <string name="cat_orders">Đơn hàng</string>
     <string name="cat_system">Hệ thống</string>
     <string name="cat_update">Cập nhật</string>
+    <string name="label_card_number">Số thẻ</string>
+    <string name="hint_card_number">0000 0000 0000 0000</string>
+    <string name="label_card_holder">Chủ thẻ</string>
+    <string name="hint_card_holder">HỌ VÀ TÊN</string>
+    <string name="label_expiry_date">Ngày hết hạn</string>
+    <string name="hint_expiry_date">MM/YY</string>
+    <string name="label_cvv">CVV</string>
+    <string name="hint_cvv">123</string>
+    <string name="btn_add_card">THÊM THẺ</string>
+    <string name="location_permission_title">Vị trí của bạn là gì?</string>
+    <string name="location_permission_desc">Chúng tôi cần biết vị trí của bạn để gợi ý các dịch vụ lân cận.</string>
+    <string name="location_btn_allow">Cho phép truy cập vị trí</string>
+    <string name="location_btn_manual">Nhập vị trí thủ công</string>
+    <string name="location_picker_title">Nhập vị trí của bạn</string>
+    <string name="location_search_hint">Tìm kiếm vị trí</string>
+    <string name="location_use_current">Sử dụng vị trí hiện tại</string>
+    <string name="location_search_result">KẾT QUẢ TÌM KIẾM</string>
+    <string name="address_select_map">Chọn từ bản đồ</string>
+    <string name="change_password_title">ĐỔI MẬT KHẨU</string>
+    <string name="label_current_password">Mật khẩu hiện tại</string>
+    <string name="link_forgot_password">Quên mật khẩu?</string>
+    <string name="label_new_password">Mật khẩu mới</string>
+    <string name="label_confirm_new_password">Xác nhận mật khẩu mới</string>
+    <string name="btn_change_password">Đổi mật khẩu</string>
+    <string name="error_current_password_required">Vui lòng nhập mật khẩu hiện tại</string>
+    <string name="error_current_password_incorrect">Mật khẩu hiện tại không chính xác</string>
+    <string name="error_new_password_required">Vui lòng nhập mật khẩu mới</string>
+    <string name="error_new_password_min">Mật khẩu mới phải có ít nhất 6 ký tự</string>
+    <string name="error_new_password_same">Mật khẩu mới không được trùng với mật khẩu hiện tại</string>
+    <string name="error_confirm_password_required">Vui lòng xác nhận mật khẩu mới</string>
+    <string name="toast_password_changed">Đã cập nhật mật khẩu thành công</string>
+    <string name="btn_add_to_wardrobe">THÊM VÀO TỦ ĐỒ</string>
+    <string name="btn_remove_wardrobe">XÓA KHỎI TỦ ĐỒ</string>
+    <string name="tab_active">Active</string>
+    <string name="tab_completed">Completed</string>
+    <string name="tab_cancelled">Cancelled</string>
+    <string name="btn_track_order">THEO DÕI ĐƠN HÀNG</string>
+    <string name="btn_leave_review">Để lại đánh giá</string>
+    <string name="btn_reorder">ĐẶT LẠI</string>
+    <string name="order_item_attributes">Size: %1$s | Qty: %2$dpcs</string>
+    <string name="error_name_required">Tên là bắt buộc</string>
+    <string name="error_email_required">Email là bắt buộc</string>
+    <string name="error_password_required">Mật khẩu là bắt buộc</string>
+    <string name="error_password_short">Mật khẩu phải có ít nhất 6 ký tự</string>
+    <string name="error_passwords_not_match">Mật khẩu không khớp</string>
+    <string name="error_phone_required">Số điện thoại là bắt buộc</string>
+    <string name="error_agree_terms">Vui lòng đồng ý với Điều khoản và Điều kiện</string>
+    <string name="toast_signup_success">Signup successful! Please login.</string>
+    <string name="payment_card_select_title">SELECT CARD</string>
+    <string name="label_sale">GIẢM GIÁ</string>
+    <string name="btn_add_to_bag">THÊM VÀO GIỎ HÀNG</string>
+    <string name="label_quantity">Số lượng</string>
+    <string name="order_empty_title">NO ORDERS YET</string>
+    <string name="coupon_header">ƯU ĐÃI</string>
+    <string name="admin_notification_mgmt">Quản lý thông báo</string>
+    <string name="admin_review_mgmt">Quản lý đánh giá</string>
+    <string name="admin_login_title">Đăng nhập quản trị</string>
+    <string name="admin_send_notification">Gửi thông báo</string>
+    <string name="admin_create_notification">Tạo thông báo</string>
+    <string name="admin_send_broadcast">Gửi thông báo hàng loạt</string>
+    <string name="label_select_option">SELECT OPTION</string>
+    <string name="hint_phone_remaining">Số điện thoại còn lại</string>
+    <string name="admin_no_reviews">Chưa có đánh giá</string>
+    <string name="hint_search_history">Lịch sử tìm kiếm</string>
+    <string name="label_upload_images">UPLOAD IMAGES (MAX 3)</string>
+    <string name="hint_price_vnd">Giá (VND)</string>
+    <string name="hint_sku">Mã SKU</string>
+    <string name="hint_product_name">Tên sản phẩm</string>
+    <string name="hint_material_story">Câu chuyện chất liệu</string>
+    <string name="label_add_photo">Thêm ảnh</string>
+    <string name="label_how_is_order">Đơn hàng thế nào?</string>
+    <string name="label_overall_rating">Đánh giá tổng thể</string>
+    <string name="label_detailed_review">Đánh giá chi tiết</string>
+    <string name="label_admin_premium_control">Quản trị cao cấp</string>
+    <string name="label_restricted_access">Truy cập giới hạn</string>
+    <string name="label_inventory_stock">Tồn kho</string>
+    <string name="label_midnight_curation">Tuyển chọn lúc nửa đêm</string>
+    <string name="label_saive_footer">SAIVE</string>
+    <string name="label_limited_time_drops">Ra mắt giới hạn thời gian</string>
+    <string name="label_expected_delivery_date">Ngày giao dự kiến</string>
+    <string name="label_tracking_id">Tracking ID</string>
+    <string name="label_payment_method">Phương thức thanh toán</string>
+    <string name="label_order_status">Trạng thái đơn hàng</string>
+    <string name="label_in_progress">Đang xử lý</string>
+    <string name="label_view_more_products">View more (+%1$d products)</string>
+    <string name="label_added_to_cart">Đã thêm vào giỏ hàng</string>
+    <string name="label_products_vn">Sản phẩm Việt Nam</string>
+    <string name="label_expires_in_days">Hết hạn sau %1$d ngày</string>
+    <string name="label_add_new_card">Thêm thẻ mới</string>
+    <string name="label_save_card">Lưu thẻ</string>
+    <string name="label_card_details">Chi tiết thẻ</string>
+    <string name="google_maps_key" translatable="false">YOUR_API_KEY_HERE</string>
 </resources>

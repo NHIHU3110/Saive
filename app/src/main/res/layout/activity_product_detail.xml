@@ -250,24 +250,75 @@
                     android:orientation="vertical"
                     android:visibility="visible">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <RelativeLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="32dp"
-                        style="@style/TextAppearance.Saive.Caption"
-                        android:text="@string/label_size"
-                        android:textColor="@color/colorMaroon" />
+                        android:layout_marginTop="32dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            style="@style/TextAppearance.Saive.Caption"
+                            android:text="@string/label_size"
+                            android:textColor="@color/colorMaroon" />
+
+                        <LinearLayout
+                            android:id="@+id/btnSizeGuide"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/bg_rounded_white_8dp"
+                            android:backgroundTint="#08000000"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="4dp">
+
+                            <ImageView
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:src="@drawable/ic_all"
+                                app:tint="@color/colorNoirBlack" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                style="@style/TextAppearance.Saive.Nav"
+                                android:text="@string/label_size_guide_short"
+                                android:textColor="@color/colorNoirBlack"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+                    </RelativeLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
                         <TextView android:id="@+id/sizeXS" style="@style/TextAppearance.Saive.Nav" android:layout_width="40dp" android:layout_height="40dp" android:gravity="center" android:text="XS" android:background="@drawable/bg_size_square" android:textColor="@color/selector_size_text" android:clickable="true" android:focusable="true" android:layout_marginEnd="12dp"/>
                         <TextView android:id="@+id/sizeS" style="@style/TextAppearance.Saive.Nav" android:layout_width="40dp" android:layout_height="40dp" android:gravity="center" android:text="S" android:background="@drawable/bg_size_square" android:textColor="@color/selector_size_text" android:clickable="true" android:focusable="true" android:layout_marginEnd="12dp"/>
                         <TextView android:id="@+id/sizeM" style="@style/TextAppearance.Saive.Nav" android:layout_width="40dp" android:layout_height="40dp" android:gravity="center" android:text="M" android:background="@drawable/bg_size_square" android:textColor="@color/selector_size_text" android:clickable="true" android:focusable="true" android:layout_marginEnd="12dp"/>
                         <TextView android:id="@+id/sizeL" style="@style/TextAppearance.Saive.Nav" android:layout_width="40dp" android:layout_height="40dp" android:gravity="center" android:text="L" android:background="@drawable/bg_size_square" android:textColor="@color/selector_size_text" android:clickable="true" android:focusable="true" android:layout_marginEnd="12dp"/>
                         <TextView android:id="@+id/sizeXL" style="@style/TextAppearance.Saive.Nav" android:layout_width="40dp" android:layout_height="40dp" android:gravity="center" android:text="XL" android:background="@drawable/bg_size_square" android:textColor="@color/selector_size_text" android:clickable="true" android:focusable="true" />
+
+                        <TextView
+                            android:id="@+id/tvSizeStockStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            style="@style/TextAppearance.Saive.Caption"
+                            android:textSize="11sp"
+                            android:textColor="@color/colorMaroon"
+                            android:text="@string/inventory_low_stock"
+                            android:visibility="gone"
+                            tools:visibility="visible"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -291,11 +342,24 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
                         <View android:id="@+id/colorBlack" android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="16dp" android:background="@color/black" android:foreground="@drawable/bg_color_square" android:tag="Black" android:clickable="true" android:focusable="true" />
                         <View android:id="@+id/colorTortoise" android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="16dp" android:background="#4E342E" android:foreground="@drawable/bg_color_square" android:tag="Tortoise" android:clickable="true" android:focusable="true" />
                         <View android:id="@+id/colorGold" android:layout_width="32dp" android:layout_height="32dp" android:layout_marginEnd="16dp" android:background="#D4AF37" android:foreground="@drawable/bg_color_square" android:tag="Gold" android:clickable="true" android:focusable="true" />
                         <View android:id="@+id/colorSilver" android:layout_width="32dp" android:layout_height="32dp" android:background="#C0C0C0" android:foreground="@drawable/bg_color_square" android:tag="Silver" android:clickable="true" android:focusable="true" />
+
+                        <TextView
+                            android:id="@+id/tvColorStockStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            style="@style/TextAppearance.Saive.Caption"
+                            android:textSize="11sp"
+                            android:textColor="@color/colorMaroon"
+                            android:text="@string/inventory_out_of_stock"
+                            android:visibility="gone"
+                            tools:visibility="visible"/>
                     </LinearLayout>
                 </LinearLayout>
 

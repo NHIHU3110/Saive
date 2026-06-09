@@ -323,11 +323,9 @@ public class ProfileActivity extends BaseActivity {
                                 
                                 showCustomToast(getString(R.string.toast_logged_out));
                                 
-                                // Điều hướng về Login và xóa sạch stack
-                                Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(intent);
-                                finish();
+                                // logout xong ở lại app bình thường, chỉ cần reload UI
+                                showCustomToast(getString(R.string.toast_logged_out));
+                                updateAuthUI(); //tên đổi thành "Guest", nút đổi thành LOGIN
                             }
                     );
                 } else {
@@ -374,6 +372,26 @@ public class ProfileActivity extends BaseActivity {
             });
         }
 
+        // FAQ Menu Item
+        View btnFAQ = findViewById(R.id.btnFAQ);
+        if (btnFAQ != null) {
+            btnFAQ.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                Intent intent = new Intent(ProfileActivity.this, FaqActivity.class);
+                startActivity(intent);
+            });
+        }
+
+        // Contact Us Menu Item
+        View btnContactUs = findViewById(R.id.btnContactUs);
+        if (btnContactUs != null) {
+            btnContactUs.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                Intent intent = new Intent(ProfileActivity.this, ContactUsActivity.class);
+                startActivity(intent);
+            });
+        }
+
         // Delete Account Menu Item
         View btnDeleteAccount = findViewById(R.id.btnDeleteAccount);
         if (btnDeleteAccount != null) {
@@ -397,11 +415,8 @@ public class ProfileActivity extends BaseActivity {
                             showCustomToast(getString(R.string.toast_account_deleted));
                             updateAuthUI();
 
-                            // Return to login or splash
-                            Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(intent);
-                            finish();
+                            // Chỉ updateAuth và quay về Main
+                            updateAuthUI();
                         }
                 );
             });
@@ -423,6 +438,23 @@ public class ProfileActivity extends BaseActivity {
             btnPaymentCards.setOnClickListener(v -> {
                 v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 startActivity(new Intent(ProfileActivity.this, PaymentCardsActivity.class));
+            });
+        }
+
+        // Change Password Menu Item
+        View btnChangePassword = findViewById(R.id.btnChangePassword);
+        if (btnChangePassword != null) {
+            btnChangePassword.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                SharedPreferences prefs = getSharedPreferences(USER_PREFS, MODE_PRIVATE);
+                boolean isLoggedIn = prefs.getBoolean("is_logged_in", false);
+                if (isLoggedIn) {
+                    Intent intent = new Intent(ProfileActivity.this, ChangePasswordActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
             });
         }
 

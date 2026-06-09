@@ -82,12 +82,27 @@ public class AddAddressActivity extends BaseActivity {
         }
 
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+
+        findViewById(R.id.btnOpenMap).setOnClickListener(v -> {
+            startActivityForResult(new Intent(this, LocationPermissionActivity.class), 1002);
+        });
         
         chipHome.setOnClickListener(v -> selectLabel("Home"));
         chipOffice.setOnClickListener(v -> selectLabel("Office"));
         chipOther.setOnClickListener(v -> selectLabel("Other"));
 
         findViewById(R.id.btnSaveAddress).setOnClickListener(v -> saveAddress());
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @androidx.annotation.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1002 && resultCode == RESULT_OK && data != null) {
+            String address = data.getStringExtra("selected_address");
+            if (address != null) {
+                etStreet.setText(address);
+            }
+        }
     }
 
     private void setupSelectors() {

@@ -44,8 +44,8 @@ public class ProductDetailActivity extends BaseActivity {
     private ImageButton btnFavorite, btnShare;
     private View btnCart;
     private LottieAnimationView lottieFavorite;
-    private TextView tvProductName, tvPrice, tvOriginalPrice, tvDescription, tvWardrobeAction, btnWriteReview, btnSeeMore, tvCartBadge, tvQuantity;
-    private View btnAddToWardrobe, sizeSelectionContainer, colorSelectionContainer;
+    private TextView tvProductName, tvPrice, tvOriginalPrice, tvDescription, tvWardrobeAction, btnWriteReview, btnSeeMore, tvCartBadge, tvQuantity, tvSizeStockStatus, tvColorStockStatus;
+    private View btnAddToWardrobe, sizeSelectionContainer, colorSelectionContainer, btnSizeGuide;
     private ImageButton btnDecrease, btnIncrease;
     private RecyclerView rvCompleteLook, rvReviews;
     private List<View> sizeViews, colorViews;
@@ -139,6 +139,7 @@ public class ProductDetailActivity extends BaseActivity {
         rvReviews = findViewById(R.id.rvReviews);
         
         btnAddToWardrobe = findViewById(R.id.btnAddToWardrobe);
+        btnSizeGuide = findViewById(R.id.btnSizeGuide);
         ivWardrobeIcon = findViewById(R.id.ivWardrobeIcon);
         tvWardrobeAction = findViewById(R.id.tvWardrobeAction);
 
@@ -157,6 +158,9 @@ public class ProductDetailActivity extends BaseActivity {
         colorViews.add(findViewById(R.id.colorTortoise));
         colorViews.add(findViewById(R.id.colorGold));
         colorViews.add(findViewById(R.id.colorSilver));
+
+        tvSizeStockStatus = findViewById(R.id.tvSizeStockStatus);
+        tvColorStockStatus = findViewById(R.id.tvColorStockStatus);
     }
 
     private void setupData() {
@@ -197,6 +201,9 @@ public class ProductDetailActivity extends BaseActivity {
         if (sizeSelectionContainer != null) {
             sizeSelectionContainer.setVisibility((isGlasses || isPerfume) ? View.GONE : View.VISIBLE);
         }
+        if (btnSizeGuide != null) {
+            btnSizeGuide.setVisibility((isGlasses || isPerfume) ? View.GONE : View.VISIBLE);
+        }
         if (colorSelectionContainer != null) {
             colorSelectionContainer.setVisibility(isPerfume ? View.GONE : View.VISIBLE);
         }
@@ -233,6 +240,13 @@ public class ProductDetailActivity extends BaseActivity {
     }
 
     private void setupListeners() {
+        if (btnSizeGuide != null) {
+            btnSizeGuide.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                showSizeGuideDialog();
+            });
+        }
+
         if (btnBack != null) {
             btnBack.setOnClickListener(v -> {
                 v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
@@ -397,13 +411,41 @@ public class ProductDetailActivity extends BaseActivity {
                     
                     if (isSize && v instanceof TextView) {
                         TextView tv = (TextView) v;
-                        currentProduct.setSelectedSize(tv.getText().toString());
+                        String size = tv.getText().toString();
+                        currentProduct.setSelectedSize(size);
+                        updateStockStatus(size, true);
                     } else if (!isSize && v.getTag() != null) {
-                        currentProduct.setSelectedColor(v.getTag().toString());
+                        String color = v.getTag().toString();
+                        currentProduct.setSelectedColor(color);
+                        updateStockStatus(color, false);
                     }
                     
                     updateWardrobeStatus();
                 });
+            }
+        }
+    }
+
+    private void updateStockStatus(String selection, boolean isSize) {
+        if (isSize) {
+            if ("XL".equals(selection)) {
+                tvSizeStockStatus.setText(R.string.inventory_low_stock);
+                tvSizeStockStatus.setVisibility(View.VISIBLE);
+            } else if ("XS".equals(selection)) {
+                tvSizeStockStatus.setText(R.string.inventory_out_of_stock);
+                tvSizeStockStatus.setVisibility(View.VISIBLE);
+            } else {
+                tvSizeStockStatus.setVisibility(View.GONE);
+            }
+        } else {
+            if ("Gold".equals(selection)) {
+                tvColorStockStatus.setText(R.string.inventory_low_stock);
+                tvColorStockStatus.setVisibility(View.VISIBLE);
+            } else if ("Silver".equals(selection)) {
+                tvColorStockStatus.setText(R.string.inventory_out_of_stock);
+                tvColorStockStatus.setVisibility(View.VISIBLE);
+            } else {
+                tvColorStockStatus.setVisibility(View.GONE);
             }
         }
     }
@@ -426,6 +468,16 @@ public class ProductDetailActivity extends BaseActivity {
         }
 
         CartManager cartManager = CartManager.getInstance(this);
+        
+        // Block if out of stock (Mock logic)
+        String selectedSize = currentProduct.getSelectedSize();
+        String selectedColor = currentProduct.getSelectedColor();
+        
+        if ("XS".equals(selectedSize) || "Silver".equals(selectedColor)) {
+            ToastUtils.showCustomToast(this, getString(R.string.inventory_out_of_stock));
+            return;
+        }
+
         cartManager.addProduct(currentProduct, selectedQuantity);
         ToastUtils.showCustomToast(this, "Added to Wardrobe");
         

@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,6 +16,23 @@
         android:roundIcon="@mipmap/saive_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Saive">
+        <activity
+            android:name=".ui.ChangePasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.BankTransferActivity"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".ui.ContactUsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.FaqActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.PaymentCardsActivity"
             android:exported="false" />
@@ -32,6 +53,12 @@
             android:exported="false" />
         <activity
             android:name=".ui.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.SignupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.App.Starting">
             <intent-filter>
@@ -40,12 +67,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.SignupActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.MainActivity"
-            android:exported="false" />
         <activity
             android:name=".ui.ProfileActivity"
             android:exported="false" />
@@ -81,6 +102,12 @@
             android:exported="false" />
         <activity
             android:name=".ui.AddAddressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.LocationPermissionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.LocationPickerActivity"
             android:exported="false" />
         <activity
             android:name=".ui.PaymentSuccessActivity"

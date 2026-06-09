@@ -16,6 +16,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.content.ContextCompat;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -74,12 +76,39 @@ public class CheckoutActivity extends BaseActivity {
     private static final String ADDRESS_PREFS = "address_prefs";
     private static final String ADDRESS_KEY = "saved_addresses";
 
+    private ActivityResultLauncher<Intent> loginLauncher;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //loginLauncher register
+        loginLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK) {
+                        // Login thành công hoặc Guest bypass → tiếp tục setup checkout
+                        setContentView(R.layout.activity_checkout);
+                        initViews();
+                        loadIntentData();
+                        loadAddresses();
+                        checkExistingAddress();
+                        setupListeners();
+                    } else {
+                        // Bấm back ở login → quay lại Cart
+                        finish();
+                    }
+                }
+        );
         super.onCreate(savedInstanceState);
-        
-        updateStatusBar();
 
+        updateStatusBar();
+        //auth guard
+        SharedPreferences prefs = getSharedPreferences("user_prefs", MODE_PRIVATE);
+        if (!prefs.getBoolean("is_logged_in", false)) {
+            Intent loginIntent = new Intent(this, LoginActivity.class);
+            loginIntent.putExtra("return_result", true);
+            loginLauncher.launch(loginIntent);
+            return;
+        }
         setContentView(R.layout.activity_checkout);
 
         initViews();
@@ -90,18 +119,18 @@ public class CheckoutActivity extends BaseActivity {
     }
 
     private void updateStatusBar() {
-        boolean isDarkMode = (getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK) 
+        boolean isDarkMode = (getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK)
                 == android.content.res.Configuration.UI_MODE_NIGHT_YES;
-        
+
         // Setup status bar for full-bleed maroon header
         getWindow().setStatusBarColor(getResources().getColor(R.color.colorMaroon));
         int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
-        
+
         // In Dark Mode, colorMaroon becomes light beige, so we need dark icons
         if (isDarkMode) {
             flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
         }
-        
+
         getWindow().getDecorView().setSystemUiVisibility(flags);
     }
 
@@ -143,7 +172,10 @@ public class CheckoutActivity extends BaseActivity {
     }
 
     private void checkExistingAddress() {
-        if (addressList != null && !addressList.isEmpty()) {
+        SharedPreferences prefs = getSharedPreferences("user_prefs", MODE_PRIVATE);
+        boolean isLoggedIn = prefs.getBoolean("is_logged_in", false);
+
+        if (isLoggedIn && addressList != null && !addressList.isEmpty()) {
             // Pick default address or first one
             selectedAddress = addressList.get(0);
             for (Address a : addressList) {
@@ -154,12 +186,29 @@ public class CheckoutActivity extends BaseActivity {
             }
             showAddressSummaryStep();
         } else {
-            // Show shipping manual entry if no addresses
+            // Show shipping manual entry if no addresses OR if guest
             showShippingStep();
             if (llCountrySelector != null) llCountrySelector.setVisibility(View.GONE);
             sectionTitle.setVisibility(View.VISIBLE);
             sectionTitle.setText(R.string.checkout_shipping_title);
+
+            // If guest, clear any previously entered info to be safe
+            if (!isLoggedIn) {
+                clearShippingFields();
+            } else {
+                loadSavedInfo();
+            }
         }
+    }
+
+    private void clearShippingFields() {
+        if (etFullName != null) etFullName.setText("");
+        if (etPhone != null) etPhone.setText("");
+        if (etEmail != null) etEmail.setText("");
+        if (etAddress != null) etAddress.setText("");
+        if (tvSelectedCity != null) tvSelectedCity.setText(R.string.hint_choose_city);
+        if (tvSelectedDistrict != null) tvSelectedDistrict.setText(R.string.hint_choose_district);
+        if (tvSelectedWard != null) tvSelectedWard.setText(R.string.hint_choose_ward);
     }
 
     private void showShippingStep() {
@@ -186,7 +235,7 @@ public class CheckoutActivity extends BaseActivity {
         containerShipping.setVisibility(View.GONE);
         containerPayment.setVisibility(View.GONE);
         layoutDefaultAddress.setVisibility(View.VISIBLE);
-        
+
         // Update the default card UI
         updateDefaultAddressUI();
 
@@ -211,14 +260,14 @@ public class CheckoutActivity extends BaseActivity {
     }
 
     private void showAddressSelectionBottomSheet() {
-        com.google.android.material.bottomsheet.BottomSheetDialog bottomSheetDialog = 
+        com.google.android.material.bottomsheet.BottomSheetDialog bottomSheetDialog =
                 new com.google.android.material.bottomsheet.BottomSheetDialog(this, R.style.BottomSheetDialogTheme);
         View view = getLayoutInflater().inflate(R.layout.layout_address_selection_bottom_sheet, null);
         bottomSheetDialog.setContentView(view);
 
         RecyclerView rvAddresses = view.findViewById(R.id.rvBottomSheetAddresses);
         rvAddresses.setLayoutManager(new LinearLayoutManager(this));
-        
+
         CheckoutAddressAdapter adapter = new CheckoutAddressAdapter(addressList, selectedAddress, address -> {
             selectedAddress = address;
             updateDefaultAddressUI();
@@ -236,7 +285,7 @@ public class CheckoutActivity extends BaseActivity {
     }
 
     private void showAddCardBottomSheet() {
-        com.google.android.material.bottomsheet.BottomSheetDialog bottomSheetDialog = 
+        com.google.android.material.bottomsheet.BottomSheetDialog bottomSheetDialog =
                 new com.google.android.material.bottomsheet.BottomSheetDialog(this, R.style.BottomSheetDialogTheme);
         View view = getLayoutInflater().inflate(R.layout.layout_add_card_bottom_sheet, null);
         bottomSheetDialog.setContentView(view);
@@ -244,7 +293,7 @@ public class CheckoutActivity extends BaseActivity {
         android.widget.EditText etCardNumber = view.findViewById(R.id.etCardNumber);
         android.widget.EditText etCardHolder = view.findViewById(R.id.etCardHolder);
         android.widget.EditText etExpiry = view.findViewById(R.id.etExpiry);
-        
+
         TextView tvPreviewNumber = view.findViewById(R.id.tvCardNumber);
         TextView tvPreviewHolder = view.findViewById(R.id.tvCardHolder);
         TextView tvPreviewExpiry = view.findViewById(R.id.tvExpiryDate);
@@ -329,35 +378,35 @@ public class CheckoutActivity extends BaseActivity {
         etPhone = findViewById(R.id.etPhone);
         etEmail = findViewById(R.id.etEmail);
         etAddress = findViewById(R.id.etAddress);
-        
+
         tvSelectedCity = findViewById(R.id.tvSelectedCity);
         btnCitySelector = findViewById(R.id.btnCitySelector);
-        
+
         tvSelectedDistrict = findViewById(R.id.tvSelectedDistrict);
         btnDistrictSelector = findViewById(R.id.btnDistrictSelector);
 
         tvSelectedWard = findViewById(R.id.tvSelectedWard);
         btnWardSelector = findViewById(R.id.btnWardSelector);
-        
+
         cbSaveInfo = findViewById(R.id.cbSaveInfo);
-        
+
         setupSelectors();
-        
+
         containerShipping = findViewById(R.id.containerShipping);
         containerPayment = findViewById(R.id.containerPayment);
         containerAddressSelection = findViewById(R.id.containerAddressSelection);
         rvCheckoutAddresses = findViewById(R.id.rvCheckoutAddresses);
         btnAddFromCheckout = findViewById(R.id.btnAddFromCheckout);
-        
+
         sectionTitle = findViewById(R.id.sectionTitle);
         btnAction = findViewById(R.id.btnAction);
         rgPaymentMethods = findViewById(R.id.rgPaymentMethods);
-        
+
         layoutCod = findViewById(R.id.layoutCod);
         layoutBank = findViewById(R.id.layoutBank);
         layoutMomo = findViewById(R.id.layoutMomo);
         layoutZaloPay = findViewById(R.id.layoutZaloPay);
-        
+
         rbCod = findViewById(R.id.rbCod);
         rbBank = findViewById(R.id.rbBank);
         rbMomo = findViewById(R.id.rbMomo);
@@ -426,7 +475,7 @@ public class CheckoutActivity extends BaseActivity {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             String selectedCity = tvSelectedCity.getText().toString();
             List<String> districts = com.example.saive.utils.LocationProvider.getDistricts(this, selectedCity);
-            
+
             if (districts.isEmpty()) {
                 // Fallback for other cities
                 districts = new ArrayList<>();
@@ -476,22 +525,22 @@ public class CheckoutActivity extends BaseActivity {
     }
 
     private void showOptionsBottomSheet(String title, String[] options, OnOptionSelected callback) {
-        com.google.android.material.bottomsheet.BottomSheetDialog bottomSheetDialog = 
+        com.google.android.material.bottomsheet.BottomSheetDialog bottomSheetDialog =
                 new com.google.android.material.bottomsheet.BottomSheetDialog(this, R.style.BottomSheetDialogTheme);
         View view = getLayoutInflater().inflate(R.layout.layout_bottom_sheet_menu, null, false);
-        
+
         TextView tvTitle = view.findViewById(R.id.tvSheetTitle);
         tvTitle.setText(title);
 
         EditText etSearch = view.findViewById(R.id.etSearchOption);
         etSearch.setVisibility(View.VISIBLE);
-        
+
         androidx.recyclerview.widget.RecyclerView rvOptions = view.findViewById(R.id.rvSheetOptions);
         rvOptions.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(this));
 
         List<String> originalOptions = java.util.Arrays.asList(options);
         List<String> filteredOptions = new ArrayList<>(originalOptions);
-        
+
         // Simple adapter for the BottomSheet
         androidx.recyclerview.widget.RecyclerView.Adapter adapter = new androidx.recyclerview.widget.RecyclerView.Adapter<OptionViewHolder>() {
             @androidx.annotation.NonNull
@@ -551,7 +600,7 @@ public class CheckoutActivity extends BaseActivity {
         etFullName.setText(prefs.getString(KEY_NAME, ""));
         etPhone.setText(prefs.getString(KEY_PHONE, ""));
         etEmail.setText(prefs.getString(KEY_EMAIL, ""));
-        
+
         String savedCity = prefs.getString("city", "");
         if (!TextUtils.isEmpty(savedCity)) {
             tvSelectedCity.setText(savedCity);
@@ -568,7 +617,7 @@ public class CheckoutActivity extends BaseActivity {
         }
 
         etAddress.setText(prefs.getString(KEY_ADDRESS, ""));
-        
+
         // Pre-fill if name is not empty
         if (!TextUtils.isEmpty(etFullName.getText())) {
             cbSaveInfo.setChecked(true);
@@ -659,7 +708,7 @@ public class CheckoutActivity extends BaseActivity {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             containerAddressSelection.setVisibility(View.GONE);
             showShippingStep();
-            
+
             // Show large selectors back
             sectionTitle.setVisibility(View.VISIBLE);
         });
@@ -694,7 +743,7 @@ public class CheckoutActivity extends BaseActivity {
         rbMomo.setChecked(selectedRb == rbMomo);
         rbZaloPay.setChecked(selectedRb == rbZaloPay);
         rbDefaultCard.setChecked(selectedRb == rbDefaultCard);
-        
+
         if (paymentCardAdapter != null) {
             if (selectedRb != rbDefaultCard) {
                 selectedCard = null;
@@ -767,7 +816,7 @@ public class CheckoutActivity extends BaseActivity {
         containerAddressSelection.setVisibility(View.GONE);
         layoutDefaultAddress.setVisibility(View.GONE);
         containerPayment.setVisibility(View.VISIBLE);
-        
+
         // Load and show saved cards
         loadSavedCards();
 
@@ -789,7 +838,7 @@ public class CheckoutActivity extends BaseActivity {
             tvSummaryAddress.setText(addressText);
             tvSummaryPhone.setText(etPhone.getText().toString());
         }
-        
+
         if (selectedSize != null && !selectedSize.isEmpty()) {
             tvSummarySize.setVisibility(View.VISIBLE);
             tvSummarySize.setText(getString(R.string.label_size) + ": " + selectedSize);
@@ -807,7 +856,7 @@ public class CheckoutActivity extends BaseActivity {
     }
 
     private void showCardSelectionBottomSheet() {
-        com.google.android.material.bottomsheet.BottomSheetDialog bottomSheetDialog = 
+        com.google.android.material.bottomsheet.BottomSheetDialog bottomSheetDialog =
                 new com.google.android.material.bottomsheet.BottomSheetDialog(this, R.style.BottomSheetDialogTheme);
         View view = getLayoutInflater().inflate(R.layout.layout_address_selection_bottom_sheet, null);
         bottomSheetDialog.setContentView(view);
@@ -876,7 +925,7 @@ public class CheckoutActivity extends BaseActivity {
         // 1. Chuẩn bị dữ liệu đơn hàng từ giỏ hàng
         com.example.saive.utils.CartManager cartManager = com.example.saive.utils.CartManager.getInstance(this);
         List<com.example.saive.models.Product> cartItems = cartManager.getCartItems();
-        
+
         if (cartItems.isEmpty()) {
             com.example.saive.utils.ToastUtils.showCustomToast(this, "Giỏ hàng trống!");
             return;
@@ -885,22 +934,22 @@ public class CheckoutActivity extends BaseActivity {
         List<com.example.saive.models.OrderItem> orderItems = new ArrayList<>();
         StringBuilder summaryBuilder = new StringBuilder();
         summaryBuilder.append(cartItems.size()).append(" Items: ");
-        
+
         for (int i = 0; i < cartItems.size(); i++) {
             com.example.saive.models.Product p = cartItems.get(i);
             String itemSize = p.getSelectedSize();
             if (itemSize == null || itemSize.isEmpty()) {
                 itemSize = (p.getCategory() != null && p.getCategory().toLowerCase().contains("glasses")) ? "One Size" : "M";
             }
-            
+
             orderItems.add(new com.example.saive.models.OrderItem(
-                p.getName(),
-                itemSize,
-                p.getQuantity(),
-                p.getPrice(),
-                p.getImageResId()
+                    p.getName(),
+                    itemSize,
+                    p.getQuantity(),
+                    p.getPrice(),
+                    p.getImageResId()
             ));
-            
+
             summaryBuilder.append(p.getName());
             if (i < cartItems.size() - 1) summaryBuilder.append(", ");
         }
@@ -908,14 +957,15 @@ public class CheckoutActivity extends BaseActivity {
         // 2. Tạo đối tượng AdminOrder
         String orderId = "#SA-" + (System.currentTimeMillis() % 1000000);
         String customerName = selectedAddress != null ? selectedAddress.getFullName() : etFullName.getText().toString();
-        String shippingAddr = selectedAddress != null ? selectedAddress.getFullDisplayAddress() : 
-            (etAddress.getText().toString() + ", " + tvSelectedWard.getText() + ", " + tvSelectedDistrict.getText() + ", " + tvSelectedCity.getText());
-        
+        String shippingAddr = selectedAddress != null ? selectedAddress.getFullDisplayAddress() :
+                (etAddress.getText().toString() + ", " + tvSelectedWard.getText() + ", " + tvSelectedDistrict.getText() + ", " + tvSelectedCity.getText());
+
         String paymentMethod = "COD";
         if (rbBank.isChecked()) paymentMethod = "Bank Transfer";
         else if (rbMomo.isChecked()) paymentMethod = "Momo";
         else if (rbZaloPay.isChecked()) paymentMethod = "ZaloPay";
-        else if (rbDefaultCard.isChecked() && selectedCard != null) paymentMethod = "Card (**** " + selectedCard.getCardNumber().substring(Math.max(0, selectedCard.getCardNumber().length() - 4)) + ")";
+        else if (rbDefaultCard.isChecked() && selectedCard != null)
+            paymentMethod = "Card (**** " + selectedCard.getCardNumber().substring(Math.max(0, selectedCard.getCardNumber().length() - 4)) + ")";
 
         // Lấy giá trị tổng tiền từ TextView nếu biến totalPrice bị null
         String finalPrice = (totalPrice != null) ? totalPrice : tvSummaryTotal.getText().toString();
@@ -924,17 +974,17 @@ public class CheckoutActivity extends BaseActivity {
         if (itemSizeLegacy == null || itemSizeLegacy.isEmpty()) itemSizeLegacy = "M";
 
         com.example.saive.models.AdminOrder newOrder = new com.example.saive.models.AdminOrder(
-            orderId,
-            customerName,
-            summaryBuilder.toString(),
-            finalPrice,
-            "PENDING",
-            "Just now",
-            cartItems.get(0).getImageResId(),
-            itemSizeLegacy,
-            cartManager.getItemCount(),
-            paymentMethod,
-            shippingAddr
+                orderId,
+                customerName,
+                summaryBuilder.toString(),
+                finalPrice,
+                "PENDING",
+                "Just now",
+                cartItems.get(0).getImageResId(),
+                itemSizeLegacy,
+                cartManager.getItemCount(),
+                paymentMethod,
+                shippingAddr
         );
         newOrder.setItems(orderItems);
 
@@ -942,7 +992,14 @@ public class CheckoutActivity extends BaseActivity {
         com.example.saive.utils.DataManager.getInstance(this).addOrder(newOrder);
         cartManager.clearCart();
 
-        showSuccessDialog();
+        if (rbBank.isChecked()) {
+            // Lưu order trước rồi mở QR screen
+            Intent qrIntent = new Intent(CheckoutActivity.this, BankTransferActivity.class);
+            startActivity(qrIntent);
+            finish();
+        } else {
+            showSuccessDialog();
+        }
     }
 
     private void showSuccessDialog() {

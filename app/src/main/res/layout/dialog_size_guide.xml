@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorCotton"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_size_guide"
+            style="@style/TextAppearance.Saive.Header"
+            android:textSize="20sp"
+            android:textColor="@color/colorNoirBlack" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_product"
+                style="@style/TextAppearance.Saive.Nav"
+                android:textColor="@color/colorMaroon"
+                android:paddingBottom="4dp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="16dp"
+                android:background="#ccc"
+                android:layout_marginHorizontal="12dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_body"
+                style="@style/TextAppearance.Saive.Nav"
+                android:textColor="@color/colorNoirBlack"
+                android:paddingBottom="4dp"
+                android:alpha="0.6" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_measurement_unit"
+                style="@style/TextAppearance.Saive.Nav"
+                android:textStyle="bold"
+                android:textColor="@color/colorNoirBlack" />
+        </LinearLayout>
+
+        <!-- Size Table -->
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorLinen">
+
+            <TableRow android:background="@color/colorLightGray" android:padding="8dp">
+                <TextView android:text="@string/label_size" style="@style/TextAppearance.Saive.Nav" android:textSize="12sp" android:layout_weight="1" android:gravity="start" android:textColor="@color/colorNoirBlack"/>
+                <TextView android:text="@string/label_bust" style="@style/TextAppearance.Saive.Nav" android:textSize="12sp" android:layout_weight="1" android:gravity="start" android:textColor="@color/colorNoirBlack"/>
+                <TextView android:text="@string/label_waist" style="@style/TextAppearance.Saive.Nav" android:textSize="12sp" android:layout_weight="1" android:gravity="start" android:textColor="@color/colorNoirBlack"/>
+                <TextView android:text="@string/label_hip" style="@style/TextAppearance.Saive.Nav" android:textSize="12sp" android:layout_weight="1" android:gravity="start" android:textColor="@color/colorNoirBlack"/>
+            </TableRow>
+
+            <TableRow android:padding="8dp">
+                <TextView android:text="XS" style="@style/TextAppearance.Saive.Nav" android:textSize="12sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
+                <TextView android:text="73-79" style="@style/TextAppearance.Saive.Light" android:textSize="12sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
+                <TextView android:text="57-63" style="@style/TextAppearance.Saive.Light" android:textSize="12sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
+                <TextView android:text="80-86" style="@style/TextAppearance.Saive.Light" android:textSize="12sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
+            </TableRow>
+
+            <TableRow android:padding="8dp" android:background="@color/colorGrayBg">
+                <TextView android:text="S" style="@style/TextAppearance.Saive.Nav" android:textSize="12sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
+                <TextView android:text="77-83" style="@style/TextAppearance.Saive.Light" android:textSize="12sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
+                <TextView android:text="61-67" style="@style/TextAppearance.Saive.Light" android:textSize="12sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
+                <TextView android:text="84-90" style="@style/TextAppearance.Saive.Light" android:textSize="12sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
+            </TableRow>
+
+            <TableRow android:padding="8dp">
+                <TextView android:text="M" style="@style/TextAppearance.Saive.Nav" android:textSize="12sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
+                <TextView android:text="81-87" style="@style/TextAppearance.Saive.Light" android:textSize="12sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
+                <TextView android:text="65-71" style="@style/TextAppearance.Saive.Light" android:textSize="12sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
+                <TextView android:text="88-94" style="@style/TextAppearance.Saive.Light" android:textSize="12sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
+            </TableRow>
+
+            <TableRow android:padding="8dp" android:background="@color/colorGrayBg">
+                <TextView android:text="L" style="@style/TextAppearance.Saive.Nav" android:textSize="12sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
+                <TextView android:text="85-91" style="@style/TextAppearance.Saive.Light" android:textSize="12sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
+                <TextView android:text="69-75" style="@style/TextAppearance.Saive.Light" android:textSize="12sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
+                <TextView android:text="92-98" style="@style/TextAppearance.Saive.Light" android:textSize="12sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
+            </TableRow>
+
+            <TableRow android:padding="8dp">
+                <TextView android:text="XL" style="@style/TextAppearance.Saive.Nav" android:textSize="12sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
+                <TextView android:text="91-97" style="@style/TextAppearance.Saive.Light" android:textSize="12sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
+                <TextView android:text="75-81" style="@style/TextAppearance.Saive.Light" android:textSize="12sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
+                <TextView android:text="98-104" style="@style/TextAppearance.Saive.Light" android:textSize="12sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
+            </TableRow>
+
+            <TableRow android:padding="8dp" android:background="@color/colorGrayBg">
+                <TextView android:text="XXL" style="@style/TextAppearance.Saive.Nav" android:textSize="12sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
+                <TextView android:text="97-103" style="@style/TextAppearance.Saive.Light" android:textSize="12sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
+                <TextView android:text="81-87" style="@style/TextAppearance.Saive.Light" android:textSize="12sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
+                <TextView android:text="104-110" style="@style/TextAppearance.Saive.Light" android:textSize="12sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
+            </TableRow>
+        </TableLayout>
+
+        <!-- Options -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_all"
+                android:padding="8dp"
+                app:tint="@color/colorNoirBlack" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_compare_size"
+                    style="@style/TextAppearance.Saive.Nav"
+                    android:textColor="@color/colorMaroon"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_compare_size_desc"
+                    style="@style/TextAppearance.Saive.Light"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorNoirBlack"
+                    android:alpha="0.7" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_profile"
+                android:padding="8dp"
+                app:tint="@color/colorNoirBlack" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_length_guide"
+                    style="@style/TextAppearance.Saive.Nav"
+                    android:textColor="@color/colorMaroon"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_length_guide_desc"
+                    style="@style/TextAppearance.Saive.Light"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorNoirBlack"
+                    android:alpha="0.7" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_hanger"
+                android:padding="8dp"
+                app:tint="@color/colorNoirBlack" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_mysize_assist"
+                    style="@style/TextAppearance.Saive.Nav"
+                    android:textColor="@color/colorMaroon"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_mysize_assist_desc"
+                    style="@style/TextAppearance.Saive.Light"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorNoirBlack"
+                    android:alpha="0.7" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="24dp" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

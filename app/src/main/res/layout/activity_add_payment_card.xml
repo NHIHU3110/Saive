@@ -11,49 +11,36 @@
         android:background="@color/colorCotton"
         app:elevation="0dp">
 
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="48dp"
+            android:paddingBottom="16dp">
 
-            <!-- Top Accent Bar -->
-            <View
-                android:id="@+id/topAccentBar"
-                android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:background="@color/colorMaroon"
-                android:translationZ="30dp" />
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="8dp"
+                android:src="@drawable/ic_back"
+                app:tint="@color/colorNoirBlack" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                style="@style/TextAppearance.Saive.SectionHeader"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingHorizontal="16dp"
-                android:paddingTop="48dp"
-                android:paddingBottom="16dp">
-
-                <ImageView
-                    android:id="@+id/btnBack"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:padding="8dp"
-                    android:src="@drawable/ic_back"
-                    app:tint="@color/colorNoirBlack" />
-
-                <TextView
-                    style="@style/TextAppearance.Saive.SectionHeader"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="40dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:letterSpacing="0.2"
-                    android:text="@string/label_add_new_card"
-                    android:textColor="@color/colorNoirBlack"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </FrameLayout>
+                android:layout_marginEnd="40dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:letterSpacing="0.2"
+                android:text="@string/label_add_new_card"
+                android:textColor="@color/colorNoirBlack"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView

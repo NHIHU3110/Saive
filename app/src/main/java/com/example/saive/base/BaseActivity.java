@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.saive.R;
 import com.example.saive.ui.MainActivity;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import java.util.Locale;
 
 public abstract class BaseActivity extends AppCompatActivity {
@@ -62,7 +63,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         toast.show();
     }
 
-    @Override
+    public void showSizeGuideDialog() {
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this, R.style.TransparentBottomSheetDialog);
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_size_guide, null);
+        bottomSheetDialog.setContentView(dialogView);
+        bottomSheetDialog.show();
+    }
+
     protected void attachBaseContext(Context newBase) {
         SharedPreferences prefs = newBase.getSharedPreferences(LANG_PREFS, MODE_PRIVATE);
         String lang = prefs.getString(LANG_KEY, "en");

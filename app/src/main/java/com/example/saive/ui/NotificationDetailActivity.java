@@ -98,11 +98,11 @@ public class NotificationDetailActivity extends AppCompatActivity {
                 switch (type) {
                     case REMINDER:
                         intent = new Intent(this, MainActivity.class);
-                        intent.putExtra("SHOW_WARDROBE", true);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         break;
                     case CAPSULE:
                         intent = new Intent(this, CartActivity.class);
+                        intent.putExtra("SHOW_WARDROBE", true);
                         break;
                     case ORDER:
                         intent = new Intent(this, OrderTrackingActivity.class);

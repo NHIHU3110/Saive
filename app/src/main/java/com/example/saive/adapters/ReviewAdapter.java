@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.saive.R;
 import com.example.saive.models.Review;
 import java.util.List;
+import com.example.saive.adapters.ReviewImageAdapter;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder> {
 
@@ -37,8 +38,8 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
 
         if (review.getImageUrls() != null && !review.getImageUrls().isEmpty()) {
             holder.rvImages.setVisibility(View.VISIBLE);
-            // In a real app, you'd have a simple Horizontal Adapter for images here
-            // For now, we'll just show the RecyclerView exists
+            holder.rvImages.setLayoutManager(new LinearLayoutManager(holder.itemView.getContext(), LinearLayoutManager.HORIZONTAL, false));
+            holder.rvImages.setAdapter(new ReviewImageAdapter(review.getImageUrls()));
         } else {
             holder.rvImages.setVisibility(View.GONE);
         }

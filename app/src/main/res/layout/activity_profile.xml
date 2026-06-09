@@ -6,14 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/colorCotton">
 
-    <View
-        android:id="@+id/topAccentBar"
-        android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:background="@color/colorMaroon"
-        app:layout_constraintTop_toTopOf="parent"
-        android:translationZ="30dp"/>
-
     <!-- Header Bar -->
     <LinearLayout
         android:id="@+id/headerContainer"
@@ -367,6 +359,41 @@
                             app:tint="@color/colorLinen" />
                     </LinearLayout>
 
+                    <View android:layout_width="match_parent" android:layout_height="0.5dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:background="@color/colorLinen" android:alpha="0.5" />
+
+                    <LinearLayout
+                        android:id="@+id/btnChangePassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_menu_item"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="16dp">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@android:drawable/ic_lock_idle_lock"
+                            app:tint="@color/colorNoirBlack" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            style="@style/TextAppearance.Saive.Light"
+                            android:text="@string/change_password_title"
+                            android:textColor="@color/colorNoirBlack"
+                            android:textSize="14sp" />
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_back"
+                            android:rotation="180"
+                            app:tint="@color/colorLinen" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
                 <!-- PREFERENCES -->
@@ -512,6 +539,72 @@
                     android:paddingVertical="8dp">
 
                     <LinearLayout
+                        android:id="@+id/btnFAQ"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_menu_item"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="16dp">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@android:drawable/ic_menu_help"
+                            app:tint="@color/colorNoirBlack" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            style="@style/TextAppearance.Saive.Light"
+                            android:text="@string/menu_faq"
+                            android:textColor="@color/colorNoirBlack"
+                            android:textSize="14sp" />
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_back"
+                            android:rotation="180"
+                            app:tint="@color/colorLinen" />
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="0.5dp" android:layout_marginHorizontal="16dp" android:background="@color/colorLinen" android:alpha="0.5" />
+
+                    <LinearLayout
+                        android:id="@+id/btnContactUs"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/bg_menu_item"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="16dp">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@android:drawable/ic_menu_call"
+                            app:tint="@color/colorNoirBlack" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            style="@style/TextAppearance.Saive.Light"
+                            android:text="@string/menu_contact_us"
+                            android:textColor="@color/colorNoirBlack"
+                            android:textSize="14sp" />
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_back"
+                            android:rotation="180"
+                            app:tint="@color/colorLinen" />
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="0.5dp" android:layout_marginHorizontal="16dp" android:background="@color/colorLinen" android:alpha="0.5" />
+
+                    <LinearLayout
                         android:id="@+id/btnAbout"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
@@ -632,14 +725,14 @@
                     android:layout_width="@dimen/icon_size_nav"
                     android:layout_height="@dimen/icon_size_nav"
                     android:src="@drawable/ic_favorite"
-                    app:tint="@color/white" />
+                    app:tint="@color/colorOnMaroon" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/nav_favorite"
                     style="@style/TextAppearance.Saive.Nav"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/colorOnMaroon" />
             </LinearLayout>
 
             <LinearLayout
@@ -654,27 +747,43 @@
                     android:layout_width="@dimen/icon_size_nav"
                     android:layout_height="@dimen/icon_size_nav"
                     android:src="@mipmap/hangericon"
-                    app:tint="@color/white" />
+                    app:tint="@color/colorOnMaroon" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/nav_wardrobe"
                     style="@style/TextAppearance.Saive.Nav"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/colorOnMaroon" />
             </LinearLayout>
 
-            <View
+            <!-- Item 2: HOME (PLACEHOLDER) -->
+            <LinearLayout
+                android:id="@+id/navHome"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="24dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.Saive.Nav"
+                    android:text="SAIVE"
+                    android:visibility="invisible"/>
+            </LinearLayout>
 
             <FrameLayout
                 android:id="@+id/navNotify"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:alpha="0.5">
+                android:alpha="0.5"
+                android:clickable="true"
+                android:focusable="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -685,14 +794,14 @@
                         android:layout_width="@dimen/icon_size_nav"
                         android:layout_height="@dimen/icon_size_nav"
                         android:src="@drawable/ic_notifications"
-                        app:tint="@color/white" />
+                        app:tint="@color/colorOnMaroon" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/nav_notify"
                         style="@style/TextAppearance.Saive.Nav"
                         android:layout_marginTop="4dp"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/colorOnMaroon" />
                 </LinearLayout>
 
                 <View
@@ -712,23 +821,24 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:gravity="center"
                 android:alpha="1.0"
-                android:scaleX="1.1"
-                android:scaleY="1.1"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="@dimen/icon_size_nav"
                     android:layout_height="@dimen/icon_size_nav"
                     android:src="@drawable/ic_profile"
-                    app:tint="@color/white" />
+                    app:tint="@color/colorOnMaroon" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/nav_profile"
                     style="@style/TextAppearance.Saive.Nav"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/colorOnMaroon" />
             </LinearLayout>
 
         </LinearLayout>
@@ -744,12 +854,14 @@
             app:layout_constraintBottom_toBottomOf="@id/navItemsContainer"
             app:layout_constraintTop_toTopOf="@id/navItemsContainer"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="16dp"
+                android:scaleType="fitCenter"
                 android:src="@mipmap/saive_logo"
                 app:tint="@color/colorMaroon" />
         </FrameLayout>

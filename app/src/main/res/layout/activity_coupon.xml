@@ -6,13 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBeigeBg">
 
-    <View
-        android:id="@+id/topAccentBar"
-        android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:background="@color/colorMaroon"
-        android:translationZ="30dp"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
     <!-- Top Header Area -->
     <androidx.constraintlayout.widget.ConstraintLayout

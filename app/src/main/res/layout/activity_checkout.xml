@@ -13,12 +13,7 @@
         app:liftOnScroll="false"
         app:elevation="0dp">
 
-        <View
-            android:id="@+id/topAccentBar"
-            android:layout_width="match_parent"
-            android:layout_height="4dp"
-            android:background="@color/white"
-            android:alpha="0.2"/>
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

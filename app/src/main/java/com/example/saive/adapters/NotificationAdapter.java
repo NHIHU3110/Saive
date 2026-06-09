@@ -126,17 +126,17 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         android.content.Intent intent;
 
         if (type == Notification.Type.REMINDER) {
-            // Jump to Wardrobe
-            intent = new android.content.Intent(context, com.example.saive.ui.MainActivity.class);
-            intent.putExtra("SHOW_WARDROBE", true);
-            intent.setFlags(android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP | android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            // Jump to Cart
+            intent = new android.content.Intent(context, com.example.saive.ui.CartActivity.class);
         } else if (type == Notification.Type.DROP) {
             // Jump to Collection
             intent = new android.content.Intent(context, com.example.saive.ui.CollectionDetailActivity.class);
             intent.putExtra("COLLECTION_TITLE", notification.getTitle());
         } else if (type == Notification.Type.CAPSULE) {
-            // Jump to Cart
-            intent = new android.content.Intent(context, com.example.saive.ui.CartActivity.class);
+            // Jump to Wardrobe
+            intent = new android.content.Intent(context, com.example.saive.ui.MainActivity.class);
+            intent.putExtra("SHOW_WARDROBE", true);
+            intent.setFlags(android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP | android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP);
         } else if (type == Notification.Type.ORDER) {
             // Jump to Track Order
             intent = new android.content.Intent(context, com.example.saive.ui.OrderTrackingActivity.class);
