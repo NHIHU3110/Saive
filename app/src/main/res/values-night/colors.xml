@@ -1,39 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Backgrounds → tối -->
-    <color name="colorCotton">#1C1C1C</color>
-    <color name="colorIvory">#1C1C1C</color>
-    <color name="colorBeigeBg">#1C1C1C</color>
-    <color name="colorGrayBg">#242424</color>
+    <!-- Backgrounds → Noir Black -->
+    <color name="colorCotton">#121212</color>
+    <color name="colorIvory">#1A1A1A</color>
+    <color name="colorBeigeBg">#1A1A1A</color>
+    <color name="colorGrayBg">#1E1E1E</color>
     <color name="colorSandLight">#242424</color>
     <color name="colorUnreadBg">#242424</color>
-    <color name="colorReadBg">#1C1C1C</color>
+    <color name="colorReadBg">#1A1A1A</color>
     <color name="colorCategoryBg">#2A1A1A</color>
 
-    <!-- Dividers, borders → xám tối -->
+    <!-- Dividers, borders → Subtle Gray -->
     <color name="colorLinen">#333333</color>
-    <color name="colorLightGray">#3A3A3A</color>
+    <color name="colorLightGray">#2A2A2A</color>
     <color name="colorCategoryBorder">#3A2A2A</color>
-    <color name="colorCollectionSandLight">#2A2A2A</color>
 
-    <!-- Text → sáng -->
-    <color name="colorNoirBlack">#F0EDE5</color>
-    <color name="colorNoir">#F0EDE5</color>
-    <color name="colorGrayText">#999999</color>
-    <color name="colorGrey">#999999</color>
+    <!-- Text → Light Cream/Sand -->
+    <color name="colorNoirBlack">#F5F5F0</color>
+    <color name="colorNoir">#F5F5F0</color>
+    <color name="colorGrayText">#A89B85</color>
+    <color name="colorGrey">#888888</color>
+    <color name="colorSand">#D4C9B8</color>
 
-    <color name="white">#2A2A2A</color>
+    <color name="white">#1E1E1E</color>
     <color name="colorAlwaysWhite">#FFFFFF</color>
     <color name="colorAlwaysBlack">#000000</color>
 
-    <!-- Maroon elements → Beige in Dark Mode -->
-    <color name="colorMaroon">#D4C9B8</color>
-    <color name="colorCountdownText">#FFFFFF</color>
-    <color name="colorFlashProductName">#000000</color>
+    <!-- Brand Colors for Dark Mode -->
+    <color name="colorMaroon">#B02E2E</color>
+    <color name="colorAccentRed">#B02E2E</color>
 
     <!-- Colors for content on Maroon/Beige background (Adaptive) -->
-    <color name="colorOnMaroon">#1A1A1A</color>
-    <color name="colorOnMaroonSecondary">#901A1A1A</color>
-    <color name="colorOnMaroonDivider">#201A1A1A</color>
-    <color name="colorOnMaroonContainer">#151A1A1A</color>
+    <color name="colorOnMaroon">#FFFFFF</color>
+    <color name="colorOnMaroonSecondary">#B0FFFFFF</color>
+    <color name="colorOnMaroonDivider">#20FFFFFF</color>
+    <color name="colorOnMaroonContainer">#15FFFFFF</color>
 </resources>

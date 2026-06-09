@@ -11,6 +11,7 @@
 
     <!-- Brand / Theme Colors -->
     <color name="colorMaroon">#810100</color>
+    <color name="colorAccentRed">#810100</color>
     <color name="colorCherryRed">@color/colorMaroon</color>
     <color name="colorMaroonBrand">@color/colorMaroon</color>
     <color name="colorSand">#A89B85</color>
