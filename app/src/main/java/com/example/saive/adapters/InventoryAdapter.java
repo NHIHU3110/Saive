@@ -17,8 +17,8 @@ import java.util.List;
 
 public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.ViewHolder> {
 
-    private List<Product> products;
-    private OnProductClickListener listener;
+    private final List<Product> products;
+    private final OnProductClickListener listener;
 
     public interface OnProductClickListener {
         void onEditClick(Product product);
@@ -44,7 +44,7 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
         ImageUtils.setSafeImage(holder.ivProduct, product.getImageResId());
         
         // Mock stock
-        holder.tvStock.setText("Kho: " + (10 + position * 2));
+        holder.tvStock.setText(holder.itemView.getContext().getString(R.string.inventory_stock_format, 10 + position * 2));
 
         holder.btnEdit.setOnClickListener(v -> listener.onEditClick(product));
     }

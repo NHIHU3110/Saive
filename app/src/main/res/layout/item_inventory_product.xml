@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="16dp"
@@ -27,6 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
+                android:contentDescription="@null"
                 android:src="@mipmap/jacket1" />
         </com.google.android.material.card.MaterialCardView>
 
@@ -41,7 +43,7 @@
                 android:id="@+id/tvProductName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Velvet Evening Gown"
+                tools:text="Velvet Evening Gown"
                 android:fontFamily="serif"
                 android:textStyle="bold"
                 android:textColor="?attr/colorOnSurface"
@@ -51,7 +53,7 @@
                 android:id="@+id/tvProductPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2,500,000 ₫"
+                tools:text="2,500,000 ₫"
                 android:fontFamily="sans-serif-medium"
                 android:textColor="@color/colorMaroon"
                 android:textSize="14sp"
@@ -76,7 +78,7 @@
                     android:id="@+id/tvStock"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Kho: 12"
+                    tools:text="Kho: 12"
                     android:fontFamily="sans-serif-light"
                     android:textColor="?attr/colorOnSurface"
                     android:textSize="11sp"
@@ -90,6 +92,7 @@
             android:layout_height="44dp"
             android:background="@drawable/bg_circle_beige"
             android:src="@drawable/ic_arrow_right"
+            android:contentDescription="@string/desc_edit_product"
             android:padding="12dp"
             android:scaleType="centerInside"
             app:tint="@color/colorMaroon"

@@ -745,4 +745,10 @@
     <string name="admin_select_option">选择选项</string>
     <string name="admin_upload_images">上传图片（最多 3 张）</string>
     <string name="btn_confirm_location">确认位置</string>
+    <string name="label_editorial">社论</string>
+    <string name="timer_default_time">00 : 00 : 00</string>
+    <string name="flash_sale_participating_products">参与商品</string>
+    <string name="desc_create_flash_sale">创建限时抢购</string>
+    <string name="desc_edit_product">编辑商品</string>
+    <string name="inventory_stock_format">库存: %1$d</string>
 </resources>

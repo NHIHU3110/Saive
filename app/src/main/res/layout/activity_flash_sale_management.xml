@@ -27,6 +27,7 @@
             android:background="@drawable/bg_circle_white"
             android:elevation="2dp"
             android:src="@drawable/ic_back"
+            android:contentDescription="@string/nav_back"
             app:tint="@color/colorMaroon" />
 
         <TextView
@@ -47,6 +48,7 @@
             android:background="@drawable/bg_circle_white"
             android:elevation="2dp"
             android:src="@drawable/ic_plus"
+            android:contentDescription="@string/desc_create_flash_sale"
             app:tint="@color/colorMaroon" />
     </LinearLayout>
 
@@ -77,14 +79,15 @@
                 style="@style/TextAppearance.Saive.Caption"
                 android:textColor="@color/colorCotton"
                 android:alpha="0.8"
-                android:textSize="10sp"
+                android:textSize="11sp"
                 android:letterSpacing="0.2" />
 
             <TextView
                 android:id="@+id/tvAdminTimer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="14 : 20 : 05"
+                android:text="@string/timer_default_time"
+                tools:text="14 : 20 : 05"
                 style="@style/TextAppearance.Saive.Header"
                 android:textColor="@color/colorCountdownText"
                 android:textSize="32sp"
@@ -96,7 +99,7 @@
         android:id="@+id/tvListTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="PARTICIPATING PRODUCTS"
+        android:text="@string/flash_sale_participating_products"
         style="@style/TextAppearance.Saive.Caption"
         android:textColor="@color/colorSand"
         android:layout_marginStart="24dp"

@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Saive</string>
-    <string name="search_hint">Search your wardrobe...</string>
+    <string name="search_hint">Search your wardrobe&#8230;</string>
     <string name="cat_all">All</string>
     <string name="cat_tshirt">T-shirts</string>
     <string name="cat_jeans">Jeans</string>
@@ -122,7 +122,7 @@
     <string name="contact_footer_note">We typically respond within 24 hours on business days.\nHANOI · SAIGON</string>
     <string name="contact_error_fields">Please fill in all fields</string>
     <string name="contact_success_sent">Message sent. We\'ll get back to you shortly.</string>
-    <string name="contact_hint_message">Tell us how we can help...</string>
+    <string name="contact_hint_message">Tell us how we can help&#8230;</string>
     <string name="menu_my_coupons">My Vouchers</string>
     <string name="auth_login_title">Login</string>
     <string name="auth_signup_title">Sign up</string>
@@ -199,7 +199,7 @@
     <string name="label_comment">Comment</string>
     <string name="label_submit">SUBMIT</string>
     <string name="label_attach_photos">ATTACH PHOTOS</string>
-    <string name="hint_review">Tell us what you think about this piece...</string>
+    <string name="hint_review">Tell us what you think about this piece&#8230;</string>
     <string name="sort_price_low_high">Price: Low to High</string>
     <string name="sort_price_high_low">Price: High to Low</string>
     <string name="sort_alphabetical_az">Alphabetical: A-Z</string>
@@ -249,7 +249,7 @@
     <string name="about_commit_2">Fully reusable packaging</string>
     <string name="about_commit_3">Fair wages for all artisans</string>
     <string name="about_commit_4">Lifetime repair guarantee</string>
-    <string name="updating_language">Updating language...</string>
+    <string name="updating_language">Updating language&#8230;</string>
 
     <!-- Checkout Strings -->
     <string name="checkout_shipping_title">SHIPPING INFO</string>
@@ -278,7 +278,7 @@
     <string name="payment_momo">Momo Wallet</string>
     <string name="payment_zalopay">ZaloPay</string>
     <string name="payment_cod">Cash on Delivery (COD)</string>
-    <string name="payment_bank_desc">Transfer via Vietcombank, Techcombank...</string>
+    <string name="payment_bank_desc">Transfer via Vietcombank, Techcombank&#8230;</string>
     <string name="payment_momo_desc">Fast and secure mobile payment</string>
     <string name="payment_zalopay_desc">Pay with your Zalo account</string>
     <string name="payment_cod_desc">Pay when you receive the package</string>
@@ -444,7 +444,7 @@
     <string name="promo_code_hint">Promo code</string>
     <!-- Coupon Screen -->
     <string name="coupon_available_title">Available Vouchers</string>
-    <string name="coupon_search_hint">Search for offers...</string>
+    <string name="coupon_search_hint">Search for offers&#8230;</string>
     <string name="coupon_copy">COPY</string>
     <string name="coupon_valid_until">Valid until: %1$s</string>
     <string name="coupon_off">OFF</string>
@@ -461,7 +461,7 @@
     <string name="label_address_label">Address Label</string>
     <string name="hint_full_name">e.g. Thao Nhi Huynh</string>
     <string name="hint_phone_number">+84 901 234 567</string>
-    <string name="hint_street_address">House number, street name...</string>
+    <string name="hint_street_address">House number, street name&#8230;</string>
     <string name="hint_city">e.g. Ho Chi Minh</string>
     <string name="hint_district">e.g. District 1</string>
     <string name="suggestion_trousers">Linen Trousers</string>
@@ -713,7 +713,7 @@
     <string name="label_select_option">SELECT OPTION</string>
     <string name="hint_phone_remaining">9 remaining digits</string>
     <string name="admin_no_reviews">No reviews to moderate</string>
-    <string name="hint_search_history">Search history...</string>
+    <string name="hint_search_history">Search history&#8230;</string>
     <string name="label_upload_images">UPLOAD IMAGES (MAX 3)</string>
     <string name="hint_price_vnd">Price (VND)</string>
     <string name="hint_sku">SKU</string>
@@ -816,4 +816,10 @@
     <string name="admin_select_option">SELECT OPTION</string>
     <string name="admin_upload_images">UPLOAD IMAGES (MAX 3)</string>
     <string name="btn_confirm_location">Confirm Location</string>
+    <string name="label_editorial">EDITORIAL</string>
+    <string name="timer_default_time">00 : 00 : 00</string>
+    <string name="flash_sale_participating_products">PARTICIPATING PRODUCTS</string>
+    <string name="desc_create_flash_sale">Create Flash Sale</string>
+    <string name="desc_edit_product">Edit product</string>
+    <string name="inventory_stock_format">Kho: %1$d</string>
 </resources>

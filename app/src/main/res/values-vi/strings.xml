@@ -745,4 +745,10 @@
     <string name="admin_select_option">CHỌN TÙY CHỌN</string>
     <string name="admin_upload_images">TẢI ẢNH LÊN (TỐI ĐA 3)</string>
     <string name="btn_confirm_location">Xác nhận vị trí</string>
+    <string name="label_editorial">EDITORIAL</string>
+    <string name="timer_default_time">00 : 00 : 00</string>
+    <string name="flash_sale_participating_products">SẢN PHẨM THAM GIA</string>
+    <string name="desc_create_flash_sale">Tạo chiến dịch Flash Sale</string>
+    <string name="desc_edit_product">Chỉnh sửa sản phẩm</string>
+    <string name="inventory_stock_format">Kho: %1$d</string>
 </resources>
