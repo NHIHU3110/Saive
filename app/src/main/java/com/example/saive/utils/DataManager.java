@@ -23,6 +23,9 @@ public class DataManager {
     private static final String KEY_FLASH_SALE = "flash_sale";
     private static final String KEY_PAYMENT_CARDS = "payment_cards";
 
+    private static final String KEY_DATA_VERSION = "data_version";
+    private static final int CURRENT_DATA_VERSION = 3; // Version 3 for multi-item orders demo
+
     private static DataManager instance;
     private Context context;
     private Gson gson;
@@ -95,7 +98,23 @@ public class DataManager {
         if (cachedProducts != null) return new ArrayList<>(cachedProducts);
         
         String json = prefs.getString(KEY_PRODUCTS, null);
-        if (json == null) return new ArrayList<>();
+        int savedVersion = prefs.getInt(KEY_DATA_VERSION, 0);
+
+        if (json == null || savedVersion < CURRENT_DATA_VERSION) {
+            List<Product> defaults = new ArrayList<>();
+            defaults.add(new Product("Structured Wool Coat", "1.200.000 ₫", com.example.saive.R.mipmap.jacket1, "Jackets"));
+            defaults.add(new Product("Archive Parka", "2.100.000 ₫", com.example.saive.R.mipmap.jacket2, "Jackets"));
+            defaults.add(new Product("Classic Cotton T-Shirt", "350.000 ₫", com.example.saive.R.mipmap.tshirt1, "T-Shirts"));
+            defaults.add(new Product("Straight Fit Jeans", "850.000 ₫", com.example.saive.R.mipmap.pant1, "Pants"));
+            defaults.add(new Product("Minimalist Bomber", "1.500.000 ₫", com.example.saive.R.mipmap.jacket3, "Jackets"));
+            defaults.add(new Product("Slim Tailored Pants", "950.000 ₫", com.example.saive.R.mipmap.pant3, "Pants"));
+            defaults.add(new Product("Signature Aviators", "450.000 ₫", com.example.saive.R.mipmap.sunglass1, "Accessories"));
+            
+            cachedProducts = new ArrayList<>(defaults);
+            saveProducts(defaults);
+            // We'll update the version in getOrders to ensure both are synced
+            return defaults;
+        }
         Type type = new TypeToken<ArrayList<Product>>() {}.getType();
         cachedProducts = gson.fromJson(json, type);
         return cachedProducts != null ? new ArrayList<>(cachedProducts) : new ArrayList<>();
@@ -111,7 +130,50 @@ public class DataManager {
         if (cachedOrders != null) return new ArrayList<>(cachedOrders);
         
         String json = prefs.getString(KEY_ORDERS, null);
-        if (json == null) return new ArrayList<>();
+        int savedVersion = prefs.getInt(KEY_DATA_VERSION, 0);
+
+        // Force reload if data is missing or old version
+        if (json == null || savedVersion < CURRENT_DATA_VERSION) {
+            List<AdminOrder> defaults = new ArrayList<>();
+            
+            // Order 1: Delivered, 2 items
+            AdminOrder order1 = new AdminOrder("ORD-2024-001", "John Doe", "Structured Wool Coat, Archive Parka", "3.300.000 ₫", "DELIVERED", "2 days ago");
+            List<com.example.saive.models.OrderItem> items1 = new ArrayList<>();
+            items1.add(new com.example.saive.models.OrderItem("Structured Wool Coat", "L", "Black", 1, "1.200.000 ₫", com.example.saive.R.mipmap.jacket1));
+            items1.add(new com.example.saive.models.OrderItem("Archive Parka", "XL", "Green", 1, "2.100.000 ₫", com.example.saive.R.mipmap.jacket2));
+            order1.setItems(items1);
+            order1.setShippingAddress("123 Le Loi, District 1, HCMC");
+            order1.setPaymentMethod("Momo");
+            defaults.add(order1);
+
+            // Order 2: Delivered, 3 items
+            AdminOrder order2 = new AdminOrder("ORD-2024-002", "Jane Smith", "T-Shirt, Jeans, Bomber", "2.700.000 ₫", "DELIVERED", "5 days ago");
+            List<com.example.saive.models.OrderItem> items2 = new ArrayList<>();
+            items2.add(new com.example.saive.models.OrderItem("Classic Cotton T-Shirt", "M", "White", 1, "350.000 ₫", com.example.saive.R.mipmap.tshirt1));
+            items2.add(new com.example.saive.models.OrderItem("Straight Fit Jeans", "32", "Blue", 1, "850.000 ₫", com.example.saive.R.mipmap.pant1));
+            items2.add(new com.example.saive.models.OrderItem("Minimalist Bomber", "L", "Navy", 1, "1.500.000 ₫", com.example.saive.R.mipmap.jacket3));
+            order2.setItems(items2);
+            order2.setShippingAddress("456 Nguyen Hue, District 1, HCMC");
+            order2.setPaymentMethod("COD");
+            defaults.add(order2);
+
+            // Order 3: Pending, 1 item
+            AdminOrder order3 = new AdminOrder("ORD-2024-003", "Alex Wilson", "Slim Tailored Pants", "950.000 ₫", "PENDING", "Just now");
+            List<com.example.saive.models.OrderItem> items3 = new ArrayList<>();
+            items3.add(new com.example.saive.models.OrderItem("Slim Tailored Pants", "30", "Grey", 1, "950.000 ₫", com.example.saive.R.mipmap.pant3));
+            order3.setItems(items3);
+            order3.setShippingAddress("789 Pasteur, District 3, HCMC");
+            order3.setPaymentMethod("Credit Card");
+            defaults.add(order3);
+
+            cachedOrders = new ArrayList<>(defaults);
+            saveOrders(defaults);
+            
+            // Update version after successfully initializing defaults
+            prefs.edit().putInt(KEY_DATA_VERSION, CURRENT_DATA_VERSION).apply();
+
+            return defaults;
+        }
         Type type = new TypeToken<ArrayList<AdminOrder>>() {}.getType();
         cachedOrders = gson.fromJson(json, type);
         return cachedOrders != null ? new ArrayList<>(cachedOrders) : new ArrayList<>();
@@ -186,6 +248,28 @@ public class DataManager {
         return false;
     }
 
+    private List<OnReviewChangeListener> reviewListeners = new ArrayList<>();
+
+    public interface OnReviewChangeListener {
+        void onReviewsChanged();
+    }
+
+    public void addReviewListener(OnReviewChangeListener listener) {
+        if (!reviewListeners.contains(listener)) {
+            reviewListeners.add(listener);
+        }
+    }
+
+    public void removeReviewListener(OnReviewChangeListener listener) {
+        reviewListeners.remove(listener);
+    }
+
+    private void notifyReviewListeners() {
+        for (OnReviewChangeListener listener : reviewListeners) {
+            listener.onReviewsChanged();
+        }
+    }
+
     // --- Reviews ---
     public List<Review> getReviews() {
         if (cachedReviews != null) return new ArrayList<>(cachedReviews);
@@ -200,6 +284,7 @@ public class DataManager {
     public void saveReviews(List<Review> reviews) {
         cachedReviews = reviews != null ? new ArrayList<>(reviews) : null;
         prefs.edit().putString(KEY_REVIEWS, gson.toJson(reviews)).apply();
+        notifyReviewListeners();
     }
 
     public void addReview(Review review) {

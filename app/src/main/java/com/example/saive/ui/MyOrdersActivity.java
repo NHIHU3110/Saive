@@ -90,7 +90,8 @@ public class MyOrdersActivity extends BaseActivity {
         filteredList = allOrders.stream()
                 .filter(o -> {
                     String s = o.getStatus() != null ? o.getStatus().toUpperCase(java.util.Locale.ROOT) : "PENDING";
-                    if (tabPosition == 0) return s.equals("PENDING") || s.equals("SHIPPED");
+                    if (tabPosition == 0) return s.equals("PENDING") || s.equals("SHIPPED") || s.equals("IN PROGRESS");
+                    if (tabPosition == 1) return s.equals("COMPLETED") || s.equals("DELIVERED");
                     return s.equals(statusFilter);
                 })
                 .collect(Collectors.toList());
@@ -116,7 +117,7 @@ public class MyOrdersActivity extends BaseActivity {
                 @Override
                 public void onActionClick(AdminOrder order) {
                     String s = order.getStatus() != null ? order.getStatus().toUpperCase(java.util.Locale.ROOT) : "PENDING";
-                    if (s.equals("COMPLETED")) {
+                    if (s.equals("COMPLETED") || s.equals("DELIVERED")) {
                         ReviewBottomSheetFragment fragment = ReviewBottomSheetFragment.newInstance(order);
                         fragment.show(getSupportFragmentManager(), "ReviewBottomSheet");
                     } else {

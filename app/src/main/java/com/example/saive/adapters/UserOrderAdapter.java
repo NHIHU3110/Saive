@@ -41,7 +41,7 @@ public class UserOrderAdapter extends RecyclerView.Adapter<UserOrderAdapter.Orde
         
         // Set action button text based on status
         String status = order.getStatus() != null ? order.getStatus().toUpperCase(java.util.Locale.ROOT) : "PENDING";
-        if (status.equals("COMPLETED")) {
+        if (status.equals("COMPLETED") || status.equals("DELIVERED")) {
             holder.btnAction.setText(R.string.btn_leave_review);
         } else if (status.equals("CANCELLED")) {
             holder.btnAction.setText(R.string.btn_reorder);
