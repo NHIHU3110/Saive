@@ -57,10 +57,15 @@ public class ProductGridAdapter extends RecyclerView.Adapter<ProductGridAdapter.
         holder.tvName.setText(product.getName().toUpperCase());
         
         // Hiển thị giá gốc và giá giảm
-        if (product.getOriginalPrice() != null) {
+        if (product.getOriginalPrice() != null && !product.getOriginalPrice().isEmpty()) {
             holder.tvOriginalPrice.setVisibility(View.VISIBLE);
             holder.tvOriginalPrice.setText(PriceFormatter.formatPrice(product.getOriginalPrice()));
             holder.tvOriginalPrice.setPaintFlags(holder.tvOriginalPrice.getPaintFlags() | android.graphics.Paint.STRIKE_THRU_TEXT_FLAG);
+
+            // Căn lề cho giá hiện tại khi có giá gốc
+            android.widget.LinearLayout.LayoutParams params = (android.widget.LinearLayout.LayoutParams) holder.tvPrice.getLayoutParams();
+            params.setMarginStart((int) (6 * holder.itemView.getContext().getResources().getDisplayMetrics().density));
+            holder.tvPrice.setLayoutParams(params);
 
             // Show discount badge
             if (holder.tvDiscountBadge != null) {
@@ -69,13 +74,23 @@ public class ProductGridAdapter extends RecyclerView.Adapter<ProductGridAdapter.
                     double original = PriceFormatter.parsePrice(product.getOriginalPrice());
                     double current = PriceFormatter.parsePrice(product.getPrice());
                     int percent = (int) (100 - (current * 100 / original));
-                    holder.tvDiscountBadge.setText(holder.itemView.getContext().getString(R.string.discount_format, percent));
+                    if (percent > 0) {
+                        holder.tvDiscountBadge.setText(holder.itemView.getContext().getString(R.string.discount_format, percent));
+                    } else {
+                        holder.tvDiscountBadge.setText(holder.itemView.getContext().getString(R.string.label_sale));
+                    }
                 } catch (Exception e) {
                     holder.tvDiscountBadge.setText(holder.itemView.getContext().getString(R.string.label_sale));
                 }
             }
         } else {
             holder.tvOriginalPrice.setVisibility(View.GONE);
+            
+            // Reset margin khi không có giá gốc
+            android.widget.LinearLayout.LayoutParams params = (android.widget.LinearLayout.LayoutParams) holder.tvPrice.getLayoutParams();
+            params.setMarginStart(0);
+            holder.tvPrice.setLayoutParams(params);
+
             if (holder.tvDiscountBadge != null) {
                 holder.tvDiscountBadge.setVisibility(View.GONE);
             }

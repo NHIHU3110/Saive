@@ -55,39 +55,39 @@ public class FlashProductAdapter extends RecyclerView.Adapter<FlashProductAdapte
         ImageUtils.setSafeImage(holder.ivProduct, product.getImageResId());
 
         holder.tvName.setText(product.getName().toUpperCase());
-        holder.tvPrice.setText(PriceFormatter.formatPrice(product.getPrice()));
-
+        
         if (product.getOriginalPrice() != null && !product.getOriginalPrice().isEmpty()) {
             holder.tvOriginalPrice.setText(PriceFormatter.formatPrice(product.getOriginalPrice()));
             holder.tvOriginalPrice.setVisibility(View.VISIBLE);
             holder.tvOriginalPrice.setPaintFlags(holder.tvOriginalPrice.getPaintFlags() | android.graphics.Paint.STRIKE_THRU_TEXT_FLAG);
+            
+            holder.tvPrice.setText(PriceFormatter.formatPrice(product.getPrice()));
+            holder.tvPrice.setTypeface(null, android.graphics.Typeface.BOLD);
 
-            View badge = holder.itemView.findViewById(R.id.tvDiscountBadge);
-            if (badge instanceof TextView) {
-                badge.setVisibility(View.VISIBLE);
+            // Hiển thị Badge giảm giá
+            TextView badge = holder.itemView.findViewById(R.id.tvDiscountBadge);
+            if (badge != null) {
                 try {
                     double original = PriceFormatter.parsePrice(product.getOriginalPrice());
                     double current = PriceFormatter.parsePrice(product.getPrice());
                     if (original > current) {
-                        int percent = (int) (100 - (current * 100 / original));
-                        String discountText = "-" + percent + "%";
-                        ((TextView) badge).setText(discountText);
+                        int percent = (int) Math.round(100 - (current * 100 / original));
+                        badge.setText("-" + percent + "%");
+                        badge.setVisibility(View.VISIBLE);
                     } else {
-                        ((TextView) badge).setText(holder.itemView.getContext().getString(R.string.label_sale));
+                        badge.setVisibility(View.GONE);
                     }
                 } catch (Exception e) {
-                    ((TextView) badge).setText(holder.itemView.getContext().getString(R.string.label_sale));
+                    badge.setVisibility(View.GONE);
                 }
             }
         } else {
             holder.tvOriginalPrice.setVisibility(View.GONE);
+            holder.tvPrice.setText(PriceFormatter.formatPrice(product.getPrice()));
+            holder.tvPrice.setTypeface(null, android.graphics.Typeface.NORMAL);
+            
             View badge = holder.itemView.findViewById(R.id.tvDiscountBadge);
-            if (badge != null) {
-                badge.setVisibility(View.VISIBLE);
-                if (badge instanceof TextView) {
-                    ((TextView) badge).setText(holder.itemView.getContext().getString(R.string.label_sale));
-                }
-            }
+            if (badge != null) badge.setVisibility(View.GONE);
         }
 
         if (textColor != -1) {

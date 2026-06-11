@@ -26,6 +26,7 @@ import com.example.saive.utils.ImageUtils;
 import com.example.saive.adapters.FlashProductAdapter;
 import com.example.saive.adapters.ReviewAdapter;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.RatingBar;
 import com.example.saive.models.Review;
 import java.util.ArrayList;
@@ -277,6 +278,15 @@ public class ProductDetailActivity extends BaseActivity {
                 String shareMessage = getString(R.string.share_message_format, currentProduct.getName(), currentProduct.getPrice());
                 shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
                 startActivity(Intent.createChooser(shareIntent, getString(R.string.btn_share)));
+            });
+        }
+
+        FrameLayout btnSearch = findViewById(R.id.btnSearch);
+        if (btnSearch != null) {
+            btnSearch.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                Intent intent = new Intent(ProductDetailActivity.this, SearchActivity.class);
+                startActivity(intent);
             });
         }
 

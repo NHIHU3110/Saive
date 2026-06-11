@@ -33,12 +33,15 @@
             app:tint="@color/colorNoirBlack" />
 
         <FrameLayout
+            android:id="@+id/btnSearch"
             android:layout_width="0dp"
             android:layout_height="44dp"
             android:layout_weight="1"
             android:layout_marginEnd="12dp"
             android:background="@drawable/bg_rounded_white_8dp"
             android:backgroundTint="#08000000"
+            android:clickable="true"
+            android:focusable="true"
             android:paddingHorizontal="16dp">
 
             <ImageView

@@ -225,13 +225,12 @@ public class FlashSaleActivity extends BaseActivity {
 
     private void setupProducts() {
         allProducts = DataManager.getInstance(this).getFlashSaleProducts();
+        
+        // Removed hardcoded fallback to ensure consistency with MainActivity
         if (allProducts.isEmpty()) {
-            allProducts.add(new Product("Structured Wool Coat", "840.000", "1.200.000", R.mipmap.jacket1, getString(R.string.cat_jacket)));
-            allProducts.add(new Product("Oversized Tee", "147.000", "350.000", R.mipmap.tshirt2, getString(R.string.cat_tshirt)));
-            allProducts.add(new Product("Straight Fit Jeans", "510.000", "850.000", R.mipmap.pant1, getString(R.string.cat_jeans)));
-            allProducts.add(new Product("Signature Aviators", "270.000", "450.000", R.mipmap.sunglass1, getString(R.string.cat_sunglasses)));
-            allProducts.add(new Product("Archive Parka", "1.470.000", "2.100.000", R.mipmap.jacket2, getString(R.string.cat_jacket)));
-            DataManager.getInstance(this).saveFlashSaleProducts(allProducts);
+            // In case FlashSaleActivity is opened directly without MainActivity initializing data
+            // but ideally MainActivity or a Splash/Data initialization should handle this.
+            // For safety, we can show an empty state or try to generate here if needed.
         }
 
         adapter = new FlashSaleGridAdapter(allProducts);

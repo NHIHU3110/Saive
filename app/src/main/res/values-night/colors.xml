@@ -27,6 +27,10 @@
     <color name="colorAlwaysWhite">#FFFFFF</color>
     <color name="colorAlwaysBlack">#000000</color>
 
+    <!-- Table Colors for Dark Mode -->
+    <color name="colorSizeTableHead">#4A4A48</color>
+    <color name="colorSizeTableRowAlt">#2C2C2A</color>
+
     <!-- Brand Colors for Dark Mode (Redirected to Sand/Beige for Quiet Luxury) -->
     <color name="colorMaroon">#A89B85</color> <!-- Sand for accents -->
     <color name="colorAccentRed">#A89B85</color>

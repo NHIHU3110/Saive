@@ -239,9 +239,9 @@ public class MainActivity extends BaseActivity {
 
         initViews();
         setupBannerViewPager();
+        setupWardrobe();
         setupFlashSale();
         setupWardrobeCategories();
-        setupWardrobe();
         setupWardrobeBanners();
         setupViewPager();
         setupNotifications();
@@ -899,18 +899,12 @@ public class MainActivity extends BaseActivity {
     private void setupFlashSale() {
         rvFlashSale = findViewById(R.id.rvFlashSale);
         
-        // Lấy danh sách sản phẩm Flash Sale từ DataManager để đồng bộ với FlashSaleActivity
+        // Luôn làm mới dữ liệu Flash Sale từ Wardrobe để đảm bảo tính nhất quán (Sửa lỗi deploy)
+        generateFlashSaleFromWardrobe();
         flashProductList = DataManager.getInstance(this).getFlashSaleProducts();
-        
-        if (flashProductList.isEmpty()) {
-            // Nếu trống, thêm dữ liệu mặc định và lưu lại
-            flashProductList.add(new Product("Structured Wool Coat", "840.000", "1.200.000", R.mipmap.jacket1, getString(R.string.cat_jacket)));
-            flashProductList.add(new Product("Oversized Tee", "147.000", "350.000", R.mipmap.tshirt2, getString(R.string.cat_tshirt)));
-            flashProductList.add(new Product("Straight Fit Jeans", "510.000", "850.000", R.mipmap.pant1, getString(R.string.cat_jeans)));
-            flashProductList.add(new Product("Signature Aviators", "270.000", "450.000", R.mipmap.sunglass1, getString(R.string.cat_sunglasses)));
-            flashProductList.add(new Product("Archive Parka", "1.470.000", "2.100.000", R.mipmap.jacket2, getString(R.string.cat_jacket)));
-            DataManager.getInstance(this).saveFlashSaleProducts(flashProductList);
-        }
+
+        // Cập nhật danh sách wardrobe gốc với thông tin sale
+        updateWardrobeWithFlashSale();
 
         FlashProductAdapter adapter = new FlashProductAdapter(flashProductList);
         // Do not set color here, use default dark text for light item background
@@ -932,6 +926,61 @@ public class MainActivity extends BaseActivity {
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             });
+        }
+    }
+
+    private void generateFlashSaleFromWardrobe() {
+        if (fullWardrobeList == null || fullWardrobeList.isEmpty()) return;
+        
+        List<Product> tempFlash = new ArrayList<>();
+        // Tạo một bản sao để shuffle mà không ảnh hưởng list gốc
+        List<Product> shuffleList = new ArrayList<>(fullWardrobeList);
+        java.util.Collections.shuffle(shuffleList);
+        
+        // Chọn 5 sản phẩm ngẫu nhiên để làm Flash Sale
+        int count = Math.min(5, shuffleList.size());
+        for (int i = 0; i < count; i++) {
+            Product original = shuffleList.get(i);
+            
+            // Tính toán giá sale ngẫu nhiên (giảm 20% - 60%)
+            try {
+                double priceVal = com.example.saive.utils.PriceFormatter.parsePrice(original.getPrice());
+                // Sử dụng seed cố định hoặc logic để tránh nhảy giá quá nhiều khi resume
+                double discount = 0.2 + (0.1 * (i % 4)); 
+                double salePriceVal = priceVal * (1 - discount);
+                
+                String salePrice = String.format(java.util.Locale.US, "%.0f", salePriceVal);
+                String originalPrice = String.format(java.util.Locale.US, "%.0f", priceVal);
+                
+                // Tạo sản phẩm Flash Sale mới dựa trên sản phẩm trong wardrobe
+                Product flashProduct = new Product(original.getName(), salePrice, originalPrice, 
+                        original.getImageResId(), original.getCategory());
+                tempFlash.add(flashProduct);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        
+        if (flashProductList == null) flashProductList = new ArrayList<>();
+        flashProductList.clear();
+        flashProductList.addAll(tempFlash);
+        DataManager.getInstance(this).saveFlashSaleProducts(flashProductList);
+    }
+
+    private void updateWardrobeWithFlashSale() {
+        if (fullWardrobeList == null || fullWardrobeList.isEmpty()) return;
+        
+        List<Product> currentFlash = DataManager.getInstance(this).getFlashSaleProducts();
+        if (currentFlash.isEmpty()) return;
+
+        for (Product wardrobeProduct : fullWardrobeList) {
+            for (Product flashProduct : currentFlash) {
+                if (wardrobeProduct.getName().equals(flashProduct.getName())) {
+                    // Cập nhật giá sale cho sản phẩm trong wardrobe nếu trùng tên
+                    wardrobeProduct.setPrice(flashProduct.getPrice());
+                    wardrobeProduct.setOriginalPrice(flashProduct.getOriginalPrice());
+                }
+            }
         }
     }
 
@@ -994,9 +1043,19 @@ public class MainActivity extends BaseActivity {
         updateCartBadge(); // Cập nhật badge khi quay lại từ màn hình khác
         setupHomeTimer(); // Restart timer to sync or ensure it's running
         
+        // Refresh flash sale and sync with wardrobe
+        flashProductList.clear();
+        flashProductList.addAll(DataManager.getInstance(this).getFlashSaleProducts());
+        updateWardrobeWithFlashSale();
+
         // Refresh wardrobe adapter when returning to MainActivity
         if (wardrobeAdapter != null) {
             wardrobeAdapter.notifyDataSetChanged();
+        }
+        
+        RecyclerView rvFlashSale = findViewById(R.id.rvFlashSale);
+        if (rvFlashSale != null && rvFlashSale.getAdapter() != null) {
+            rvFlashSale.getAdapter().notifyDataSetChanged();
         }
     }
 

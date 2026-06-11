@@ -73,15 +73,19 @@ public class FlashSaleGridAdapter extends RecyclerView.Adapter<FlashSaleGridAdap
         }
         
         // Discount badge logic
-        if (product.getOriginalPrice() != null) {
-            holder.tvDiscount.setVisibility(View.VISIBLE);
+        if (product.getOriginalPrice() != null && !product.getOriginalPrice().isEmpty()) {
             try {
                 double original = PriceFormatter.parsePrice(product.getOriginalPrice());
                 double current = PriceFormatter.parsePrice(product.getPrice());
-                int percent = (int) (100 - (current * 100 / original));
-                holder.tvDiscount.setText("-" + percent + "%");
+                if (original > current) {
+                    int percent = (int) Math.round(100 - (current * 100 / original));
+                    holder.tvDiscount.setText("-" + percent + "%");
+                    holder.tvDiscount.setVisibility(View.VISIBLE);
+                } else {
+                    holder.tvDiscount.setVisibility(View.GONE);
+                }
             } catch (Exception e) {
-                holder.tvDiscount.setText("SALE");
+                holder.tvDiscount.setVisibility(View.GONE);
             }
         } else {
             holder.tvDiscount.setVisibility(View.GONE);

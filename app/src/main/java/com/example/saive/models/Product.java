@@ -39,11 +39,17 @@ public class Product implements Serializable {
     }
 
     public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
     public String getPrice() { return price; }
+    public void setPrice(String price) { this.price = price; }
     public String getOriginalPrice() { return originalPrice; }
+    public void setOriginalPrice(String originalPrice) { this.originalPrice = originalPrice; }
     public int getImageResId() { return imageResId; }
+    public void setImageResId(int imageResId) { this.imageResId = imageResId; }
     public String getCategory() { return category; }
+    public void setCategory(String category) { this.category = category; }
     public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
     public long getTimestamp() { return timestamp; }
     public void setTimestamp(long timestamp) { this.timestamp = timestamp; }
 

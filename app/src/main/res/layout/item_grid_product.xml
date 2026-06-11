@@ -68,28 +68,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cardProduct" />
 
-    <TextView
-        android:id="@+id/tvOriginalPrice"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/priceContainer"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:fontFamily="sans-serif-light"
-        tools:text="400.000 đ"
-        android:textColor="@color/colorGrayText"
-        android:textSize="11sp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvItemName" />
+        app:layout_constraintTop_toBottomOf="@id/tvItemName">
 
-    <TextView
-        android:id="@+id/tvItemPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:fontFamily="sans-serif-medium"
-        tools:text="320.000 đ"
-        android:textColor="@color/colorMaroon"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvOriginalPrice" />
+        <TextView
+            android:id="@+id/tvOriginalPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            tools:text="400.000 đ"
+            android:textColor="@color/colorGrayText"
+            android:textSize="11sp"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tvItemPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:fontFamily="sans-serif-medium"
+            tools:text="320.000 đ"
+            android:textColor="@color/colorMaroon"
+            android:textSize="12sp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,6 +19,10 @@
     <color name="colorIvory">#FAF8F3</color>
     <color name="colorLinen">#D4C9B8</color>
 
+    <!-- Table Colors -->
+    <color name="colorSizeTableHead">#E4E0D6</color>
+    <color name="colorSizeTableRowAlt">#D9D2C4</color>
+
     <!-- UI Element Colors -->
     <color name="colorGrey">#888888</color>
     <color name="colorGrayText">#888888</color>
