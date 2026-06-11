@@ -14,6 +14,7 @@
         android:layout_marginTop="16dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:src="@drawable/ic_back"
+        android:contentDescription="@string/nav_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/colorNoirBlack" />
@@ -49,6 +50,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:src="@drawable/ic_all"
+            android:contentDescription="@null"
             app:tint="@color/colorSand" />
 
         <EditText
@@ -62,6 +64,7 @@
             android:inputType="text"
             android:textColor="@color/colorNoirBlack"
             android:textColorHint="@color/colorGrayText"
+            android:importantForAutofill="no"
             android:textSize="14sp" />
 
         <ImageView
@@ -71,6 +74,7 @@
             android:src="@drawable/ic_plus"
             android:rotation="45"
             android:visibility="gone"
+            android:contentDescription="@null"
             app:tint="@color/colorSand" />
     </LinearLayout>
 
@@ -92,6 +96,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/ic_pin_drop"
+            android:contentDescription="@null"
             app:tint="#795548" />
 
         <TextView
@@ -151,6 +156,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:src="@drawable/ic_pin_drop"
+        android:contentDescription="@null"
         app:layout_constraintBottom_toBottomOf="@id/map"
         app:layout_constraintEnd_toEndOf="@id/map"
         app:layout_constraintStart_toStartOf="@id/map"
@@ -164,7 +170,7 @@
         android:layout_height="52dp"
         android:layout_margin="20dp"
         android:background="@drawable/bg_rounded_maroon_btn"
-        android:text="CONFIRM LOCATION"
+        android:text="@string/btn_confirm_location"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent" />

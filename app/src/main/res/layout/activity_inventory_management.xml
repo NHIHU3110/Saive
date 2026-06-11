@@ -22,13 +22,14 @@
 
         <ImageButton
             android:id="@+id/btnBack"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="@drawable/bg_circle_white"
             android:elevation="4dp"
             android:padding="12dp"
             android:scaleType="centerInside"
             android:src="@drawable/ic_back"
+            android:contentDescription="@string/nav_back"
             app:tint="@color/colorMaroon" />
 
         <TextView
@@ -47,13 +48,14 @@
 
         <ImageButton
             android:id="@+id/btnAddProduct"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="@drawable/bg_circle_white"
             android:elevation="4dp"
             android:padding="12dp"
             android:scaleType="centerInside"
             android:src="@drawable/ic_plus"
+            android:contentDescription="@string/admin_add_piece"
             app:tint="@color/colorMaroon" />
     </LinearLayout>
 
@@ -67,7 +69,7 @@
         app:cardCornerRadius="24dp"
         app:cardElevation="4dp"
         app:strokeWidth="0dp"
-        app:cardBackgroundColor="@color/white"
+        app:cardBackgroundColor="@color/colorAddressCardBg"
         app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <LinearLayout
@@ -81,7 +83,8 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@android:drawable/ic_menu_search"
-                app:tint="@color/colorSand" />
+                android:contentDescription="@null"
+                app:tint="@color/colorGrayText" />
 
             <EditText
                 android:id="@+id/etSearchInventory"
@@ -89,10 +92,13 @@
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:hint="@string/search_hint"
+                android:inputType="text"
                 android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:importantForAutofill="no"
                 android:textSize="14sp"
                 android:textColor="@color/colorNoirBlack"
-                android:textColorHint="@color/colorSand"
+                android:textColorHint="@color/colorGrayText"
                 android:fontFamily="sans-serif-light" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
