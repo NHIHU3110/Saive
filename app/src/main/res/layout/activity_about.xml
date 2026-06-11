@@ -148,7 +148,7 @@
                         style="@style/TextAppearance.Saive.Nav"
                         android:letterSpacing="0.2"
                         android:text="@string/about_hero_subtitle"
-                        android:textColor="@color/colorCotton"
+                        android:textColor="@color/white"
                         android:alpha="0.8" />
                 </LinearLayout>
             </FrameLayout>

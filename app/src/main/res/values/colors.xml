@@ -38,6 +38,10 @@
     <color name="colorActionBlue">#0047FF</color>
     <color name="colorGreen">#4CAF50</color>
 
+    <!-- Colors for content on Flash Sale background (Adaptive) -->
+    <color name="colorFlashSaleContent">@color/colorLinen</color>
+    <color name="colorFlashSaleContentSecondary">@color/colorSand</color>
+
     <!-- Colors for content on Maroon background (Adaptive) -->
     <color name="colorOnMaroon">#FFFFFF</color>
     <color name="colorOnMaroonSecondary">#B0FFFFFF</color>

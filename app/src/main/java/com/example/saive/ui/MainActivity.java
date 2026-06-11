@@ -904,16 +904,17 @@ public class MainActivity extends BaseActivity {
         
         if (flashProductList.isEmpty()) {
             // Nếu trống, thêm dữ liệu mặc định và lưu lại
-            flashProductList.add(new Product("Archived Wool Coat", "320.000", "500.000", R.mipmap.jacket1, getString(R.string.cat_jacket)));
-            flashProductList.add(new Product("Vintage Linen Shirt", "120.000", "200.000", R.mipmap.tshirt2, getString(R.string.cat_tshirt)));
-            flashProductList.add(new Product("Urban Shades", "140.000", "250.000", R.mipmap.sunglass4, getString(R.string.cat_sunglasses)));
-            flashProductList.add(new Product("Classic Chinos", "95.000", "150.000", R.mipmap.pant2, getString(R.string.cat_jeans)));
-            flashProductList.add(new Product("Retro Frames", "150.000", "280.000", R.mipmap.sunglass5, getString(R.string.cat_sunglasses)));
+            flashProductList.add(new Product("Structured Wool Coat", "840.000", "1.200.000", R.mipmap.jacket1, getString(R.string.cat_jacket)));
+            flashProductList.add(new Product("Oversized Tee", "147.000", "350.000", R.mipmap.tshirt2, getString(R.string.cat_tshirt)));
+            flashProductList.add(new Product("Straight Fit Jeans", "510.000", "850.000", R.mipmap.pant1, getString(R.string.cat_jeans)));
+            flashProductList.add(new Product("Signature Aviators", "270.000", "450.000", R.mipmap.sunglass1, getString(R.string.cat_sunglasses)));
+            flashProductList.add(new Product("Archive Parka", "1.470.000", "2.100.000", R.mipmap.jacket2, getString(R.string.cat_jacket)));
             DataManager.getInstance(this).saveFlashSaleProducts(flashProductList);
         }
 
         FlashProductAdapter adapter = new FlashProductAdapter(flashProductList);
-        adapter.setTextColor(ContextCompat.getColor(this, R.color.colorCotton));
+        // Do not set color here, use default dark text for light item background
+
         // Thiết lập LinearLayoutManager nằm ngang
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         rvFlashSale.setLayoutManager(layoutManager);

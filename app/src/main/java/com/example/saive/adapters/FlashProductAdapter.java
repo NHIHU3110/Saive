@@ -57,20 +57,24 @@ public class FlashProductAdapter extends RecyclerView.Adapter<FlashProductAdapte
         holder.tvName.setText(product.getName().toUpperCase());
         holder.tvPrice.setText(PriceFormatter.formatPrice(product.getPrice()));
 
-        if (product.getOriginalPrice() != null) {
+        if (product.getOriginalPrice() != null && !product.getOriginalPrice().isEmpty()) {
             holder.tvOriginalPrice.setText(PriceFormatter.formatPrice(product.getOriginalPrice()));
             holder.tvOriginalPrice.setVisibility(View.VISIBLE);
             holder.tvOriginalPrice.setPaintFlags(holder.tvOriginalPrice.getPaintFlags() | android.graphics.Paint.STRIKE_THRU_TEXT_FLAG);
-            
-            // Show discount badge if it exists in the layout
+
             View badge = holder.itemView.findViewById(R.id.tvDiscountBadge);
             if (badge instanceof TextView) {
                 badge.setVisibility(View.VISIBLE);
                 try {
                     double original = PriceFormatter.parsePrice(product.getOriginalPrice());
                     double current = PriceFormatter.parsePrice(product.getPrice());
-                    int percent = (int) (100 - (current * 100 / original));
-                    ((TextView) badge).setText(holder.itemView.getContext().getString(R.string.discount_format, percent));
+                    if (original > current) {
+                        int percent = (int) (100 - (current * 100 / original));
+                        String discountText = "-" + percent + "%";
+                        ((TextView) badge).setText(discountText);
+                    } else {
+                        ((TextView) badge).setText(holder.itemView.getContext().getString(R.string.label_sale));
+                    }
                 } catch (Exception e) {
                     ((TextView) badge).setText(holder.itemView.getContext().getString(R.string.label_sale));
                 }
@@ -78,12 +82,18 @@ public class FlashProductAdapter extends RecyclerView.Adapter<FlashProductAdapte
         } else {
             holder.tvOriginalPrice.setVisibility(View.GONE);
             View badge = holder.itemView.findViewById(R.id.tvDiscountBadge);
-            if (badge != null) badge.setVisibility(View.GONE);
+            if (badge != null) {
+                badge.setVisibility(View.VISIBLE);
+                if (badge instanceof TextView) {
+                    ((TextView) badge).setText(holder.itemView.getContext().getString(R.string.label_sale));
+                }
+            }
         }
 
         if (textColor != -1) {
             holder.tvName.setTextColor(textColor);
             holder.tvPrice.setTextColor(textColor);
+            holder.tvOriginalPrice.setTextColor(textColor);
         }
 
         boolean isFavorite = FavoriteManager.getInstance(holder.itemView.getContext()).isFavorite(product);

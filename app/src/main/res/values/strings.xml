@@ -770,6 +770,8 @@
     <string name="card_preview_number">**** **** **** ****</string>
     <string name="card_preview_holder">CARD HOLDER</string>
     <string name="card_preview_expiry">MM/YY</string>
+    <string name="label_card_holder_caps">CARD HOLDER</string>
+    <string name="label_expires_caps">EXPIRES</string>
     <string name="error_invalid_card_number">Invalid card number</string>
     <string name="toast_card_added">Card added successfully</string>
 
@@ -819,7 +821,7 @@
     <string name="label_in_progress">In Progress</string>
     <string name="label_view_more_products">View more (+%1$d products)</string>
     <string name="label_added_to_cart">Added to cart</string>
-    <string name="label_products_vn">Sản phẩm</string>
+    <string name="label_products_vn">Products</string>
     <string name="label_expires_in_days">Expires in %1$d days</string>
     <string name="label_add_new_card">Add New Card</string>
     <string name="label_save_card">SAVE CARD</string>
@@ -858,4 +860,6 @@
     <string name="error_new_password_same">New password cannot be the same as current password</string>
     <string name="error_confirm_password_required">Please confirm your new password</string>
     <string name="toast_password_changed">Password updated successfully</string>
+    <string name="empty_cart">Your cart is empty</string>
+    <string name="empty_cart_desc">Looks like you haven\'t added anything to your cart yet.</string>
 </resources>
