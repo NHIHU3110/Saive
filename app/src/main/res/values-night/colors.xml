@@ -64,4 +64,12 @@
     <!-- Colors for content on Flash Sale background (Adaptive) -->
     <color name="colorFlashSaleContent">#1A1A1A</color>
     <color name="colorFlashSaleContentSecondary">#1A1A1A</color>
+
+    <!-- Auth Card Adaptive -->
+    <color name="colorAuthCardBg">@color/colorCotton</color>
+    <color name="colorAuthCardTitle">@color/colorNoirBlack</color>
+    <color name="colorAuthCardSubtitle">@color/colorGrayText</color>
+
+    <!-- Search Box Adaptive -->
+    <color name="colorSearchBoxBg">#2A2A28</color>
 </resources>

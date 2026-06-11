@@ -96,4 +96,7 @@
 
     <!-- Translucent Surface Adaptive -->
     <color name="colorTranslucentSurface">#08000000</color>
+
+    <!-- Search Box Adaptive -->
+    <color name="colorSearchBoxBg">#F5F5F5</color>
 </resources>

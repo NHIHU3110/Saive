@@ -24,14 +24,14 @@
         android:layout_height="140dp"
         android:layout_marginTop="120dp"
         android:background="@drawable/bg_circle_beige"
-        android:backgroundTint="#F5F5F5"
+        android:backgroundTint="@color/colorSearchBoxBg"
         android:padding="40dp"
         android:src="@drawable/ic_pin_drop"
         android:contentDescription="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="#795548" />
+        app:tint="@color/colorMaroon" />
 
     <TextView
         android:id="@+id/tvHeadline"
@@ -65,10 +65,9 @@
         android:layout_height="56dp"
         android:layout_marginTop="48dp"
         android:background="@drawable/bg_rounded_maroon_btn"
-        android:backgroundTint="#795548"
         android:text="@string/location_btn_allow"
         android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:textColor="@color/colorButtonText"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/tvSubheadline" />
 
@@ -79,7 +78,7 @@
         android:layout_marginTop="24dp"
         android:padding="8dp"
         android:text="@string/location_btn_manual"
-        android:textColor="#795548"
+        android:textColor="@color/colorMaroon"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
