@@ -78,6 +78,7 @@ public class EditProfileActivity extends BaseActivity {
         }
     }
 
+    @android.annotation.SuppressLint("InflateParams")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -147,7 +148,7 @@ public class EditProfileActivity extends BaseActivity {
             picker.addOnPositiveButtonClickListener(selection -> {
                 Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
                 cal.setTimeInMillis(selection);
-                String dob = String.format("%02d/%02d/%d",
+                String dob = String.format(java.util.Locale.ROOT, "%02d/%02d/%d",
                         cal.get(Calendar.DAY_OF_MONTH),
                         cal.get(Calendar.MONTH) + 1,
                         cal.get(Calendar.YEAR));

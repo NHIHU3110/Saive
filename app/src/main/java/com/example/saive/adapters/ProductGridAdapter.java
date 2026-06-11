@@ -12,6 +12,7 @@ import com.example.saive.utils.FavoriteManager;
 import androidx.core.content.ContextCompat;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.saive.R;
 import com.example.saive.models.Product;
@@ -37,8 +38,10 @@ public class ProductGridAdapter extends RecyclerView.Adapter<ProductGridAdapter.
     }
 
     public void updateData(List<Product> newProducts) {
+        ProductDiffCallback diffCallback = new ProductDiffCallback(this.products, newProducts);
+        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);
         this.products = newProducts;
-        notifyDataSetChanged();
+        diffResult.dispatchUpdatesTo(this);
     }
 
     @NonNull
@@ -54,7 +57,7 @@ public class ProductGridAdapter extends RecyclerView.Adapter<ProductGridAdapter.
         
         ImageUtils.setSafeImage(holder.ivProduct, product.getImageResId());
 
-        holder.tvName.setText(product.getName().toUpperCase());
+        holder.tvName.setText(product.getName().toUpperCase(java.util.Locale.getDefault()));
         
         // Hiển thị giá gốc và giá giảm
         if (product.getOriginalPrice() != null && !product.getOriginalPrice().isEmpty()) {

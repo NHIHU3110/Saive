@@ -30,19 +30,15 @@ android {
         }
     }
 
-    sourceSets {
-        getByName("main") {
-            res.setSrcDirs(
-                listOf(
-                    "src/main/res"
-                )
-            )
-        }
-    }
+    // sourceSets config removed as it only contained default values
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    buildFeatures {
+        viewBinding = true
     }
 }
 
@@ -52,8 +48,8 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.recyclerview)
-    implementation("androidx.core:core-splashscreen:1.0.1")
-    implementation("com.airbnb.android:lottie:6.4.0")
+    implementation("androidx.core:core-splashscreen:1.2.0")
+    implementation("com.airbnb.android:lottie:6.7.1")
     implementation(libs.gson)
     implementation(libs.google.maps)
     implementation(libs.google.places)

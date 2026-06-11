@@ -256,7 +256,7 @@
                             android:layout_marginEnd="8dp"
                             android:background="@drawable/bg_circle_maroon"
                             android:paddingHorizontal="6dp"
-                            android:text="0"
+                            tools:text="0"
                             android:textColor="@color/colorButtonText"
                             android:textSize="10sp"
                             android:gravity="center" />
@@ -518,7 +518,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp"
                             style="@style/TextAppearance.Saive.Light"
-                            android:text="English"
+                            tools:text="English"
                             android:textColor="@color/colorNoirBlack"
                             android:alpha="0.6"
                             android:textSize="12sp" />
@@ -708,15 +708,15 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <!-- FIXED BOTTOM NAVIGATION -->
+    <!-- BOTTOM NAVIGATION -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorHeaderBg"
-        android:elevation="16dp"
         android:clipChildren="false"
         android:clipToPadding="false"
+        android:elevation="16dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
@@ -786,7 +786,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/TextAppearance.Saive.Nav"
-                    android:text="SAIVE"
+                    android:text=" "
                     android:visibility="invisible"/>
             </LinearLayout>
 
@@ -862,7 +862,7 @@
             android:layout_height="@dimen/center_action_size"
             android:background="@drawable/bg_circle_white"
             android:elevation="24dp"
-            android:alpha="0.5"
+            android:alpha="0.8"
             android:transitionName="nav_circle"
             app:layout_constraintBottom_toBottomOf="@id/navItemsContainer"
             app:layout_constraintTop_toTopOf="@id/navItemsContainer"

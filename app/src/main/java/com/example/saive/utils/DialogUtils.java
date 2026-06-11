@@ -18,6 +18,7 @@ public class DialogUtils {
         void onConfirmed();
     }
 
+    @android.annotation.SuppressLint("InflateParams")
     public static void showCustomAlertDialog(Context context, String title, String message, String positiveText, String negativeText, DialogCallback callback) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         View dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_custom_alert, null);

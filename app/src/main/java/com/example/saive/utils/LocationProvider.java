@@ -9,6 +9,11 @@ import java.util.List;
 
 public class LocationProvider {
     private static List<Province> provinces;
+    private static boolean isLoading = false;
+
+    public interface LocationLoadListener {
+        void onLoaded();
+    }
 
     public static class Province {
         public String name;
@@ -21,38 +26,60 @@ public class LocationProvider {
     }
 
     public static void init(Context context) {
-        if (provinces != null) return;
-        try {
-            InputStream is = context.getAssets().open("data/vietnam_provinces.json");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            String json = new String(buffer, "UTF-8");
-            JSONArray provinceArray = new JSONArray(json);
-            provinces = new ArrayList<>();
-            for (int i = 0; i < provinceArray.length(); i++) {
-                JSONObject pObj = provinceArray.getJSONObject(i);
-                Province province = new Province();
-                province.name = pObj.getString("name");
-                province.districts = new ArrayList<>();
-                JSONArray districtArray = pObj.getJSONArray("districts");
-                for (int j = 0; j < districtArray.length(); j++) {
-                    JSONObject dObj = districtArray.getJSONObject(j);
-                    District district = new District();
-                    district.name = dObj.getString("name");
-                    district.wards = new ArrayList<>();
-                    JSONArray wardArray = dObj.getJSONArray("wards");
-                    for (int k = 0; k < wardArray.length(); k++) {
-                        district.wards.add(wardArray.getString(k));
-                    }
-                    province.districts.add(district);
-                }
-                provinces.add(province);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        init(context, null);
+    }
+
+    public static synchronized void init(Context context, LocationLoadListener listener) {
+        if (provinces != null) {
+            if (listener != null) listener.onLoaded();
+            return;
         }
+        if (isLoading) return;
+        
+        isLoading = true;
+        new Thread(() -> {
+            try {
+                InputStream is = context.getAssets().open("data/vietnam_provinces.json");
+                int size = is.available();
+                byte[] buffer = new byte[size];
+                is.read(buffer);
+                is.close();
+                String json = new String(buffer, "UTF-8");
+                JSONArray provinceArray = new JSONArray(json);
+                List<Province> tempList = new ArrayList<>();
+                for (int i = 0; i < provinceArray.length(); i++) {
+                    JSONObject pObj = provinceArray.getJSONObject(i);
+                    Province province = new Province();
+                    province.name = pObj.getString("name");
+                    province.districts = new ArrayList<>();
+                    JSONArray districtArray = pObj.getJSONArray("districts");
+                    for (int j = 0; j < districtArray.length(); j++) {
+                        JSONObject dObj = districtArray.getJSONObject(j);
+                        District district = new District();
+                        district.name = dObj.getString("name");
+                        district.wards = new ArrayList<>();
+                        JSONArray wardArray = dObj.getJSONArray("wards");
+                        for (int k = 0; k < wardArray.length(); k++) {
+                            district.wards.add(wardArray.getString(k));
+                        }
+                        province.districts.add(district);
+                    }
+                    tempList.add(province);
+                }
+                provinces = tempList;
+                if (listener != null) {
+                    new android.os.Handler(android.os.Looper.getMainLooper()).post(listener::onLoaded);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                isLoading = false;
+            }
+        }).start();
+    }
+
+    public static boolean isLoaded() {
+        return provinces != null;
     }
 
     public static List<String> getProvinces(Context context) {

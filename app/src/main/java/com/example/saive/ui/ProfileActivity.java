@@ -150,6 +150,7 @@ public class ProfileActivity extends BaseActivity {
         notificationBadge.setVisibility(hasUnread ? View.VISIBLE : View.GONE);
     }
 
+    @android.annotation.SuppressLint("InflateParams")
     private void showLanguageDialog() {
         List<String> languages = Arrays.asList(getString(R.string.lang_en), getString(R.string.lang_vi), getString(R.string.lang_zh));
         List<String> langCodes = Arrays.asList("en", "vi", "zh");

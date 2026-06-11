@@ -60,11 +60,11 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CouponView
         if (text.isEmpty()) {
             coupons.addAll(couponsFull);
         } else {
-            text = text.toLowerCase();
+            text = text.toLowerCase(java.util.Locale.getDefault());
             for (Coupon item : couponsFull) {
-                if (item.getTitle().toLowerCase().contains(text) ||
-                    item.getDescription().toLowerCase().contains(text) ||
-                    item.getCode().toLowerCase().contains(text)) {
+                if (item.getTitle().toLowerCase(java.util.Locale.getDefault()).contains(text) ||
+                    item.getDescription().toLowerCase(java.util.Locale.getDefault()).contains(text) ||
+                    item.getCode().toLowerCase(java.util.Locale.getDefault()).contains(text)) {
                     coupons.add(item);
                 }
             }

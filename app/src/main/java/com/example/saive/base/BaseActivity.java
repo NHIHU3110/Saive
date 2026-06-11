@@ -59,6 +59,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
+    @android.annotation.SuppressLint("InflateParams")
     public void showCustomToast(String message) {
         LayoutInflater inflater = getLayoutInflater();
         View toastRoot = inflater.inflate(R.layout.layout_custom_toast, null);
@@ -75,6 +76,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         toast.show();
     }
 
+    @android.annotation.SuppressLint("InflateParams")
     public void showSizeGuideDialog() {
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this, R.style.TransparentBottomSheetDialog);
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_size_guide, null);

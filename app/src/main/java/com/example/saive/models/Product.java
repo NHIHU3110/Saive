@@ -61,4 +61,17 @@ public class Product implements Serializable {
 
     public String getSelectedColor() { return selectedColor; }
     public void setSelectedColor(String selectedColor) { this.selectedColor = selectedColor; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return name != null ? name.equals(product.name) : product.name == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() : 0;
+    }
 }

@@ -28,6 +28,15 @@ public class DataManager {
     private Gson gson;
     private SharedPreferences prefs;
 
+    // Memory Cache
+    private List<Coupon> cachedCoupons;
+    private List<Product> cachedProducts;
+    private List<AdminOrder> cachedOrders;
+    private List<User> cachedUsers;
+    private List<Review> cachedReviews;
+    private List<Product> cachedFlashSaleProducts;
+    private List<com.example.saive.models.PaymentCard> cachedPaymentCards;
+
     private DataManager(Context context) {
         this.context = context.getApplicationContext();
         this.gson = new Gson();
@@ -41,21 +50,37 @@ public class DataManager {
         return instance;
     }
 
+    // Clear cache if needed (e.g., on logout)
+    public void clearCache() {
+        cachedCoupons = null;
+        cachedProducts = null;
+        cachedOrders = null;
+        cachedUsers = null;
+        cachedReviews = null;
+        cachedFlashSaleProducts = null;
+        cachedPaymentCards = null;
+    }
+
     // --- Coupons ---
     public List<Coupon> getCoupons() {
+        if (cachedCoupons != null) return new ArrayList<>(cachedCoupons);
+        
         String json = prefs.getString(KEY_COUPONS, null);
         if (json == null) {
             List<Coupon> defaults = new ArrayList<>();
             defaults.add(new Coupon("SAIVE WELCOME", "On your first archive access.", "20%", "2024-12-31", "WELCOME20", "Active", 856));
             defaults.add(new Coupon("SILK STORY", "Exclusive for Silk series.", "15%", "2024-11-15", "SILK15", "Active", 142));
             defaults.add(new Coupon("REWARD", "Loyalty reward for you.", "10%", "2025-01-01", "REWARD10", "Active", 50));
+            cachedCoupons = new ArrayList<>(defaults);
             return defaults;
         }
         Type type = new TypeToken<ArrayList<Coupon>>() {}.getType();
-        return gson.fromJson(json, type);
+        cachedCoupons = gson.fromJson(json, type);
+        return cachedCoupons != null ? new ArrayList<>(cachedCoupons) : new ArrayList<>();
     }
 
     public void saveCoupons(List<Coupon> coupons) {
+        cachedCoupons = coupons != null ? new ArrayList<>(coupons) : null;
         prefs.edit().putString(KEY_COUPONS, gson.toJson(coupons)).apply();
     }
 
@@ -67,25 +92,33 @@ public class DataManager {
 
     // --- Products ---
     public List<Product> getProducts() {
+        if (cachedProducts != null) return new ArrayList<>(cachedProducts);
+        
         String json = prefs.getString(KEY_PRODUCTS, null);
         if (json == null) return new ArrayList<>();
         Type type = new TypeToken<ArrayList<Product>>() {}.getType();
-        return gson.fromJson(json, type);
+        cachedProducts = gson.fromJson(json, type);
+        return cachedProducts != null ? new ArrayList<>(cachedProducts) : new ArrayList<>();
     }
 
     public void saveProducts(List<Product> products) {
+        cachedProducts = products != null ? new ArrayList<>(products) : null;
         prefs.edit().putString(KEY_PRODUCTS, gson.toJson(products)).apply();
     }
 
     // --- Orders ---
     public List<AdminOrder> getOrders() {
+        if (cachedOrders != null) return new ArrayList<>(cachedOrders);
+        
         String json = prefs.getString(KEY_ORDERS, null);
         if (json == null) return new ArrayList<>();
         Type type = new TypeToken<ArrayList<AdminOrder>>() {}.getType();
-        return gson.fromJson(json, type);
+        cachedOrders = gson.fromJson(json, type);
+        return cachedOrders != null ? new ArrayList<>(cachedOrders) : new ArrayList<>();
     }
 
     public void saveOrders(List<AdminOrder> orders) {
+        cachedOrders = orders != null ? new ArrayList<>(orders) : null;
         prefs.edit().putString(KEY_ORDERS, gson.toJson(orders)).apply();
     }
 
@@ -118,13 +151,17 @@ public class DataManager {
 
     // --- Users ---
     public List<User> getUsers() {
+        if (cachedUsers != null) return new ArrayList<>(cachedUsers);
+        
         String json = prefs.getString(KEY_USERS, null);
         if (json == null) return new ArrayList<>();
         Type type = new TypeToken<ArrayList<User>>() {}.getType();
-        return gson.fromJson(json, type);
+        cachedUsers = gson.fromJson(json, type);
+        return cachedUsers != null ? new ArrayList<>(cachedUsers) : new ArrayList<>();
     }
 
     public void saveUsers(List<User> users) {
+        cachedUsers = users != null ? new ArrayList<>(users) : null;
         prefs.edit().putString(KEY_USERS, gson.toJson(users)).apply();
     }
 
@@ -151,13 +188,17 @@ public class DataManager {
 
     // --- Reviews ---
     public List<Review> getReviews() {
+        if (cachedReviews != null) return new ArrayList<>(cachedReviews);
+        
         String json = prefs.getString(KEY_REVIEWS, null);
         if (json == null) return new ArrayList<>();
         Type type = new TypeToken<ArrayList<Review>>() {}.getType();
-        return gson.fromJson(json, type);
+        cachedReviews = gson.fromJson(json, type);
+        return cachedReviews != null ? new ArrayList<>(cachedReviews) : new ArrayList<>();
     }
 
     public void saveReviews(List<Review> reviews) {
+        cachedReviews = reviews != null ? new ArrayList<>(reviews) : null;
         prefs.edit().putString(KEY_REVIEWS, gson.toJson(reviews)).apply();
     }
 
@@ -180,13 +221,17 @@ public class DataManager {
     }
 
     public List<Product> getFlashSaleProducts() {
+        if (cachedFlashSaleProducts != null) return new ArrayList<>(cachedFlashSaleProducts);
+        
         String json = prefs.getString(KEY_FLASH_SALE_PRODUCTS, null);
         if (json == null) return new ArrayList<>();
         Type type = new TypeToken<ArrayList<Product>>() {}.getType();
-        return gson.fromJson(json, type);
+        cachedFlashSaleProducts = gson.fromJson(json, type);
+        return cachedFlashSaleProducts != null ? new ArrayList<>(cachedFlashSaleProducts) : new ArrayList<>();
     }
 
     public void saveFlashSaleProducts(List<Product> products) {
+        cachedFlashSaleProducts = products != null ? new ArrayList<>(products) : null;
         prefs.edit().putString(KEY_FLASH_SALE_PRODUCTS, gson.toJson(products)).apply();
     }
 
@@ -200,13 +245,17 @@ public class DataManager {
 
     // --- Payment Cards ---
     public List<com.example.saive.models.PaymentCard> getPaymentCards() {
+        if (cachedPaymentCards != null) return new ArrayList<>(cachedPaymentCards);
+        
         String json = prefs.getString(KEY_PAYMENT_CARDS, null);
         if (json == null) return new ArrayList<>();
         Type type = new TypeToken<ArrayList<com.example.saive.models.PaymentCard>>() {}.getType();
-        return gson.fromJson(json, type);
+        cachedPaymentCards = gson.fromJson(json, type);
+        return cachedPaymentCards != null ? new ArrayList<>(cachedPaymentCards) : new ArrayList<>();
     }
 
     public void savePaymentCards(List<com.example.saive.models.PaymentCard> cards) {
+        cachedPaymentCards = cards != null ? new ArrayList<>(cards) : null;
         prefs.edit().putString(KEY_PAYMENT_CARDS, gson.toJson(cards)).apply();
     }
 
@@ -215,4 +264,5 @@ public class DataManager {
         cards.add(card);
         savePaymentCards(cards);
     }
+
 }

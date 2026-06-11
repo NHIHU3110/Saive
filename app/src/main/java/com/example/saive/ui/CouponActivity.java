@@ -61,6 +61,7 @@ public class CouponActivity extends BaseActivity {
         setupSearch();
     }
 
+    @android.annotation.SuppressLint("InflateParams")
     private void showCouponDetail(Coupon coupon) {
         BottomSheetDialog dialog = new BottomSheetDialog(this, R.style.BottomSheetDialogTheme);
         View view = LayoutInflater.from(this).inflate(R.layout.layout_coupon_detail, null);

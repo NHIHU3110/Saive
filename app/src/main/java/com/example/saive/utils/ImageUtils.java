@@ -3,14 +3,38 @@ package com.example.saive.utils;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.LruCache;
 import android.widget.ImageView;
 import com.example.saive.R;
 
 public class ImageUtils {
 
+    private static final LruCache<Integer, Bitmap> memoryCache;
+
+    static {
+        // Use 1/8th of the available memory for this memory cache.
+        final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
+        final int cacheSize = maxMemory / 8;
+
+        memoryCache = new LruCache<Integer, Bitmap>(cacheSize) {
+            @Override
+            protected int sizeOf(Integer key, Bitmap bitmap) {
+                // The cache size will be measured in kilobytes rather than number of items.
+                return bitmap.getByteCount() / 1024;
+            }
+        };
+    }
+
     public static void setSafeImage(ImageView imageView, int resId) {
         if (imageView == null) return;
         
+        // Check cache first
+        Bitmap cachedBitmap = memoryCache.get(resId);
+        if (cachedBitmap != null) {
+            imageView.setImageBitmap(cachedBitmap);
+            return;
+        }
+
         Context context = imageView.getContext();
         try {
             BitmapFactory.Options options = new BitmapFactory.Options();
@@ -29,6 +53,7 @@ public class ImageUtils {
             
             Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), resId, options);
             if (bitmap != null) {
+                memoryCache.put(resId, bitmap);
                 imageView.setImageBitmap(bitmap);
             } else {
                 imageView.setImageResource(resId);
@@ -39,6 +64,7 @@ public class ImageUtils {
             } catch (Exception ignored) {}
         }
     }
+
 
     private static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
         final int height = options.outHeight;

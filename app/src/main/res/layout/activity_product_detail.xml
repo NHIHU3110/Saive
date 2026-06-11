@@ -91,7 +91,7 @@
                 android:minHeight="16dp"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
-                android:text="0"
+                tools:text="0"
                 android:textColor="@color/colorButtonText"
                 android:textSize="10sp"
                 android:textStyle="bold"
@@ -176,7 +176,7 @@
                     android:layout_height="wrap_content"
                     style="@style/TextAppearance.Saive.Header"
                     android:textSize="24sp"
-                    android:text="Silk Wrap Dress" />
+                    tools:text="Silk Wrap Dress" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -191,7 +191,7 @@
                         android:layout_height="wrap_content"
                         style="@style/TextAppearance.Saive.Editorial"
                         android:textSize="16sp"
-                        android:text="3.000.000 ₫"
+                        tools:text="3.000.000 ₫"
                         android:textColor="@color/colorNoirBlack"
                         android:alpha="0.4"
                         android:background="@drawable/bg_underline_maroon"
@@ -204,7 +204,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
                         style="@style/TextAppearance.Saive.Editorial"
-                        android:text="2.450.000 ₫"
+                        tools:text="2.450.000 ₫"
                         android:textColor="@color/colorAccentBrand" />
                 </LinearLayout>
 
@@ -232,7 +232,7 @@
                     android:lineSpacingExtra="6dp"
                     android:maxLines="4"
                     android:ellipsize="end"
-                    android:text="A timeless piece crafted from 100% pure silk. Designed with a relaxed silhouette and elegant drape."
+                    tools:text="A timeless piece crafted from 100% pure silk. Designed with a relaxed silhouette and elegant drape."
                     android:textColor="@color/colorNoirBlack" />
 
                 <TextView
@@ -404,7 +404,7 @@
                             android:layout_width="40dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="1"
+                            tools:text="1"
                             style="@style/TextAppearance.Saive.Nav"
                             android:textColor="@color/colorNoirBlack"
                             android:textSize="16sp" />
@@ -515,7 +515,7 @@
             android:paddingHorizontal="8dp">
 
             <ImageButton
-                android:id="@+id/btnDecrease"
+                android:id="@+id/btnDecreaseBottom"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
@@ -523,18 +523,18 @@
                 app:tint="@color/colorNoirBlack" />
 
             <TextView
-                android:id="@+id/tvQuantity"
+                android:id="@+id/tvQuantityBottom"
                 android:layout_width="32dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="1"
+                tools:text="1"
                 style="@style/TextAppearance.Saive.Nav"
                 android:textColor="@color/colorNoirBlack"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
             <ImageButton
-                android:id="@+id/btnIncrease"
+                android:id="@+id/btnIncreaseBottom"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:background="?attr/selectableItemBackgroundBorderless"

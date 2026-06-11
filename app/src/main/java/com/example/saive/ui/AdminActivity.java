@@ -43,6 +43,17 @@ public class AdminActivity extends BaseActivity implements NavigationView.OnNavi
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        getOnBackPressedDispatcher().addCallback(this, new androidx.activity.OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                } else {
+                    Toast.makeText(AdminActivity.this, R.string.admin_logout_confirm, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
         setupWindowInsets();
         
         findViewById(R.id.btnMenu).setOnClickListener(v -> {
@@ -104,6 +115,7 @@ public class AdminActivity extends BaseActivity implements NavigationView.OnNavi
         return true;
     }
 
+    @android.annotation.SuppressLint("InflateParams")
     private void showLanguageDialog() {
         List<String> languages = Arrays.asList(getString(R.string.lang_en), getString(R.string.lang_vi), getString(R.string.lang_zh));
         List<String> codes = Arrays.asList("en", "vi", "zh");
@@ -154,16 +166,5 @@ public class AdminActivity extends BaseActivity implements NavigationView.OnNavi
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            // Không cho back ra ngoài trừ khi logout
-            Toast.makeText(this, R.string.admin_logout_confirm, Toast.LENGTH_SHORT).show();
-            // super.onBackPressed();
-        }
     }
 }

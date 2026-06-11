@@ -119,7 +119,7 @@ public class OrderManagementActivity extends BaseActivity {
 
                 tvName.setText(item.getName());
                 tvPrice.setText(item.getPrice());
-                tvAttributes.setText("Size: " + item.getSize() + " | Qty: " + item.getQuantity());
+                tvAttributes.setText(getString(R.string.format_order_attributes, item.getSize(), item.getQuantity()));
                 ivItem.setImageResource(item.getImageResId() != 0 ? item.getImageResId() : R.mipmap.model1);
 
                 if (i > 0) {
@@ -130,7 +130,7 @@ public class OrderManagementActivity extends BaseActivity {
 
             if (items.size() > 1) {
                 tvSeeMore.setVisibility(View.VISIBLE);
-                tvSeeMore.setText("Xem thêm (+" + (items.size() - 1) + " sản phẩm)");
+                tvSeeMore.setText(getString(R.string.format_order_see_more, items.size() - 1));
                 tvSeeMore.setOnClickListener(v -> {
                     tvSeeMore.setVisibility(View.GONE);
                     for (int i = 1; i < itemsContainer.getChildCount(); i++) {
@@ -153,7 +153,7 @@ public class OrderManagementActivity extends BaseActivity {
 
                 tvName.setText(order.getItemsSummary());
                 tvPrice.setText(order.getTotalAmount());
-                tvAttributes.setText("Size: " + order.getSize() + " | Qty: " + order.getQuantity());
+                tvAttributes.setText(getString(R.string.format_order_attributes, order.getSize(), order.getQuantity()));
                 ivItem.setImageResource(order.getProductImageResId() != 0 ? order.getProductImageResId() : R.mipmap.model1);
                 itemsContainer.addView(itemView);
             }

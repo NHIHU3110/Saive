@@ -62,7 +62,7 @@
                 android:minHeight="14dp"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
-                android:text="0"
+                tools:text="0"
                 android:textColor="@color/white"
                 android:textSize="8sp"
                 android:textStyle="bold"
@@ -90,7 +90,7 @@
             style="@style/TextAppearance.Saive.Logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SAIVE" />
+            android:text="@string/app_name_caps" />
 
     </LinearLayout>
 
@@ -599,14 +599,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/TextAppearance.Saive.Logo.Huge"
-                    android:text="SAIVE" />
+                    android:text="@string/app_name_caps" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="-20dp"
                     style="@style/TextAppearance.Saive.Nav"
-                    android:text="EST. 2024"
+                    android:text="@string/about_est"
                     android:textColor="@color/colorNoirBlack"
                     android:alpha="0.5" />
             </LinearLayout>

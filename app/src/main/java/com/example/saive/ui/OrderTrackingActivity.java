@@ -50,7 +50,7 @@ public class OrderTrackingActivity extends BaseActivity {
                 // Cập nhật ngày dự kiến (ví dụ: 3 ngày sau khi đặt)
                 TextView tvExpectedDelivery = findViewById(R.id.expectedDelivery);
                 if (tvExpectedDelivery != null) {
-                    tvExpectedDelivery.setText("Dự kiến: " + (order.getTimeAgo().equals("Just now") ? "Trong 3 ngày tới" : "Đang giao"));
+                    tvExpectedDelivery.setText(getString(R.string.format_expected_delivery, (order.getTimeAgo().equals("Just now") ? "Trong 3 ngày tới" : "Đang giao")));
                 }
 
                 // Cập nhật thời gian trong timeline
@@ -98,7 +98,7 @@ public class OrderTrackingActivity extends BaseActivity {
 
                     if (items.size() > 1) {
                         tvSeeMore.setVisibility(View.VISIBLE);
-                        tvSeeMore.setText("Xem thêm (+" + (items.size() - 1) + " sản phẩm)");
+                        tvSeeMore.setText(getString(R.string.format_order_see_more, items.size() - 1));
                         tvSeeMore.setOnClickListener(v -> {
                             boolean isExpanded = itemsContainer.getChildAt(1).getVisibility() == View.VISIBLE;
                             if (isExpanded) {
@@ -106,7 +106,7 @@ public class OrderTrackingActivity extends BaseActivity {
                                 for (int i = 1; i < itemsContainer.getChildCount(); i++) {
                                     itemsContainer.getChildAt(i).setVisibility(View.GONE);
                                 }
-                                tvSeeMore.setText("Xem thêm (+" + (items.size() - 1) + " sản phẩm)");
+                                tvSeeMore.setText(getString(R.string.format_order_see_more, items.size() - 1));
                             } else {
                                 // Mở rộng
                                 for (int i = 1; i < itemsContainer.getChildCount(); i++) {
@@ -149,7 +149,7 @@ public class OrderTrackingActivity extends BaseActivity {
 
     private void updateTimeline(String status) {
         if (status == null) return;
-        String s = status.toUpperCase();
+        String s = status.toUpperCase(java.util.Locale.ROOT);
 
         ImageView circlePlaced = findViewById(R.id.circlePlaced);
         View linePlaced = findViewById(R.id.linePlaced);

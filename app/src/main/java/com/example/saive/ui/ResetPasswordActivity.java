@@ -66,7 +66,7 @@ public class ResetPasswordActivity extends BaseActivity {
             SharedPreferences prefs = getSharedPreferences("user_prefs", MODE_PRIVATE);
             prefs.edit().putString("user_password", newPass).apply();
 
-            showCustomToast("Password reset successful!");
+            showCustomToast(getString(R.string.toast_pwd_reset_success));
 
             Intent intent = new Intent(ResetPasswordActivity.this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

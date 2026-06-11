@@ -40,10 +40,11 @@
     <string name="notify_reminder_title">Bạn có món đang chờ trong tủ đồ</string>
     <string name="notify_reminder_desc">3 món đã lưu từ 2 tuần trước. Vẫn còn hàng.</string>
     <string name="notify_reminder_action">Xem tủ đồ</string>
-    <string name="nav_profile">HỒ SƠ</string>
-    <string name="nav_search">TÌM KIẾM</string>
-    <string name="nav_shop">CỬA HÀNG</string>
-    <string name="nav_archive">BỘ SƯU TẬP</string>
+    <string name="nav_profile">CÁ NHÂN</string>
+    <string name="nav_search">Tìm kiếm</string>
+    <string name="nav_shop">Cửa hàng</string>
+    <string name="nav_home">Trang chủ</string>
+    <string name="nav_archive">Lưu trữ</string>
     <string name="nav_about">VỀ SAIVE</string>
     <string name="wardrobe_header">TỦ ĐỒ</string>
     <string name="wardrobe_empty_search_title">KHÔNG TÌM THẤY MÓN NÀO</string>
@@ -90,7 +91,7 @@
     <string name="faq_q6">Làm thế nào để theo dõi đơn hàng của tôi?</string>
     <string name="faq_a6">Truy cập Hồ sơ → Đơn hàng của tôi, chọn đơn hàng của bạn và nhấn \'Theo dõi đơn hàng\' để xem trạng thái giao hàng theo thời gian thực.</string>
     <string name="faq_q7">Chất liệu của các bạn có bền vững không?</string>
-    <string name="faq_a7">Hoàn toàn có. Chúng tôi sử dụng 100% chất liệu tự nhiên bao gồm linen từ các trang trại Châu Âu không thuốc trừ sâu, TENCEL từ sợi gỗ tái chế và vải tre có khả năng phân hủy hoàn toàn.</string>
+    <string name="faq_a7">Hoàn toàn có. Chúng tôi sử dụng 100%% chất liệu tự nhiên bao gồm linen từ các trang trại Châu Âu không thuốc trừ sâu, TENCEL từ sợi gỗ tái chế và vải tre có khả năng phân hủy hoàn toàn.</string>
     <string name="faq_q8">Làm thế nào để sử dụng mã giảm giá?</string>
     <string name="faq_a8">Trong quá trình thanh toán, hãy nhập mã giảm giá của bạn vào trường \'Mã khuyến mãi\' và nhấn Áp dụng. Mức giảm giá sẽ được phản ánh trong tổng đơn hàng của bạn.</string>
     <string name="faq_q9">Tôi có thể lưu các món đồ vào tủ đồ của mình không?</string>
@@ -380,7 +381,7 @@
     <string name="coupon_detail_steps">• Sao chép mã bên dưới.\n• Vào giỏ hàng hoặc trang thanh toán.\n• Dán mã vào ô \'Mã giảm giá\'.\n• Tận hưởng ưu đãi độc quyền từ Saive!</string>
     <string name="coupon_detail_your_code">MÃ CỦA BẠN</string>
     <string name="coupon_detail_copy_use">Sao chép và Dùng ngay</string>
-    <string name="coupon_detail_welcome_desc">Nhận ưu đãi 20% cho đơn hàng đầu tiên</string>
+    <string name="coupon_detail_welcome_desc">Nhận ưu đãi 20%% cho đơn hàng đầu tiên</string>
     <string name="label_address_label">Loại địa chỉ</string>
     <string name="hint_full_name">vd: Huỳnh Thảo Nhi</string>
     <string name="hint_phone_number">+84 901 234 567</string>
@@ -695,4 +696,52 @@
     <string name="label_save_card">Lưu thẻ</string>
     <string name="label_card_details">Chi tiết thẻ</string>
     <string name="google_maps_key" translatable="false">YOUR_API_KEY_HERE</string>
+    <string name="btn_continue_payment_format">TIẾP TỤC THANH TOÁN (%1$s)</string>
+    <string name="btn_place_order_format">ĐẶT HÀNG (%1$s)</string>
+    <string name="format_summary_size">Kích cỡ: %1$s</string>
+    <string name="format_order_attributes">Kích cỡ: %1$s | SL: %2$d</string>
+    <string name="format_order_see_more">Xem thêm (+%1$d sản phẩm)</string>
+    <string name="format_expected_delivery">Dự kiến: %1$s</string>
+    <string name="empty_cart">Giỏ hàng của bạn đang trống</string>
+    <string name="empty_cart_desc">Có vẻ như bạn chưa thêm sản phẩm nào vào giỏ hàng.</string>
+
+    <!-- Login Errors & Toasts -->
+    <string name="login_admin_unlocked">Mở khóa Chế độ Quản trị viên</string>
+    <string name="login_forgot_pwd_clicked">Đã nhấp quên mật khẩu</string>
+    <string name="login_error_email_req">Vui lòng nhập email</string>
+    <string name="login_error_email_invalid">Vui lòng nhập email hợp lệ</string>
+    <string name="login_error_pwd_req">Vui lòng nhập mật khẩu</string>
+    <string name="login_error_acc_blocked">Tài khoản bị khóa. Vui lòng liên hệ Quản trị viên.</string>
+    <string name="login_toast_success">Đăng nhập thành công</string>
+
+    <!-- Checkout Errors & Toasts -->
+    <string name="checkout_invalid_card">Số thẻ không hợp lệ</string>
+    <string name="checkout_card_added">Thêm thẻ thành công</string>
+    <string name="checkout_error_city">Vui lòng chọn Tỉnh/Thành phố</string>
+    <string name="checkout_error_district">Vui lòng chọn Quận/Huyện</string>
+    <string name="checkout_error_ward">Vui lòng chọn Phường/Xã</string>
+    <string name="checkout_error_payment">Vui lòng chọn phương thức thanh toán</string>
+
+    <!-- Main & Common -->
+    <string name="main_error_acc_blocked">Tài khoản bị khóa bởi Admin</string>
+    <string name="app_name_caps">SAIVE</string>
+
+    <!-- Product Detail -->
+    <string name="product_error_review_empty">Vui lòng nhập đánh giá của bạn</string>
+    <string name="product_toast_review_success">Gửi đánh giá thành công!</string>
+    <string name="product_error_select_size">Vui lòng chọn kích thước (Size)</string>
+    <string name="product_error_select_color">Vui lòng chọn màu sắc (Color)</string>
+    <string name="product_toast_added_to_cart">Đã thêm vào tủ đồ</string>
+
+    <!-- Batch 3 & Admin -->
+    <string name="toast_review_success">Gửi đánh giá thành công!</string>
+    <string name="toast_pwd_reset_success">Đặt lại mật khẩu thành công!</string>
+    <string name="error_invalid_card_num">Số thẻ không hợp lệ</string>
+    <string name="error_enter_card_name">Vui lòng nhập tên chủ thẻ</string>
+    <string name="toast_card_saved_success">Lưu thẻ thành công</string>
+    <string name="about_est">EST. 2024</string>
+    <string name="admin_review_moderation_title">KIỂM DUYỆT ĐÁNH GIÁ</string>
+    <string name="admin_review_empty">Không có đánh giá cần duyệt</string>
+    <string name="admin_select_option">CHỌN TÙY CHỌN</string>
+    <string name="admin_upload_images">TẢI ẢNH LÊN (TỐI ĐA 3)</string>
 </resources>

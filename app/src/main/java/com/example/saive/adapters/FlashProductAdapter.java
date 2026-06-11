@@ -54,7 +54,7 @@ public class FlashProductAdapter extends RecyclerView.Adapter<FlashProductAdapte
         
         ImageUtils.setSafeImage(holder.ivProduct, product.getImageResId());
 
-        holder.tvName.setText(product.getName().toUpperCase());
+        holder.tvName.setText(product.getName().toUpperCase(java.util.Locale.getDefault()));
         
         if (product.getOriginalPrice() != null && !product.getOriginalPrice().isEmpty()) {
             holder.tvOriginalPrice.setText(PriceFormatter.formatPrice(product.getOriginalPrice()));

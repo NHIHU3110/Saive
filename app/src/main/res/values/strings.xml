@@ -40,10 +40,11 @@
     <string name="notify_reminder_title">You have items waiting in your wardrobe</string>
     <string name="notify_reminder_desc">3 items saved from 2 weeks ago. Still in stock.</string>
     <string name="notify_reminder_action">View Suggestion</string>
-    <string name="nav_profile">PROFILE</string>
-    <string name="nav_search">SEARCH</string>
-    <string name="nav_shop">SHOP</string>
-    <string name="nav_archive">COLLECTION</string>
+    <string name="nav_profile">Profile</string>
+    <string name="nav_search">Search</string>
+    <string name="nav_shop">Shop</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_archive">Archive</string>
     <string name="nav_about">ABOUT</string>
     <string name="wardrobe_header">MY WARDROBE</string>
     <string name="wardrobe_empty_search_title">NO PIECES FOUND</string>
@@ -230,7 +231,7 @@
     <string name="about_material_linen">LINEN</string>
     <string name="about_material_linen_desc">Sourced from pesticide-free European farms. Breathable.</string>
     <string name="about_material_tencel">TENCEL</string>
-    <string name="about_material_tencel_desc">Recycled wood fiber. Soft as silk. 50% cooler than cotton.</string>
+    <string name="about_material_tencel_desc">Recycled wood fiber. Soft as silk. 50%% cooler than cotton.</string>
     <string name="about_material_bamboo">BAMBOO</string>
     <string name="about_material_bamboo_desc">Regrows in 90 days. Pesticide-free. Fully biodegradable.</string>
     <string name="about_philosophy_quote">"Each collection consists of only 12 pieces.\nNo more. No less."</string>
@@ -262,6 +263,14 @@
     <string name="label_save_info">Save this information for next time</string>
     <string name="btn_continue_payment">CONTINUE TO PAYMENT</string>
     <string name="btn_place_order">PLACE ORDER</string>
+    <string name="btn_continue_payment_format">CONTINUE TO PAYMENT (%1$s)</string>
+    <string name="btn_place_order_format">PLACE ORDER (%1$s)</string>
+    <string name="format_summary_size">Size: %1$s</string>
+    <string name="format_discount_label" translatable="false">%1$s (%2$s)</string>
+    <string name="format_negative_price" translatable="false">-%1$s</string>
+    <string name="format_order_attributes">Size: %1$s | Qty: %2$d</string>
+    <string name="format_order_see_more">See more (+%1$d items)</string>
+    <string name="format_expected_delivery">Expected: %1$s</string>
     <string name="checkout_order_summary">ORDER SUMMARY</string>
     <string name="checkout_shipping_to">Shipping to</string>
 
@@ -329,91 +338,21 @@
         <item>Ho Chi Minh City</item>
         <item>Hanoi</item>
         <item>Da Nang</item>
-        <item>Hai Phong</item>
         <item>Can Tho</item>
-        <item>An Giang</item>
-        <item>Ba Ria - Vung Tau</item>
-        <item>Bac Giang</item>
-        <item>Bac Kan</item>
-        <item>Bac Lieu</item>
-        <item>Bac Ninh</item>
-        <item>Ben Tre</item>
-        <item>Binh Dinh</item>
-        <item>Binh Duong</item>
-        <item>Binh Phuoc</item>
-        <item>Binh Thuan</item>
-        <item>Ca Mau</item>
-        <item>Cao Bang</item>
-        <item>Dak Lak</item>
-        <item>Dak Nong</item>
-        <item>Dien Bien</item>
-        <item>Dong Nai</item>
-        <item>Dong Thap</item>
-        <item>Gia Lai</item>
-        <item>Ha Giang</item>
-        <item>Ha Nam</item>
-        <item>Ha Tinh</item>
-        <item>Hai Duong</item>
-        <item>Hau Giang</item>
-        <item>Hoa Binh</item>
-        <item>Hung Yen</item>
-        <item>Khanh Hoa</item>
-        <item>Kien Giang</item>
-        <item>Kon Tum</item>
-        <item>Lai Chau</item>
-        <item>Lam Dong</item>
-        <item>Lang Son</item>
-        <item>Lao Cai</item>
-        <item>Long An</item>
-        <item>Nam Dinh</item>
-        <item>Nghe An</item>
-        <item>Ninh Binh</item>
-        <item>Ninh Thuan</item>
-        <item>Phu Tho</item>
-        <item>Phu Yen</item>
-        <item>Quang Binh</item>
-        <item>Quang Nam</item>
-        <item>Quang Ngai</item>
-        <item>Quang Ninh</item>
-        <item>Quang Tri</item>
-        <item>Soc Trang</item>
-        <item>Son La</item>
-        <item>Tay Ninh</item>
-        <item>Thai Binh</item>
-        <item>Thai Nguyen</item>
-        <item>Thanh Hoa</item>
-        <item>Thua Thien Hue</item>
-        <item>Tien Giang</item>
-        <item>Tra Vinh</item>
-        <item>Tuyen Quang</item>
-        <item>Vinh Long</item>
-        <item>Vinh Phuc</item>
-        <item>Yen Bai</item>
+        <item>Hai Phong</item>
+        <item>Hue</item>
+        <item>Da Lat</item>
     </string-array>
 
     <string-array name="districts_hcm_array">
         <item>District 1</item>
         <item>District 3</item>
-        <item>District 4</item>
         <item>District 5</item>
-        <item>District 6</item>
         <item>District 7</item>
-        <item>District 8</item>
-        <item>District 10</item>
-        <item>District 11</item>
-        <item>District 12</item>
-        <item>Binh Tan District</item>
         <item>Binh Thanh District</item>
-        <item>Go Vap District</item>
-        <item>Phu Nhuan District</item>
         <item>Tan Binh District</item>
-        <item>Tan Phu District</item>
+        <item>Phu Nhuan District</item>
         <item>Thu Duc City</item>
-        <item>Binh Chanh District</item>
-        <item>Can Gio District</item>
-        <item>Cu Chi District</item>
-        <item>Hoc Mon District</item>
-        <item>Nha Be District</item>
     </string-array>
 
     <string-array name="wards_hcm_d1_array">
@@ -430,37 +369,13 @@
     </string-array>
 
     <string-array name="districts_hanoi_array">
+        <item>Hoan Kiem District</item>
         <item>Ba Dinh District</item>
-        <item>Bac Tu Liem District</item>
-        <item>Cau Giay District</item>
         <item>Dong Da District</item>
         <item>Hai Ba Trung District</item>
-        <item>Hoan Kiem District</item>
-        <item>Hoang Mai District</item>
-        <item>Long Bien District</item>
-        <item>Nam Tu Liem District</item>
         <item>Tay Ho District</item>
+        <item>Cau Giay District</item>
         <item>Thanh Xuan District</item>
-        <item>Ha Dong District</item>
-        <item>Son Tay Town</item>
-        <item>Ba Vi District</item>
-        <item>Chương Mỹ District</item>
-        <item>Dan Phuong District</item>
-        <item>Dong Anh District</item>
-        <item>Gia Lam District</item>
-        <item>Hoai Duc District</item>
-        <item>Me Linh District</item>
-        <item>My Duc District</item>
-        <item>Phu Xuyen District</item>
-        <item>Phuc Tho District</item>
-        <item>Quoc Oai District</item>
-        <item>Soc Son District</item>
-        <item>Thach That District</item>
-        <item>Quoc Oai District</item>
-        <item>Thanh Oai District</item>
-        <item>Thanh Tri District</item>
-        <item>Thuong Tin District</item>
-        <item>Ung Hoa District</item>
     </string-array>
     <!-- Address Management -->
     <string name="address_title">MY ADDRESSES</string>
@@ -861,5 +776,43 @@
     <string name="error_confirm_password_required">Please confirm your new password</string>
     <string name="toast_password_changed">Password updated successfully</string>
     <string name="empty_cart">Your cart is empty</string>
-    <string name="empty_cart_desc">Looks like you haven\'t added anything to your cart yet.</string>
+    <string name="empty_cart_desc">Looks like you haven\'t added anything to your cart yet.</string>    <!-- Login Errors & Toasts -->
+    <string name="login_admin_unlocked">Admin Mode Unlocked</string>
+    <string name="login_forgot_pwd_clicked">Forgot password clicked</string>
+    <string name="login_error_email_req">Email is required</string>
+    <string name="login_error_email_invalid">Please enter a valid email</string>
+    <string name="login_error_pwd_req">Password is required</string>
+    <string name="login_error_acc_blocked">Account is blocked. Please contact Admin.</string>
+    <string name="login_toast_success">Login Successful</string>
+
+    <!-- Checkout Errors & Toasts -->
+    <string name="checkout_invalid_card">Invalid card number</string>
+    <string name="checkout_card_added">Card added successfully</string>
+    <string name="checkout_error_city">Please select a city</string>
+    <string name="checkout_error_district">Please select a district</string>
+    <string name="checkout_error_ward">Please select a ward</string>
+    <string name="checkout_error_payment">Please select a payment method</string>
+
+    <!-- Main & Common -->
+    <string name="main_error_acc_blocked">Tài khoản bị khóa bởi Admin</string>
+    <string name="app_name_caps">SAIVE</string>
+
+    <!-- Product Detail -->
+    <string name="product_error_review_empty">Please enter your review</string>
+    <string name="product_toast_review_success">Review submitted successfully!</string>
+    <string name="product_error_select_size">Vui lòng chọn kích thước (Size)</string>
+    <string name="product_error_select_color">Vui lòng chọn màu sắc (Color)</string>
+    <string name="product_toast_added_to_cart">Added to Wardrobe</string>
+
+    <!-- Batch 3 & Admin -->
+    <string name="toast_review_success">Review submitted successfully!</string>
+    <string name="toast_pwd_reset_success">Password reset successful!</string>
+    <string name="error_invalid_card_num">Invalid card number</string>
+    <string name="error_enter_card_name">Enter card holder name</string>
+    <string name="toast_card_saved_success">Card saved successfully</string>
+    <string name="about_est">EST. 2024</string>
+    <string name="admin_review_moderation_title">REVIEW MODERATION</string>
+    <string name="admin_review_empty">No reviews to moderate</string>
+    <string name="admin_select_option">SELECT OPTION</string>
+    <string name="admin_upload_images">UPLOAD IMAGES (MAX 3)</string>
 </resources>

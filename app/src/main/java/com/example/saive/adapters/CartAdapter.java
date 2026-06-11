@@ -37,6 +37,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         this.listener = listener;
     }
 
+    public void updateItems(List<Product> newItems) {
+        androidx.recyclerview.widget.DiffUtil.DiffResult diffResult = androidx.recyclerview.widget.DiffUtil.calculateDiff(new ProductDiffCallback(this.cartItems, newItems));
+        this.cartItems = newItems;
+        diffResult.dispatchUpdatesTo(this);
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -83,7 +89,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         holder.tvQuantity.setText(String.valueOf(product.getQuantity()));
 
         // Display Variant (Size or Color)
-        if (product.getCategory() != null && product.getCategory().toLowerCase().contains("glasses")) {
+        if (product.getCategory() != null && product.getCategory().toLowerCase(java.util.Locale.ROOT).contains("glasses")) {
             String color = product.getSelectedColor() != null ? product.getSelectedColor() : "Black";
             holder.tvVariantLabel.setText(holder.itemView.getContext().getString(R.string.label_color_format, color));
         } else {

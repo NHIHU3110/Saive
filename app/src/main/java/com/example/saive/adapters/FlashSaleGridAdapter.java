@@ -54,7 +54,7 @@ public class FlashSaleGridAdapter extends RecyclerView.Adapter<FlashSaleGridAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Product product = productList.get(position);
 
-        holder.tvName.setText(product.getName().toUpperCase());
+        holder.tvName.setText(product.getName().toUpperCase(java.util.Locale.getDefault()));
         holder.tvPrice.setText(PriceFormatter.formatPrice(product.getPrice()));
 
         if (product.getOriginalPrice() != null) {

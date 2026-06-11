@@ -186,8 +186,8 @@ public class SearchActivity extends BaseActivity {
         rvSearchResults.setVisibility(View.VISIBLE);
 
         List<Product> filtered = allProducts.stream()
-                .filter(p -> p.getName().toLowerCase().contains(query.toLowerCase()) 
-                        || p.getCategory().toLowerCase().contains(query.toLowerCase()))
+                .filter(p -> p.getName().toLowerCase(java.util.Locale.getDefault()).contains(query.toLowerCase(java.util.Locale.getDefault())) 
+                        || p.getCategory().toLowerCase(java.util.Locale.getDefault()).contains(query.toLowerCase(java.util.Locale.getDefault())))
                 .collect(Collectors.toList());
         
         adapter.updateData(filtered);

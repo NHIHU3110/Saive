@@ -179,8 +179,8 @@ public class FlashSaleActivity extends BaseActivity {
         
         List<Product> filteredList = new ArrayList<>();
         for (Product product : allProducts) {
-            if (product.getName().toLowerCase().contains(query.toLowerCase()) ||
-                product.getCategory().toLowerCase().contains(query.toLowerCase())) {
+            if (product.getName().toLowerCase(java.util.Locale.getDefault()).contains(query.toLowerCase(java.util.Locale.getDefault())) ||
+                product.getCategory().toLowerCase(java.util.Locale.getDefault()).contains(query.toLowerCase(java.util.Locale.getDefault()))) {
                 filteredList.add(product);
             }
         }

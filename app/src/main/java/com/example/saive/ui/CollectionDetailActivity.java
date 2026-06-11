@@ -46,6 +46,14 @@ public class CollectionDetailActivity extends BaseActivity {
         initViews();
         loadCollectionData();
         setupBottomNavigation();
+
+        getOnBackPressedDispatcher().addCallback(this, new androidx.activity.OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }
+        });
     }
 
     private void setupBottomNavigation() {
@@ -106,7 +114,7 @@ public class CollectionDetailActivity extends BaseActivity {
 
         findViewById(R.id.btnBack).setOnClickListener(v -> {
             v.performHapticFeedback(android.view.HapticFeedbackConstants.VIRTUAL_KEY);
-            onBackPressed();
+            getOnBackPressedDispatcher().onBackPressed();
         });
 
         findViewById(R.id.btnShopAll).setOnClickListener(v -> {
@@ -119,17 +127,11 @@ public class CollectionDetailActivity extends BaseActivity {
         rvCollectionProducts.setAdapter(productAdapter);
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        supportFinishAfterTransition();
-    }
-
     private void loadCollectionData() {
         String title = getIntent().getStringExtra("COLLECTION_TITLE");
         if (title == null) title = "THE SILK STORY";
 
-        String titleUpper = title.toUpperCase();
+        String titleUpper = title.toUpperCase(java.util.Locale.getDefault());
         com.google.android.material.button.MaterialButton btnShopAll = findViewById(R.id.btnShopAll);
         View heroSection = findViewById(R.id.heroSection);
         View productSection = findViewById(R.id.productSection);

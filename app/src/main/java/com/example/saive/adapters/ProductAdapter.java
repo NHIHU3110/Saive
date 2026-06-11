@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.saive.R;
@@ -25,10 +26,17 @@ import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
-    private final List<Product> products;
+    private List<Product> products;
 
     public ProductAdapter(List<Product> products) {
         this.products = products;
+    }
+
+    public void updateProducts(List<Product> newProducts) {
+        ProductDiffCallback diffCallback = new ProductDiffCallback(this.products, newProducts);
+        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);
+        this.products = newProducts;
+        diffResult.dispatchUpdatesTo(this);
     }
 
     @NonNull
@@ -44,7 +52,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         
         ImageUtils.setSafeImage(holder.ivProduct, product.getImageResId());
 
-        holder.tvName.setText(product.getName().toUpperCase());
+        holder.tvName.setText(product.getName().toUpperCase(java.util.Locale.getDefault()));
         holder.tvPrice.setText(PriceFormatter.formatPrice(product.getPrice()));
 
         if (product.getOriginalPrice() != null) {

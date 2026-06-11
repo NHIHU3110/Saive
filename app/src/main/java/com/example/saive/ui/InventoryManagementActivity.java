@@ -40,6 +40,7 @@ public class InventoryManagementActivity extends BaseActivity {
         findViewById(R.id.btnAddProduct).setOnClickListener(v -> showAddProductDialog());
     }
 
+    @android.annotation.SuppressLint("InflateParams")
     private void showAddProductDialog() {
         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_add_product, null);

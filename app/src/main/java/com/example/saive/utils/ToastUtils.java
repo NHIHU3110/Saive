@@ -10,6 +10,7 @@ import com.example.saive.R;
 
 public class ToastUtils {
 
+    @android.annotation.SuppressLint("InflateParams")
     public static void showCustomToast(Context context, String message) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View layout = inflater.inflate(R.layout.layout_custom_toast, null);

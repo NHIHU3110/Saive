@@ -58,7 +58,7 @@
                 android:minHeight="14dp"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
-                android:text="0"
+                tools:text="0"
                 android:textColor="@color/colorButtonText"
                 android:textSize="8sp"
                 android:textStyle="bold"
@@ -99,7 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             style="@style/TextAppearance.Saive.Logo"
-            android:text="SAIVE" />
+            android:text="@string/app_name_caps" />
 
     </LinearLayout>
 
@@ -228,55 +228,54 @@
 
                     <TextView
                         android:id="@+id/tvHomeHour"
+                        style="@style/TextAppearance.Saive.Nav"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:background="@drawable/bg_timer_box"
                         android:gravity="center"
-                        android:text="00"
-                        android:textColor="@color/colorCountdownText"
-                        android:fontFamily="monospace"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
+                        tools:text="00"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
 
                     <TextView
+                        style="@style/TextAppearance.Saive.Nav"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=":"
-                        android:textColor="@color/colorCountdownText"
                         android:layout_marginHorizontal="4dp"
-                        android:textStyle="bold"/>
+                        tools:text=":"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/tvHomeMinute"
+                        style="@style/TextAppearance.Saive.Nav"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:background="@drawable/bg_timer_box"
                         android:gravity="center"
-                        android:text="00"
-                        android:textColor="@color/colorCountdownText"
-                        android:fontFamily="monospace"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
+                        tools:text="00"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
 
                     <TextView
+                        style="@style/TextAppearance.Saive.Nav"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=":"
-                        android:textColor="@color/colorCountdownText"
                         android:layout_marginHorizontal="4dp"
-                        android:textStyle="bold"/>
+                        tools:text=":"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/tvHomeSecond"
+                        style="@style/TextAppearance.Saive.Nav"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:background="@drawable/bg_timer_box"
                         android:gravity="center"
-                        android:text="00"
-                        android:textColor="@color/colorCountdownText"
-                        android:fontFamily="monospace"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
+                        tools:text="00"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -597,13 +596,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/TextAppearance.Saive.Logo.Huge"
-                    android:text="SAIVE" />
+                    style="@style/TextAppearance.Saive.Logo"
+                    android:text="@string/app_name_caps" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="-20dp"
+                    android:layout_marginTop="8dp"
                     style="@style/TextAppearance.Saive.Nav"
                     android:text="@string/footer_location"
                     android:textColor="@color/colorNoirBlack"
@@ -1042,11 +1041,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/TextAppearance.Saive.Nav"
-                    android:text="SAIVE"
+                    android:text=" "
                     android:visibility="invisible"/>
             </LinearLayout>
 
-        <LinearLayout
+        <FrameLayout
             android:id="@+id/navNotify"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -1087,7 +1086,7 @@
                 android:backgroundTint="@color/colorHeaderContent"
                 android:visibility="gone" />
 
-        </LinearLayout>
+        </FrameLayout>
 
             <!-- PROFILE -->
             <LinearLayout

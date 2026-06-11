@@ -287,8 +287,9 @@ public class CartActivity extends BaseActivity {
         }
     }
 
+    @android.annotation.SuppressLint("InflateParams")
     private void showVariantSelectionDialog(int position, Product product) {
-        String category = product.getCategory() != null ? product.getCategory().toLowerCase() : "";
+        String category = product.getCategory() != null ? product.getCategory().toLowerCase(java.util.Locale.ROOT) : "";
         boolean isGlasses = category.contains("glasses");
         boolean isPerfume = category.contains("perfume");
         
@@ -378,7 +379,7 @@ public class CartActivity extends BaseActivity {
         
         if (currentDiscountRate > 0) {
             layoutDiscount.setVisibility(View.VISIBLE);
-            tvDiscountValue.setText("-" + com.example.saive.utils.PriceFormatter.formatPrice(discountAmount));
+            tvDiscountValue.setText(getString(R.string.format_negative_price, com.example.saive.utils.PriceFormatter.formatPrice(discountAmount)));
         } else {
             layoutDiscount.setVisibility(View.GONE);
         }

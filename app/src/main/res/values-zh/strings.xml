@@ -43,6 +43,7 @@
     <string name="nav_profile">个人资料</string>
     <string name="nav_search">搜索</string>
     <string name="nav_shop">商店</string>
+    <string name="nav_home">首页</string>
     <string name="nav_archive">系列</string>
     <string name="nav_about">关于</string>
     <string name="wardrobe_header">我的衣橱</string>
@@ -695,4 +696,52 @@
     <string name="label_save_card">保存卡片</string>
     <string name="label_card_details">卡片详情</string>
     <string name="google_maps_key" translatable="false">YOUR_API_KEY_HERE</string>
+    <string name="btn_continue_payment_format">继续付款 (%1$s)</string>
+    <string name="btn_place_order_format">下订单 (%1$s)</string>
+    <string name="format_summary_size">尺码: %1$s</string>
+    <string name="format_order_attributes">尺码: %1$s | 数量: %2$d</string>
+    <string name="format_order_see_more">查看更多 (+%1$d 件)</string>
+    <string name="format_expected_delivery">预计: %1$s</string>
+    <string name="empty_cart">您的购物车是空的</string>
+    <string name="empty_cart_desc">看来您还没有添加任何商品。</string>
+
+    <!-- Login Errors & Toasts -->
+    <string name="login_admin_unlocked">管理员模式已解锁</string>
+    <string name="login_forgot_pwd_clicked">已点击忘记密码</string>
+    <string name="login_error_email_req">需要输入电子邮件</string>
+    <string name="login_error_email_invalid">请输入有效的电子邮件地址</string>
+    <string name="login_error_pwd_req">需要输入密码</string>
+    <string name="login_error_acc_blocked">账户已被锁定。请联系管理员。</string>
+    <string name="login_toast_success">登录成功</string>
+
+    <!-- Checkout Errors & Toasts -->
+    <string name="checkout_invalid_card">卡号无效</string>
+    <string name="checkout_card_added">卡片添加成功</string>
+    <string name="checkout_error_city">请选择城市</string>
+    <string name="checkout_error_district">请选择区县</string>
+    <string name="checkout_error_ward">请选择街区/乡镇</string>
+    <string name="checkout_error_payment">请选择付款方式</string>
+
+    <!-- Main & Common -->
+    <string name="main_error_acc_blocked">账号已被管理员锁定</string>
+    <string name="app_name_caps">SAIVE</string>
+
+    <!-- Product Detail -->
+    <string name="product_error_review_empty">请输入您的评价</string>
+    <string name="product_toast_review_success">评价提交成功！</string>
+    <string name="product_error_select_size">请选择尺码</string>
+    <string name="product_error_select_color">请选择颜色</string>
+    <string name="product_toast_added_to_cart">已添加至衣橱</string>
+
+    <!-- Batch 3 & Admin -->
+    <string name="toast_review_success">评价提交成功！</string>
+    <string name="toast_pwd_reset_success">密码重置成功！</string>
+    <string name="error_invalid_card_num">卡号无效</string>
+    <string name="error_enter_card_name">请输入持卡人姓名</string>
+    <string name="toast_card_saved_success">卡片保存成功</string>
+    <string name="about_est">EST. 2024</string>
+    <string name="admin_review_moderation_title">评价审核</string>
+    <string name="admin_review_empty">没有需要审核的评价</string>
+    <string name="admin_select_option">选择选项</string>
+    <string name="admin_upload_images">上传图片（最多 3 张）</string>
 </resources>

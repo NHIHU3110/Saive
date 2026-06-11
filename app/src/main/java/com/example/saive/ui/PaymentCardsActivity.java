@@ -73,6 +73,7 @@ public class PaymentCardsActivity extends BaseActivity {
         findViewById(R.id.fabAddCard).setOnClickListener(v -> showAddCardBottomSheet());
     }
 
+    @android.annotation.SuppressLint("InflateParams")
     private void showAddCardBottomSheet() {
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this, R.style.BottomSheetDialogTheme);
         View view = getLayoutInflater().inflate(R.layout.layout_add_card_bottom_sheet, null);
@@ -113,7 +114,7 @@ public class PaymentCardsActivity extends BaseActivity {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                tvPreviewHolder.setText(s.toString().isEmpty() ? getString(R.string.card_preview_holder) : s.toString().toUpperCase());
+                tvPreviewHolder.setText(s.toString().isEmpty() ? getString(R.string.card_preview_holder) : s.toString().toUpperCase(java.util.Locale.getDefault()));
             }
             @Override
             public void afterTextChanged(Editable s) {}

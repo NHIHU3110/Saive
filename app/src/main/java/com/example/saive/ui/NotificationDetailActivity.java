@@ -63,7 +63,7 @@ public class NotificationDetailActivity extends AppCompatActivity {
                 String fullContent = desc + "\n\n" + getString(R.string.notify_detail_description_placeholder);
                 tvDetailContent.setText(fullContent);
             }
-            if (action != null) tvActionText.setText(action.toUpperCase());
+            if (action != null) tvActionText.setText(action.toUpperCase(java.util.Locale.getDefault()));
             
             // Set image based on notification type
             if (typeStr != null) {

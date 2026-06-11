@@ -121,7 +121,7 @@ public class LeaveReviewActivity extends BaseActivity {
             
             DataManager.getInstance(this).addReview(newReview);
 
-            ToastUtils.showCustomToast(this, "Review submitted successfully!");
+            ToastUtils.showCustomToast(this, getString(R.string.toast_review_success));
             finish();
         });
 

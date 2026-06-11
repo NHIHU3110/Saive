@@ -66,7 +66,7 @@ public class AddPaymentCardActivity extends BaseActivity {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                tvPreviewHolder.setText(s.toString().isEmpty() ? "CARD HOLDER" : s.toString().toUpperCase());
+                tvPreviewHolder.setText(s.toString().isEmpty() ? "CARD HOLDER" : s.toString().toUpperCase(java.util.Locale.getDefault()));
             }
             @Override
             public void afterTextChanged(Editable s) {}
@@ -95,11 +95,11 @@ public class AddPaymentCardActivity extends BaseActivity {
         String expiry = etExpiry.getText().toString().trim();
 
         if (number.length() < 12) {
-            showCustomToast("Invalid card number");
+            showCustomToast(getString(R.string.error_invalid_card_num));
             return;
         }
         if (holder.isEmpty()) {
-            showCustomToast("Enter card holder name");
+            showCustomToast(getString(R.string.error_enter_card_name));
             return;
         }
 
@@ -112,7 +112,7 @@ public class AddPaymentCardActivity extends BaseActivity {
         );
 
         DataManager.getInstance(this).addPaymentCard(card);
-        showCustomToast("Card saved successfully");
+        showCustomToast(getString(R.string.toast_card_saved_success));
         finish();
     }
 }

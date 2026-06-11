@@ -45,9 +45,9 @@ public class ProductDetailActivity extends BaseActivity {
     private ImageButton btnFavorite, btnShare;
     private View btnCart;
     private LottieAnimationView lottieFavorite;
-    private TextView tvProductName, tvPrice, tvOriginalPrice, tvDescription, tvWardrobeAction, btnWriteReview, btnSeeMore, tvCartBadge, tvQuantity, tvSizeStockStatus, tvColorStockStatus;
+    private TextView tvProductName, tvPrice, tvOriginalPrice, tvDescription, tvWardrobeAction, btnWriteReview, btnSeeMore, tvCartBadge, tvQuantity, tvQuantityBottom, tvSizeStockStatus, tvColorStockStatus;
     private View btnAddToWardrobe, sizeSelectionContainer, colorSelectionContainer, btnSizeGuide;
-    private ImageButton btnDecrease, btnIncrease;
+    private ImageButton btnDecrease, btnIncrease, btnDecreaseBottom, btnIncreaseBottom;
     private RecyclerView rvCompleteLook, rvReviews;
     private List<View> sizeViews, colorViews;
     
@@ -151,6 +151,10 @@ public class ProductDetailActivity extends BaseActivity {
         btnDecrease = findViewById(R.id.btnDecrease);
         btnIncrease = findViewById(R.id.btnIncrease);
         
+        tvQuantityBottom = findViewById(R.id.tvQuantityBottom);
+        btnDecreaseBottom = findViewById(R.id.btnDecreaseBottom);
+        btnIncreaseBottom = findViewById(R.id.btnIncreaseBottom);
+        
         rvCompleteLook = findViewById(R.id.rvCompleteLook);
         rvReviews = findViewById(R.id.rvReviews);
         
@@ -210,7 +214,7 @@ public class ProductDetailActivity extends BaseActivity {
         ImageUtils.setSafeImage(ivHero, currentProduct.getImageResId());
 
         // Toggle Size/Color selection based on category
-        String category = currentProduct.getCategory() != null ? currentProduct.getCategory().toLowerCase() : "";
+        String category = currentProduct.getCategory() != null ? currentProduct.getCategory().toLowerCase(java.util.Locale.ROOT) : "";
         boolean isGlasses = category.contains("glasses");
         boolean isPerfume = category.contains("perfume");
 
@@ -338,23 +342,27 @@ public class ProductDetailActivity extends BaseActivity {
             });
         }
 
-        if (btnIncrease != null) {
-            btnIncrease.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                selectedQuantity++;
-                tvQuantity.setText(String.valueOf(selectedQuantity));
-            });
-        }
+        View.OnClickListener increaseListener = v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            selectedQuantity++;
+            if (tvQuantity != null) tvQuantity.setText(String.valueOf(selectedQuantity));
+            if (tvQuantityBottom != null) tvQuantityBottom.setText(String.valueOf(selectedQuantity));
+        };
+        
+        if (btnIncrease != null) btnIncrease.setOnClickListener(increaseListener);
+        if (btnIncreaseBottom != null) btnIncreaseBottom.setOnClickListener(increaseListener);
 
-        if (btnDecrease != null) {
-            btnDecrease.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                if (selectedQuantity > 1) {
-                    selectedQuantity--;
-                    tvQuantity.setText(String.valueOf(selectedQuantity));
-                }
-            });
-        }
+        View.OnClickListener decreaseListener = v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            if (selectedQuantity > 1) {
+                selectedQuantity--;
+                if (tvQuantity != null) tvQuantity.setText(String.valueOf(selectedQuantity));
+                if (tvQuantityBottom != null) tvQuantityBottom.setText(String.valueOf(selectedQuantity));
+            }
+        };
+
+        if (btnDecrease != null) btnDecrease.setOnClickListener(decreaseListener);
+        if (btnDecreaseBottom != null) btnDecreaseBottom.setOnClickListener(decreaseListener);
 
         if (btnAddToWardrobe != null) {
             btnAddToWardrobe.setOnClickListener(v -> {
@@ -379,6 +387,7 @@ public class ProductDetailActivity extends BaseActivity {
         return true; // Simplified for now
     }
 
+    @android.annotation.SuppressLint("InflateParams")
     private void showWriteReviewDialog() {
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this, R.style.TransparentBottomSheetDialog);
         View dialogView = getLayoutInflater().inflate(R.layout.layout_write_review, null);
@@ -394,7 +403,7 @@ public class ProductDetailActivity extends BaseActivity {
             String reviewText = etReview.getText().toString().trim();
             
             if (reviewText.isEmpty()) {
-                ToastUtils.showCustomToast(this, "Please enter your review");
+                ToastUtils.showCustomToast(this, getString(R.string.product_error_review_empty));
                 return;
             }
 
@@ -413,7 +422,7 @@ public class ProductDetailActivity extends BaseActivity {
             rvReviews.scrollToPosition(0);
 
             bottomSheetDialog.dismiss();
-            ToastUtils.showCustomToast(this, "Review submitted successfully!");
+            ToastUtils.showCustomToast(this, getString(R.string.product_toast_review_success));
         });
 
         bottomSheetDialog.show();
@@ -483,12 +492,12 @@ public class ProductDetailActivity extends BaseActivity {
     private void toggleWardrobe() {
         // Kiểm tra chọn size nếu container đang hiển thị
         if (sizeSelectionContainer.getVisibility() == View.VISIBLE && currentProduct.getSelectedSize() == null) {
-            ToastUtils.showCustomToast(this, "Vui lòng chọn kích thước (Size)");
+            ToastUtils.showCustomToast(this, getString(R.string.product_error_select_size));
             return;
         }
         // Kiểm tra chọn màu nếu container đang hiển thị
         if (colorSelectionContainer.getVisibility() == View.VISIBLE && currentProduct.getSelectedColor() == null) {
-            ToastUtils.showCustomToast(this, "Vui lòng chọn màu sắc (Color)");
+            ToastUtils.showCustomToast(this, getString(R.string.product_error_select_color));
             return;
         }
 
@@ -504,7 +513,7 @@ public class ProductDetailActivity extends BaseActivity {
         }
 
         cartManager.addProduct(currentProduct, selectedQuantity);
-        ToastUtils.showCustomToast(this, "Added to Wardrobe");
+        ToastUtils.showCustomToast(this, getString(R.string.product_toast_added_to_cart));
         
         updateWardrobeStatus();
     }

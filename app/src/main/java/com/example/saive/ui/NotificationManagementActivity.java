@@ -119,6 +119,7 @@ public class NotificationManagementActivity extends BaseActivity {
         adapter.notifyDataSetChanged();
     }
 
+    @android.annotation.SuppressLint("InflateParams")
     private void showCreateNotificationDialog() {
         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_create_notification, null);

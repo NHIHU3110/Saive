@@ -87,7 +87,7 @@ public class MyOrdersActivity extends BaseActivity {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             filteredList = allOrders.stream()
                     .filter(o -> {
-                        String s = o.getStatus() != null ? o.getStatus().toUpperCase() : "PENDING";
+                        String s = o.getStatus() != null ? o.getStatus().toUpperCase(java.util.Locale.ROOT) : "PENDING";
                         if (tabPosition == 0) return s.equals("PENDING") || s.equals("SHIPPED");
                         return s.equals(statusFilter);
                     })
@@ -95,7 +95,7 @@ public class MyOrdersActivity extends BaseActivity {
         } else {
             filteredList = new ArrayList<>();
             for (AdminOrder o : allOrders) {
-                String s = o.getStatus() != null ? o.getStatus().toUpperCase() : "PENDING";
+                String s = o.getStatus() != null ? o.getStatus().toUpperCase(java.util.Locale.ROOT) : "PENDING";
                 if (tabPosition == 0) {
                     if (s.equals("PENDING") || s.equals("SHIPPED")) filteredList.add(o);
                 } else if (s.equals(statusFilter)) {
@@ -124,7 +124,7 @@ public class MyOrdersActivity extends BaseActivity {
 
                 @Override
                 public void onActionClick(AdminOrder order) {
-                    String s = order.getStatus() != null ? order.getStatus().toUpperCase() : "PENDING";
+                    String s = order.getStatus() != null ? order.getStatus().toUpperCase(java.util.Locale.ROOT) : "PENDING";
                     if (s.equals("COMPLETED")) {
                         // Go to product detail to leave review
                         Intent intent = new Intent(MyOrdersActivity.this, ProductDetailActivity.class);

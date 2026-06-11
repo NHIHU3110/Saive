@@ -136,6 +136,7 @@ public class AddAddressActivity extends BaseActivity {
         });
     }
 
+    @android.annotation.SuppressLint("InflateParams")
     private void showLocationDialog(String type, List<String> options) {
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this, R.style.BottomSheetDialogTheme);
         View view = getLayoutInflater().inflate(R.layout.layout_bottom_sheet_menu, null, false);
@@ -303,14 +304,14 @@ public class AddAddressActivity extends BaseActivity {
         } else {
             // Add new
             String id = UUID.randomUUID().toString();
-            Address newAddr = new Address(id, selectedLabel, name, fullPhone, street, ward, district, city, isDefault);
-            newAddr.setCountry(selectedCountry);
-            addressList.add(newAddr);
+            Address newAddress = new Address(id, selectedLabel, name, fullPhone, street, ward, district, city, isDefault);
+            newAddress.setCountry(selectedCountry);
+            addressList.add(newAddress);
         }
 
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(ADDRESS_KEY, gson.toJson(addressList));
-        editor.commit(); // Sử dụng commit để đảm bảo dữ liệu được lưu ngay lập tức trước khi finish
+        editor.apply();
 
         setResult(RESULT_OK);
         finish();

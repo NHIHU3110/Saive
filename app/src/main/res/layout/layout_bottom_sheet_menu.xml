@@ -30,7 +30,7 @@
         android:textAllCaps="true"
         android:textColor="@color/colorSand"
         android:letterSpacing="0.2"
-        android:text="SELECT OPTION" />
+        android:text="@string/admin_select_option" />
 
     <EditText
         android:id="@+id/etSearchOption"

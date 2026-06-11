@@ -76,9 +76,9 @@ public class UserManagementActivity extends BaseActivity {
         if (query.isEmpty()) {
             filtered = new ArrayList<>(userList);
         } else {
-            String q = query.toLowerCase();
+            String q = query.toLowerCase(java.util.Locale.getDefault());
             filtered = userList.stream()
-                    .filter(u -> u.getName().toLowerCase().contains(q) || u.getEmail().toLowerCase().contains(q))
+                    .filter(u -> u.getName().toLowerCase(java.util.Locale.getDefault()).contains(q) || u.getEmail().toLowerCase(java.util.Locale.getDefault()).contains(q))
                     .collect(Collectors.toList());
         }
         adapter.updateList(filtered);

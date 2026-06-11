@@ -6,10 +6,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -17,13 +14,13 @@ import androidx.core.splashscreen.SplashScreen;
 
 import com.example.saive.R;
 import com.example.saive.base.BaseActivity;
+import com.example.saive.databinding.ActivityLoginBinding;
 import com.example.saive.utils.DataManager;
 import com.example.saive.utils.ImageUtils;
 
 public class LoginActivity extends BaseActivity {
 
-    private EditText etEmail, etPassword;
-    private CheckBox cbRememberMe;
+    private ActivityLoginBinding binding;
     private int logoClickCount = 0;
     private long lastClickTime = 0;
 
@@ -32,36 +29,31 @@ public class LoginActivity extends BaseActivity {
         SplashScreen.installSplashScreen(this);
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_login);
+        
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        View ivLogoView = findViewById(R.id.ivLogo);
-        if (ivLogoView instanceof ImageView) {
-            ImageUtils.setSafeImage((ImageView) ivLogoView, R.mipmap.saive_logo);
-        }
+        ImageUtils.setSafeImage(binding.ivLogo, R.mipmap.saive_logo);
 
-        if (ivLogoView != null) {
-            ivLogoView.setOnClickListener(v -> {
-                long currentTime = System.currentTimeMillis();
-                if (currentTime - lastClickTime < 500) {
-                    logoClickCount++;
-                } else {
-                    logoClickCount = 1;
-                }
-                lastClickTime = currentTime;
+        binding.ivLogo.setOnClickListener(v -> {
+            long currentTime = System.currentTimeMillis();
+            if (currentTime - lastClickTime < 500) {
+                logoClickCount++;
+            } else {
+                logoClickCount = 1;
+            }
+            lastClickTime = currentTime;
 
-                if (logoClickCount >= 5) {
-                    logoClickCount = 0;
-                    Intent intent = new Intent(LoginActivity.this, AdminLoginActivity.class);
-                    startActivity(intent);
-                    Toast.makeText(this, "Admin Mode Unlocked", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
+            if (logoClickCount >= 5) {
+                logoClickCount = 0;
+                Intent intent = new Intent(LoginActivity.this, AdminLoginActivity.class);
+                startActivity(intent);
+                Toast.makeText(this, getString(R.string.login_admin_unlocked), Toast.LENGTH_SHORT).show();
+            }
+        });
 
-        ImageView ivFbIcon = findViewById(R.id.ivFbIcon);
-        ImageView ivGgIcon = findViewById(R.id.ivGgIcon);
-        ImageUtils.setSafeImage(ivFbIcon, R.mipmap.fbicon);
-        ImageUtils.setSafeImage(ivGgIcon, R.mipmap.ggicon);
+        ImageUtils.setSafeImage(binding.ivFbIcon, R.mipmap.fbicon);
+        ImageUtils.setSafeImage(binding.ivGgIcon, R.mipmap.ggicon);
 
         if (getWindow() != null) {
             getWindow().setStatusBarColor(androidx.core.content.ContextCompat.getColor(this, R.color.colorAuthBg));
@@ -78,18 +70,10 @@ public class LoginActivity extends BaseActivity {
             }
         }
 
-        etEmail = findViewById(R.id.etEmail);
-        etPassword = findViewById(R.id.etPassword);
-        cbRememberMe = findViewById(R.id.cbRememberMe);
-        View btnLogin = findViewById(R.id.btnLogin);
-        TextView tvSignUpLink = findViewById(R.id.tvSignUpLink);
-        TextView tvForgotPassword = findViewById(R.id.tvForgotPassword);
-        TextView tvContinueAsGuest = findViewById(R.id.tvContinueAsGuest);
-
         boolean returnResult = getIntent().getBooleanExtra("return_result", false);
-        if (returnResult && tvContinueAsGuest != null) {
-            tvContinueAsGuest.setVisibility(View.VISIBLE);
-            tvContinueAsGuest.setOnClickListener(v -> {
+        if (returnResult) {
+            binding.tvContinueAsGuest.setVisibility(View.VISIBLE);
+            binding.tvContinueAsGuest.setOnClickListener(v -> {
                 setResult(RESULT_OK);
                 finish();
             });
@@ -97,44 +81,38 @@ public class LoginActivity extends BaseActivity {
 
         loadSavedCredentials();
 
-        if (btnLogin != null) {
-            btnLogin.setOnClickListener(v -> {
-                if (validateInput()) {
-                    performLogin();
-                }
-            });
-        }
+        binding.btnLogin.setOnClickListener(v -> {
+            if (validateInput()) {
+                performLogin();
+            }
+        });
 
-        if (tvSignUpLink != null) {
-            tvSignUpLink.setOnClickListener(v -> {
-                startActivity(new Intent(LoginActivity.this, SignupActivity.class));
-            });
-        }
+        binding.tvSignUpLink.setOnClickListener(v -> {
+            startActivity(new Intent(LoginActivity.this, SignupActivity.class));
+        });
 
-        if (tvForgotPassword != null) {
-            tvForgotPassword.setOnClickListener(v -> {
-                startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
-                showCustomToast("Forgot password clicked");
-            });
-        }
+        binding.tvForgotPassword.setOnClickListener(v -> {
+            startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
+            showCustomToast(getString(R.string.login_forgot_pwd_clicked));
+        });
     }
 
     private boolean validateInput() {
-        String email = etEmail.getText().toString().trim();
-        String password = etPassword.getText().toString().trim();
+        String email = binding.etEmail.getText().toString().trim();
+        String password = binding.etPassword.getText().toString().trim();
 
         if (TextUtils.isEmpty(email)) {
-            etEmail.setError("Email is required");
+            binding.etEmail.setError(getString(R.string.login_error_email_req));
             return false;
         }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            etEmail.setError("Please enter a valid email");
+            binding.etEmail.setError(getString(R.string.login_error_email_invalid));
             return false;
         }
 
         if (TextUtils.isEmpty(password)) {
-            etPassword.setError("Password is required");
+            binding.etPassword.setError(getString(R.string.login_error_pwd_req));
             return false;
         }
 
@@ -147,19 +125,19 @@ public class LoginActivity extends BaseActivity {
         if (rememberMe) {
             String savedEmail = prefs.getString("saved_email", "");
             String savedPassword = prefs.getString("saved_password", "");
-            etEmail.setText(savedEmail);
-            etPassword.setText(savedPassword);
-            cbRememberMe.setChecked(true);
+            binding.etEmail.setText(savedEmail);
+            binding.etPassword.setText(savedPassword);
+            binding.cbRememberMe.setChecked(true);
         }
     }
 
     private void performLogin() {
-        String email = etEmail.getText().toString().trim();
-        String password = etPassword.getText().toString().trim();
+        String email = binding.etEmail.getText().toString().trim();
+        String password = binding.etPassword.getText().toString().trim();
 
         DataManager dataManager = DataManager.getInstance(this);
         if (dataManager.isUserBlocked(email)) {
-            showCustomToast("Tài khoản bị khóa. Vui lòng liên hệ Admin.");
+            showCustomToast(getString(R.string.login_error_acc_blocked));
             return;
         }
 
@@ -173,14 +151,14 @@ public class LoginActivity extends BaseActivity {
             editor.putString("saved_email", email);
             editor.putString("saved_password", password);
 
-            if (cbRememberMe.isChecked()) {
+            if (binding.cbRememberMe.isChecked()) {
                 editor.putBoolean("remember_me", true);
             } else {
                 editor.putBoolean("remember_me", false);
             }
 
             editor.apply();
-            showCustomToast("Login Successful");
+            showCustomToast(getString(R.string.login_toast_success));
 
             boolean returnResult = getIntent().getBooleanExtra("return_result", false);
             if (returnResult) {

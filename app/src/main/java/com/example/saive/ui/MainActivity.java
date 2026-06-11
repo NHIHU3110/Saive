@@ -138,7 +138,6 @@ public class MainActivity extends BaseActivity {
                 }
                 View centerFab = findViewById(R.id.centerActionButton);
                 if (centerFab != null) {
-                    centerFab.setAlpha(1f);
                     centerFab.setVisibility(View.VISIBLE);
                     if (centerFab.getScaleX() <= 0.1f) {
                         centerFab.setScaleX(1f);
@@ -730,8 +729,15 @@ public class MainActivity extends BaseActivity {
             if (item == null) continue;
             boolean isActive = (item == activeView);
 
+            float targetAlpha;
+            if (item.getId() == R.id.centerActionButton) {
+                targetAlpha = isActive ? 1.0f : 0.8f; // Home button less faded
+            } else {
+                targetAlpha = isActive ? 1.0f : 0.5f;
+            }
+
             item.animate()
-                    .alpha(isActive ? 1.0f : 0.5f)
+                    .alpha(targetAlpha)
                     .setDuration(250)
                     .start();
         }
@@ -923,7 +929,7 @@ public class MainActivity extends BaseActivity {
         rvFlashSale.setAdapter(adapter);
         
         // Thêm hiệu ứng mượt mà khi cuộn
-        rvFlashSale.setHasFixedSize(true);
+
         rvFlashSale.setNestedScrollingEnabled(false);
 
         // Nút View All Flash Sale
@@ -1039,7 +1045,7 @@ public class MainActivity extends BaseActivity {
             Intent intent = new Intent(this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
-            Toast.makeText(this, "Tài khoản bị khóa bởi Admin", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.main_error_acc_blocked), Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
@@ -1207,6 +1213,7 @@ public class MainActivity extends BaseActivity {
         rvEditorial.setAdapter(editorialAdapter);
     }
 
+    @android.annotation.SuppressLint("InflateParams")
     private void showNotificationSortPopup(View v) {
         List<String> sortOptions = Arrays.asList(
                 getString(R.string.sort_latest),
@@ -1252,6 +1259,7 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    @android.annotation.SuppressLint("InflateParams")
     private void showSortPopup(View v) {
         List<String> sortOptions = Arrays.asList(
                 getString(R.string.sort_price_low_high),

@@ -6,36 +6,29 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 
 import com.example.saive.R;
 import com.example.saive.base.BaseActivity;
+import com.example.saive.databinding.ActivitySignupBinding;
 import com.example.saive.utils.ImageUtils;
 
 public class SignupActivity extends BaseActivity {
 
-    private EditText etName, etEmail, etPassword, etConfirmPassword, etPhone;
-    private CheckBox cbTerms;
-    private TextView tvTermsLink;
+    private ActivitySignupBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
-
-        ImageView ivLogo = findViewById(R.id.ivLogo);
-        ImageView ivFbIcon = findViewById(R.id.ivFbIcon);
-        ImageView ivGgIcon = findViewById(R.id.ivGgIcon);
         
-        ImageUtils.setSafeImage(ivLogo, R.mipmap.saive_logo);
-        ImageUtils.setSafeImage(ivFbIcon, R.mipmap.fbicon);
-        ImageUtils.setSafeImage(ivGgIcon, R.mipmap.ggicon);
+        binding = ActivitySignupBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        ImageUtils.setSafeImage(binding.ivLogo, R.mipmap.saive_logo);
+        ImageUtils.setSafeImage(binding.ivFbIcon, R.mipmap.fbicon);
+        ImageUtils.setSafeImage(binding.ivGgIcon, R.mipmap.ggicon);
 
         if (getWindow() != null) {
             getWindow().setStatusBarColor(androidx.core.content.ContextCompat.getColor(this, R.color.colorAuthBg));
@@ -52,78 +45,62 @@ public class SignupActivity extends BaseActivity {
             }
         }
 
-        etName = findViewById(R.id.etName);
-        etEmail = findViewById(R.id.etEmail);
-        etPassword = findViewById(R.id.etPassword);
-        etConfirmPassword = findViewById(R.id.etConfirmPassword);
-        etPhone = findViewById(R.id.etPhone);
-        cbTerms = findViewById(R.id.cbTerms);
-        tvTermsLink = findViewById(R.id.tvTermsLink);
-        View btnSignup = findViewById(R.id.btnSignup);
-        TextView tvLoginLink = findViewById(R.id.tvLoginLink);
+        binding.btnSignup.setOnClickListener(v -> {
+            if (validateInput()) {
+                performSignup();
+            }
+        });
 
-        if (btnSignup != null) {
-            btnSignup.setOnClickListener(v -> {
-                if (validateInput()) {
-                    performSignup();
-                }
-            });
-        }
+        binding.tvTermsLink.setOnClickListener(v -> showTermsPopup());
 
-        if (tvTermsLink != null) {
-            tvTermsLink.setOnClickListener(v -> showTermsPopup());
-        }
-
-        if (tvLoginLink != null) {
-            tvLoginLink.setOnClickListener(v -> {
-                finish();
-            });
-        }
+        binding.tvLoginLink.setOnClickListener(v -> {
+            finish();
+        });
     }
 
     private boolean validateInput() {
-        String name = etName.getText().toString().trim();
-        String email = etEmail.getText().toString().trim();
-        String password = etPassword.getText().toString().trim();
-        String confirmPassword = etConfirmPassword.getText().toString().trim();
-        String phone = etPhone.getText().toString().trim();
+        String name = binding.etName.getText().toString().trim();
+        String email = binding.etEmail.getText().toString().trim();
+        String password = binding.etPassword.getText().toString().trim();
+        String confirmPassword = binding.etConfirmPassword.getText().toString().trim();
+        String phone = binding.etPhone.getText().toString().trim();
 
         if (TextUtils.isEmpty(name)) {
-            etName.setError(getString(R.string.error_name_required));
+            binding.etName.setError(getString(R.string.error_name_required));
             return false;
         }
 
         if (TextUtils.isEmpty(email)) {
-            etEmail.setError(getString(R.string.error_email_required));
+            binding.etEmail.setError(getString(R.string.error_email_required));
             return false;
         }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            etEmail.setError(getString(R.string.error_invalid_email));
+            binding.etEmail.setError(getString(R.string.error_invalid_email));
             return false;
         }
 
         if (TextUtils.isEmpty(password)) {
-            etPassword.setError(getString(R.string.error_password_required));
+            binding.etPassword.setError(getString(R.string.error_password_required));
             return false;
         }
 
         if (password.length() < 6) {
-            etPassword.setError(getString(R.string.error_password_short));
+            binding.etPassword.setError(getString(R.string.error_password_short));
             return false;
         }
 
         if (!password.equals(confirmPassword)) {
-            etConfirmPassword.setError(getString(R.string.error_passwords_not_match));
+            binding.etConfirmPassword.setError(getString(R.string.error_passwords_not_match));
             return false;
         }
 
         if (TextUtils.isEmpty(phone)) {
-            etPhone.setError(getString(R.string.error_phone_required));
+            binding.etPhone.setError(getString(R.string.error_phone_required));
             return false;
         }
 
-        if (!cbTerms.isChecked()) {
+        if (!binding.cbTerms.isChecked()) {
             showCustomToast(getString(R.string.error_agree_terms));
             return false;
         }
@@ -133,26 +110,25 @@ public class SignupActivity extends BaseActivity {
 
     private void showTermsPopup() {
         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
-        View dialogView = getLayoutInflater().inflate(R.layout.dialog_terms, null);
-        builder.setView(dialogView);
+        
+        com.example.saive.databinding.DialogTermsBinding dialogBinding = 
+                com.example.saive.databinding.DialogTermsBinding.inflate(getLayoutInflater());
+        builder.setView(dialogBinding.getRoot());
 
         android.app.AlertDialog dialog = builder.create();
         if (dialog.getWindow() != null) {
             dialog.getWindow().setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(android.graphics.Color.TRANSPARENT));
         }
 
-        View btnClose = dialogView.findViewById(R.id.btnCloseTerms);
-        if (btnClose != null) {
-            btnClose.setOnClickListener(v -> dialog.dismiss());
-        }
+        dialogBinding.btnCloseTerms.setOnClickListener(v -> dialog.dismiss());
 
         dialog.show();
     }
 
     private void performSignup() {
-        String email = etEmail.getText().toString().trim();
-        String password = etPassword.getText().toString().trim();
-        String name = etName.getText().toString().trim();
+        String email = binding.etEmail.getText().toString().trim();
+        String password = binding.etPassword.getText().toString().trim();
+        String name = binding.etName.getText().toString().trim();
 
         // Lưu thông tin để có thể đăng nhập ở màn hình Login
         SharedPreferences prefs = getSharedPreferences("user_prefs", MODE_PRIVATE);

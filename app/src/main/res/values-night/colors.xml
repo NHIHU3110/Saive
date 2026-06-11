@@ -60,4 +60,8 @@
     <color name="colorMaroon">#D4C9B8</color>
     <color name="colorAccentRed">#D4C9B8</color>
     <color name="colorAccentBrand">#D4C9B8</color>
+
+    <!-- Colors for content on Flash Sale background (Adaptive) -->
+    <color name="colorFlashSaleContent">#1A1A1A</color>
+    <color name="colorFlashSaleContentSecondary">#1A1A1A</color>
 </resources>
