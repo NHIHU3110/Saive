@@ -11,39 +11,56 @@
 
 
     <!-- Header -->
-    <LinearLayout
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/headerBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorCotton"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingTop="48dp"
-        android:paddingBottom="16dp"
-        android:paddingHorizontal="16dp"
+        app:cardBackgroundColor="@color/colorHeaderBg"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="4dp"
+        app:strokeWidth="0dp"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/btnBack"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:padding="8dp"
-            android:src="@drawable/ic_back"
-            app:tint="@color/colorNoirBlack" />
-
-        <TextView
-            style="@style/TextAppearance.Saive.SectionHeader"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="40dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:letterSpacing="0.2"
-            android:text="@string/menu_payment_cards"
-            android:textColor="@color/colorNoirBlack"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-    </LinearLayout>
+            android:paddingHorizontal="16dp"
+            android:paddingTop="54dp"
+            android:paddingBottom="20dp">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="8dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/colorHeaderContent" />
+
+            <TextView
+                android:id="@+id/tvToolbarTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="56dp"
+                android:fontFamily="serif"
+                android:gravity="center"
+                android:letterSpacing="0.05"
+                android:text="@string/menu_payment_cards"
+                android:textAllCaps="true"
+                android:textColor="@color/colorHeaderContent"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 
     <!-- RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView

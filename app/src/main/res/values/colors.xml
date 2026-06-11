@@ -75,7 +75,10 @@
 
     <color name="colorAccentBrand">@color/colorMaroon</color>
 
-    <!-- Address Card Adaptive -->
+    <!-- Auth Card Adaptive -->
+    <color name="colorAuthCardBg">@color/white</color>
+    <color name="colorAuthCardTitle">@color/colorMaroon</color>
+    <color name="colorAuthCardSubtitle">@color/colorGrayText</color>
     <color name="colorAddressCardBg">@color/white</color>
     <color name="colorAddressCardText">@color/colorNoirBlack</color>
     <color name="colorAddressCardPhone">@color/colorSand</color>

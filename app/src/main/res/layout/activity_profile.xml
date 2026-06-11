@@ -11,7 +11,7 @@
         android:id="@+id/headerContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorCotton"
+        android:background="@color/colorHeaderBg"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingHorizontal="@dimen/spacing_large"
@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:letterSpacing="0.2"
             android:text="@string/profile_header"
-            android:textColor="@color/colorNoirBlack"
+            android:textColor="@color/colorHeaderContent"
             android:textSize="14sp"
             android:textStyle="bold" />
     </LinearLayout>

@@ -16,8 +16,8 @@
     <color name="colorLinen">#4A4A48</color>
 
     <!-- Text → Light Cream/Sand (Optimized for readability) -->
-    <color name="colorNoirBlack">#F5F5F0</color> <!-- Primary Text -->
-    <color name="colorNoir">#F5F5F0</color>
+    <color name="colorNoirBlack">#FFFFFF</color> <!-- Chuyển hẳn sang trắng tinh cho Dark Mode -->
+    <color name="colorNoir">#FFFFFF</color>
     <color name="colorGrayText">#A89B85</color> <!-- Secondary Text -->
     <color name="colorGrey">#888888</color>
     <color name="colorSand">#D4C9B8</color>
@@ -46,15 +46,18 @@
     <color name="colorFlashSaleContent">#000000</color> <!-- Title "Limited Time Drops" -->
     <color name="colorFlashSaleContentSecondary">#810100</color> <!-- Label "FLASH SALE" -->
 
-    <!-- Button Colors - Specifically kept Maroon as requested -->
-    <color name="colorButtonBg">#810100</color>
+    <!-- Button Colors - Chuyển sang Sand trong Dark Mode -->
+    <color name="colorButtonBg">#A89B85</color>
     <color name="colorButtonText">#FFFFFF</color>
 
     <!-- Header Adaptive -->
     <color name="colorHeaderBg">#A89B85</color>
     <color name="colorHeaderContent">#1A1A1A</color>
 
-    <!-- Address Card Adaptive (Dark Mode -> Black text on light card) -->
+    <!-- Auth Card Adaptive -->
+    <color name="colorAuthCardBg">#1E1E1C</color>
+    <color name="colorAuthCardTitle">#FFFFFF</color>
+    <color name="colorAuthCardSubtitle">#FFFFFF</color>
     <color name="colorAddressCardBg">#D4C9B8</color> <!-- Light Sand/Beige for contrast -->
     <color name="colorAddressCardText">#000000</color> <!-- Black as requested -->
     <color name="colorAddressCardPhone">#444444</color>

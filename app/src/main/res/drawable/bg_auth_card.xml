@@ -5,7 +5,7 @@
     android:viewportWidth="400"
     android:viewportHeight="600">
     <path
-        android:fillColor="@color/white"
+        android:fillColor="@color/colorAuthCardBg"
         android:pathData="M 40,0
                           L 360,0
                           C 385,0 400,15 400,40
