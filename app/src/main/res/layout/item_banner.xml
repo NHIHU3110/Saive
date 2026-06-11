@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="EDITORIAL"
-            android:textColor="@color/colorCotton"
+            android:textColor="@color/colorAlwaysWhite"
             android:textSize="12sp"
             android:letterSpacing="0.5"
             android:alpha="0.8" />
@@ -42,7 +42,7 @@
             android:fontFamily="sans-serif-thin"
             android:letterSpacing="0.2"
             android:text="SAIVE"
-            android:textColor="@color/colorCotton"
+            android:textColor="@color/colorAlwaysWhite"
             android:textSize="48sp" />
 
         <TextView
@@ -54,7 +54,7 @@
             android:paddingHorizontal="32dp"
             android:paddingVertical="12dp"
             android:text="@string/btn_view_collection"
-            android:textColor="@color/colorCotton"
+            android:textColor="@color/colorAlwaysWhite"
             android:textSize="11sp"
             android:textStyle="bold"
             android:letterSpacing="0.2" />

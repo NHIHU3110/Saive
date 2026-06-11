@@ -226,12 +226,11 @@ public class FlashSaleActivity extends BaseActivity {
     private void setupProducts() {
         allProducts = DataManager.getInstance(this).getFlashSaleProducts();
         if (allProducts.isEmpty()) {
-            allProducts.add(new Product("NYLON WEATHER", "300.000", "500.000", R.mipmap.model1, getString(R.string.cat_all)));
-            allProducts.add(new Product("TWILL TEXTILE", "1.000.000", "1.500.000", R.mipmap.model2, getString(R.string.cat_all)));
-            allProducts.add(new Product("STRUCTURED COAT", "4.500.000", "6.000.000", R.mipmap.jacket1, getString(R.string.cat_jacket)));
-            allProducts.add(new Product("LINEN SHIRT", "1.200.000", "1.800.000", R.mipmap.tshirt2, getString(R.string.cat_tshirt)));
-            allProducts.add(new Product("MODERN AVIATORS", "2.100.000", "2.800.000", R.mipmap.sunglass1, getString(R.string.cat_sunglasses)));
-            allProducts.add(new Product("ARCHIVE PARKA", "5.200.000", "7.500.000", R.mipmap.jacket2, getString(R.string.cat_jacket)));
+            allProducts.add(new Product("Archived Wool Coat", "320.000", "500.000", R.mipmap.jacket1, getString(R.string.cat_jacket)));
+            allProducts.add(new Product("Vintage Linen Shirt", "120.000", "200.000", R.mipmap.tshirt2, getString(R.string.cat_tshirt)));
+            allProducts.add(new Product("Urban Shades", "140.000", "250.000", R.mipmap.sunglass4, getString(R.string.cat_sunglasses)));
+            allProducts.add(new Product("Classic Chinos", "95.000", "150.000", R.mipmap.pant2, getString(R.string.cat_jeans)));
+            allProducts.add(new Product("Retro Frames", "150.000", "280.000", R.mipmap.sunglass5, getString(R.string.cat_sunglasses)));
             DataManager.getInstance(this).saveFlashSaleProducts(allProducts);
         }
 
