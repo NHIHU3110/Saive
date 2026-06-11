@@ -44,7 +44,13 @@ public class DataManager {
     // --- Coupons ---
     public List<Coupon> getCoupons() {
         String json = prefs.getString(KEY_COUPONS, null);
-        if (json == null) return new ArrayList<>();
+        if (json == null) {
+            List<Coupon> defaults = new ArrayList<>();
+            defaults.add(new Coupon("SAIVE WELCOME", "On your first archive access.", "20%", "2024-12-31", "WELCOME20", "Active", 856));
+            defaults.add(new Coupon("SILK STORY", "Exclusive for Silk series.", "15%", "2024-11-15", "SILK15", "Active", 142));
+            defaults.add(new Coupon("REWARD", "Loyalty reward for you.", "10%", "2025-01-01", "REWARD10", "Active", 50));
+            return defaults;
+        }
         Type type = new TypeToken<ArrayList<Coupon>>() {}.getType();
         return gson.fromJson(json, type);
     }

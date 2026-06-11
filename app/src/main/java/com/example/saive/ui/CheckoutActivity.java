@@ -72,7 +72,10 @@ public class CheckoutActivity extends BaseActivity {
     private com.example.saive.models.PaymentCard selectedCard;
     private boolean isPaymentStep = false;
     private String totalPrice, selectedSize;
-    private double discount;
+    private double discountRate;
+    private String couponCode;
+    private TextView tvSummarySubtotal, tvSummaryDiscountLabel, tvSummaryDiscountValue;
+    private View layoutSummaryDiscount;
     private static final String ADDRESS_PREFS = "address_prefs";
     private static final String ADDRESS_KEY = "saved_addresses";
 
@@ -137,7 +140,9 @@ public class CheckoutActivity extends BaseActivity {
     private void loadIntentData() {
         totalPrice = getIntent().getStringExtra("total_price");
         selectedSize = getIntent().getStringExtra("selected_size");
-        discount = getIntent().getDoubleExtra("discount_rate", 0);
+        discountRate = getIntent().getDoubleExtra("discount_rate", 0);
+        couponCode = getIntent().getStringExtra("coupon_code");
+        
         if (totalPrice != null) {
             btnAction.setText(getString(R.string.btn_continue_payment) + " (" + totalPrice + ")");
         }
@@ -426,6 +431,10 @@ public class CheckoutActivity extends BaseActivity {
         tvSummaryPhone = findViewById(R.id.tvSummaryPhone);
         tvSummarySize = findViewById(R.id.tvSummarySize);
         tvSummaryTotal = findViewById(R.id.tvSummaryTotal);
+        tvSummarySubtotal = findViewById(R.id.tvSummarySubtotal);
+        tvSummaryDiscountLabel = findViewById(R.id.tvSummaryDiscountLabel);
+        tvSummaryDiscountValue = findViewById(R.id.tvSummaryDiscountValue);
+        layoutSummaryDiscount = findViewById(R.id.layoutSummaryDiscount);
         cardOrderSummary = findViewById(R.id.cardOrderSummary);
 
         layoutDefaultAddress = findViewById(R.id.layoutDefaultAddress);
@@ -846,7 +855,7 @@ public class CheckoutActivity extends BaseActivity {
             tvSummarySize.setVisibility(View.GONE);
         }
 
-        tvSummaryTotal.setText(totalPrice != null ? totalPrice : "");
+        updatePriceSummary();
 
         if (totalPrice != null) {
             btnAction.setText(getString(R.string.btn_place_order) + " (" + totalPrice + ")");
@@ -914,6 +923,36 @@ public class CheckoutActivity extends BaseActivity {
             layoutAddCard.setVisibility(View.VISIBLE);
             btnChangePaymentCard.setVisibility(View.GONE);
         }
+    }
+
+    private void updatePriceSummary() {
+        double subtotal = com.example.saive.utils.CartManager.getInstance(this).getTotalPrice();
+        double discountAmount = subtotal * discountRate;
+        double finalTotal = subtotal - discountAmount;
+
+        if (tvSummarySubtotal != null) {
+            tvSummarySubtotal.setText(com.example.saive.utils.PriceFormatter.formatPrice(subtotal));
+        }
+
+        if (discountRate > 0 && layoutSummaryDiscount != null) {
+            layoutSummaryDiscount.setVisibility(View.VISIBLE);
+            if (tvSummaryDiscountLabel != null) {
+                String discountText = getString(R.string.label_discount);
+                if (discountText.endsWith(":")) {
+                    discountText = discountText.substring(0, discountText.length() - 1);
+                }
+                tvSummaryDiscountLabel.setText(discountText + " (" + couponCode + ")");
+            }
+            if (tvSummaryDiscountValue != null) {
+                tvSummaryDiscountValue.setText("-" + com.example.saive.utils.PriceFormatter.formatPrice(discountAmount));
+            }
+        } else if (layoutSummaryDiscount != null) {
+            layoutSummaryDiscount.setVisibility(View.GONE);
+        }
+
+        String formattedTotal = com.example.saive.utils.PriceFormatter.formatPrice(finalTotal);
+        tvSummaryTotal.setText(formattedTotal);
+        totalPrice = formattedTotal; // Sync back to totalPrice used for button and order
     }
 
     private void processOrder() {

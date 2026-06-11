@@ -40,11 +40,6 @@ public class MarketingManagementActivity extends BaseActivity {
         rvCoupons.setLayoutManager(new LinearLayoutManager(this));
 
         couponList = dataManager.getCoupons();
-        if (couponList.isEmpty()) {
-            couponList.add(new Coupon("Silk Sale", "20% OFF on Silk Collection", "20%", "2024-12-31", "SILK20", "Active", 142));
-            couponList.add(new Coupon("Welcome", "10% OFF for new users", "10%", "2025-01-01", "WELCOME10", "Active", 856));
-            dataManager.saveCoupons(couponList);
-        }
 
         adapter = new AdminCouponAdapter(couponList);
         rvCoupons.setAdapter(adapter);

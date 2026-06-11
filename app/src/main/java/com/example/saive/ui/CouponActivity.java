@@ -135,9 +135,5 @@ public class CouponActivity extends BaseActivity {
 
     private void loadCoupons() {
         couponList = dataManager.getCoupons();
-        if (couponList.isEmpty()) {
-            couponList.add(new Coupon("SAIVE WELCOME", "On your first archive access.", "20%", "Dec 31, 2024", "WELCOME20"));
-            couponList.add(new Coupon("SILK STORY", "Exclusive for Silk series.", "15%", "Nov 15, 2024", "SILK15"));
-        }
     }
 }

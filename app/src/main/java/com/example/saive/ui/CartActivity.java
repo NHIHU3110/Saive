@@ -16,6 +16,8 @@ import com.example.saive.R;
 import com.example.saive.adapters.CartAdapter;
 import com.example.saive.base.BaseActivity;
 import com.example.saive.models.Product;
+import com.example.saive.models.Coupon;
+import com.example.saive.utils.DataManager;
 import com.example.saive.utils.CartManager;
 import com.example.saive.utils.DialogUtils;
 import com.example.saive.utils.ToastUtils;
@@ -193,41 +195,27 @@ public class CartActivity extends BaseActivity {
     }
 
     private void applyCoupon() {
-        String code = etCoupon.getText().toString().trim().toUpperCase();
+        String code = etCoupon.getText().toString().trim();
         if (code.isEmpty()) {
             ToastUtils.showCustomToast(this, getString(R.string.coupon_empty));
             return;
         }
 
-        // Logic kiểm tra mã giảm giá
-        if (code.equals("WELCOME20")) {
-            currentDiscountRate = 0.20;
-            appliedCouponCode = code;
-            ToastUtils.showCustomToast(this, getString(R.string.toast_coupon_applied_percent, 20));
-        } else if (code.equals("SILK15")) {
-            currentDiscountRate = 0.15;
-            appliedCouponCode = code;
-            ToastUtils.showCustomToast(this, getString(R.string.toast_coupon_applied_percent, 15));
-        } else if (code.equals("REWARD10")) {
-            currentDiscountRate = 0.10;
-            appliedCouponCode = code;
-            ToastUtils.showCustomToast(this, getString(R.string.toast_coupon_applied_percent, 10));
-        } else if (code.equals("ARCHIVE25")) {
-            currentDiscountRate = 0.25;
-            appliedCouponCode = code;
-            ToastUtils.showCustomToast(this, getString(R.string.toast_coupon_applied_percent, 25));
-        } else if (code.equals("SAIVE_S24_EXTRA")) {
-            currentDiscountRate = 0.15; // Giảm 15%
-            appliedCouponCode = code;
-            ToastUtils.showCustomToast(this, getString(R.string.toast_coupon_applied_percent, 15));
-        } else if (code.equals("SAIVE10")) {
-            currentDiscountRate = 0.10; // Giảm 10%
-            appliedCouponCode = code;
-            ToastUtils.showCustomToast(this, getString(R.string.toast_coupon_applied_percent, 10));
-        } else if (code.equals("WELCOME5")) {
-            currentDiscountRate = 0.05; // Giảm 5%
-            appliedCouponCode = code;
-            ToastUtils.showCustomToast(this, getString(R.string.toast_coupon_applied_percent, 5));
+        List<Coupon> coupons = DataManager.getInstance(this).getCoupons();
+        Coupon foundCoupon = null;
+        
+        for (Coupon coupon : coupons) {
+            if (coupon.getCode().equalsIgnoreCase(code)) {
+                foundCoupon = coupon;
+                break;
+            }
+        }
+
+        if (foundCoupon != null) {
+            currentDiscountRate = parseDiscount(foundCoupon.getDiscount());
+            appliedCouponCode = foundCoupon.getCode();
+            int percent = (int) (currentDiscountRate * 100);
+            ToastUtils.showCustomToast(this, getString(R.string.toast_coupon_applied_percent, percent));
         } else {
             currentDiscountRate = 0;
             appliedCouponCode = "";
@@ -235,6 +223,21 @@ public class CartActivity extends BaseActivity {
         }
         
         updateTotal();
+    }
+
+    private double parseDiscount(String discountStr) {
+        try {
+            if (discountStr == null || discountStr.isEmpty()) return 0;
+            String clean = discountStr.replace("%", "").trim();
+            double value = Double.parseDouble(clean);
+            // If the string contains '%' or the value is > 1 (like "10"), treat it as a percentage
+            if (discountStr.contains("%") || value >= 1) {
+                return value / 100.0;
+            }
+            return value;
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
     private void setupCartList() {
