@@ -10,7 +10,7 @@
         android:id="@+id/topBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorMaroon"
+        android:background="@color/colorHeaderBg"
         android:elevation="4dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -26,7 +26,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/ic_back"
             android:layout_marginBottom="-8dp"
-            app:tint="@color/white" />
+            app:tint="@color/colorHeaderContent" />
 
         <TextView
             style="@style/TextAppearance.Saive.SectionHeader"
@@ -37,7 +37,7 @@
             android:gravity="center"
             android:letterSpacing="0.1"
             android:text="@string/address_title"
-            android:textColor="@color/white"
+            android:textColor="@color/colorHeaderContent"
             android:textSize="18sp" />
     </LinearLayout>
 

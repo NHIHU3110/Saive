@@ -27,7 +27,7 @@
                 android:layout_height="40dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_back"
-                app:tint="@color/white" />
+                app:tint="@color/colorOnMaroon" />
 
             <TextView
                 style="@style/TextAppearance.Saive.SectionHeader"
@@ -37,22 +37,21 @@
                 android:layout_marginEnd="40dp"
                 android:gravity="center"
                 android:text="@string/menu_my_orders"
-                android:textColor="@color/white"
+                android:textColor="@color/colorHeaderContent"
                 android:textSize="18sp"
                 android:textStyle="bold" />
-
         </LinearLayout>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabIndicatorColor="@color/white"
-            app:tabSelectedTextColor="@color/white"
+            app:tabIndicatorColor="@color/colorHeaderContent"
+            app:tabSelectedTextColor="@color/colorHeaderContent"
             app:tabTextColor="@color/colorOnMaroonSecondary"
             app:tabIndicatorFullWidth="false"
             app:tabRippleColor="@android:color/transparent"
-            android:background="@color/colorMaroon"
+            android:background="@color/colorHeaderBg"
             app:tabMode="fixed" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -85,7 +84,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             style="@style/TextAppearance.Saive.SectionHeader"
-            android:text="NO ORDERS YET"
+            android:text="@string/order_empty_title"
+            android:textColor="@color/colorNoirBlack"
             android:alpha="0.5" />
     </LinearLayout>
 

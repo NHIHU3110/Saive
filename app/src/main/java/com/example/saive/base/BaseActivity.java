@@ -17,6 +17,8 @@ import com.example.saive.ui.MainActivity;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import java.util.Locale;
 
+import androidx.core.content.ContextCompat;
+
 public abstract class BaseActivity extends AppCompatActivity {
     protected static final String LANG_PREFS = "language_prefs";
     protected static final String LANG_KEY = "selected_language";
@@ -26,9 +28,19 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         // Ensure status bar is consistent across all activities
         if (getWindow() != null) {
-            getWindow().setStatusBarColor(android.graphics.Color.parseColor("#FAF8F3")); // colorCotton
-            // Set dark icons for the light status bar
-            getWindow().getDecorView().setSystemUiVisibility(android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorCotton));
+            
+            boolean isDarkMode = (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK)
+                    == Configuration.UI_MODE_NIGHT_YES;
+            
+            View decorView = getWindow().getDecorView();
+            if (isDarkMode) {
+                // Remove light status bar flag in dark mode to show white icons
+                decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() & ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            } else {
+                // Set light status bar flag in light mode to show dark icons
+                decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            }
         }
     }
 

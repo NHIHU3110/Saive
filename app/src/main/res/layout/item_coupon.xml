@@ -33,7 +33,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="20%"
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorOnMaroon"
                     android:textSize="26sp"
                     android:textStyle="bold" />
 
@@ -42,7 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/coupon_off"
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorOnMaroon"
                     android:alpha="0.8"
                     android:textSize="10sp"
                     android:letterSpacing="0.1" />

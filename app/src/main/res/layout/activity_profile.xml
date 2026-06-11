@@ -86,7 +86,8 @@
                     style="@style/TextAppearance.Saive.Light"
                     android:textSize="12sp"
                     android:text="@string/profile_location"
-                    android:textColor="@color/colorSand"
+                    android:textColor="@color/colorNoirBlack"
+                    android:alpha="0.8"
                     android:letterSpacing="0.05" />
             </LinearLayout>
 
@@ -96,6 +97,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="32dp"
+                android:background="@drawable/bg_material_card"
+                android:paddingVertical="16dp"
                 android:orientation="horizontal"
                 android:weightSum="3">
 
@@ -115,6 +118,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/TextAppearance.Saive.Stats.Label"
+                        android:textColor="@color/colorNoirBlack"
+                        android:alpha="0.7"
                         android:text="@string/stat_orders" />
                 </LinearLayout>
 
@@ -134,6 +139,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/TextAppearance.Saive.Stats.Label"
+                        android:textColor="@color/colorNoirBlack"
+                        android:alpha="0.7"
                         android:text="@string/stat_collections" />
                 </LinearLayout>
 
@@ -153,6 +160,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/TextAppearance.Saive.Stats.Label"
+                        android:textColor="@color/colorNoirBlack"
+                        android:alpha="0.7"
                         android:text="@string/stat_recent" />
                 </LinearLayout>
             </LinearLayout>
@@ -171,7 +180,8 @@
                     android:layout_height="wrap_content"
                     style="@style/TextAppearance.Saive.Caption"
                     android:text="@string/label_account_settings"
-                    android:textColor="@color/colorSand"
+                    android:textColor="@color/colorNoirBlack"
+                    android:alpha="0.6"
                     android:textSize="10sp"
                     android:letterSpacing="0.2" />
 
@@ -211,7 +221,7 @@
                             android:layout_height="16dp"
                             android:src="@drawable/ic_back"
                             android:rotation="180"
-                            app:tint="@color/colorLinen" />
+                            app:tint="@color/colorNoirBlack" />
                     </LinearLayout>
 
                     <View android:layout_width="match_parent" android:layout_height="0.5dp" android:layout_marginHorizontal="16dp" android:background="@color/colorLinen" android:alpha="0.5" />
@@ -245,10 +255,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp"
                             android:background="@drawable/bg_circle_maroon"
-                            android:backgroundTint="@color/colorAccentBrand"
                             android:paddingHorizontal="6dp"
                             android:text="0"
-                            android:textColor="@color/colorAlwaysWhite"
+                            android:textColor="@color/colorButtonText"
                             android:textSize="10sp"
                             android:gravity="center" />
                         <ImageView
@@ -256,7 +265,7 @@
                             android:layout_height="16dp"
                             android:src="@drawable/ic_back"
                             android:rotation="180"
-                            app:tint="@color/colorLinen" />
+                            app:tint="@color/colorNoirBlack" />
                     </LinearLayout>
 
                     <View android:layout_width="match_parent" android:layout_height="0.5dp" android:layout_marginHorizontal="16dp" android:background="@color/colorLinen" android:alpha="0.5" />
@@ -289,7 +298,7 @@
                             android:layout_height="16dp"
                             android:src="@drawable/ic_back"
                             android:rotation="180"
-                            app:tint="@color/colorLinen" />
+                            app:tint="@color/colorNoirBlack" />
                     </LinearLayout>
 
                     <View android:layout_width="match_parent" android:layout_height="0.5dp" android:layout_marginHorizontal="16dp" android:background="@color/colorLinen" android:alpha="0.5" />
@@ -322,7 +331,7 @@
                             android:layout_height="16dp"
                             android:src="@drawable/ic_back"
                             android:rotation="180"
-                            app:tint="@color/colorLinen" />
+                            app:tint="@color/colorNoirBlack" />
                     </LinearLayout>
 
                     <View android:layout_width="match_parent" android:layout_height="0.5dp"
@@ -357,7 +366,7 @@
                             android:layout_height="16dp"
                             android:src="@drawable/ic_back"
                             android:rotation="180"
-                            app:tint="@color/colorLinen" />
+                            app:tint="@color/colorNoirBlack" />
                     </LinearLayout>
 
                     <View android:layout_width="match_parent" android:layout_height="0.5dp"
@@ -379,6 +388,7 @@
                             android:src="@android:drawable/ic_lock_idle_lock"
                             app:tint="@color/colorNoirBlack" />
                         <TextView
+                            android:id="@+id/tvChangePassword"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
@@ -392,7 +402,7 @@
                             android:layout_height="16dp"
                             android:src="@drawable/ic_back"
                             android:rotation="180"
-                            app:tint="@color/colorLinen" />
+                            app:tint="@color/colorNoirBlack" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -404,7 +414,8 @@
                     android:layout_marginTop="32dp"
                     style="@style/TextAppearance.Saive.Caption"
                     android:text="@string/label_preferences"
-                    android:textColor="@color/colorSand"
+                    android:textColor="@color/colorNoirBlack"
+                    android:alpha="0.6"
                     android:textSize="10sp"
                     android:letterSpacing="0.2" />
 
@@ -441,7 +452,7 @@
                             android:layout_height="wrap_content"
                             android:checked="true"
                             app:thumbTint="@color/colorAccentBrand"
-                            app:trackTint="@color/colorLinen" />
+                            app:trackTint="@color/colorNoirBlack" />
                     </LinearLayout>
 
                     <View android:layout_width="match_parent" android:layout_height="0.5dp"
@@ -473,7 +484,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:thumbTint="@color/colorAccentBrand"
-                            app:trackTint="@color/colorLinen" />
+                            app:trackTint="@color/colorNoirBlack" />
                     </LinearLayout>
 
                     <View android:layout_width="match_parent" android:layout_height="0.5dp" android:layout_marginHorizontal="16dp" android:background="@color/colorLinen" android:alpha="0.5" />
@@ -508,14 +519,15 @@
                             android:layout_marginEnd="8dp"
                             style="@style/TextAppearance.Saive.Light"
                             android:text="English"
-                            android:textColor="@color/colorSand"
+                            android:textColor="@color/colorNoirBlack"
+                            android:alpha="0.6"
                             android:textSize="12sp" />
                         <ImageView
                             android:layout_width="16dp"
                             android:layout_height="16dp"
                             android:src="@drawable/ic_back"
                             android:rotation="180"
-                            app:tint="@color/colorLinen" />
+                            app:tint="@color/colorNoirBlack" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -527,7 +539,8 @@
                     android:layout_marginTop="32dp"
                     style="@style/TextAppearance.Saive.Caption"
                     android:text="@string/label_support_legal"
-                    android:textColor="@color/colorSand"
+                    android:textColor="@color/colorNoirBlack"
+                    android:alpha="0.6"
                     android:textSize="10sp"
                     android:letterSpacing="0.2" />
 
@@ -567,7 +580,7 @@
                             android:layout_height="16dp"
                             android:src="@drawable/ic_back"
                             android:rotation="180"
-                            app:tint="@color/colorLinen" />
+                            app:tint="@color/colorNoirBlack" />
                     </LinearLayout>
 
                     <View android:layout_width="match_parent" android:layout_height="0.5dp" android:layout_marginHorizontal="16dp" android:background="@color/colorLinen" android:alpha="0.5" />
@@ -600,7 +613,7 @@
                             android:layout_height="16dp"
                             android:src="@drawable/ic_back"
                             android:rotation="180"
-                            app:tint="@color/colorLinen" />
+                            app:tint="@color/colorNoirBlack" />
                     </LinearLayout>
 
                     <View android:layout_width="match_parent" android:layout_height="0.5dp" android:layout_marginHorizontal="16dp" android:background="@color/colorLinen" android:alpha="0.5" />
@@ -633,7 +646,7 @@
                             android:layout_height="16dp"
                             android:src="@drawable/ic_back"
                             android:rotation="180"
-                            app:tint="@color/colorLinen" />
+                            app:tint="@color/colorNoirBlack" />
                     </LinearLayout>
 
                     <View android:layout_width="match_parent" android:layout_height="0.5dp" android:layout_marginHorizontal="16dp" android:background="@color/colorLinen" android:alpha="0.5" android:visibility="gone" />
@@ -688,9 +701,9 @@
                 android:gravity="center"
                 style="@style/TextAppearance.Saive.Caption"
                 android:text="@string/label_saive_footer"
-                android:textColor="@color/colorSand"
+                android:textColor="@color/colorNoirBlack"
                 android:textSize="9sp"
-                android:alpha="0.6" />
+                android:alpha="0.7" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
@@ -812,8 +825,7 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="10dp"
                     android:layout_marginBottom="12dp"
-                    android:background="@drawable/bg_rounded_white_8dp"
-                    android:backgroundTint="@color/colorSand"
+                    android:background="@drawable/bg_circle_nav"
                     android:visibility="gone" />
             </FrameLayout>
 

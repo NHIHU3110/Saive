@@ -59,7 +59,7 @@
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
                 android:text="0"
-                android:textColor="@color/colorAlwaysWhite"
+                android:textColor="@color/colorButtonText"
                 android:textSize="8sp"
                 android:textStyle="bold"
                 android:visibility="gone"
@@ -1046,49 +1046,48 @@
                     android:visibility="invisible"/>
             </LinearLayout>
 
-            <!-- NOTIFICATIONS -->
-            <FrameLayout
-                android:id="@+id/navNotify"
-                android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/navNotify"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:alpha="0.5"
+            android:clickable="true"
+            android:focusable="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:alpha="0.5"
-                android:clickable="true"
-                android:focusable="true">
+                android:gravity="center"
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                <ImageView
+                    android:layout_width="@dimen/icon_size_nav"
+                    android:layout_height="@dimen/icon_size_nav"
+                    android:src="@drawable/ic_notifications"
+                    app:tint="@color/colorHeaderContent" />
 
-                    <ImageView
-                        android:layout_width="@dimen/icon_size_nav"
-                        android:layout_height="@dimen/icon_size_nav"
-                        android:src="@drawable/ic_notifications"
-                        app:tint="@color/colorHeaderContent" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    style="@style/TextAppearance.Saive.Nav"
+                    android:text="@string/nav_notify"
+                    android:textColor="@color/colorHeaderContent" />
+            </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        style="@style/TextAppearance.Saive.Nav"
-                        android:text="@string/nav_notify"
-                        android:textColor="@color/colorHeaderContent" />
-                </LinearLayout>
+            <View
+                android:id="@+id/notificationBadge"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/bg_rounded_white_8dp"
+                android:backgroundTint="@color/colorHeaderContent"
+                android:visibility="gone" />
 
-                <View
-                    android:id="@+id/notificationBadge"
-                    android:layout_width="8dp"
-                    android:layout_height="8dp"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/bg_rounded_white_8dp"
-                    android:backgroundTint="@color/colorSand"
-                    android:visibility="gone" />
-
-            </FrameLayout>
+        </LinearLayout>
 
             <!-- PROFILE -->
             <LinearLayout

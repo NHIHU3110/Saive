@@ -36,6 +36,7 @@ public class ProfileActivity extends BaseActivity {
     private View notificationBadge;
     private com.google.android.material.button.MaterialButton btnLogoutNew;
     private TextView tvCurrentLanguage;
+    private TextView tvChangePassword;
     private static final String PREFS_NAME = "notification_prefs";
     private static final String USER_PREFS = "user_prefs";
     private static final String LANG_PREFS = "language_prefs";
@@ -116,6 +117,11 @@ public class ProfileActivity extends BaseActivity {
             if (currentLang.equals("vi")) tvCurrentLanguage.setText(R.string.lang_vi);
             else if (currentLang.equals("zh")) tvCurrentLanguage.setText(R.string.lang_zh);
             else tvCurrentLanguage.setText(R.string.lang_en);
+        }
+
+        // Cập nhật text cho Change Password
+        if (tvChangePassword != null) {
+            tvChangePassword.setText(R.string.change_password_title);
         }
 
         // Cập nhật số lượng bộ sưu tập đã lưu (Favorites)
@@ -252,6 +258,7 @@ public class ProfileActivity extends BaseActivity {
         // Navigation Items
         notificationBadge = findViewById(R.id.notificationBadge);
         tvCurrentLanguage = findViewById(R.id.tvCurrentLanguage);
+        tvChangePassword = findViewById(R.id.tvChangePassword);
         
         // Fix large bitmap issue for profile avatar and logo
         ImageView ivAvatar = findViewById(R.id.ivAvatar);

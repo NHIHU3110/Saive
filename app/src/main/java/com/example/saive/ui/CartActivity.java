@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.core.content.ContextCompat;
 import com.example.saive.R;
 import com.example.saive.adapters.CartAdapter;
 import com.example.saive.base.BaseActivity;
@@ -320,13 +321,12 @@ public class CartActivity extends BaseActivity {
             btnOption.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             btnOption.setTextAppearance(R.style.TextAppearance_Saive_Nav);
             btnOption.setBackgroundResource(R.drawable.bg_variant_selector);
+            btnOption.setTextColor(ContextCompat.getColorStateList(this, R.color.selector_size_text));
             
             if (option.equals(currentSelection)) {
                 btnOption.setSelected(true);
-                btnOption.setTextColor(getResources().getColor(R.color.white));
             } else {
                 btnOption.setSelected(false);
-                btnOption.setTextColor(getResources().getColor(R.color.colorNoirBlack));
             }
 
             btnOption.setOnClickListener(v -> {

@@ -78,12 +78,6 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
             }
             ToastUtils.showCustomToast(v.getContext(), v.getContext().getString(R.string.toast_removed_favorites));
         });
-
-        holder.btnAddToCart.setOnClickListener(v -> {
-            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-            CartManager.getInstance(v.getContext()).addProduct(product);
-            ToastUtils.showCustomToast(v.getContext(), "Added to wardrobe");
-        });
     }
 
     @Override
@@ -94,7 +88,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
     static class FavoriteViewHolder extends RecyclerView.ViewHolder {
         ImageView ivProduct;
         TextView tvName, tvPrice, tvOriginalPrice, tvCategory;
-        ImageButton btnRemoveFavorite, btnAddToCart;
+        ImageButton btnRemoveFavorite;
 
         public FavoriteViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -104,7 +98,6 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
             tvOriginalPrice = itemView.findViewById(R.id.tvOriginalPrice);
             tvCategory = itemView.findViewById(R.id.tvCategory);
             btnRemoveFavorite = itemView.findViewById(R.id.btnRemoveFavorite);
-            btnAddToCart = itemView.findViewById(R.id.btnAddToCart);
         }
     }
 }

@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -37,7 +38,7 @@ public class ChangePasswordActivity extends BaseActivity {
         etNewPassword       = findViewById(R.id.etNewPassword);
         etConfirmPassword   = findViewById(R.id.etConfirmPassword);
 
-        ImageButton btnBack           = findViewById(R.id.btnBack);
+        ImageView btnBack           = findViewById(R.id.btnBack);
         MaterialButton btnChangePassword = findViewById(R.id.btnChangePassword);
         TextView tvForgotPassword  = findViewById(R.id.tvForgotPassword);
 

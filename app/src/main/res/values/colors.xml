@@ -93,4 +93,7 @@
     <color name="colorContactCardBg">@color/colorMaroon</color>
     <color name="colorContactCardContent">@color/colorAlwaysWhite</color>
     <color name="colorContactCardLabel">#D4C9B8</color>
+
+    <!-- Translucent Surface Adaptive -->
+    <color name="colorTranslucentSurface">#08000000</color>
 </resources>

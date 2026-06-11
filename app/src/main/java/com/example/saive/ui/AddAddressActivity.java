@@ -220,8 +220,8 @@ public class AddAddressActivity extends BaseActivity {
     private void updateChips() {
         int activeBg = androidx.core.content.ContextCompat.getColor(this, R.color.colorAccentBrand);
         int inactiveBg = androidx.core.content.ContextCompat.getColor(this, R.color.colorLinen);
-        int activeText = androidx.core.content.ContextCompat.getColor(this, R.color.colorAlwaysWhite);
-        int inactiveText = androidx.core.content.ContextCompat.getColor(this, R.color.colorSand);
+        int activeText = androidx.core.content.ContextCompat.getColor(this, R.color.colorButtonText);
+        int inactiveText = androidx.core.content.ContextCompat.getColor(this, R.color.colorNoirBlack);
 
         chipHome.setBackgroundTintList(android.content.res.ColorStateList.valueOf(selectedLabel.equalsIgnoreCase("Home") ? activeBg : inactiveBg));
         chipHome.setTextColor(selectedLabel.equalsIgnoreCase("Home") ? activeText : inactiveText);

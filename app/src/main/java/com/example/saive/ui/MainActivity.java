@@ -409,6 +409,14 @@ public class MainActivity extends BaseActivity {
         });
         vpWardrobeBanner.setAdapter(adapter);
         setupDotIndicator(banners.size());
+
+        vpWardrobeBanner.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                updateDots(position);
+            }
+        });
     }
 
     // Thêm hàm nạp ảnh editorial an toàn
