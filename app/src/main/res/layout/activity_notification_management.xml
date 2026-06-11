@@ -5,10 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorCotton"
-    tools:context=".ui.NotificationManagementActivity">
+    tools:context=".ui.NotificationManagementActivity"
+    tools:ignore="Overdraw">
 
     <!-- Header / Toolbar -->
     <LinearLayout
+                android:baselineAligned="false"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,14 +31,15 @@
             android:padding="12dp"
             android:scaleType="centerInside"
             android:src="@drawable/ic_back"
-            app:tint="@color/colorMaroon" />
+            app:tint="@color/colorMaroon"
+            android:contentDescription="@string/nav_back"/>
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginStart="24dp"
-            android:text="NOTIFICATION MGMT"
+            android:text="@string/admin_notification_mgmt"
             style="@style/TextAppearance.Saive.SectionHeader"
             android:textSize="18sp"
             android:textColor="@color/white"
@@ -54,7 +57,8 @@
             android:padding="12dp"
             android:scaleType="centerInside"
             android:src="@drawable/ic_plus"
-            app:tint="@color/colorMaroon" />
+            app:tint="@color/colorMaroon"
+            android:contentDescription="@string/btn_add"/>
     </LinearLayout>
 
     <!-- Categories / Tabs -->
@@ -68,6 +72,7 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <LinearLayout
+                android:baselineAligned="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -76,7 +81,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="All"
+                android:text="@string/cat_all"
                 android:paddingVertical="10dp"
                 android:paddingHorizontal="24dp"
                 android:background="@drawable/bg_rounded_black_12dp"
@@ -88,7 +93,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Promotions"
+                android:text="@string/cat_promotions"
                 android:paddingVertical="10dp"
                 android:paddingHorizontal="24dp"
                 android:background="@drawable/bg_material_card"
@@ -100,7 +105,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Orders"
+                android:text="@string/cat_orders"
                 android:paddingVertical="10dp"
                 android:paddingHorizontal="24dp"
                 android:background="@drawable/bg_material_card"
@@ -112,7 +117,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="System"
+                android:text="@string/cat_system"
                 android:paddingVertical="10dp"
                 android:paddingHorizontal="24dp"
                 android:background="@drawable/bg_material_card"
@@ -136,6 +141,8 @@
         app:layout_constraintTop_toBottomOf="@id/categoryTabsScroll">
 
         <LinearLayout
+                tools:ignore="UseCompoundDrawables"
+                android:baselineAligned="false"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:orientation="horizontal"
@@ -146,15 +153,19 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@android:drawable/ic_menu_search"
-                app:tint="@color/colorSand" />
+                app:tint="@color/colorSand"
+                android:contentDescription="@null"/>
 
             <EditText
                 android:id="@+id/etSearch"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
-                android:hint="Search history..."
+                android:hint="@string/hint_search_history"
+                android:inputType="text"
+                android:importantForAutofill="no"
                 android:paddingStart="12dp"
+                android:paddingEnd="12dp"
                 android:textSize="14sp"
                 android:textColor="@color/colorNoirBlack"
                 android:textColorHint="@color/colorSand"

@@ -97,6 +97,16 @@
     <!-- Translucent Surface Adaptive -->
     <color name="colorTranslucentSurface">#08000000</color>
 
+    <!-- Semantic Text Colors -->
+    <color name="colorTextPrimary">@color/colorNoirBlack</color>
+    <color name="colorTextSecondary">#555555</color>
+    <color name="colorTextTertiary">#777777</color>
+    <color name="colorTextPlaceholder">#888888</color>
+    <color name="colorTextOnDark">#FFFFFF</color>
+
+    <!-- Flash Sale Always-Dark Background -->
+    <color name="colorFlashSaleBg">#1A1A1A</color>
+
     <!-- Search Box Adaptive -->
     <color name="colorSearchBoxBg">#F5F5F5</color>
 </resources>

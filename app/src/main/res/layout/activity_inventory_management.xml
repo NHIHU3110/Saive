@@ -5,10 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorCotton"
-    tools:context=".ui.InventoryManagementActivity">
+    tools:context=".ui.InventoryManagementActivity"
+    tools:ignore="Overdraw">
 
     <!-- Header / Toolbar -->
     <LinearLayout
+                android:baselineAligned="false"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -73,6 +75,8 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <LinearLayout
+                tools:ignore="UseCompoundDrawables"
+                android:baselineAligned="false"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:orientation="horizontal"
@@ -114,6 +118,7 @@
         app:layout_constraintTop_toBottomOf="@id/searchCard">
 
         <LinearLayout
+                android:baselineAligned="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"

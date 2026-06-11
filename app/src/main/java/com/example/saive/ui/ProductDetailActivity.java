@@ -57,6 +57,8 @@ public class ProductDetailActivity extends BaseActivity {
     private List<Review> reviewList;
     private ReviewAdapter reviewAdapter;
     private CartManager.OnCartChangeListener cartChangeListener;
+    private FavoriteManager.OnFavoriteChangeListener favoriteChangeListener;
+    private DataManager.OnReviewChangeListener reviewChangeListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +92,8 @@ public class ProductDetailActivity extends BaseActivity {
         updateWardrobeUI();
         updateCartBadge();
         setupCartObserver();
+        setupFavoriteObserver();
+        setupReviewObserver();
     }
 
     private void updateStatusBar() {
@@ -111,11 +115,36 @@ public class ProductDetailActivity extends BaseActivity {
         CartManager.getInstance(this).addListener(cartChangeListener);
     }
 
+    private void setupFavoriteObserver() {
+        favoriteChangeListener = this::updateFavoriteUI;
+        FavoriteManager.getInstance(this).addListener(favoriteChangeListener);
+    }
+
+    private void setupReviewObserver() {
+        reviewChangeListener = this::setupReviews;
+        DataManager.getInstance(this).addReviewListener(reviewChangeListener);
+    }
+
+    private void updateFavoriteUI() {
+        if (currentProduct != null && btnFavorite != null) {
+            boolean isFavorite = FavoriteManager.getInstance(this).isFavorite(currentProduct);
+            btnFavorite.setSelected(isFavorite);
+            btnFavorite.setImageResource(isFavorite ? R.drawable.ic_favorite : R.drawable.ic_heart_thin);
+            btnFavorite.setColorFilter(ContextCompat.getColor(this, R.color.colorAccentBrand));
+        }
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         if (cartChangeListener != null) {
             CartManager.getInstance(this).removeListener(cartChangeListener);
+        }
+        if (favoriteChangeListener != null) {
+            FavoriteManager.getInstance(this).removeListener(favoriteChangeListener);
+        }
+        if (reviewChangeListener != null) {
+            DataManager.getInstance(this).removeReviewListener(reviewChangeListener);
         }
     }
 
@@ -212,6 +241,10 @@ public class ProductDetailActivity extends BaseActivity {
 
         tvDescription.setText(currentProduct.getDescription());
         ImageUtils.setSafeImage(ivHero, currentProduct.getImageResId());
+
+        // Khởi tạo hiển thị số lượng mặc định
+        if (tvQuantity != null) tvQuantity.setText(String.valueOf(selectedQuantity));
+        if (tvQuantityBottom != null) tvQuantityBottom.setText(String.valueOf(selectedQuantity));
 
         // Toggle Size/Color selection based on category
         String category = currentProduct.getCategory() != null ? currentProduct.getCategory().toLowerCase(java.util.Locale.ROOT) : "";
@@ -382,10 +415,6 @@ public class ProductDetailActivity extends BaseActivity {
         setupSelectionListeners(colorViews, false);
     }
 
-    private boolean checkProductPurchased() {
-        // Logic to check if user purchased this product
-        return true; // Simplified for now
-    }
 
     @android.annotation.SuppressLint("InflateParams")
     private void showWriteReviewDialog() {

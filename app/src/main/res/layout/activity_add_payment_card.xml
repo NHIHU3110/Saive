@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorCotton">
+    android:background="@color/colorCotton"
+    tools:ignore="Overdraw">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -12,6 +14,8 @@
         app:elevation="4dp">
 
         <LinearLayout
+                tools:ignore="UseCompoundDrawables"
+                android:baselineAligned="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -26,7 +30,8 @@
                 android:layout_height="40dp"
                 android:padding="8dp"
                 android:src="@drawable/ic_back"
-                app:tint="@color/colorHeaderContent" />
+                app:tint="@color/colorHeaderContent"
+                android:contentDescription="@null"/>
 
             <TextView
                 style="@style/TextAppearance.Saive.SectionHeader"
@@ -114,6 +119,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
+                android:baselineAligned="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"

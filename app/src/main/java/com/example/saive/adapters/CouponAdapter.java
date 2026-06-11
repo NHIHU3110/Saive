@@ -40,7 +40,7 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CouponView
         holder.tvDiscountValue.setText(coupon.getDiscount());
         holder.tvCouponTitle.setText(coupon.getTitle());
         holder.tvCouponDesc.setText(coupon.getDescription());
-        holder.tvExpiry.setText("Valid until: " + coupon.getExpiryDate());
+        holder.tvExpiry.setText(holder.itemView.getContext().getString(R.string.coupon_valid_until, coupon.getExpiryDate()));
 
         holder.itemView.setOnClickListener(v -> {
             if (listener != null) {
@@ -55,6 +55,7 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CouponView
         });
     }
 
+    @android.annotation.SuppressLint("NotifyDataSetChanged")
     public void filter(String text) {
         coupons.clear();
         if (text.isEmpty()) {
@@ -77,7 +78,7 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CouponView
         return coupons.size();
     }
 
-    static class CouponViewHolder extends RecyclerView.ViewHolder {
+    public static class CouponViewHolder extends RecyclerView.ViewHolder {
         TextView tvDiscountValue, tvCouponTitle, tvCouponDesc, tvExpiry, btnCopy;
 
         public CouponViewHolder(@NonNull View itemView) {

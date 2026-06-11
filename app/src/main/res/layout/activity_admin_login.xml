@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorMaroon">
+    android:background="@color/colorMaroon"
+    tools:ignore="Overdraw">
 
     <!-- Logo and Header Area -->
     <LinearLayout
+                tools:ignore="UseCompoundDrawables"
         android:id="@+id/headerArea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -148,6 +150,8 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
+                tools:ignore="UseCompoundDrawables"
+                android:baselineAligned="false"
         android:id="@+id/socialLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -164,7 +168,8 @@
             android:layout_marginEnd="20dp"
             android:padding="0dp"
             android:background="@drawable/bg_circle_trans"
-            android:src="@mipmap/fbicon" />
+            android:src="@mipmap/fbicon"
+            android:contentDescription="@null"/>
 
         <ImageView
             android:id="@+id/ivGgIcon"
@@ -172,7 +177,8 @@
             android:layout_height="44dp"
             android:padding="8dp"
             android:background="@drawable/bg_circle_trans"
-            android:src="@mipmap/ggicon" />
+            android:src="@mipmap/ggicon"
+            android:contentDescription="@null"/>
 
     </LinearLayout>
 

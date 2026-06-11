@@ -24,6 +24,7 @@ public class LocationSuggestionAdapter extends RecyclerView.Adapter<LocationSugg
         this.listener = listener;
     }
 
+    @android.annotation.SuppressLint("NotifyDataSetChanged")
     public void setSuggestions(List<LocationSuggestion> suggestions) {
         this.suggestions = suggestions;
         notifyDataSetChanged();
@@ -53,7 +54,7 @@ public class LocationSuggestionAdapter extends RecyclerView.Adapter<LocationSugg
         return suggestions.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvMainText, tvSecondaryText;
 
         ViewHolder(@NonNull View itemView) {

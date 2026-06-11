@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.saive.R;
 import com.example.saive.models.AdminOrder;
-import com.example.saive.utils.ImageUtils;
 import java.util.List;
 
 public class UserOrderAdapter extends RecyclerView.Adapter<UserOrderAdapter.OrderViewHolder> {
@@ -67,7 +66,7 @@ public class UserOrderAdapter extends RecyclerView.Adapter<UserOrderAdapter.Orde
 
                 tvName.setText(item.getName());
                 tvPrice.setText(com.example.saive.utils.PriceFormatter.formatPrice(item.getPrice()));
-                tvAttributes.setText("Size: " + item.getSize() + " | Qty: " + item.getQuantity());
+                tvAttributes.setText(holder.itemView.getContext().getString(R.string.format_order_attributes, item.getSize(), item.getQuantity()));
                 ivItem.setImageResource(item.getImageResId() != 0 ? item.getImageResId() : R.mipmap.model1);
 
                 if (i > 0) {
@@ -78,21 +77,21 @@ public class UserOrderAdapter extends RecyclerView.Adapter<UserOrderAdapter.Orde
 
             if (items.size() > 1) {
                 holder.tvSeeMore.setVisibility(View.VISIBLE);
-                holder.tvSeeMore.setText("Xem thêm (+" + (items.size() - 1) + " sản phẩm)");
+                holder.tvSeeMore.setText(holder.itemView.getContext().getString(R.string.format_order_see_more, items.size() - 1));
                 holder.tvSeeMore.setOnClickListener(v -> {
                     boolean isExpanded = holder.itemsContainer.getChildAt(1).getVisibility() == View.VISIBLE;
                     if (isExpanded) {
-                        // Thu gọn
+                        // Collapse
                         for (int i = 1; i < holder.itemsContainer.getChildCount(); i++) {
                             holder.itemsContainer.getChildAt(i).setVisibility(View.GONE);
                         }
-                        holder.tvSeeMore.setText("Xem thêm (+" + (items.size() - 1) + " sản phẩm)");
+                        holder.tvSeeMore.setText(holder.itemView.getContext().getString(R.string.format_order_see_more, items.size() - 1));
                     } else {
-                        // Mở rộng
+                        // Expand
                         for (int i = 1; i < holder.itemsContainer.getChildCount(); i++) {
                             holder.itemsContainer.getChildAt(i).setVisibility(View.VISIBLE);
                         }
-                        holder.tvSeeMore.setText("Thu gọn");
+                        holder.tvSeeMore.setText(holder.itemView.getContext().getString(R.string.btn_collapse));
                     }
                 });
             } else {
@@ -109,7 +108,7 @@ public class UserOrderAdapter extends RecyclerView.Adapter<UserOrderAdapter.Orde
 
             tvName.setText(order.getItemsSummary());
             tvPrice.setText(com.example.saive.utils.PriceFormatter.formatPrice(order.getTotalAmount()));
-            tvAttributes.setText("Size: " + order.getSize() + " | Qty: " + order.getQuantity());
+            tvAttributes.setText(holder.itemView.getContext().getString(R.string.format_order_attributes, order.getSize(), order.getQuantity()));
             ivItem.setImageResource(order.getProductImageResId() != 0 ? order.getProductImageResId() : R.mipmap.model1);
             holder.itemsContainer.addView(itemView);
         }
@@ -132,7 +131,7 @@ public class UserOrderAdapter extends RecyclerView.Adapter<UserOrderAdapter.Orde
         return orderList.size();
     }
 
-    static class OrderViewHolder extends RecyclerView.ViewHolder {
+    public static class OrderViewHolder extends RecyclerView.ViewHolder {
         TextView tvTotal, tvSeeMore;
         android.widget.LinearLayout itemsContainer;
         Button btnAction;

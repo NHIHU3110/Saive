@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorCotton">
+    android:background="@color/colorCotton"
+    tools:ignore="Overdraw">
 
     <!-- Top Bar -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +27,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
-            app:tint="@color/colorNoirBlack" />
+            app:tint="@color/colorNoirBlack"
+            android:contentDescription="@null"/>
 
         <TextView
             android:id="@+id/tvTitle"
@@ -59,10 +62,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/label_address_label"
-                android:textColor="@color/colorSand"
-                android:textSize="11sp" />
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="12sp" />
 
             <LinearLayout
+                android:baselineAligned="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -86,11 +90,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:background="@drawable/bg_rounded_maroon"
-                    android:backgroundTint="@color/colorLinen"
+                    android:backgroundTint="@color/colorCategoryBg"
                     android:paddingHorizontal="20dp"
                     android:paddingVertical="8dp"
                     android:text="@string/address_label_office"
-                    android:textColor="@color/colorSand"
+                    android:textColor="@color/colorNoirBlack"
                     android:textSize="12sp" />
 
                 <TextView
@@ -99,11 +103,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:background="@drawable/bg_rounded_maroon"
-                    android:backgroundTint="@color/colorLinen"
+                    android:backgroundTint="@color/colorCategoryBg"
                     android:paddingHorizontal="20dp"
                     android:paddingVertical="8dp"
                     android:text="@string/address_label_other"
-                    android:textColor="@color/colorSand"
+                    android:textColor="@color/colorNoirBlack"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -114,8 +118,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="@string/label_full_name"
-                android:textColor="@color/colorSand"
-                android:textSize="11sp" />
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="12sp" />
 
             <EditText
                 android:id="@+id/etFullName"
@@ -136,10 +140,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/label_phone_number"
-                android:textColor="@color/colorSand"
-                android:textSize="11sp" />
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="12sp" />
 
             <LinearLayout
+                android:baselineAligned="false"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
                 android:layout_marginTop="8dp"
@@ -154,7 +159,8 @@
                     android:text="+84"
                     android:textColor="@color/colorSand"
                     android:textSize="14sp"
-                    android:paddingEnd="8dp" />
+                    android:paddingEnd="8dp"
+                    android:paddingStart="0dp" />
 
                 <EditText
                     android:id="@+id/etPhone"
@@ -181,8 +187,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/label_city"
-                    android:textColor="@color/colorSand"
-                    android:textSize="11sp" />
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="12sp" />
 
                 <RelativeLayout
                     android:id="@+id/btnCitySelector"
@@ -245,8 +251,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:text="@string/label_district"
-                    android:textColor="@color/colorSand"
-                    android:textSize="11sp" />
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="12sp" />
 
                 <RelativeLayout
                     android:id="@+id/btnDistrictSelector"
@@ -294,8 +300,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:text="@string/label_ward"
-                    android:textColor="@color/colorSand"
-                    android:textSize="11sp" />
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="12sp" />
 
                 <RelativeLayout
                     android:id="@+id/btnWardSelector"
@@ -345,8 +351,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/label_address"
-                android:textColor="@color/colorSand"
-                android:textSize="11sp" />
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="12sp" />
 
             <EditText
                 android:id="@+id/etStreet"
@@ -368,7 +374,7 @@
                 android:layout_marginTop="24dp"
                 android:buttonTint="@color/colorMaroon"
                 android:text="@string/address_set_default"
-                android:textColor="@color/colorSand"
+                android:textColor="@color/colorNoirBlack"
                 android:textSize="14sp" />
 
         </LinearLayout>

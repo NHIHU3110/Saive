@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorCotton"
-    tools:context=".ui.EditProfileActivity">
+    tools:context=".ui.EditProfileActivity"
+    tools:ignore="Overdraw">
 
     <!-- Header Bar -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -67,6 +68,7 @@
 
             <!-- AVATAR SECTION -->
             <LinearLayout
+                tools:ignore="UseCompoundDrawables"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
@@ -144,7 +146,7 @@
                     android:letterSpacing="0.2"
                     android:text="@string/label_personal_information"
                     android:textColor="@color/colorGrayText"
-                    android:textSize="10sp" />
+                    android:textSize="11sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -156,6 +158,7 @@
 
                     <!-- Birthday -->
                     <LinearLayout
+                tools:ignore="UseCompoundDrawables"
                         android:id="@+id/btnPickDob"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
@@ -210,6 +213,7 @@
 
                     <!-- Gender -->
                     <LinearLayout
+                tools:ignore="UseCompoundDrawables"
                         android:id="@+id/btnPickGender"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"

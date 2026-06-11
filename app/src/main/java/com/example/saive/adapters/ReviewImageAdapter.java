@@ -42,7 +42,7 @@ public class ReviewImageAdapter extends RecyclerView.Adapter<ReviewImageAdapter.
         return imageUrls.size();
     }
 
-    static class ImageViewHolder extends RecyclerView.ViewHolder {
+    public static class ImageViewHolder extends RecyclerView.ViewHolder {
         ImageView ivImage;
 
         public ImageViewHolder(@NonNull View itemView) {

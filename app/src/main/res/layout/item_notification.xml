@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/root_notification"
     android:layout_width="match_parent"
@@ -7,7 +8,8 @@
     android:background="@color/colorUnreadBg"
     android:foreground="?attr/selectableItemBackground"
     android:paddingHorizontal="16dp"
-    android:paddingVertical="14dp">
+    android:paddingVertical="14dp"
+    tools:ignore="Overdraw">
 
     <View
         android:id="@+id/unread_dot"
@@ -36,7 +38,8 @@
             android:layout_height="20dp"
             android:layout_gravity="center"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_notifications" />
+            android:src="@drawable/ic_notifications"
+            android:contentDescription="@null"/>
     </FrameLayout>
 
     <TextView
@@ -61,7 +64,7 @@
         android:layout_marginTop="2dp"
         android:fontFamily="sans-serif-light"
         android:text="Bộ sưu tập Mùa Thu vừa cập bến. 12 món mới."
-        android:textColor="@color/colorSand"
+        android:textColor="@color/colorTextSecondary"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@id/tv_title"
         app:layout_constraintStart_toStartOf="@id/tv_title"
@@ -75,7 +78,7 @@
         android:fontFamily="sans-serif-light"
         android:text="Khám phá ngay"
         android:textColor="@color/colorMaroon"
-        android:textSize="11sp"
+        android:textSize="12sp"
         android:background="?attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
@@ -101,8 +104,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"
         android:text="2h"
-        android:textColor="@color/colorSand"
-        android:textSize="10sp"
+        android:textColor="@color/colorTextTertiary"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -21,7 +21,6 @@ import com.example.saive.base.BaseActivity;
 import com.example.saive.models.Coupon;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.example.saive.utils.DataManager;
@@ -106,7 +105,9 @@ public class CouponActivity extends BaseActivity {
     private void setupSearch() {
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        // No-op
+    }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -114,7 +115,9 @@ public class CouponActivity extends BaseActivity {
             }
 
             @Override
-            public void afterTextChanged(Editable s) {}
+            public void afterTextChanged(Editable s) {
+        // No-op
+    }
         });
 
         etSearch.setOnEditorActionListener((v, actionId, event) -> {

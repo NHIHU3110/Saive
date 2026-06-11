@@ -3,11 +3,6 @@ package com.example.saive.ui;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -90,7 +85,9 @@ public class PaymentCardsActivity extends BaseActivity {
         // Preview Logic
         etCardNumber.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        // No-op
+    }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String val = s.toString().replaceAll(" ", "");
@@ -106,23 +103,31 @@ public class PaymentCardsActivity extends BaseActivity {
                 }
             }
             @Override
-            public void afterTextChanged(Editable s) {}
+            public void afterTextChanged(Editable s) {
+        // No-op
+    }
         });
 
         etCardHolder.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        // No-op
+    }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 tvPreviewHolder.setText(s.toString().isEmpty() ? getString(R.string.card_preview_holder) : s.toString().toUpperCase(java.util.Locale.getDefault()));
             }
             @Override
-            public void afterTextChanged(Editable s) {}
+            public void afterTextChanged(Editable s) {
+        // No-op
+    }
         });
 
         etExpiry.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        // No-op
+    }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String input = s.toString();
@@ -133,7 +138,9 @@ public class PaymentCardsActivity extends BaseActivity {
                 tvPreviewExpiry.setText(s.toString().isEmpty() ? getString(R.string.card_preview_expiry) : s.toString());
             }
             @Override
-            public void afterTextChanged(Editable s) {}
+            public void afterTextChanged(Editable s) {
+        // No-op
+    }
         });
 
         view.findViewById(R.id.btnSaveCard).setOnClickListener(v -> {

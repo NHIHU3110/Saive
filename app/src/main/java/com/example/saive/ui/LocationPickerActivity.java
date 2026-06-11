@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.Location;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -24,15 +23,12 @@ import com.example.saive.R;
 import com.example.saive.adapters.LocationSuggestionAdapter;
 import com.example.saive.base.BaseActivity;
 import com.example.saive.models.LocationSuggestion;
-import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.AutocompletePrediction;
 import com.google.android.libraries.places.api.model.AutocompleteSessionToken;
 import com.google.android.libraries.places.api.model.Place;
-import com.google.android.libraries.places.api.model.TypeFilter;
 import com.google.android.libraries.places.api.net.FetchPlaceRequest;
 import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest;
 import com.google.android.libraries.places.api.net.PlacesClient;
@@ -99,7 +95,9 @@ public class LocationPickerActivity extends BaseActivity implements OnMapReadyCa
 
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        // No-op
+    }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -112,7 +110,9 @@ public class LocationPickerActivity extends BaseActivity implements OnMapReadyCa
             }
 
             @Override
-            public void afterTextChanged(Editable s) {}
+            public void afterTextChanged(Editable s) {
+        // No-op
+    }
         });
 
         adapter.setOnItemClickListener(suggestion -> {

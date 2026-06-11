@@ -10,6 +10,7 @@ import com.example.saive.R;
 import com.example.saive.models.PaymentCard;
 import java.util.List;
 
+@android.annotation.SuppressLint("NotifyDataSetChanged")
 public class PaymentCardAdapter extends RecyclerView.Adapter<PaymentCardAdapter.ViewHolder> {
 
     private List<PaymentCard> cardList;

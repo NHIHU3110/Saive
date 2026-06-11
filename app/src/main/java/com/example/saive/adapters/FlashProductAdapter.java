@@ -32,6 +32,7 @@ public class FlashProductAdapter extends RecyclerView.Adapter<FlashProductAdapte
         this.productList = productList;
     }
 
+    @android.annotation.SuppressLint("NotifyDataSetChanged")
     public void setTextColor(int color) {
         this.textColor = color;
         notifyDataSetChanged();
@@ -72,7 +73,7 @@ public class FlashProductAdapter extends RecyclerView.Adapter<FlashProductAdapte
                     double current = PriceFormatter.parsePrice(product.getPrice());
                     if (original > current) {
                         int percent = (int) Math.round(100 - (current * 100 / original));
-                        badge.setText("-" + percent + "%");
+                        badge.setText(holder.itemView.getContext().getString(R.string.discount_format, percent));
                         badge.setVisibility(View.VISIBLE);
                     } else {
                         badge.setVisibility(View.GONE);

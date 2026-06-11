@@ -24,6 +24,7 @@ import com.example.saive.utils.ImageUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+@android.annotation.SuppressLint("NotifyDataSetChanged")
 public class CollectionDetailActivity extends BaseActivity {
 
     private ImageView ivHeroLeft, ivHeroRight, ivSectionModel;

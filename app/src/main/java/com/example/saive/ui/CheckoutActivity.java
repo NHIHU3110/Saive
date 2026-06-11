@@ -8,7 +8,6 @@ import android.text.TextUtils;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.RadioButton;
-import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -29,6 +28,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+@android.annotation.SuppressLint("SetTextI18n")
 public class CheckoutActivity extends BaseActivity {
 
     private ActivityCheckoutBinding binding;
@@ -39,7 +39,6 @@ public class CheckoutActivity extends BaseActivity {
     private static final String KEY_DISTRICT = "district";
     private static final String KEY_ADDRESS = "address";
 
-    private CheckoutAddressAdapter addressAdapter;
     private String couponCode = "";
     private List<Address> addressList = new ArrayList<>();
     private List<com.example.saive.models.PaymentCard> savedCards = new ArrayList<>();
@@ -191,12 +190,31 @@ public class CheckoutActivity extends BaseActivity {
         }
     }
 
+    private void showAddressSelectionStep() {
+        isPaymentStep = false;
+        binding.layoutDefaultAddress.setVisibility(View.GONE);
+        binding.containerShipping.setVisibility(View.GONE);
+        binding.containerPayment.setVisibility(View.GONE);
+        binding.containerAddressSelection.setVisibility(View.VISIBLE);
+        binding.sectionTitle.setVisibility(View.GONE);
+
+        binding.rvCheckoutAddresses.setLayoutManager(new LinearLayoutManager(this));
+        CheckoutAddressAdapter adapter = new CheckoutAddressAdapter(addressList, selectedAddress, address -> {
+            selectedAddress = address;
+            showAddressSummaryStep();
+        });
+        binding.rvCheckoutAddresses.setAdapter(adapter);
+
+        binding.btnAction.setVisibility(View.GONE);
+    }
+
     private void showAddressSummaryStep() {
         isPaymentStep = false;
         binding.containerAddressSelection.setVisibility(View.GONE);
         binding.containerShipping.setVisibility(View.GONE);
         binding.containerPayment.setVisibility(View.GONE);
         binding.layoutDefaultAddress.setVisibility(View.VISIBLE);
+        binding.btnAction.setVisibility(View.VISIBLE);
 
         updateDefaultAddressUI();
         binding.sectionTitle.setVisibility(View.GONE);
@@ -226,7 +244,9 @@ public class CheckoutActivity extends BaseActivity {
         bottomSheetDialog.setContentView(sheetBinding.getRoot());
 
         sheetBinding.etCardNumber.addTextChangedListener(new android.text.TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        // No-op
+    }
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String val = s != null ? s.toString().replaceAll(" ", "") : "";
                 if (val.isEmpty()) {
@@ -240,19 +260,27 @@ public class CheckoutActivity extends BaseActivity {
                     sheetBinding.cardPreview.tvCardNumber.setText(formatted.toString());
                 }
             }
-            @Override public void afterTextChanged(android.text.Editable s) {}
+            @Override public void afterTextChanged(android.text.Editable s) {
+        // No-op
+    }
         });
 
         sheetBinding.etCardHolder.addTextChangedListener(new android.text.TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        // No-op
+    }
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
                 sheetBinding.cardPreview.tvCardHolder.setText(s != null && !s.toString().isEmpty() ? s.toString().toUpperCase(java.util.Locale.getDefault()) : "CARD HOLDER");
             }
-            @Override public void afterTextChanged(android.text.Editable s) {}
+            @Override public void afterTextChanged(android.text.Editable s) {
+        // No-op
+    }
         });
 
         sheetBinding.etExpiry.addTextChangedListener(new android.text.TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        // No-op
+    }
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String input = s != null ? s.toString() : "";
                 if (input.length() == 2 && before < count && !input.contains("/")) {
@@ -261,7 +289,9 @@ public class CheckoutActivity extends BaseActivity {
                 }
                 sheetBinding.cardPreview.tvExpiryDate.setText(input.isEmpty() ? "MM/YY" : input);
             }
-            @Override public void afterTextChanged(android.text.Editable s) {}
+            @Override public void afterTextChanged(android.text.Editable s) {
+        // No-op
+    }
         });
 
         sheetBinding.btnSaveCard.setOnClickListener(v -> {
@@ -408,7 +438,9 @@ public class CheckoutActivity extends BaseActivity {
         sheetBinding.rvSheetOptions.setAdapter(adapter);
 
         sheetBinding.etSearchOption.addTextChangedListener(new android.text.TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        // No-op
+    }
             @android.annotation.SuppressLint("NotifyDataSetChanged")
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String query = s.toString().toLowerCase(java.util.Locale.getDefault()).trim();
@@ -420,7 +452,9 @@ public class CheckoutActivity extends BaseActivity {
                 }
                 adapter.notifyDataSetChanged();
             }
-            @Override public void afterTextChanged(android.text.Editable s) {}
+            @Override public void afterTextChanged(android.text.Editable s) {
+        // No-op
+    }
         });
 
         bottomSheetDialog.show();
@@ -461,7 +495,7 @@ public class CheckoutActivity extends BaseActivity {
 
         binding.btnChangeAddress.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-            showAddressSummaryStep();
+            showAddressSelectionStep();
         });
 
         binding.btnAddPaymentCard.setOnClickListener(v -> {
@@ -500,7 +534,11 @@ public class CheckoutActivity extends BaseActivity {
 
         binding.cardOrderSummary.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-            showAddressSummaryStep();
+            if (addressList != null && !addressList.isEmpty()) {
+                showAddressSelectionStep();
+            } else {
+                showShippingStep();
+            }
         });
 
         binding.btnAction.setOnClickListener(v -> {

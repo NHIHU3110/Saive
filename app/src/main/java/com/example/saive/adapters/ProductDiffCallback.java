@@ -1,6 +1,5 @@
 package com.example.saive.adapters;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import com.example.saive.models.Product;
 import java.util.List;

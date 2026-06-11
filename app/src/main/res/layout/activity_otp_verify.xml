@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorAuthBg"
-    tools:context=".ui.OTPVerifyActivity">
+    tools:context=".ui.OTPVerifyActivity"
+    tools:ignore="Overdraw">
 
     <ImageView
         android:id="@+id/btnBack"
@@ -21,7 +22,8 @@
         app:tint="@color/white"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
-        android:focusable="true" />
+        android:focusable="true"
+        android:contentDescription="@string/nav_back"/>
 
     <LinearLayout
         android:id="@+id/headerArea"
@@ -36,7 +38,8 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:src="@mipmap/saive_logo"
-            app:tint="@color/white" />
+            app:tint="@color/white"
+            android:contentDescription="@null"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -88,6 +91,7 @@
             app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
         <LinearLayout
+                android:baselineAligned="false"
             android:id="@+id/otpContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -149,7 +153,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.865"
             app:shapeAppearanceOverlay="@style/ShapeAppearance.Saive.Circle"
-            app:tint="@color/white" />
+            app:tint="@color/white"
+            android:contentDescription="@string/desc_submit" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

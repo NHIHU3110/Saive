@@ -27,7 +27,8 @@
                 app:tint="@color/colorOnMaroon"
                 android:alpha="0"
                 android:scaleX="0.5"
-                android:scaleY="0.5" />
+                android:scaleY="0.5"
+                android:contentDescription="@null"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -52,7 +53,8 @@
                 android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:src="@mipmap/jacket1" />
+                android:src="@mipmap/jacket1"
+                android:contentDescription="@null"/>
 
             <TextView
                 android:id="@+id/tvName"
@@ -74,16 +76,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:alpha="0.5"
                 android:fontFamily="sans-serif"
                 android:text="Jackets"
                 android:textAllCaps="true"
-                android:textColor="@color/colorNoirBlack"
-                android:textSize="10sp"
+                android:textColor="@color/colorTextTertiary"
+                android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@id/tvName"
                 app:layout_constraintTop_toBottomOf="@id/tvName" />
 
             <LinearLayout
+                android:baselineAligned="false"
                 android:id="@+id/priceContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -99,9 +101,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:fontFamily="sans-serif"
-                    android:textColor="@color/colorNoirBlack"
+                    android:textColor="@color/colorTextTertiary"
                     android:textSize="12sp"
-                    android:alpha="0.4"
                     android:visibility="gone"
                     tools:text="3.000.000 ₫"
                     tools:visibility="visible" />
@@ -118,6 +119,8 @@
 
             <!-- Size/Color Selector -->
             <LinearLayout
+                tools:ignore="UseCompoundDrawables"
+                android:baselineAligned="false"
                 android:id="@+id/variantContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -146,11 +149,13 @@
                     android:layout_height="12dp"
                     android:layout_marginStart="4dp"
                     android:src="@drawable/ic_chevron_down"
-                    app:tint="@color/colorNoirBlack" />
+                    app:tint="@color/colorNoirBlack"
+                    android:contentDescription="@null"/>
             </LinearLayout>
 
             <!-- Quantity Controller -->
             <LinearLayout
+                android:baselineAligned="false"
                 android:id="@+id/qtyContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -165,7 +170,8 @@
                     android:layout_height="28dp"
                     android:background="@drawable/bg_qty_button"
                     android:src="@drawable/ic_minus"
-                    app:tint="@color/colorNoirBlack" />
+                    app:tint="@color/colorNoirBlack"
+                    android:contentDescription="@string/desc_decrease_quantity"/>
 
                 <TextView
                     android:id="@+id/tvQuantity"
@@ -183,7 +189,8 @@
                     android:layout_height="28dp"
                     android:background="@drawable/bg_qty_button"
                     android:src="@drawable/ic_plus"
-                    app:tint="@color/colorNoirBlack" />
+                    app:tint="@color/colorNoirBlack"
+                    android:contentDescription="@string/btn_add"/>
 
             </LinearLayout>
 

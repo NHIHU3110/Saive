@@ -11,9 +11,9 @@ import com.example.saive.adapters.AdminReviewAdapter;
 import com.example.saive.base.BaseActivity;
 import com.example.saive.models.Review;
 import com.example.saive.utils.DataManager;
-import java.util.ArrayList;
 import java.util.List;
 
+@android.annotation.SuppressLint("NotifyDataSetChanged")
 public class ReviewManagementActivity extends BaseActivity {
 
     private RecyclerView rvReviews;

@@ -1,7 +1,6 @@
 package com.example.saive.ui;
 
 import android.animation.ObjectAnimator;
-import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,27 +10,20 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Pair;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.view.animation.AnticipateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.OvershootInterpolator;
-import android.view.HapticFeedbackConstants;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.appcompat.widget.PopupMenu;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.example.saive.adapters.BottomSheetOptionAdapter;
 import java.util.Arrays;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.splashscreen.SplashScreen;
@@ -67,6 +59,7 @@ import java.util.List;
 import com.example.saive.utils.DataManager;
 import com.example.saive.utils.ImageUtils;
 
+@android.annotation.SuppressLint("NotifyDataSetChanged")
 public class MainActivity extends BaseActivity {
 
     private ViewPager2 viewPager, bannerViewPager, vpWardrobeBanner;
@@ -902,13 +895,6 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    private void setupProductGrid() {
-        // Method removed as product grid is no longer on Home
-    }
-
-    private void filterProducts(String category) {
-        // Logic moved to wardrobe filter if needed
-    }
 
     private void setupFlashSale() {
         rvFlashSale = findViewById(R.id.rvFlashSale);

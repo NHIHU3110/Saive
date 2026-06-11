@@ -13,7 +13,6 @@ import com.example.saive.R;
 import com.example.saive.models.CollectionItem;
 import com.example.saive.utils.ImageUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CollectionFullAdapter extends RecyclerView.Adapter<CollectionFullAdapter.InfoViewHolder> {
@@ -70,7 +69,7 @@ public class CollectionFullAdapter extends RecyclerView.Adapter<CollectionFullAd
         return items.size();
     }
 
-    static class InfoViewHolder extends RecyclerView.ViewHolder {
+    public static class InfoViewHolder extends RecyclerView.ViewHolder {
         TextView tvTag, tvName;
         ImageView ivBackground;
         View btnNext;

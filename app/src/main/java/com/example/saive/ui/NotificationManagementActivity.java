@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@android.annotation.SuppressLint("NotifyDataSetChanged")
 public class NotificationManagementActivity extends BaseActivity {
 
     private RecyclerView rvNotifications;

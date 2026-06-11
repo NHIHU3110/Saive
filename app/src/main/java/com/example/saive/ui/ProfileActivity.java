@@ -4,18 +4,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import androidx.core.content.ContextCompat;
 
 import androidx.activity.EdgeToEdge;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.app.AlertDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.example.saive.adapters.BottomSheetOptionAdapter;
 import java.util.Arrays;
@@ -260,6 +261,24 @@ public class ProfileActivity extends BaseActivity {
         notificationBadge = findViewById(R.id.notificationBadge);
         tvCurrentLanguage = findViewById(R.id.tvCurrentLanguage);
         tvChangePassword = findViewById(R.id.tvChangePassword);
+
+        // Color 'ơ' in "HỒ SƠ" beige
+        TextView tvProfileHeader = findViewById(R.id.tvProfileHeader);
+        if (tvProfileHeader != null) {
+            String headerText = tvProfileHeader.getText().toString();
+            int oIndex = headerText.indexOf('ơ');
+            if (oIndex == -1) oIndex = headerText.indexOf('Ơ');
+            
+            if (oIndex != -1) {
+                SpannableString spannable = new SpannableString(headerText);
+                spannable.setSpan(
+                    new ForegroundColorSpan(ContextCompat.getColor(this, R.color.colorBeigeBg)),
+                    oIndex, oIndex + 1,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                );
+                tvProfileHeader.setText(spannable);
+            }
+        }
         
         // Fix large bitmap issue for profile avatar and logo
         ImageView ivAvatar = findViewById(R.id.ivAvatar);

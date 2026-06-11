@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBeigeBg">
+    android:background="@color/colorBeigeBg"
+    tools:ignore="Overdraw">
 
 
 
@@ -27,14 +28,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:tint="@color/colorNoirBlack" />
+            app:tint="@color/colorNoirBlack"
+            android:contentDescription="@null"/>
 
         <TextView
             android:id="@+id/tvHeaderTitle"
             style="@style/TextAppearance.Saive.SectionHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="VOUCHERS"
+            android:text="@string/coupon_header"
             android:textColor="@color/colorNoirBlack"
             android:textSize="18sp"
             android:letterSpacing="0.1"
@@ -66,7 +68,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/colorNoirBlack" />
+            app:tint="@color/colorNoirBlack"
+            android:contentDescription="@null"/>
 
         <EditText
             android:id="@+id/etSearch"
@@ -129,7 +132,8 @@
             android:layout_height="80dp"
             android:alpha="0.3"
             android:src="@drawable/ic_coupon"
-            app:tint="@color/colorSand" />
+            app:tint="@color/colorSand"
+            android:contentDescription="@null"/>
 
         <TextView
             android:layout_width="wrap_content"

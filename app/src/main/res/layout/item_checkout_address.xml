@@ -12,6 +12,7 @@
     app:strokeColor="@color/colorLightGray">
 
     <LinearLayout
+                android:baselineAligned="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
@@ -73,7 +74,8 @@
             android:layout_marginStart="16dp"
             android:src="@drawable/ic_check_circle"
             app:tint="@color/colorMaroon"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:contentDescription="@null"/>
 
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

@@ -50,7 +50,7 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
         return bannerImages.size();
     }
 
-    static class BannerViewHolder extends RecyclerView.ViewHolder {
+    public static class BannerViewHolder extends RecyclerView.ViewHolder {
         ImageView ivBanner;
         TextView tvBannerTitle;
         TextView btnViewCollection;

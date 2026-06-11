@@ -20,7 +20,8 @@
             android:src="@android:drawable/ic_menu_agenda"
             app:tint="@color/colorSand"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:contentDescription="@null"/>
 
         <TextView
             android:id="@+id/tvCardType"
@@ -54,9 +55,8 @@
             android:layout_height="wrap_content"
             android:text="@string/label_card_holder_caps"
             style="@style/TextAppearance.Saive.Caption"
-            android:textColor="@color/colorCotton"
-            android:textSize="10sp"
-            android:alpha="0.7"
+            android:textColor="@color/colorOnMaroonSecondary"
+            android:textSize="12sp"
             app:layout_constraintBottom_toTopOf="@id/tvCardHolder"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -79,9 +79,8 @@
             android:layout_height="wrap_content"
             android:text="@string/label_expires_caps"
             style="@style/TextAppearance.Saive.Caption"
-            android:textColor="@color/colorCotton"
-            android:textSize="10sp"
-            android:alpha="0.7"
+            android:textColor="@color/colorOnMaroonSecondary"
+            android:textSize="12sp"
             app:layout_constraintBottom_toTopOf="@id/tvExpiryDate"
             app:layout_constraintEnd_toEndOf="parent" />
 

@@ -50,7 +50,7 @@ public class OrderTrackingActivity extends BaseActivity {
                 // Cập nhật ngày dự kiến (ví dụ: 3 ngày sau khi đặt)
                 TextView tvExpectedDelivery = findViewById(R.id.expectedDelivery);
                 if (tvExpectedDelivery != null) {
-                    tvExpectedDelivery.setText(getString(R.string.format_expected_delivery, (order.getTimeAgo().equals("Just now") ? "Trong 3 ngày tới" : "Đang giao")));
+                    tvExpectedDelivery.setText(getString(R.string.format_expected_delivery, (order.getTimeAgo().equals("Just now") ? getString(R.string.status_in_3_days) : getString(R.string.status_in_transit))));
                 }
 
                 // Cập nhật thời gian trong timeline
@@ -60,7 +60,7 @@ public class OrderTrackingActivity extends BaseActivity {
                     for (int i = 0; i < parent.getChildCount(); i++) {
                         View child = parent.getChildAt(i);
                         if (child instanceof TextView && child != tvTimePlaced) {
-                            ((TextView) child).setText(order.getTimeAgo().equals("Just now") ? "Hôm nay" : order.getTimeAgo());
+                            ((TextView) child).setText(order.getTimeAgo().equals("Just now") ? getString(R.string.label_today) : order.getTimeAgo());
                         }
                     }
                 }
@@ -81,11 +81,12 @@ public class OrderTrackingActivity extends BaseActivity {
 
                         tvName.setText(item.getName());
                         tvPrice.setText(item.getPrice());
-                        String attributes = "Size: " + item.getSize();
+                        String attributes;
                         if (item.getColor() != null && !item.getColor().isEmpty()) {
-                            attributes += " | Color: " + item.getColor();
+                            attributes = getString(R.string.format_order_attributes_with_color, item.getSize(), item.getColor(), item.getQuantity());
+                        } else {
+                            attributes = getString(R.string.format_order_attributes, item.getSize(), item.getQuantity());
                         }
-                        attributes += " | Qty: " + item.getQuantity();
                         
                         tvAttributes.setText(attributes);
                         ivItem.setImageResource(item.getImageResId() != 0 ? item.getImageResId() : R.mipmap.model1);
@@ -112,7 +113,7 @@ public class OrderTrackingActivity extends BaseActivity {
                                 for (int i = 1; i < itemsContainer.getChildCount(); i++) {
                                     itemsContainer.getChildAt(i).setVisibility(View.VISIBLE);
                                 }
-                                tvSeeMore.setText("Thu gọn");
+                                tvSeeMore.setText(getString(R.string.btn_collapse));
                             }
                         });
                     } else {
@@ -129,11 +130,12 @@ public class OrderTrackingActivity extends BaseActivity {
 
                     tvName.setText(order.getItemsSummary());
                     tvPrice.setText(order.getTotalAmount());
-                    String attributes = "Size: " + order.getSize();
+                    String attributes;
                     if (order.getColor() != null && !order.getColor().isEmpty()) {
-                        attributes += " | Color: " + order.getColor();
+                        attributes = getString(R.string.format_order_attributes_with_color, order.getSize(), order.getColor(), order.getQuantity());
+                    } else {
+                        attributes = getString(R.string.format_order_attributes, order.getSize(), order.getQuantity());
                     }
-                    attributes += " | Qty: " + order.getQuantity();
                     
                     tvAttributes.setText(attributes);
                     ivItem.setImageResource(order.getProductImageResId() != 0 ? order.getProductImageResId() : R.mipmap.model1);

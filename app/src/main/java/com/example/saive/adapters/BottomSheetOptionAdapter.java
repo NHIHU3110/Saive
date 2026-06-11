@@ -54,7 +54,7 @@ public class BottomSheetOptionAdapter extends RecyclerView.Adapter<BottomSheetOp
         return options.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvOptionName;
         View viewSelectedIndicator;
 

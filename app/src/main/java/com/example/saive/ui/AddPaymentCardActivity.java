@@ -10,6 +10,7 @@ import com.example.saive.base.BaseActivity;
 import com.example.saive.models.PaymentCard;
 import com.example.saive.utils.DataManager;
 
+@android.annotation.SuppressLint("SetTextI18n")
 public class AddPaymentCardActivity extends BaseActivity {
 
     private EditText etCardNumber, etCardHolder, etExpiry;
@@ -42,7 +43,9 @@ public class AddPaymentCardActivity extends BaseActivity {
     private void setupPreviewSync() {
         etCardNumber.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        // No-op
+    }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String val = s.toString().replaceAll(" ", "");
@@ -58,23 +61,31 @@ public class AddPaymentCardActivity extends BaseActivity {
                 }
             }
             @Override
-            public void afterTextChanged(Editable s) {}
+            public void afterTextChanged(Editable s) {
+        // No-op
+    }
         });
 
         etCardHolder.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        // No-op
+    }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 tvPreviewHolder.setText(s.toString().isEmpty() ? "CARD HOLDER" : s.toString().toUpperCase(java.util.Locale.getDefault()));
             }
             @Override
-            public void afterTextChanged(Editable s) {}
+            public void afterTextChanged(Editable s) {
+        // No-op
+    }
         });
 
         etExpiry.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        // No-op
+    }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String input = s.toString();
@@ -85,7 +96,9 @@ public class AddPaymentCardActivity extends BaseActivity {
                 tvPreviewExpiry.setText(s.toString().isEmpty() ? "MM/YY" : s.toString());
             }
             @Override
-            public void afterTextChanged(Editable s) {}
+            public void afterTextChanged(Editable s) {
+        // No-op
+    }
         });
     }
 

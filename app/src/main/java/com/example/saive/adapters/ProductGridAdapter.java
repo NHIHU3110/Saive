@@ -32,6 +32,7 @@ public class ProductGridAdapter extends RecyclerView.Adapter<ProductGridAdapter.
         this.products = products;
     }
 
+    @android.annotation.SuppressLint("NotifyDataSetChanged")
     public void setTextColor(int color) {
         this.textColor = color;
         notifyDataSetChanged();
@@ -150,7 +151,7 @@ public class ProductGridAdapter extends RecyclerView.Adapter<ProductGridAdapter.
         return products.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivProduct;
         TextView tvName, tvPrice, tvOriginalPrice, tvDiscountBadge;
         ImageButton btnFavorite;

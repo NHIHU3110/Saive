@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAuthCardBg">
+    android:background="@color/colorAuthCardBg"
+    tools:ignore="Overdraw">
 
     <ImageButton
         android:id="@+id/btnBack"
@@ -32,6 +33,8 @@
         app:layout_constraintTop_toTopOf="@id/btnBack" />
 
     <LinearLayout
+                tools:ignore="UseCompoundDrawables"
+                android:baselineAligned="false"
         android:id="@+id/searchBar"
         android:layout_width="0dp"
         android:layout_height="56dp"
@@ -79,6 +82,7 @@
     </LinearLayout>
 
     <LinearLayout
+                android:baselineAligned="false"
         android:id="@+id/btnCurrentLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

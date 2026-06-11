@@ -5,12 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorCotton"
-    tools:context=".ui.OrderManagementActivity">
+    tools:context=".ui.OrderManagementActivity"
+    tools:ignore="Overdraw">
 
 
 
     <!-- Header / Toolbar -->
     <LinearLayout
+                android:baselineAligned="false"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,7 +34,8 @@
             android:padding="12dp"
             android:scaleType="centerInside"
             android:src="@drawable/ic_back"
-            app:tint="@color/colorMaroon" />
+            app:tint="@color/colorMaroon"
+            android:contentDescription="@string/nav_back"/>
 
         <TextView
             android:layout_width="0dp"
@@ -58,7 +61,8 @@
             android:padding="12dp"
             android:scaleType="centerInside"
             android:src="@drawable/ic_filter"
-            app:tint="@color/colorMaroon" />
+            app:tint="@color/colorMaroon"
+            android:contentDescription="@null"/>
     </LinearLayout>
 
     <!-- Order Tabs -->
@@ -71,6 +75,7 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <LinearLayout
+                android:baselineAligned="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"

@@ -4,10 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorCotton">
+    android:background="@color/colorCotton"
+    tools:ignore="Overdraw">
 
     <!-- FIXED HEADER (Search, Cart, Logo) -->
     <LinearLayout
+                tools:ignore="UseCompoundDrawables"
+                android:baselineAligned="false"
         android:id="@+id/searchContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,7 +33,8 @@
             android:backgroundTint="@color/colorTranslucentSurface"
             android:padding="10dp"
             android:src="@drawable/ic_back"
-            app:tint="@color/colorNoirBlack" />
+            app:tint="@color/colorNoirBlack"
+            android:contentDescription="@null"/>
 
         <FrameLayout
             android:id="@+id/btnSearch"
@@ -50,7 +54,8 @@
                 android:layout_gravity="center_vertical"
                 android:src="@android:drawable/ic_menu_search"
                 app:tint="@color/colorNoirBlack"
-                android:alpha="0.5"/>
+                android:alpha="0.5"
+                android:contentDescription="@null"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -75,7 +80,8 @@
                 android:layout_height="20dp"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_cart"
-                app:tint="@color/colorNoirBlack" />
+                app:tint="@color/colorNoirBlack"
+                android:contentDescription="@null"/>
 
             <TextView
                 android:id="@+id/tvCartBadge"
@@ -93,7 +99,7 @@
                 android:paddingEnd="4dp"
                 tools:text="0"
                 android:textColor="@color/colorButtonText"
-                android:textSize="10sp"
+                android:textSize="11sp"
                 android:textStyle="bold"
                 android:visibility="gone"
                 tools:visibility="visible" />
@@ -123,7 +129,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    tools:src="@mipmap/model1" />
+                    tools:src="@mipmap/model1"
+                    android:contentDescription="@null"/>
 
                 <ImageButton
                     android:id="@+id/btnFavorite"
@@ -136,7 +143,8 @@
                     android:padding="10dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_heart_thin"
-                    app:tint="@color/colorAccentBrand" />
+                    app:tint="@color/colorAccentBrand"
+                    android:contentDescription="@string/nav_favorite"/>
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/lottieFavorite"
@@ -160,7 +168,8 @@
                     android:padding="13dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_share"
-                    app:tint="@color/colorNoirBlack" />
+                    app:tint="@color/colorNoirBlack"
+                    android:contentDescription="@string/btn_share"/>
             </FrameLayout>
 
             <LinearLayout
@@ -179,6 +188,7 @@
                     tools:text="Silk Wrap Dress" />
 
                 <LinearLayout
+                android:baselineAligned="false"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -259,15 +269,17 @@
                         android:layout_marginTop="32dp">
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@id/btnSizeGuide"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
                             android:layout_centerVertical="true"
                             style="@style/TextAppearance.Saive.Caption"
                             android:text="@string/label_size"
                             android:textColor="@color/colorAccentBrand" />
 
                         <LinearLayout
+                android:baselineAligned="false"
                             android:id="@+id/btnSizeGuide"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -286,10 +298,13 @@
                                 android:layout_width="14dp"
                                 android:layout_height="14dp"
                                 android:src="@drawable/ic_all"
-                                app:tint="@color/colorNoirBlack" />
+                                app:tint="@color/colorNoirBlack"
+                                android:contentDescription="@null"/>
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@id/btnSizeGuide"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
                                 style="@style/TextAppearance.Saive.Nav"
@@ -300,6 +315,7 @@
                     </RelativeLayout>
 
                     <LinearLayout
+                android:baselineAligned="false"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
@@ -342,6 +358,7 @@
                         android:textColor="@color/colorAccentBrand" />
 
                     <LinearLayout
+                android:baselineAligned="false"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
@@ -368,6 +385,7 @@
 
                 <!-- Quantity Selector -->
                 <LinearLayout
+                android:baselineAligned="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
@@ -383,6 +401,7 @@
                         android:textColor="@color/colorAccentBrand" />
 
                     <LinearLayout
+                android:baselineAligned="false"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/bg_rounded_white_8dp"
@@ -397,7 +416,8 @@
                             android:layout_height="32dp"
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:src="@drawable/ic_minus"
-                            app:tint="@color/colorNoirBlack" />
+                            app:tint="@color/colorNoirBlack"
+                            android:contentDescription="@string/desc_decrease_quantity"/>
 
                         <TextView
                             android:id="@+id/tvQuantity"
@@ -415,7 +435,8 @@
                             android:layout_height="32dp"
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:src="@drawable/ic_plus"
-                            app:tint="@color/colorNoirBlack" />
+                            app:tint="@color/colorNoirBlack"
+                            android:contentDescription="@string/desc_increase_quantity"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -437,6 +458,7 @@
 
                 <!-- Reviews Section -->
                 <LinearLayout
+                android:baselineAligned="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="48dp"
@@ -491,6 +513,7 @@
 
     <!-- BOTTOM ACTION BAR -->
     <LinearLayout
+                android:baselineAligned="false"
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -505,6 +528,7 @@
 
         <!-- Quantity Selector in Bottom Bar -->
         <LinearLayout
+                android:baselineAligned="false"
             android:layout_width="wrap_content"
             android:layout_height="54dp"
             android:layout_marginEnd="12dp"
@@ -520,7 +544,8 @@
                 android:layout_height="32dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_minus"
-                app:tint="@color/colorNoirBlack" />
+                app:tint="@color/colorNoirBlack"
+                android:contentDescription="@string/desc_decrease_quantity"/>
 
             <TextView
                 android:id="@+id/tvQuantityBottom"
@@ -539,10 +564,13 @@
                 android:layout_height="32dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_plus"
-                app:tint="@color/colorNoirBlack" />
+                app:tint="@color/colorNoirBlack"
+                android:contentDescription="@string/desc_increase_quantity"/>
         </LinearLayout>
 
         <LinearLayout
+                tools:ignore="UseCompoundDrawables"
+                android:baselineAligned="false"
             android:id="@+id/btnAddToWardrobe"
             android:layout_width="0dp"
             android:layout_height="54dp"
@@ -558,7 +586,8 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/ic_cart"
-                app:tint="@color/colorButtonText" />
+                app:tint="@color/colorButtonText"
+                android:contentDescription="@null"/>
 
             <TextView
                 android:id="@+id/tvWardrobeAction"

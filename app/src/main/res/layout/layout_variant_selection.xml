@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="24dp"
-    android:background="@color/colorCotton">
+    android:background="@color/colorCotton"
+    tools:ignore="Overdraw">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,14 +16,16 @@
         <TextView
             android:id="@+id/tvDialogTitle"
             style="@style/TextAppearance.Saive.Header"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@id/btnSizeGuide"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:text="Select Size"
             android:textSize="20sp" />
 
         <LinearLayout
+                android:baselineAligned="false"
             android:id="@+id/btnSizeGuide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -43,10 +46,13 @@
                 android:layout_width="14dp"
                 android:layout_height="14dp"
                 android:src="@drawable/ic_all"
-                app:tint="@color/colorNoirBlack" />
+                app:tint="@color/colorNoirBlack"
+                android:contentDescription="@null"/>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@id/btnSizeGuide"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 style="@style/TextAppearance.Saive.Nav"
@@ -64,6 +70,7 @@
         android:scrollbars="none">
 
         <LinearLayout
+                android:baselineAligned="false"
             android:id="@+id/optionsContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

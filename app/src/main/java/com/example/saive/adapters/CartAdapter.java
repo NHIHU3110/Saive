@@ -9,7 +9,6 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.DecelerateInterpolator;
 import android.view.animation.PathInterpolator;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -240,8 +239,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         AlphaAnimation fadeOut = new AlphaAnimation(1.0f, 0.0f);
         fadeOut.setDuration(150);
         fadeOut.setAnimationListener(new Animation.AnimationListener() {
-            @Override public void onAnimationStart(Animation animation) {}
-            @Override public void onAnimationRepeat(Animation animation) {}
+            @Override public void onAnimationStart(Animation animation) {
+        // No-op
+    }
+            @Override public void onAnimationRepeat(Animation animation) {
+        // No-op
+    }
             @Override public void onAnimationEnd(Animation animation) {
                 tv.setText(String.valueOf(newQty));
                 AlphaAnimation fadeIn = new AlphaAnimation(0.0f, 1.0f);
@@ -257,7 +260,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         return cartItems.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivProduct, ivDeleteIcon;
         TextView tvName, tvCategory, tvPrice, tvOriginalPrice, tvQuantity, tvVariantLabel;
         ImageButton btnMinus, btnPlus;

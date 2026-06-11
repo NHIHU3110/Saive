@@ -45,7 +45,7 @@
     <string name="nav_shop">Cửa hàng</string>
     <string name="nav_home">Trang chủ</string>
     <string name="nav_archive">Lưu trữ</string>
-    <string name="nav_about">VỀ SAIVE</string>
+    <string name="nav_about">Về Saive</string>
     <string name="wardrobe_header">TỦ ĐỒ</string>
     <string name="wardrobe_empty_search_title">KHÔNG TÌM THẤY MÓN NÀO</string>
     <string name="wardrobe_empty_search_desc">Không có món nào khớp với tìm kiếm của bạn.\nThử từ khóa hoặc danh mục khác.</string>
@@ -557,6 +557,7 @@
     <string name="label_detail_forgot_password">Nhập email của bạn để nhận mã xác minh</string>
     <string name="forgot_password_back_to_login">Quay lại Đăng nhập</string>
     <string name="verify_otp_title">Xác minh OTP</string>
+    <string name="otp_hint">-</string>
     <string name="label_detail_verify_otp">Mã đã được gửi đến email của bạn</string>
     <string name="verify_opt_resend_code">Gửi lại mã</string>
     <string name="new_password_title">Mật khẩu mới</string>
@@ -679,7 +680,7 @@
     <string name="label_detailed_review">Đánh giá chi tiết</string>
     <string name="label_admin_premium_control">Quản trị cao cấp</string>
     <string name="label_restricted_access">Truy cập giới hạn</string>
-    <string name="label_inventory_stock">Tồn kho</string>
+    <string name="label_inventory_stock">Tồn kho: %1$d</string>
     <string name="label_midnight_curation">Tuyển chọn lúc nửa đêm</string>
     <string name="label_saive_footer">SAIVE</string>
     <string name="label_limited_time_drops">Ra mắt giới hạn thời gian</string>
@@ -695,7 +696,6 @@
     <string name="label_add_new_card">Thêm thẻ mới</string>
     <string name="label_save_card">Lưu thẻ</string>
     <string name="label_card_details">Chi tiết thẻ</string>
-    <string name="google_maps_key" translatable="false">YOUR_API_KEY_HERE</string>
     <string name="btn_continue_payment_format">TIẾP TỤC THANH TOÁN (%1$s)</string>
     <string name="btn_place_order_format">ĐẶT HÀNG (%1$s)</string>
     <string name="format_summary_size">Kích cỡ: %1$s</string>
@@ -751,4 +751,41 @@
     <string name="desc_create_flash_sale">Tạo chiến dịch Flash Sale</string>
     <string name="desc_edit_product">Chỉnh sửa sản phẩm</string>
     <string name="inventory_stock_format">Kho: %1$d</string>
+
+    <!-- Payment Cards & Bank Transfer -->
+    <string name="label_card_holder_name">Tên chủ thẻ</string>
+    <string name="label_expiry_date_format">Hạn dùng (MM/YY)</string>
+    <string name="label_bank_transfer">Chuyển khoản ngân hàng</string>
+    <string name="desc_scan_qr_code">Quét mã QR này để thực hiện thanh toán</string>
+    <string name="desc_qr_code_expired_format">Mã QR này sẽ hết hạn trong %1$02d:%2$02d</string>
+    <string name="btn_regenerate_qr">↺  Tạo lại mã QR</string>
+    <string name="btn_confirm_payment_success">Xác nhận thanh toán thành công</string>
+    <string name="desc_qr_code_expired">Mã QR đã hết hạn. Vui lòng tạo lại.</string>
+
+    <!-- Accessibility Descriptions -->
+    <string name="desc_admin_logo">Logo quản trị viên</string>
+    <string name="desc_admin_login_button">Nút đăng nhập quản trị</string>
+    <string name="desc_app_logo">Logo SAIVE</string>
+    <string name="desc_login">Đăng nhập</string>
+    <string name="desc_signup">Đăng ký</string>
+    <string name="desc_submit">Gửi</string>
+    <string name="desc_fb_login">Đăng nhập Facebook</string>
+    <string name="desc_google_login">Đăng nhập Google</string>
+
+    <!-- General Accessibility Descriptions -->
+    <string name="desc_menu">Danh mục</string>
+    <string name="desc_decrease_quantity">Giảm số lượng</string>
+    <string name="desc_increase_quantity">Tăng số lượng</string>
+    <string name="desc_close">Đóng</string>
+
+    <!-- Order tracking & Collapse strings -->
+    <string name="btn_collapse">Thu gọn</string>
+    <string name="format_order_attributes_with_color">Kích cỡ: %1$s | Màu sắc: %2$s | SL: %3$d</string>
+    <string name="status_in_3_days">Trong 3 ngày tới</string>
+    <string name="status_in_transit">Đang giao</string>
+    <string name="label_today">Hôm nay</string>
+    <string name="hint_notification_title">Tiêu đề thông báo</string>
+    <string name="hint_notification_message">Nội dung tin nhắn...</string>
+    <string name="hint_search">Tìm kiếm...</string>
+    <string name="label_detail_verify_otp_format">Vui lòng nhập mã OTP gửi tới email\n%1$s</string>
 </resources>

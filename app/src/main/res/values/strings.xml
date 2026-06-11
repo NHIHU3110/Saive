@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Saive</string>
     <string name="search_hint">Search your wardrobe&#8230;</string>
     <string name="cat_all">All</string>
@@ -214,7 +214,7 @@
     <string name="btn_checkout">CHECKOUT</string>
     <string name="coupon_hint">Enter coupon code</string>
     <string name="btn_apply">APPLY</string>
-    <string name="coupon_applied">Coupon applied: 10% discount</string>
+    <string name="coupon_applied">Coupon applied: 10%% discount</string>
     <string name="coupon_invalid">Invalid coupon code</string>
     <string name="coupon_empty">Please enter a coupon code</string>
     <string name="search_recent">RECENT SEARCHES</string>
@@ -269,7 +269,7 @@
     <string name="format_discount_label" translatable="false">%1$s (%2$s)</string>
     <string name="format_negative_price" translatable="false">-%1$s</string>
     <string name="format_order_attributes">Size: %1$s | Qty: %2$d</string>
-    <string name="format_order_see_more">See more (+%1$d items)</string>
+    <string name="format_order_see_more" tools:ignore="PluralsCandidate">See more (+%1$d items)</string>
     <string name="format_expected_delivery">Expected: %1$s</string>
     <string name="checkout_order_summary">ORDER SUMMARY</string>
     <string name="checkout_shipping_to">Shipping to</string>
@@ -455,7 +455,7 @@
     <string name="coupon_detail_steps">• Copy the code below.\n• Go to your cart or checkout page.\n• Paste the code into the \'Coupon code\' box.\n• Enjoy exclusive offers from Saive!</string>
     <string name="coupon_detail_your_code">YOUR CODE</string>
     <string name="coupon_detail_copy_use">Copy &amp; Use Now</string>
-    <string name="coupon_detail_welcome_desc">Get 20% off on your first order</string>
+    <string name="coupon_detail_welcome_desc">Get 20%% off on your first order</string>
 
     <!-- Address Labels -->
     <string name="label_address_label">Address Label</string>
@@ -504,7 +504,7 @@
     <string name="admin_voucher_desc">Description</string>
     <string name="admin_save_voucher">SAVE VOUCHER</string>
     <string name="admin_voucher_status">Status</string>
-    <string name="admin_voucher_used">%1$d Used</string>
+    <string name="admin_voucher_used" tools:ignore="PluralsCandidate">%1$d Used</string>
     <string name="admin_voucher_active">Active</string>
     <string name="admin_voucher_expired">Expired</string>
     <string name="admin_voucher_scheduled">Scheduled</string>
@@ -544,7 +544,7 @@
     <string name="order_in_transit">Order in transit</string>
     <string name="order_delivered_success">Delivered Successfully</string>
     <string name="order_not_delivered">Not Delivered yet</string>
-    <string name="order_items_count_format">%1$d Items: %2$s</string>
+    <string name="order_items_count_format" tools:ignore="PluralsCandidate">%1$d Items: %2$s</string>
 
     <string name="inventory_low_stock">Low Stock</string>
     <string name="inventory_out_of_stock">Out of Stock</string>
@@ -649,6 +649,7 @@
     <string name="label_detail_forgot_password">Enter your email to receive a verification code</string>
     <string name="forgot_password_back_to_login">Back to Login</string>
     <string name="verify_otp_title">Verify OTP</string>
+    <string name="otp_hint">-</string>
     <string name="label_detail_verify_otp">Code send to your email</string>
     <string name="verify_opt_resend_code">Resend Code</string>
     <string name="new_password_title">New Password</string>
@@ -707,6 +708,14 @@
     <string name="admin_notification_mgmt">NOTIFICATION MGMT</string>
     <string name="admin_review_mgmt">REVIEW MODERATION</string>
     <string name="admin_login_title">LOGIN ADMIN</string>
+    <string name="desc_admin_logo">Admin Logo</string>
+    <string name="desc_admin_login_button">Admin Login Button</string>
+    <string name="desc_app_logo">SAIVE Logo</string>
+    <string name="desc_login">Login</string>
+    <string name="desc_signup">Sign Up</string>
+    <string name="desc_submit">Submit</string>
+    <string name="desc_fb_login">Facebook Login</string>
+    <string name="desc_google_login">Google Login</string>
     <string name="admin_send_notification">SEND NOTIFICATION</string>
     <string name="admin_create_notification">CREATE NOTIFICATION</string>
     <string name="admin_send_broadcast">SEND BROADCAST</string>
@@ -734,10 +743,10 @@
     <string name="label_payment_method">Payment Method</string>
     <string name="label_order_status">Order Status</string>
     <string name="label_in_progress">In Progress</string>
-    <string name="label_view_more_products">View more (+%1$d products)</string>
+    <string name="label_view_more_products" tools:ignore="PluralsCandidate">View more (+%1$d products)</string>
     <string name="label_added_to_cart">Added to cart</string>
     <string name="label_products_vn">Products</string>
-    <string name="label_expires_in_days">Expires in %1$d days</string>
+    <string name="label_expires_in_days" tools:ignore="PluralsCandidate">Expires in %1$d days</string>
     <string name="label_add_new_card">Add New Card</string>
     <string name="label_save_card">SAVE CARD</string>
     <string name="label_card_details">Card Details</string>
@@ -822,4 +831,39 @@
     <string name="desc_create_flash_sale">Create Flash Sale</string>
     <string name="desc_edit_product">Edit product</string>
     <string name="inventory_stock_format">Kho: %1$d</string>
+
+    <!-- Payment Cards & Bank Transfer -->
+    <string name="label_card_holder_name">Card Holder Name</string>
+    <string name="label_expiry_date_format">Expiry Date (MM/YY)</string>
+    <string name="label_bank_transfer">Bank Transfer</string>
+    <string name="desc_scan_qr_code">Scan this QR Code to process your payment</string>
+    <string name="desc_qr_code_expired_format">This QR Code will be expired in %1$02d:%2$02d</string>
+    <string name="btn_regenerate_qr">↺  Regenerate the QR Code</string>
+    <string name="btn_confirm_payment_success">Confirm Payment Success</string>
+    <string name="desc_qr_code_expired">QR Code has expired. Please regenerate.</string>
+
+    <!-- General Accessibility Descriptions -->
+    <string name="desc_menu">Menu</string>
+    <string name="desc_decrease_quantity">Decrease Quantity</string>
+    <string name="desc_increase_quantity">Increase Quantity</string>
+    <string name="desc_close">Close</string>
+
+    <!-- Order tracking & Collapse strings -->
+    <string name="btn_collapse">Collapse</string>
+    <string name="format_order_attributes_with_color">Size: %1$s | Color: %2$s | Qty: %3$d</string>
+    <string name="status_in_3_days">In the next 3 days</string>
+    <string name="status_in_transit">In transit</string>
+    <string name="label_today">Today</string>
+    <string name="hint_notification_title">Notification Title</string>
+    <string name="hint_notification_message">Message content...</string>
+    <string name="hint_search">Search...</string>
+    <string name="label_detail_verify_otp_format">Please enter the OTP sent to email\n%1$s</string>
+
+    <!-- Multi-product Review Screen -->
+    <string name="label_rate_this_product">Rate this product</string>
+    <string name="hint_review_comment">Share your experience with this piece…</string>
+    <string name="error_rate_all_products">Please rate all products before submitting</string>
+    <string name="label_add_photos">Add Photos</string>
+    <string name="label_your_review">Your Review</string>
+
 </resources>

@@ -5,10 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorCotton"
-    tools:context=".ui.FlashSaleManagementActivity">
+    tools:context=".ui.FlashSaleManagementActivity"
+    tools:ignore="Overdraw">
 
     <!-- Header / Toolbar -->
     <LinearLayout
+                android:baselineAligned="false"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

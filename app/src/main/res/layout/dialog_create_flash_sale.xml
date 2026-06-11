@@ -72,6 +72,7 @@
                 android:layout_marginTop="8dp"
                 android:scrollbars="none">
                 <LinearLayout
+                android:baselineAligned="false"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -87,7 +88,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:src="@mipmap/jacket1"
-                            android:scaleType="centerCrop" />
+                            android:scaleType="centerCrop"
+                            android:contentDescription="@null"/>
                     </com.google.android.material.card.MaterialCardView>
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="80dp"
@@ -99,7 +101,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:src="@mipmap/sunglass1"
-                            android:scaleType="centerCrop" />
+                            android:scaleType="centerCrop"
+                            android:contentDescription="@null"/>
                     </com.google.android.material.card.MaterialCardView>
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="80dp"
@@ -113,7 +116,8 @@
                             android:layout_height="20dp"
                             android:layout_gravity="center"
                             android:src="@drawable/ic_plus"
-                            app:tint="@color/colorMaroon" />
+                            app:tint="@color/colorMaroon"
+                            android:contentDescription="@null"/>
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
             </HorizontalScrollView>

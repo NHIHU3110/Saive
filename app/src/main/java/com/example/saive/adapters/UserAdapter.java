@@ -49,8 +49,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             holder.tvUserName.setTextColor(Color.GRAY);
         } else {
             holder.btnBlockUser.setImageResource(R.drawable.ic_notifications); // Using notifications as "block" icon placeholder
-            holder.btnBlockUser.setColorFilter(Color.parseColor("#810100")); // colorMaroon
-            holder.tvUserName.setTextColor(Color.parseColor("#0F0F0F")); // colorNoirBlack
+            holder.btnBlockUser.setColorFilter(androidx.core.content.ContextCompat.getColor(holder.itemView.getContext(), R.color.colorMaroon));
+            holder.tvUserName.setTextColor(androidx.core.content.ContextCompat.getColor(holder.itemView.getContext(), R.color.colorNoirBlack));
         }
 
         holder.btnBlockUser.setOnClickListener(v -> {
@@ -65,12 +65,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         return userList.size();
     }
 
+    @android.annotation.SuppressLint("NotifyDataSetChanged")
     public void updateList(List<User> newList) {
         this.userList = newList;
         notifyDataSetChanged();
     }
 
-    static class UserViewHolder extends RecyclerView.ViewHolder {
+    public static class UserViewHolder extends RecyclerView.ViewHolder {
         TextView tvUserName, tvUserEmail, tvUserRole;
         ImageButton btnBlockUser;
 

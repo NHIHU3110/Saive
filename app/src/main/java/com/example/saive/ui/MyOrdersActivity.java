@@ -11,7 +11,6 @@ import com.example.saive.adapters.UserOrderAdapter;
 import com.example.saive.models.AdminOrder;
 import com.example.saive.utils.DataManager;
 import com.google.android.material.tabs.TabLayout;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,10 +54,14 @@ public class MyOrdersActivity extends BaseActivity {
             }
 
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {}
+            public void onTabUnselected(TabLayout.Tab tab) {
+        // No-op
+    }
 
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {}
+            public void onTabReselected(TabLayout.Tab tab) {
+        // No-op
+    }
         });
     }
 
@@ -84,25 +87,13 @@ public class MyOrdersActivity extends BaseActivity {
                 break;
         }
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            filteredList = allOrders.stream()
-                    .filter(o -> {
-                        String s = o.getStatus() != null ? o.getStatus().toUpperCase(java.util.Locale.ROOT) : "PENDING";
-                        if (tabPosition == 0) return s.equals("PENDING") || s.equals("SHIPPED");
-                        return s.equals(statusFilter);
-                    })
-                    .collect(Collectors.toList());
-        } else {
-            filteredList = new ArrayList<>();
-            for (AdminOrder o : allOrders) {
-                String s = o.getStatus() != null ? o.getStatus().toUpperCase(java.util.Locale.ROOT) : "PENDING";
-                if (tabPosition == 0) {
-                    if (s.equals("PENDING") || s.equals("SHIPPED")) filteredList.add(o);
-                } else if (s.equals(statusFilter)) {
-                    filteredList.add(o);
-                }
-            }
-        }
+        filteredList = allOrders.stream()
+                .filter(o -> {
+                    String s = o.getStatus() != null ? o.getStatus().toUpperCase(java.util.Locale.ROOT) : "PENDING";
+                    if (tabPosition == 0) return s.equals("PENDING") || s.equals("SHIPPED");
+                    return s.equals(statusFilter);
+                })
+                .collect(Collectors.toList());
 
         updateUI(filteredList);
     }
@@ -126,9 +117,8 @@ public class MyOrdersActivity extends BaseActivity {
                 public void onActionClick(AdminOrder order) {
                     String s = order.getStatus() != null ? order.getStatus().toUpperCase(java.util.Locale.ROOT) : "PENDING";
                     if (s.equals("COMPLETED")) {
-                        // Go to product detail to leave review
-                        Intent intent = new Intent(MyOrdersActivity.this, ProductDetailActivity.class);
-                        startActivity(intent);
+                        ReviewBottomSheetFragment fragment = ReviewBottomSheetFragment.newInstance(order);
+                        fragment.show(getSupportFragmentManager(), "ReviewBottomSheet");
                     } else {
                         Intent intent = new Intent(MyOrdersActivity.this, OrderTrackingActivity.class);
                         intent.putExtra("orderId", order.getOrderId());

@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorCotton"
-    tools:context=".ui.PaymentCardsActivity">
+    tools:context=".ui.PaymentCardsActivity"
+    tools:ignore="Overdraw">
 
 
 
@@ -39,7 +40,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/colorHeaderContent" />
+                app:tint="@color/colorHeaderContent"
+                android:contentDescription="@string/nav_back"/>
 
             <TextView
                 android:id="@+id/tvToolbarTitle"
@@ -90,7 +92,8 @@
             android:layout_height="64dp"
             android:src="@android:drawable/ic_menu_send"
             android:alpha="0.3"
-            app:tint="@color/colorSand" />
+            app:tint="@color/colorSand"
+            android:contentDescription="@null"/>
 
         <TextView
             style="@style/TextAppearance.Saive.Light"
@@ -115,6 +118,7 @@
         app:tint="@color/white"
         app:shapeAppearanceOverlay="@style/ShapeAppearance.Saive.Circle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:contentDescription="@string/payment_method_add_card" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

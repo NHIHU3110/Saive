@@ -65,7 +65,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
         return addressList.size();
     }
 
-    static class AddressViewHolder extends RecyclerView.ViewHolder {
+    public static class AddressViewHolder extends RecyclerView.ViewHolder {
         TextView tvLabel, tvName, tvPhone, tvFullAddress, tvDefaultBadge;
         ImageView btnEdit, btnDelete;
         CheckBox cbDefault;

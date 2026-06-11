@@ -539,6 +539,7 @@
     <string name="label_detail_forgot_password">Enter your email to receive a verification code</string>
     <string name="forgot_password_back_to_login">Back to Login</string>
     <string name="verify_otp_title">Verify OTP</string>
+    <string name="otp_hint">-</string>
     <string name="label_detail_verify_otp">Code send to your email</string>
     <string name="verify_opt_resend_code">Resend Code</string>
     <string name="new_password_title">New Password</string>
@@ -679,7 +680,7 @@
     <string name="label_detailed_review">详细评价</string>
     <string name="label_admin_premium_control">高级管理控制</string>
     <string name="label_restricted_access">受限访问</string>
-    <string name="label_inventory_stock">库存</string>
+    <string name="label_inventory_stock">库存: %1$d</string>
     <string name="label_midnight_curation">午夜精选</string>
     <string name="label_saive_footer">SAIVE</string>
     <string name="label_limited_time_drops">限时发布</string>
@@ -688,14 +689,13 @@
     <string name="label_payment_method">付款方式</string>
     <string name="label_order_status">订单状态</string>
     <string name="label_in_progress">进行中</string>
-    <string name="label_view_more_products">查看更多产品</string>
+    <string name="label_view_more_products">查看更多 (+%1$d 件产品)</string>
     <string name="label_added_to_cart">已加入购物袋</string>
     <string name="label_products_vn">越南产品</string>
     <string name="label_expires_in_days">%1$d 天后到期</string>
     <string name="label_add_new_card">添加新卡</string>
     <string name="label_save_card">保存卡片</string>
     <string name="label_card_details">卡片详情</string>
-    <string name="google_maps_key" translatable="false">YOUR_API_KEY_HERE</string>
     <string name="btn_continue_payment_format">继续付款 (%1$s)</string>
     <string name="btn_place_order_format">下订单 (%1$s)</string>
     <string name="format_summary_size">尺码: %1$s</string>
@@ -751,4 +751,41 @@
     <string name="desc_create_flash_sale">创建限时抢购</string>
     <string name="desc_edit_product">编辑商品</string>
     <string name="inventory_stock_format">库存: %1$d</string>
+
+    <!-- Payment Cards & Bank Transfer -->
+    <string name="label_card_holder_name">持卡人姓名</string>
+    <string name="label_expiry_date_format">有效期 (MM/YY)</string>
+    <string name="label_bank_transfer">银行转账</string>
+    <string name="desc_scan_qr_code">扫描此二维码进行付款</string>
+    <string name="desc_qr_code_expired_format">此二维码将在 %1$02d:%2$02d 后过期</string>
+    <string name="btn_regenerate_qr">↺  重新生成二维码</string>
+    <string name="btn_confirm_payment_success">确认付款成功</string>
+    <string name="desc_qr_code_expired">二维码已过期。请重新生成。</string>
+
+    <!-- Accessibility Descriptions -->
+    <string name="desc_admin_logo">管理员 Logo</string>
+    <string name="desc_admin_login_button">管理员登录按钮</string>
+    <string name="desc_app_logo">SAIVE Logo</string>
+    <string name="desc_login">登录</string>
+    <string name="desc_signup">注册</string>
+    <string name="desc_submit">提交</string>
+    <string name="desc_fb_login">脸书登录</string>
+    <string name="desc_google_login">谷歌登录</string>
+
+    <!-- General Accessibility Descriptions -->
+    <string name="desc_menu">菜单</string>
+    <string name="desc_decrease_quantity">减少数量</string>
+    <string name="desc_increase_quantity">增加数量</string>
+    <string name="desc_close">关闭</string>
+
+    <!-- Order tracking & Collapse strings -->
+    <string name="btn_collapse">收起</string>
+    <string name="format_order_attributes_with_color">尺码: %1$s | 颜色: %2$s | 数量: %3$d</string>
+    <string name="status_in_3_days">3天内</string>
+    <string name="status_in_transit">运输中</string>
+    <string name="label_today">今天</string>
+    <string name="hint_notification_title">通知标题</string>
+    <string name="hint_notification_message">消息内容...</string>
+    <string name="hint_search">搜索...</string>
+    <string name="label_detail_verify_otp_format">请输入发送到您邮箱的OTP\n%1$s</string>
 </resources>

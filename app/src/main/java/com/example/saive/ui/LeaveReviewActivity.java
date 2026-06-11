@@ -25,6 +25,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+@android.annotation.SuppressLint("NotifyDataSetChanged")
 public class LeaveReviewActivity extends BaseActivity {
 
     private String productName;
@@ -51,10 +52,7 @@ public class LeaveReviewActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leave_review);
 
-        if (getWindow() != null) {
-            getWindow().setStatusBarColor(android.graphics.Color.WHITE);
-            getWindow().getDecorView().setSystemUiVisibility(android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        }
+
 
         productName = getIntent().getStringExtra("productName");
         orderPrice = getIntent().getStringExtra("orderPrice");

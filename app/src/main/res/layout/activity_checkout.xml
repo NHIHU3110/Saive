@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="TooManyViews,Overdraw"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorCotton">
@@ -32,7 +33,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/colorHeaderContent" />
+                app:tint="@color/colorHeaderContent"
+                android:contentDescription="@null"/>
 
             <TextView
                 android:id="@+id/tvTitle"
@@ -302,6 +304,7 @@
 
                 <!-- City Selector -->
                 <LinearLayout
+                tools:ignore="UseCompoundDrawables"
                     android:id="@+id/llCitySelector"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -340,12 +343,14 @@
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             android:src="@drawable/ic_chevron_down"
-                            app:tint="@color/colorGrayText" />
+                            app:tint="@color/colorGrayText"
+                            android:contentDescription="@null"/>
                     </RelativeLayout>
                 </LinearLayout>
 
                 <!-- District Selector -->
                 <LinearLayout
+                tools:ignore="UseCompoundDrawables"
                     android:id="@+id/llDistrictSelector"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -384,12 +389,14 @@
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             android:src="@drawable/ic_chevron_down"
-                            app:tint="@color/colorGrayText" />
+                            app:tint="@color/colorGrayText"
+                            android:contentDescription="@null"/>
                     </RelativeLayout>
                 </LinearLayout>
 
                 <!-- Ward Selector -->
                 <LinearLayout
+                tools:ignore="UseCompoundDrawables"
                     android:id="@+id/llWardSelector"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -428,7 +435,8 @@
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             android:src="@drawable/ic_chevron_down"
-                            app:tint="@color/colorGrayText" />
+                            app:tint="@color/colorGrayText"
+                            android:contentDescription="@null"/>
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -513,8 +521,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/checkout_shipping_to"
                             android:textSize="12sp"
-                            android:textColor="@color/colorAccentBrand"
-                            android:alpha="0.6" />
+                            android:textColor="@color/colorTextSecondary" />
 
                         <TextView
                             android:id="@+id/tvSummaryFullName"
@@ -532,8 +539,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:alpha="0.7"
-                            android:textColor="@color/colorNoirBlack"
+                            android:textColor="@color/colorTextSecondary"
                             tools:text="123 Le Loi Street, District 1, Ho Chi Minh City" />
 
                         <TextView
@@ -542,8 +548,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:alpha="0.7"
-                            android:textColor="@color/colorNoirBlack"
+                            android:textColor="@color/colorTextSecondary"
                             tools:text="+84 901 234 567" />
 
                         <TextView
@@ -552,8 +557,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:alpha="0.7"
-                            android:textColor="@color/colorNoirBlack"
+                            android:textColor="@color/colorTextSecondary"
                             tools:text="Size: M" />
 
                         <View
@@ -569,20 +573,20 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp">
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@id/tvSummarySubtotal"
                                 android:layout_height="wrap_content"
                                 style="@style/TextAppearance.Saive.Label"
                                 android:text="@string/label_item_total"
-                                android:alpha="0.7"
-                                android:textColor="@color/colorNoirBlack" />
+                                android:textColor="@color/colorTextSecondary" />
                             <TextView
                                 android:id="@+id/tvSummarySubtotal"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
                                 style="@style/TextAppearance.Saive.Label"
-                                android:alpha="0.7"
-                                android:textColor="@color/colorNoirBlack"
+                                android:textColor="@color/colorTextSecondary"
                                 tools:text="3.450.000 ₫" />
                         </RelativeLayout>
 
@@ -596,7 +600,9 @@
                             tools:visibility="visible">
                             <TextView
                                 android:id="@+id/tvSummaryDiscountLabel"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@id/tvSummaryDiscountValue"
                                 android:layout_height="wrap_content"
                                 style="@style/TextAppearance.Saive.Label"
                                 tools:text="Discount (WELCOME20)"
@@ -615,7 +621,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@id/tvSummaryTotal"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 style="@style/TextAppearance.Saive.Label"
@@ -681,6 +689,8 @@
                         android:focusable="true">
 
                         <LinearLayout
+                tools:ignore="UseCompoundDrawables"
+                android:baselineAligned="false"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="16dp"
@@ -689,7 +699,8 @@
                             <ImageView
                                 android:layout_width="32dp"
                                 android:layout_height="32dp"
-                                android:src="@mipmap/cashicon" />
+                                android:src="@mipmap/cashicon"
+                                android:contentDescription="@null"/>
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -709,13 +720,16 @@
 
                     <!-- Credit & Debit Card Section -->
                     <RelativeLayout
+                        tools:ignore="RelativeOverlap"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp">
 
                         <TextView
                             style="@style/TextAppearance.Saive.Header"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_alignParentStart="true"
+                            android:layout_toStartOf="@id/llCardActions"
                             android:layout_height="wrap_content"
                             android:text="@string/payment_method_card"
                             android:textSize="14sp"
@@ -723,6 +737,8 @@
                             android:alpha="0.8" />
 
                         <LinearLayout
+                            android:id="@+id/llCardActions"
+                            android:baselineAligned="false"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
@@ -765,6 +781,7 @@
                         android:visibility="gone">
 
                         <LinearLayout
+                android:baselineAligned="false"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
@@ -830,7 +847,8 @@
                                 android:layout_width="28dp"
                                 android:layout_height="28dp"
                                 android:src="@drawable/ic_plus"
-                                app:tint="@color/colorAccentBrand" />
+                                app:tint="@color/colorAccentBrand"
+                                android:contentDescription="@null"/>
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -844,7 +862,8 @@
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
                                 android:src="@drawable/ic_arrow_right"
-                                app:tint="@color/colorGrayText" />
+                                app:tint="@color/colorGrayText"
+                                android:contentDescription="@null"/>
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
@@ -874,6 +893,7 @@
 
                             <!-- Bank -->
                             <LinearLayout
+                tools:ignore="UseCompoundDrawables"
                                 android:id="@+id/layoutBank"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -884,7 +904,8 @@
                             <ImageView
                                 android:layout_width="32dp"
                                 android:layout_height="32dp"
-                                android:src="@mipmap/bankicon" />
+                                android:src="@mipmap/bankicon"
+                                android:contentDescription="@null"/>
                                 <TextView
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
@@ -905,6 +926,7 @@
 
                             <!-- Momo -->
                             <LinearLayout
+                tools:ignore="UseCompoundDrawables"
                                 android:id="@+id/layoutMomo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -915,7 +937,8 @@
                             <ImageView
                                 android:layout_width="32dp"
                                 android:layout_height="32dp"
-                                android:src="@mipmap/momoicon" />
+                                android:src="@mipmap/momoicon"
+                                android:contentDescription="@null"/>
                                 <TextView
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
@@ -936,6 +959,7 @@
 
                             <!-- Zalopay -->
                             <LinearLayout
+                tools:ignore="UseCompoundDrawables"
                                 android:id="@+id/layoutZaloPay"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -946,7 +970,8 @@
                             <ImageView
                                 android:layout_width="32dp"
                                 android:layout_height="32dp"
-                                android:src="@mipmap/zalopayicon" />
+                                android:src="@mipmap/zalopayicon"
+                                android:contentDescription="@null"/>
                                 <TextView
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"

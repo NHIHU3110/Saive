@@ -21,8 +21,6 @@ import com.example.saive.utils.DataManager;
 import com.example.saive.utils.CartManager;
 import com.example.saive.utils.DialogUtils;
 import com.example.saive.utils.ToastUtils;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.util.List;
 import java.util.Locale;
 

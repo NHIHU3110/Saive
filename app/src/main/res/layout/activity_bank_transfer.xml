@@ -6,10 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.BankTransferActivity"
-    android:background="@color/colorCotton">
+    android:background="@color/colorCotton"
+    tools:ignore="Overdraw">
 
     <!-- Header -->
     <LinearLayout
+                tools:ignore="UseCompoundDrawables"
+                android:baselineAligned="false"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,7 +33,8 @@
             app:tint="@color/colorNoirBlack"
             android:foreground="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
-            android:focusable="true" />
+            android:focusable="true"
+            android:contentDescription="@string/nav_back"/>
 
         <TextView
             android:layout_width="0dp"
@@ -59,6 +63,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
+                tools:ignore="UseCompoundDrawables"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -95,7 +100,8 @@
                     android:layout_height="220dp"
                     android:padding="16dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/ic_qr_code" />
+                    android:src="@drawable/ic_qr_code"
+                    android:contentDescription="@null"/>
 
             </com.google.android.material.card.MaterialCardView>
 

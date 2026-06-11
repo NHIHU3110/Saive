@@ -7,12 +7,15 @@
     android:layout_height="match_parent"
     android:background="@color/colorCotton"
     android:clipChildren="false"
-    android:clipToPadding="false">
+    android:clipToPadding="false"
+    tools:ignore="Overdraw">
 
 
 
     <!-- Header / Search Bar - Synchronized with brand style -->
     <LinearLayout
+                tools:ignore="UseCompoundDrawables"
+                android:baselineAligned="false"
         android:id="@+id/searchContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,7 +37,8 @@
             android:layout_height="24dp"
             android:layout_marginEnd="16dp"
             android:src="@drawable/ic_back"
-            app:tint="@color/colorNoirBlack" />
+            app:tint="@color/colorNoirBlack"
+            android:contentDescription="@null"/>
 
         <EditText
             android:id="@+id/etSearch"
@@ -57,7 +61,8 @@
             android:alpha="0.3"
             android:src="@android:drawable/ic_menu_close_clear_cancel"
             android:visibility="gone"
-            app:tint="@color/colorNoirBlack" />
+            app:tint="@color/colorNoirBlack"
+            android:contentDescription="@null"/>
 
         <FrameLayout
             android:id="@+id/btnCart"
@@ -73,7 +78,8 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_cart"
-                app:tint="@color/colorNoirBlack" />
+                app:tint="@color/colorNoirBlack"
+                android:contentDescription="@null"/>
 
             <TextView
                 android:id="@+id/tvCartBadge"
@@ -91,7 +97,7 @@
                 android:paddingEnd="4dp"
                 android:text="0"
                 android:textColor="@color/white"
-                android:textSize="8sp"
+                android:textSize="11sp"
                 android:textStyle="bold"
                 android:visibility="gone"
                 tools:visibility="visible" />

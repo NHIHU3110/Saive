@@ -20,7 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@mipmap/model1" />
+            android:src="@mipmap/model1"
+            android:contentDescription="@null"/>
 
         <TextView
             android:id="@+id/tvDiscountBadge"
@@ -34,7 +35,7 @@
             android:text="-40%"
             style="@style/TextAppearance.Saive.Caption"
             android:textColor="@color/colorOnMaroon"
-            android:textSize="9sp"
+            android:textSize="11sp"
             android:visibility="gone"
             tools:visibility="visible"
             tools:text="-20%" />
@@ -49,7 +50,8 @@
             android:src="@drawable/ic_favorite"
             app:tint="@color/colorGrey"
             android:padding="4dp"
-            android:scaleType="fitCenter"/>
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/nav_favorite"/>
 
     </androidx.cardview.widget.CardView>
 
@@ -69,6 +71,7 @@
         app:layout_constraintTop_toBottomOf="@id/cardProduct" />
 
     <LinearLayout
+                android:baselineAligned="false"
         android:id="@+id/priceContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

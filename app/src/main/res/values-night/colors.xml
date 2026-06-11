@@ -56,19 +56,32 @@
     <color name="colorAddressCardText">@color/colorNoirBlack</color>
     <color name="colorAddressCardPhone">@color/colorSand</color>
 
+    <!-- Full Screen Backgrounds -->
+    <color name="colorAuthBg">#000000</color>
+
     <!-- Accents -->
     <color name="colorMaroon">#D4C9B8</color>
     <color name="colorAccentRed">#D4C9B8</color>
     <color name="colorAccentBrand">#D4C9B8</color>
 
     <!-- Colors for content on Flash Sale background (Adaptive) -->
-    <color name="colorFlashSaleContent">#1A1A1A</color>
-    <color name="colorFlashSaleContentSecondary">#1A1A1A</color>
+    <color name="colorFlashSaleContent">#FAF8F3</color>
+    <color name="colorFlashSaleContentSecondary">#D4C9B8</color>
 
     <!-- Auth Card Adaptive -->
     <color name="colorAuthCardBg">@color/colorCotton</color>
     <color name="colorAuthCardTitle">@color/colorNoirBlack</color>
     <color name="colorAuthCardSubtitle">@color/colorGrayText</color>
+
+    <!-- Semantic Text Colors (Dark Mode) -->
+    <color name="colorTextPrimary">#FFFFFF</color>
+    <color name="colorTextSecondary">#AAAAAA</color>
+    <color name="colorTextTertiary">#999999</color>
+    <color name="colorTextPlaceholder">#888888</color>
+    <color name="colorTextOnDark">#FFFFFF</color>
+
+    <!-- Flash Sale Always-Dark Background -->
+    <color name="colorFlashSaleBg">#1A1A1A</color>
 
     <!-- Search Box Adaptive -->
     <color name="colorSearchBoxBg">#2A2A28</color>

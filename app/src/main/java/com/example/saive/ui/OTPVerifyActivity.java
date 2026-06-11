@@ -1,7 +1,5 @@
 package com.example.saive.ui;
 
-import static android.content.Intent.getIntent;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,16 +10,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
 import com.example.saive.R;
 import com.example.saive.base.BaseActivity;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 public class OTPVerifyActivity extends BaseActivity {
 
@@ -54,7 +44,7 @@ public class OTPVerifyActivity extends BaseActivity {
 
         // Cập nhật hint hiển thị email nhận OTP
         if (email != null && !email.isEmpty()) {
-            tvEmailHint.setText(getString(R.string.label_detail_verify_otp) + "\n" + email);
+            tvEmailHint.setText(getString(R.string.label_detail_verify_otp_format, email));
         }
 
         btnVerify.setOnClickListener(v -> {
@@ -120,7 +110,7 @@ public class OTPVerifyActivity extends BaseActivity {
         etOtp1.requestFocus();
     }
 
-    private class OtpTextWatcher implements TextWatcher {
+    private static class OtpTextWatcher implements TextWatcher {
         private final View currentView;
         private final View nextView;
 
@@ -130,10 +120,14 @@ public class OTPVerifyActivity extends BaseActivity {
         }
 
         @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            // No-op
+        }
 
         @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {}
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            // No-op
+        }
 
         @Override
         public void afterTextChanged(Editable s) {
@@ -143,7 +137,7 @@ public class OTPVerifyActivity extends BaseActivity {
         }
     }
 
-    private class OtpKeyListener implements View.OnKeyListener {
+    private static class OtpKeyListener implements View.OnKeyListener {
         private final EditText currentView;
         private final EditText previousView;
 

@@ -4,9 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorCotton">
+    android:background="@color/colorCotton"
+    tools:ignore="Overdraw">
 
     <LinearLayout
+                tools:ignore="UseCompoundDrawables"
+                android:baselineAligned="false"
         android:id="@+id/headerContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,7 +28,8 @@
             android:layout_height="@dimen/icon_size_nav"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/ic_back"
-            app:tint="@color/colorHeaderContent" />
+            app:tint="@color/colorHeaderContent"
+            android:contentDescription="@null"/>
 
         <TextView
             style="@style/TextAppearance.Saive.SectionHeader"
@@ -67,7 +71,8 @@
             android:layout_width="@dimen/spacing_120"
             android:layout_height="@dimen/spacing_120"
             android:src="@mipmap/emtycard"
-            android:alpha="0.5" />
+            android:alpha="0.5"
+            android:contentDescription="@null"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -101,6 +106,8 @@
 
             <!-- Coupon Section -->
             <LinearLayout
+                tools:ignore="UseCompoundDrawables"
+                android:baselineAligned="false"
                 android:id="@+id/couponContainer"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/fab_size"
@@ -116,7 +123,8 @@
                     android:layout_width="@dimen/icon_size_20"
                     android:layout_height="@dimen/icon_size_20"
                     android:src="@drawable/ic_coupon"
-                    app:tint="@color/colorContactCardLabel" />
+                    app:tint="@color/colorTextSecondary"
+                    android:contentDescription="@null"/>
 
                 <EditText
                     android:id="@+id/etCoupon"
@@ -133,8 +141,8 @@
                     style="@style/TextAppearance.Saive.Nav"
                     android:textSize="@dimen/text_size_13"
                     android:letterSpacing="0.05"
-                    android:textColor="@color/colorContactCardContent"
-                    android:textColorHint="@color/colorContactCardLabel" />
+                    android:textColor="@color/colorTextPrimary"
+                    android:textColorHint="@color/colorTextSecondary" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnApplyCoupon"
@@ -156,7 +164,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/spacing_12">
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@id/tvSubtotal"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     style="@style/TextAppearance.Saive.Caption"
@@ -182,7 +192,9 @@
                 android:layout_marginBottom="@dimen/spacing_12"
                 android:visibility="gone">
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@id/tvDiscountValue"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     style="@style/TextAppearance.Saive.Caption"
@@ -202,11 +214,14 @@
             </RelativeLayout>
 
             <RelativeLayout
+                tools:ignore="RelativeOverlap"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/spacing_12">
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@id/tvDeliveryFree"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     style="@style/TextAppearance.Saive.Caption"
@@ -214,6 +229,7 @@
                     android:textColor="@color/colorContactCardLabel"
                     android:textSize="@dimen/text_size_14" />
                 <TextView
+                    android:id="@+id/tvDeliveryFree"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -234,6 +250,8 @@
 
         <!-- Main Total Row (Always Visible) -->
         <LinearLayout
+                tools:ignore="UseCompoundDrawables"
+                android:baselineAligned="false"
             android:id="@+id/layoutTotalToggle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -272,7 +290,8 @@
                 android:layout_width="@dimen/icon_size_20"
                 android:layout_height="@dimen/icon_size_20"
                 android:src="@drawable/ic_chevron_down"
-                app:tint="@color/colorContactCardContent" />
+                app:tint="@color/colorContactCardContent"
+                android:contentDescription="@null"/>
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
@@ -306,6 +325,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
+                android:baselineAligned="false"
             android:id="@+id/navItemsContainer"
             android:layout_width="match_parent"
             android:layout_height="@dimen/nav_bar_height"
@@ -319,20 +339,20 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:alpha="0.5"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="@dimen/icon_size_nav"
                     android:layout_height="@dimen/icon_size_nav"
                     android:src="@drawable/ic_favorite"
-                    app:tint="@color/colorHeaderContent" />
+                    app:tint="@color/colorOnMaroonSecondary"
+                    android:contentDescription="@null"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/nav_favorite"
                     style="@style/TextAppearance.Saive.Nav"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/colorHeaderContent" />
+                    android:textColor="@color/colorOnMaroonSecondary" />
             </LinearLayout>
 
             <!-- WARDROBE -->
@@ -342,20 +362,20 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:alpha="0.5"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="@dimen/icon_size_nav"
                     android:layout_height="@dimen/icon_size_nav"
                     android:src="@mipmap/hangericon"
-                    app:tint="@color/colorHeaderContent" />
+                    app:tint="@color/colorOnMaroonSecondary"
+                    android:contentDescription="@null"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/nav_wardrobe"
                     style="@style/TextAppearance.Saive.Nav"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/colorHeaderContent" />
+                    android:textColor="@color/colorOnMaroonSecondary" />
             </LinearLayout>
 
             <!-- Item 2: HOME (ACTIVE AREA) -->
@@ -383,7 +403,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:alpha="0.5"
                 android:clickable="true"
                 android:focusable="true">
 
@@ -397,7 +416,8 @@
                         android:layout_width="@dimen/icon_size_nav"
                         android:layout_height="@dimen/icon_size_nav"
                         android:src="@drawable/ic_notifications"
-                        app:tint="@color/colorHeaderContent" />
+                        app:tint="@color/colorOnMaroonSecondary"
+                        android:contentDescription="@null"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -405,7 +425,7 @@
                         android:layout_marginTop="4dp"
                         style="@style/TextAppearance.Saive.Nav"
                         android:text="@string/nav_notify"
-                        android:textColor="@color/colorHeaderContent" />
+                        android:textColor="@color/colorOnMaroonSecondary" />
                 </LinearLayout>
 
             </FrameLayout>
@@ -418,7 +438,6 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 android:focusable="true"
-                android:alpha="0.5"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -426,14 +445,15 @@
                     android:layout_width="@dimen/icon_size_nav"
                     android:layout_height="@dimen/icon_size_nav"
                     android:src="@drawable/ic_profile"
-                    app:tint="@color/colorHeaderContent" />
+                    app:tint="@color/colorOnMaroonSecondary"
+                    android:contentDescription="@null"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/nav_profile"
                     style="@style/TextAppearance.Saive.Nav"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/colorHeaderContent" />
+                    android:textColor="@color/colorOnMaroonSecondary" />
             </LinearLayout>
 
         </LinearLayout>
@@ -459,7 +479,8 @@
                 android:padding="@dimen/spacing_medium"
                 android:scaleType="fitCenter"
                 android:src="@mipmap/saive_logo"
-                app:tint="@color/colorAccentBrand" />
+                app:tint="@color/colorAccentBrand"
+                android:contentDescription="@null"/>
 
         </FrameLayout>
 

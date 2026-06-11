@@ -5,10 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorCotton"
-    tools:context=".ui.UserManagementActivity">
+    tools:context=".ui.UserManagementActivity"
+    tools:ignore="Overdraw">
 
     <!-- Header -->
     <LinearLayout
+                android:baselineAligned="false"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,7 +29,8 @@
             android:background="@drawable/bg_circle_white"
             android:elevation="2dp"
             android:src="@drawable/ic_back"
-            app:tint="@color/colorMaroon" />
+            app:tint="@color/colorMaroon"
+            android:contentDescription="@string/nav_back"/>
 
         <TextView
             android:layout_width="0dp"
@@ -47,7 +50,8 @@
             android:background="@drawable/bg_circle_white"
             android:elevation="2dp"
             android:src="@drawable/ic_share"
-            app:tint="@color/colorMaroon" />
+            app:tint="@color/colorMaroon"
+            android:contentDescription="@null"/>
     </LinearLayout>
 
     <!-- Search -->
@@ -68,6 +72,8 @@
             android:layout_height="54dp"
             android:background="@android:color/transparent"
             android:hint="@string/search_hint"
+            android:inputType="text"
+            android:importantForAutofill="no"
             android:paddingHorizontal="20dp"
             android:textSize="14sp"
             style="@style/TextAppearance.Saive.Light" />

@@ -22,7 +22,9 @@
             <TextView
                 android:id="@+id/tvTermsTitle"
                 style="@style/TextAppearance.Saive.SectionHeader"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@id/btnCloseTerms"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text="@string/terms_title"

@@ -49,7 +49,7 @@ public class AdminCouponAdapter extends RecyclerView.Adapter<AdminCouponAdapter.
         return couponList.size();
     }
 
-    static class CouponViewHolder extends RecyclerView.ViewHolder {
+    public static class CouponViewHolder extends RecyclerView.ViewHolder {
         TextView tvCouponCode, tvCouponDesc, tvCouponExpiry, tvUsageCount, tvVoucherStatus;
 
         public CouponViewHolder(@NonNull View itemView) {

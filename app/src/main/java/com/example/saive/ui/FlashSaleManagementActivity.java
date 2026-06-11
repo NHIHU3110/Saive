@@ -5,7 +5,6 @@ import android.os.CountDownTimer;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,7 +12,6 @@ import com.example.saive.R;
 import com.example.saive.adapters.InventoryAdapter;
 import com.example.saive.models.Product;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -24,8 +22,8 @@ import android.widget.EditText;
 import androidx.appcompat.app.AlertDialog;
 import com.example.saive.base.BaseActivity;
 import com.example.saive.utils.DataManager;
-import com.example.saive.utils.ToastUtils;
 
+@android.annotation.SuppressLint("SetTextI18n")
 public class FlashSaleManagementActivity extends BaseActivity {
 
     private TextView tvTimer;

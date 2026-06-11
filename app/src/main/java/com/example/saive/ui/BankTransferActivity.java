@@ -45,12 +45,12 @@ public class BankTransferActivity extends AppCompatActivity {
             public void onTick(long millisUntilFinished) {
                 long minutes = millisUntilFinished / 60000;
                 long seconds = (millisUntilFinished % 60000) / 1000;
-                tvExpiry.setText(String.format(java.util.Locale.ROOT, "This QR Code will be expired in %02d:%02d", minutes, seconds));
+                tvExpiry.setText(getString(R.string.desc_qr_code_expired_format, minutes, seconds));
             }
 
             @Override
             public void onFinish() {
-                tvExpiry.setText("QR Code has expired. Please regenerate.");
+                tvExpiry.setText(getString(R.string.desc_qr_code_expired));
             }
         }.start();
     }

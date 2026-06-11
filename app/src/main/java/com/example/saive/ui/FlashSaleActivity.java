@@ -174,18 +174,7 @@ public class FlashSaleActivity extends BaseActivity {
         }
     }
 
-    private void filterProducts(String query) {
-        if (allProducts == null || adapter == null) return;
-        
-        List<Product> filteredList = new ArrayList<>();
-        for (Product product : allProducts) {
-            if (product.getName().toLowerCase(java.util.Locale.getDefault()).contains(query.toLowerCase(java.util.Locale.getDefault())) ||
-                product.getCategory().toLowerCase(java.util.Locale.getDefault()).contains(query.toLowerCase(java.util.Locale.getDefault()))) {
-                filteredList.add(product);
-            }
-        }
-        adapter.updateList(filteredList);
-    }
+
 
     private void setupTimer() {
         long endTime = DataManager.getInstance(this).getFlashSaleEndTime();

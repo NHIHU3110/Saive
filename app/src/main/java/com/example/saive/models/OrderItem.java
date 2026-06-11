@@ -1,6 +1,6 @@
 package com.example.saive.models;
 
-public class OrderItem {
+public class OrderItem implements java.io.Serializable {
     private String name;
     private String size;
     private String color;
@@ -26,11 +26,11 @@ public class OrderItem {
         this.imageResId = imageResId;
     }
 
-    public String getName() { return name; }
-    public String getSize() { return size; }
-    public String getColor() { return color; }
-    public int getQuantity() { return quantity; }
-    public String getPrice() { return price; }
+    public String getName() { return name != null ? name : "Product"; }
+    public String getSize() { return size != null ? size : "M"; }
+    public String getColor() { return color != null ? color : "Default"; }
+    public int getQuantity() { return Math.max(1, quantity); }
+    public String getPrice() { return price != null ? price : "0 ₫"; }
     public int getImageResId() { return imageResId; }
     
     public void setName(String name) { this.name = name; }

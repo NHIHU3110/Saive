@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorCotton">
+    android:background="@color/colorCotton"
+    tools:ignore="Overdraw">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,6 +33,7 @@
             android:layout_marginTop="28dp">
 
             <LinearLayout
+                android:baselineAligned="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -80,69 +82,75 @@
                 app:layout_constraintBottom_toBottomOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- Size Table -->
-        <TableLayout
+        <!-- Size Table wrapped in HorizontalScrollView -->
+        <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@android:color/transparent">
+            android:scrollbars="none"
+            android:layout_marginTop="20dp">
 
-            <!-- Table Header -->
-            <TableRow android:background="@color/colorSizeTableHead" android:paddingVertical="12dp" android:paddingHorizontal="12dp">
-                <TextView android:text="@string/label_size" style="@style/TextAppearance.Saive.Nav" android:textSize="13sp" android:layout_weight="1" android:gravity="start" android:textColor="@color/colorNoirBlack" android:fontFamily="sans-serif-medium"/>
-                <TextView android:text="@string/label_bust" style="@style/TextAppearance.Saive.Nav" android:textSize="13sp" android:layout_weight="1" android:gravity="start" android:textColor="@color/colorNoirBlack" android:fontFamily="sans-serif-medium"/>
-                <TextView android:text="@string/label_waist" style="@style/TextAppearance.Saive.Nav" android:textSize="13sp" android:layout_weight="1" android:gravity="start" android:textColor="@color/colorNoirBlack" android:fontFamily="sans-serif-medium"/>
-                <TextView android:text="@string/label_hip" style="@style/TextAppearance.Saive.Nav" android:textSize="13sp" android:layout_weight="1" android:gravity="start" android:textColor="@color/colorNoirBlack" android:fontFamily="sans-serif-medium"/>
-            </TableRow>
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent">
 
-            <!-- XS Row -->
-            <TableRow android:paddingVertical="12dp" android:paddingHorizontal="12dp" android:background="@color/colorSizeTableRowAlt">
-                <TextView android:text="XS" style="@style/TextAppearance.Saive.Nav" android:textSize="13sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack" android:fontFamily="sans-serif-medium"/>
-                <TextView android:text="73-79" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
-                <TextView android:text="57-63" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
-                <TextView android:text="80-86" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
-            </TableRow>
+                <!-- Table Header -->
+                <TableRow android:background="@color/colorSizeTableHead" android:paddingVertical="12dp" android:paddingHorizontal="12dp">
+                    <TextView android:text="@string/label_size" style="@style/TextAppearance.Saive.Nav" android:textSize="13sp" android:layout_width="80dp" android:gravity="center" android:textColor="@color/colorNoirBlack" android:fontFamily="sans-serif-medium"/>
+                    <TextView android:text="@string/label_bust" style="@style/TextAppearance.Saive.Nav" android:textSize="13sp" android:layout_width="80dp" android:gravity="center" android:textColor="@color/colorNoirBlack" android:fontFamily="sans-serif-medium"/>
+                    <TextView android:text="@string/label_waist" style="@style/TextAppearance.Saive.Nav" android:textSize="13sp" android:layout_width="80dp" android:gravity="center" android:textColor="@color/colorNoirBlack" android:fontFamily="sans-serif-medium"/>
+                    <TextView android:text="@string/label_hip" style="@style/TextAppearance.Saive.Nav" android:textSize="13sp" android:layout_width="80dp" android:gravity="center" android:textColor="@color/colorNoirBlack" android:fontFamily="sans-serif-medium"/>
+                </TableRow>
 
-            <!-- S Row -->
-            <TableRow android:paddingVertical="12dp" android:paddingHorizontal="12dp" android:background="@color/colorCotton">
-                <TextView android:text="S" style="@style/TextAppearance.Saive.Nav" android:textSize="13sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack" android:fontFamily="sans-serif-medium"/>
-                <TextView android:text="77-83" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
-                <TextView android:text="61-67" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
-                <TextView android:text="84-90" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
-            </TableRow>
+                <!-- XS Row -->
+                <TableRow android:paddingVertical="12dp" android:paddingHorizontal="12dp" android:background="@color/colorSizeTableRowAlt">
+                    <TextView android:text="XS" style="@style/TextAppearance.Saive.Nav" android:textSize="13sp" android:layout_width="80dp" android:gravity="center" android:textColor="@color/colorNoirBlack" android:fontFamily="sans-serif-medium"/>
+                    <TextView android:text="73-79" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_width="80dp" android:gravity="center" android:textColor="@color/colorNoirBlack"/>
+                    <TextView android:text="57-63" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_width="80dp" android:gravity="center" android:textColor="@color/colorNoirBlack"/>
+                    <TextView android:text="80-86" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_width="80dp" android:gravity="center" android:textColor="@color/colorNoirBlack"/>
+                </TableRow>
 
-            <!-- M Row -->
-            <TableRow android:paddingVertical="12dp" android:paddingHorizontal="12dp" android:background="@color/colorSizeTableRowAlt">
-                <TextView android:text="M" style="@style/TextAppearance.Saive.Nav" android:textSize="13sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack" android:fontFamily="sans-serif-medium"/>
-                <TextView android:text="81-87" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
-                <TextView android:text="65-71" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
-                <TextView android:text="88-94" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
-            </TableRow>
+                <!-- S Row -->
+                <TableRow android:paddingVertical="12dp" android:paddingHorizontal="12dp" android:background="@color/colorCotton">
+                    <TextView android:text="S" style="@style/TextAppearance.Saive.Nav" android:textSize="13sp" android:layout_width="80dp" android:gravity="center" android:textColor="@color/colorNoirBlack" android:fontFamily="sans-serif-medium"/>
+                    <TextView android:text="77-83" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_width="80dp" android:gravity="center" android:textColor="@color/colorNoirBlack"/>
+                    <TextView android:text="61-67" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_width="80dp" android:gravity="center" android:textColor="@color/colorNoirBlack"/>
+                    <TextView android:text="84-90" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_width="80dp" android:gravity="center" android:textColor="@color/colorNoirBlack"/>
+                </TableRow>
 
-            <!-- L Row -->
-            <TableRow android:paddingVertical="12dp" android:paddingHorizontal="12dp" android:background="@color/colorCotton">
-                <TextView android:text="L" style="@style/TextAppearance.Saive.Nav" android:textSize="13sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack" android:fontFamily="sans-serif-medium"/>
-                <TextView android:text="85-91" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
-                <TextView android:text="69-75" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
-                <TextView android:text="92-98" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
-            </TableRow>
+                <!-- M Row -->
+                <TableRow android:paddingVertical="12dp" android:paddingHorizontal="12dp" android:background="@color/colorSizeTableRowAlt">
+                    <TextView android:text="M" style="@style/TextAppearance.Saive.Nav" android:textSize="13sp" android:layout_width="80dp" android:gravity="center" android:textColor="@color/colorNoirBlack" android:fontFamily="sans-serif-medium"/>
+                    <TextView android:text="81-87" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_width="80dp" android:gravity="center" android:textColor="@color/colorNoirBlack"/>
+                    <TextView android:text="65-71" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_width="80dp" android:gravity="center" android:textColor="@color/colorNoirBlack"/>
+                    <TextView android:text="88-94" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_width="80dp" android:gravity="center" android:textColor="@color/colorNoirBlack"/>
+                </TableRow>
 
-            <!-- XL Row -->
-            <TableRow android:paddingVertical="12dp" android:paddingHorizontal="12dp" android:background="@color/colorSizeTableRowAlt">
-                <TextView android:text="XL" style="@style/TextAppearance.Saive.Nav" android:textSize="13sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack" android:fontFamily="sans-serif-medium"/>
-                <TextView android:text="91-97" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
-                <TextView android:text="75-81" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
-                <TextView android:text="98-104" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
-            </TableRow>
+                <!-- L Row -->
+                <TableRow android:paddingVertical="12dp" android:paddingHorizontal="12dp" android:background="@color/colorCotton">
+                    <TextView android:text="L" style="@style/TextAppearance.Saive.Nav" android:textSize="13sp" android:layout_width="80dp" android:gravity="center" android:textColor="@color/colorNoirBlack" android:fontFamily="sans-serif-medium"/>
+                    <TextView android:text="85-91" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_width="80dp" android:gravity="center" android:textColor="@color/colorNoirBlack"/>
+                    <TextView android:text="69-75" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_width="80dp" android:gravity="center" android:textColor="@color/colorNoirBlack"/>
+                    <TextView android:text="92-98" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_width="80dp" android:gravity="center" android:textColor="@color/colorNoirBlack"/>
+                </TableRow>
 
-            <!-- XXL Row -->
-            <TableRow android:paddingVertical="12dp" android:paddingHorizontal="12dp" android:background="@color/colorCotton">
-                <TextView android:text="XXL" style="@style/TextAppearance.Saive.Nav" android:textSize="13sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack" android:fontFamily="sans-serif-medium"/>
-                <TextView android:text="97-103" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
-                <TextView android:text="81-87" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
-                <TextView android:text="104-110" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_weight="1" android:textColor="@color/colorNoirBlack"/>
-            </TableRow>
-        </TableLayout>
+                <!-- XL Row -->
+                <TableRow android:paddingVertical="12dp" android:paddingHorizontal="12dp" android:background="@color/colorSizeTableRowAlt">
+                    <TextView android:text="XL" style="@style/TextAppearance.Saive.Nav" android:textSize="13sp" android:layout_width="80dp" android:gravity="center" android:textColor="@color/colorNoirBlack" android:fontFamily="sans-serif-medium"/>
+                    <TextView android:text="91-97" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_width="80dp" android:gravity="center" android:textColor="@color/colorNoirBlack"/>
+                    <TextView android:text="75-81" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_width="80dp" android:gravity="center" android:textColor="@color/colorNoirBlack"/>
+                    <TextView android:text="98-104" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_width="80dp" android:gravity="center" android:textColor="@color/colorNoirBlack"/>
+                </TableRow>
+
+                <!-- XXL Row -->
+                <TableRow android:paddingVertical="12dp" android:paddingHorizontal="12dp" android:background="@color/colorCotton">
+                    <TextView android:text="XXL" style="@style/TextAppearance.Saive.Nav" android:textSize="13sp" android:layout_width="80dp" android:gravity="center" android:textColor="@color/colorNoirBlack" android:fontFamily="sans-serif-medium"/>
+                    <TextView android:text="97-103" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_width="80dp" android:gravity="center" android:textColor="@color/colorNoirBlack"/>
+                    <TextView android:text="81-87" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_width="80dp" android:gravity="center" android:textColor="@color/colorNoirBlack"/>
+                    <TextView android:text="104-110" style="@style/TextAppearance.Saive.Light" android:textSize="13sp" android:layout_width="80dp" android:gravity="center" android:textColor="@color/colorNoirBlack"/>
+                </TableRow>
+            </TableLayout>
+        </HorizontalScrollView>
 
         <!-- Options Section -->
         <LinearLayout
@@ -164,7 +172,8 @@
                     android:layout_width="26dp"
                     android:layout_height="26dp"
                     android:src="@drawable/ic_all"
-                    app:tint="@color/colorNoirBlack" />
+                    app:tint="@color/colorNoirBlack"
+                    android:contentDescription="@null"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -206,7 +215,8 @@
                     android:layout_width="26dp"
                     android:layout_height="26dp"
                     android:src="@drawable/ic_profile"
-                    app:tint="@color/colorNoirBlack" />
+                    app:tint="@color/colorNoirBlack"
+                    android:contentDescription="@null"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -248,7 +258,8 @@
                     android:layout_width="26dp"
                     android:layout_height="26dp"
                     android:src="@drawable/ic_hanger"
-                    app:tint="@color/colorNoirBlack" />
+                    app:tint="@color/colorNoirBlack"
+                    android:contentDescription="@null"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"

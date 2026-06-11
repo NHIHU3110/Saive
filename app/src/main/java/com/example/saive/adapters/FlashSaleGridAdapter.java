@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.saive.R;
 import com.example.saive.models.Product;
 import com.example.saive.ui.ProductDetailActivity;
-import com.example.saive.utils.CartManager;
 import com.example.saive.utils.FavoriteManager;
 import com.example.saive.utils.PriceFormatter;
 import com.example.saive.utils.ImageUtils;
@@ -33,14 +32,17 @@ public class FlashSaleGridAdapter extends RecyclerView.Adapter<FlashSaleGridAdap
         this.productList = productList;
     }
 
+    @android.annotation.SuppressLint("NotifyDataSetChanged")
     public void setTextColor(int color) {
         this.textColor = color;
         notifyDataSetChanged();
     }
 
     public void updateList(List<Product> newList) {
+        androidx.recyclerview.widget.DiffUtil.DiffResult diffResult = 
+            androidx.recyclerview.widget.DiffUtil.calculateDiff(new ProductDiffCallback(this.productList, newList));
         this.productList = newList;
-        notifyDataSetChanged();
+        diffResult.dispatchUpdatesTo(this);
     }
 
     @NonNull
@@ -79,7 +81,7 @@ public class FlashSaleGridAdapter extends RecyclerView.Adapter<FlashSaleGridAdap
                 double current = PriceFormatter.parsePrice(product.getPrice());
                 if (original > current) {
                     int percent = (int) Math.round(100 - (current * 100 / original));
-                    holder.tvDiscount.setText("-" + percent + "%");
+                    holder.tvDiscount.setText(holder.itemView.getContext().getString(R.string.discount_format, percent));
                     holder.tvDiscount.setVisibility(View.VISIBLE);
                 } else {
                     holder.tvDiscount.setVisibility(View.GONE);

@@ -32,7 +32,7 @@
         <item name="android:textSize">@dimen/text_size_tiny</item>
         <item name="android:textColor">@color/colorNoirBlack</item>
         <item name="android:textAllCaps">true</item>
-        <item name="android:letterSpacing">0.15</item>
+        <item name="android:letterSpacing">0.08</item>
     </style>
 
     <style name="TextAppearance.Saive.SubLabel" parent="TextAppearance.Saive.Light">
@@ -42,12 +42,12 @@
 
     <style name="TextAppearance.Saive.Nav" parent="TextAppearance.Saive.Light">
         <item name="android:textSize">@dimen/text_size_tiny</item>
-        <item name="android:letterSpacing">0.2</item>
+        <item name="android:letterSpacing">0.06</item>
     </style>
 
     <style name="TextAppearance.Saive.Caption" parent="TextAppearance.Saive.Thin">
         <item name="android:textSize">@dimen/text_size_tiny</item>
-        <item name="android:letterSpacing">0.4</item>
+        <item name="android:letterSpacing">0.06</item>
     </style>
 
     <style name="TextAppearance.Saive.Editorial" parent="TextAppearance.Saive.Header">
@@ -76,9 +76,9 @@
     </style>
 
     <style name="TextAppearance.Saive.Stats.Label" parent="TextAppearance.Saive.Label">
-        <item name="android:textSize">@dimen/text_size_micro</item>
-        <item name="android:letterSpacing">0.3</item>
-        <item name="android:textColor">@color/colorSand</item>
+        <item name="android:textSize">@dimen/text_size_tiny</item>
+        <item name="android:letterSpacing">0.08</item>
+        <item name="android:textColor">@color/colorTextSecondary</item>
     </style>
 
     <style name="TextAppearance.Saive.ProductTitle" parent="TextAppearance.Saive.Header">
@@ -132,6 +132,7 @@
         <item name="android:textColor">@color/colorMaroon</item>
         <item name="android:textStyle">bold</item>
         <item name="android:cursorVisible">false</item>
+        <item name="android:hint">@string/otp_hint</item>
     </style>
 
 </resources>

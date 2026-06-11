@@ -58,8 +58,23 @@ public class CheckoutAddressAdapter extends RecyclerView.Adapter<CheckoutAddress
 
         holder.itemView.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            int prevPos = -1;
+            if (selectedAddress != null) {
+                for (int i = 0; i < addresses.size(); i++) {
+                    if (addresses.get(i).getId().equals(selectedAddress.getId())) {
+                        prevPos = i;
+                        break;
+                    }
+                }
+            }
             selectedAddress = address;
-            notifyDataSetChanged();
+            int currentPos = holder.getAdapterPosition();
+            if (prevPos != -1) {
+                notifyItemChanged(prevPos);
+            }
+            if (currentPos != RecyclerView.NO_POSITION) {
+                notifyItemChanged(currentPos);
+            }
             if (listener != null) {
                 listener.onSelected(address);
             }
@@ -75,7 +90,7 @@ public class CheckoutAddressAdapter extends RecyclerView.Adapter<CheckoutAddress
         return selectedAddress;
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvLabel, tvFullName, tvAddressDetail, tvPhone;
         ImageView ivCheck;
         MaterialCardView cardAddress;

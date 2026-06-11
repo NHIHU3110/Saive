@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorCotton"
-    tools:context=".ui.FaqActivity">
+    tools:context=".ui.FaqActivity"
+    tools:ignore="Overdraw">
 
     <!-- Header -->
     <com.google.android.material.card.MaterialCardView
@@ -37,7 +38,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/colorHeaderContent" />
+                app:tint="@color/colorHeaderContent"
+                android:contentDescription="@string/nav_back"/>
 
             <TextView
                 android:id="@+id/tvToolbarTitle"

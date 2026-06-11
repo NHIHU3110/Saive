@@ -39,13 +39,17 @@ public class FaqActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        for (int i = 1; i <= 10; i++) {
-            int qResId = getResources().getIdentifier("faq_q" + i, "string", getPackageName());
-            int aResId = getResources().getIdentifier("faq_a" + i, "string", getPackageName());
+        int[] qResIds = {
+            R.string.faq_q1, R.string.faq_q2, R.string.faq_q3, R.string.faq_q4, R.string.faq_q5,
+            R.string.faq_q6, R.string.faq_q7, R.string.faq_q8, R.string.faq_q9, R.string.faq_q10
+        };
+        int[] aResIds = {
+            R.string.faq_a1, R.string.faq_a2, R.string.faq_a3, R.string.faq_a4, R.string.faq_a5,
+            R.string.faq_a6, R.string.faq_a7, R.string.faq_a8, R.string.faq_a9, R.string.faq_a10
+        };
 
-            if (qResId != 0 && aResId != 0) {
-                faqList.add(new Faqitem(getString(qResId), getString(aResId)));
-            }
+        for (int i = 0; i < qResIds.length; i++) {
+            faqList.add(new Faqitem(getString(qResIds[i]), getString(aResIds[i])));
         }
     }
 

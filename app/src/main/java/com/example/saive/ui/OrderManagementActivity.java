@@ -17,6 +17,7 @@ import java.util.List;
 import com.example.saive.base.BaseActivity;
 import com.example.saive.utils.DataManager;
 
+@android.annotation.SuppressLint("NotifyDataSetChanged")
 public class OrderManagementActivity extends BaseActivity {
 
     private RecyclerView rvOrders;

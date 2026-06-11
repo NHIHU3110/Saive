@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="TooManyViews,NestedWeights,Overdraw"
     android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,6 +14,7 @@
 
     <!-- FIXED SEARCH BAR -->
     <LinearLayout
+                android:baselineAligned="false"
         android:id="@+id/searchBarWrapper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,7 +44,8 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_cart"
-                app:tint="@color/colorNoirBlack" />
+                app:tint="@color/colorNoirBlack"
+                android:contentDescription="@null"/>
 
             <TextView
                 android:id="@+id/tvCartBadge"
@@ -60,13 +63,14 @@
                 android:paddingEnd="4dp"
                 tools:text="0"
                 android:textColor="@color/colorButtonText"
-                android:textSize="8sp"
+                android:textSize="11sp"
                 android:textStyle="bold"
                 android:visibility="gone"
                 tools:visibility="visible" />
         </FrameLayout>
 
         <LinearLayout
+                android:baselineAligned="false"
             android:id="@+id/searchContainer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -81,7 +85,8 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@android:drawable/ic_menu_search"
-                app:tint="@color/colorNoirBlack" />
+                app:tint="@color/colorNoirBlack"
+                android:contentDescription="@null"/>
 
             <TextView
                 android:layout_width="0dp"
@@ -130,6 +135,7 @@
 
             <!-- NAVIGATION LINKS -->
             <LinearLayout
+                android:baselineAligned="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -196,7 +202,7 @@
                     style="@style/TextAppearance.Saive.Caption"
                     android:text="@string/label_flash_sale"
                     android:textColor="@color/colorFlashSaleContentSecondary"
-                    android:textSize="10sp"
+                    android:textSize="11sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -217,6 +223,7 @@
                     app:layout_constraintTop_toBottomOf="@id/tvFlashTitle" />
 
                 <LinearLayout
+                android:baselineAligned="false"
                     android:id="@+id/homeTimerContainer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -350,7 +357,8 @@
                         android:id="@+id/ivEditorialSecondary"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="centerCrop" />
+                        android:scaleType="centerCrop"
+                        android:contentDescription="@null"/>
                 </com.google.android.material.card.MaterialCardView>
 
                 <!-- Secondary Image (Overlapping) -->
@@ -370,7 +378,8 @@
                         android:id="@+id/ivEditorialPrimary"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="centerCrop" />
+                        android:scaleType="centerCrop"
+                        android:contentDescription="@null"/>
                 </com.google.android.material.card.MaterialCardView>
 
                 <LinearLayout
@@ -466,7 +475,8 @@
                     android:layout_height="480dp"
                     android:layout_marginTop="@dimen/spacing_large"
                     android:scaleType="centerCrop"
-                    app:layout_constraintTop_toBottomOf="@id/tvMaterialTitle" />
+                    app:layout_constraintTop_toBottomOf="@id/tvMaterialTitle"
+                    android:contentDescription="@null"/>
 
                 <TextView
                     android:id="@+id/tvMaterialDesc"
@@ -496,6 +506,7 @@
 
             <!-- CAPSULE OF THE WEEK -->
             <LinearLayout
+                tools:ignore="UseCompoundDrawables"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/section_spacing_huge"
@@ -521,7 +532,8 @@
                         android:layout_height="280dp"
                         android:layout_columnWeight="1"
                         android:layout_marginEnd="@dimen/small_padding"
-                        android:scaleType="centerCrop" />
+                        android:scaleType="centerCrop"
+                        android:contentDescription="@null"/>
 
                     <ImageView
                         android:id="@+id/ivCapsule2"
@@ -529,7 +541,8 @@
                         android:layout_height="280dp"
                         android:layout_columnWeight="1"
                         android:layout_marginStart="@dimen/small_padding"
-                        android:scaleType="centerCrop" />
+                        android:scaleType="centerCrop"
+                        android:contentDescription="@null"/>
                 </GridLayout>
 
                 <TextView
@@ -652,7 +665,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/colorNoirBlack" />
+                app:tint="@color/colorNoirBlack"
+                android:contentDescription="@null"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -692,7 +706,8 @@
                     android:layout_gravity="center"
                     android:src="@drawable/ic_notifications"
                     android:alpha="0.2"
-                    app:tint="@color/colorAccentBrand" />
+                    app:tint="@color/colorAccentBrand"
+                    android:contentDescription="@null"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -784,7 +799,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/colorNoirBlack" />
+                app:tint="@color/colorNoirBlack"
+                android:contentDescription="@null"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -816,6 +832,7 @@
                         tools:listitem="@layout/item_banner_wardrobe" />
 
                     <LinearLayout
+                android:baselineAligned="false"
                         android:id="@+id/dotIndicatorWardrobe"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -933,7 +950,8 @@
                             android:layout_height="64dp"
                             android:alpha="0.1"
                             android:src="@android:drawable/ic_menu_search"
-                            app:tint="@color/colorNoirBlack" />
+                            app:tint="@color/colorNoirBlack"
+                            android:contentDescription="@null"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -974,6 +992,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
+                android:baselineAligned="false"
             android:id="@+id/navItemsContainer"
             android:layout_width="match_parent"
             android:layout_height="@dimen/nav_bar_height"
@@ -987,20 +1006,20 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:alpha="0.5"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="@dimen/icon_size_nav"
                     android:layout_height="@dimen/icon_size_nav"
                     android:src="@drawable/ic_favorite"
-                    app:tint="@color/colorHeaderContent" />
+                    app:tint="@color/colorOnMaroonSecondary"
+                    android:contentDescription="@null"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/nav_favorite"
                     style="@style/TextAppearance.Saive.Nav"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/colorHeaderContent" />
+                    android:textColor="@color/colorOnMaroonSecondary" />
             </LinearLayout>
 
             <!-- WARDROBE -->
@@ -1010,20 +1029,20 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:alpha="0.5"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="@dimen/icon_size_nav"
                     android:layout_height="@dimen/icon_size_nav"
                     android:src="@mipmap/hangericon"
-                    app:tint="@color/colorHeaderContent" />
+                    app:tint="@color/colorOnMaroonSecondary"
+                    android:contentDescription="@null"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/nav_wardrobe"
                     style="@style/TextAppearance.Saive.Nav"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/colorHeaderContent" />
+                    android:textColor="@color/colorOnMaroonSecondary" />
             </LinearLayout>
 
             <!-- Item 2: HOME (ACTIVE AREA) -->
@@ -1050,7 +1069,6 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:alpha="0.5"
             android:clickable="true"
             android:focusable="true">
 
@@ -1064,7 +1082,8 @@
                     android:layout_width="@dimen/icon_size_nav"
                     android:layout_height="@dimen/icon_size_nav"
                     android:src="@drawable/ic_notifications"
-                    app:tint="@color/colorHeaderContent" />
+                    app:tint="@color/colorOnMaroonSecondary"
+                    android:contentDescription="@null"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1072,7 +1091,7 @@
                     android:layout_marginTop="4dp"
                     style="@style/TextAppearance.Saive.Nav"
                     android:text="@string/nav_notify"
-                    android:textColor="@color/colorHeaderContent" />
+                    android:textColor="@color/colorOnMaroonSecondary" />
             </LinearLayout>
 
             <View
@@ -1096,7 +1115,6 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 android:focusable="true"
-                android:alpha="0.5"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -1104,14 +1122,15 @@
                     android:layout_width="@dimen/icon_size_nav"
                     android:layout_height="@dimen/icon_size_nav"
                     android:src="@drawable/ic_profile"
-                    app:tint="@color/colorHeaderContent" />
+                    app:tint="@color/colorOnMaroonSecondary"
+                    android:contentDescription="@null"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/nav_profile"
                     style="@style/TextAppearance.Saive.Nav"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/colorHeaderContent" />
+                    android:textColor="@color/colorOnMaroonSecondary" />
             </LinearLayout>
 
         </LinearLayout>
@@ -1136,7 +1155,8 @@
                 android:padding="16dp"
                 android:scaleType="fitCenter"
                 android:src="@mipmap/saive_logo"
-                app:tint="@color/colorAccentBrand" />
+                app:tint="@color/colorAccentBrand"
+                android:contentDescription="@null"/>
 
         </FrameLayout>
 

@@ -1,8 +1,5 @@
 package com.example.saive.ui;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,7 +11,6 @@ import android.widget.ImageView;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -34,8 +30,6 @@ import android.content.Intent;
 
 public class SearchActivity extends BaseActivity {
 
-    private static final String LANG_PREFS = "language_prefs";
-    private static final String LANG_KEY = "selected_language";
 
     private EditText etSearch;
     private ImageView btnClear, btnBack;
@@ -155,7 +149,9 @@ public class SearchActivity extends BaseActivity {
 
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        // No-op
+    }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -169,7 +165,9 @@ public class SearchActivity extends BaseActivity {
             }
 
             @Override
-            public void afterTextChanged(Editable s) {}
+            public void afterTextChanged(Editable s) {
+        // No-op
+    }
         });
 
         etSearch.setOnEditorActionListener((v, actionId, event) -> {

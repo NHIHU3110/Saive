@@ -22,5 +22,6 @@
         android:background="@drawable/bg_circle_white_alpha"
         android:src="@android:drawable/ic_menu_close_clear_cancel"
         android:padding="4dp"
-        app:tint="@color/colorNoirBlack" />
+        app:tint="@color/colorNoirBlack"
+        android:contentDescription="@string/dialog_remove"/>
 </FrameLayout>

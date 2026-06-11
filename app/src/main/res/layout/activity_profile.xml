@@ -2,12 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="TooManyViews,Overdraw"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorCotton">
 
     <!-- Header Bar -->
     <LinearLayout
+                android:baselineAligned="false"
         android:id="@+id/headerContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,6 +22,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/tvProfileHeader"
             style="@style/TextAppearance.Saive.SectionHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -93,6 +96,7 @@
 
             <!-- PART 2: STATS -->
             <LinearLayout
+                android:baselineAligned="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
@@ -182,7 +186,7 @@
                     android:text="@string/label_account_settings"
                     android:textColor="@color/colorNoirBlack"
                     android:alpha="0.6"
-                    android:textSize="10sp"
+                    android:textSize="11sp"
                     android:letterSpacing="0.2" />
 
                 <LinearLayout
@@ -206,7 +210,8 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@drawable/ic_cart"
-                            app:tint="@color/colorNoirBlack" />
+                            app:tint="@color/colorNoirBlack"
+                            android:contentDescription="@null"/>
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -221,12 +226,14 @@
                             android:layout_height="16dp"
                             android:src="@drawable/ic_back"
                             android:rotation="180"
-                            app:tint="@color/colorNoirBlack" />
+                            app:tint="@color/colorNoirBlack"
+                            android:contentDescription="@null"/>
                     </LinearLayout>
 
                     <View android:layout_width="match_parent" android:layout_height="0.5dp" android:layout_marginHorizontal="16dp" android:background="@color/colorLinen" android:alpha="0.5" />
 
                     <LinearLayout
+                tools:ignore="UseCompoundDrawables"
                         android:id="@+id/btnSavedCollections"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
@@ -239,7 +246,8 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@drawable/ic_favorite"
-                            app:tint="@color/colorNoirBlack" />
+                            app:tint="@color/colorNoirBlack"
+                            android:contentDescription="@null"/>
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -258,14 +266,15 @@
                             android:paddingHorizontal="6dp"
                             tools:text="0"
                             android:textColor="@color/colorButtonText"
-                            android:textSize="10sp"
+                            android:textSize="11sp"
                             android:gravity="center" />
                         <ImageView
                             android:layout_width="16dp"
                             android:layout_height="16dp"
                             android:src="@drawable/ic_back"
                             android:rotation="180"
-                            app:tint="@color/colorNoirBlack" />
+                            app:tint="@color/colorNoirBlack"
+                            android:contentDescription="@null"/>
                     </LinearLayout>
 
                     <View android:layout_width="match_parent" android:layout_height="0.5dp" android:layout_marginHorizontal="16dp" android:background="@color/colorLinen" android:alpha="0.5" />
@@ -283,7 +292,8 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@drawable/ic_coupon"
-                            app:tint="@color/colorNoirBlack" />
+                            app:tint="@color/colorNoirBlack"
+                            android:contentDescription="@null"/>
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -298,7 +308,8 @@
                             android:layout_height="16dp"
                             android:src="@drawable/ic_back"
                             android:rotation="180"
-                            app:tint="@color/colorNoirBlack" />
+                            app:tint="@color/colorNoirBlack"
+                            android:contentDescription="@null"/>
                     </LinearLayout>
 
                     <View android:layout_width="match_parent" android:layout_height="0.5dp" android:layout_marginHorizontal="16dp" android:background="@color/colorLinen" android:alpha="0.5" />
@@ -316,7 +327,8 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@drawable/ic_pin_drop"
-                            app:tint="@color/colorNoirBlack" />
+                            app:tint="@color/colorNoirBlack"
+                            android:contentDescription="@null"/>
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -331,7 +343,8 @@
                             android:layout_height="16dp"
                             android:src="@drawable/ic_back"
                             android:rotation="180"
-                            app:tint="@color/colorNoirBlack" />
+                            app:tint="@color/colorNoirBlack"
+                            android:contentDescription="@null"/>
                     </LinearLayout>
 
                     <View android:layout_width="match_parent" android:layout_height="0.5dp"
@@ -351,7 +364,8 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@android:drawable/ic_menu_send"
-                            app:tint="@color/colorNoirBlack" />
+                            app:tint="@color/colorNoirBlack"
+                            android:contentDescription="@null"/>
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -366,7 +380,8 @@
                             android:layout_height="16dp"
                             android:src="@drawable/ic_back"
                             android:rotation="180"
-                            app:tint="@color/colorNoirBlack" />
+                            app:tint="@color/colorNoirBlack"
+                            android:contentDescription="@null"/>
                     </LinearLayout>
 
                     <View android:layout_width="match_parent" android:layout_height="0.5dp"
@@ -374,6 +389,7 @@
                         android:background="@color/colorLinen" android:alpha="0.5" />
 
                     <LinearLayout
+                tools:ignore="UseCompoundDrawables"
                         android:id="@+id/btnChangePassword"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
@@ -386,7 +402,8 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@android:drawable/ic_lock_idle_lock"
-                            app:tint="@color/colorNoirBlack" />
+                            app:tint="@color/colorNoirBlack"
+                            android:contentDescription="@null"/>
                         <TextView
                             android:id="@+id/tvChangePassword"
                             android:layout_width="0dp"
@@ -402,7 +419,8 @@
                             android:layout_height="16dp"
                             android:src="@drawable/ic_back"
                             android:rotation="180"
-                            app:tint="@color/colorNoirBlack" />
+                            app:tint="@color/colorNoirBlack"
+                            android:contentDescription="@null"/>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -416,7 +434,7 @@
                     android:text="@string/label_preferences"
                     android:textColor="@color/colorNoirBlack"
                     android:alpha="0.6"
-                    android:textSize="10sp"
+                    android:textSize="11sp"
                     android:letterSpacing="0.2" />
 
                 <LinearLayout
@@ -428,6 +446,7 @@
                     android:paddingVertical="8dp">
 
                     <LinearLayout
+                tools:ignore="UseCompoundDrawables"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
                         android:gravity="center_vertical"
@@ -436,7 +455,8 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@drawable/ic_notifications"
-                            app:tint="@color/colorNoirBlack" />
+                            app:tint="@color/colorNoirBlack"
+                            android:contentDescription="@null"/>
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -460,6 +480,7 @@
                         android:background="@color/colorLinen" android:alpha="0.5" />
 
                     <LinearLayout
+                tools:ignore="UseCompoundDrawables"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
                         android:gravity="center_vertical"
@@ -468,7 +489,8 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@drawable/ic_notifications"
-                            app:tint="@color/colorNoirBlack" />
+                            app:tint="@color/colorNoirBlack"
+                            android:contentDescription="@null"/>
 
                         <TextView
                             style="@style/TextAppearance.Saive.Light"
@@ -490,6 +512,7 @@
                     <View android:layout_width="match_parent" android:layout_height="0.5dp" android:layout_marginHorizontal="16dp" android:background="@color/colorLinen" android:alpha="0.5" />
 
                     <LinearLayout
+                tools:ignore="UseCompoundDrawables"
                         android:id="@+id/btnLanguageNew"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
@@ -502,7 +525,8 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@android:drawable/ic_menu_directions"
-                            app:tint="@color/colorNoirBlack" />
+                            app:tint="@color/colorNoirBlack"
+                            android:contentDescription="@null"/>
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -527,7 +551,8 @@
                             android:layout_height="16dp"
                             android:src="@drawable/ic_back"
                             android:rotation="180"
-                            app:tint="@color/colorNoirBlack" />
+                            app:tint="@color/colorNoirBlack"
+                            android:contentDescription="@null"/>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -541,7 +566,7 @@
                     android:text="@string/label_support_legal"
                     android:textColor="@color/colorNoirBlack"
                     android:alpha="0.6"
-                    android:textSize="10sp"
+                    android:textSize="11sp"
                     android:letterSpacing="0.2" />
 
                 <LinearLayout
@@ -565,7 +590,8 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@android:drawable/ic_menu_help"
-                            app:tint="@color/colorNoirBlack" />
+                            app:tint="@color/colorNoirBlack"
+                            android:contentDescription="@null"/>
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -580,7 +606,8 @@
                             android:layout_height="16dp"
                             android:src="@drawable/ic_back"
                             android:rotation="180"
-                            app:tint="@color/colorNoirBlack" />
+                            app:tint="@color/colorNoirBlack"
+                            android:contentDescription="@null"/>
                     </LinearLayout>
 
                     <View android:layout_width="match_parent" android:layout_height="0.5dp" android:layout_marginHorizontal="16dp" android:background="@color/colorLinen" android:alpha="0.5" />
@@ -598,7 +625,8 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@android:drawable/ic_menu_call"
-                            app:tint="@color/colorNoirBlack" />
+                            app:tint="@color/colorNoirBlack"
+                            android:contentDescription="@null"/>
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -613,7 +641,8 @@
                             android:layout_height="16dp"
                             android:src="@drawable/ic_back"
                             android:rotation="180"
-                            app:tint="@color/colorNoirBlack" />
+                            app:tint="@color/colorNoirBlack"
+                            android:contentDescription="@null"/>
                     </LinearLayout>
 
                     <View android:layout_width="match_parent" android:layout_height="0.5dp" android:layout_marginHorizontal="16dp" android:background="@color/colorLinen" android:alpha="0.5" />
@@ -631,7 +660,8 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@android:drawable/ic_menu_info_details"
-                            app:tint="@color/colorNoirBlack" />
+                            app:tint="@color/colorNoirBlack"
+                            android:contentDescription="@null"/>
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -646,7 +676,8 @@
                             android:layout_height="16dp"
                             android:src="@drawable/ic_back"
                             android:rotation="180"
-                            app:tint="@color/colorNoirBlack" />
+                            app:tint="@color/colorNoirBlack"
+                            android:contentDescription="@null"/>
                     </LinearLayout>
 
                     <View android:layout_width="match_parent" android:layout_height="0.5dp" android:layout_marginHorizontal="16dp" android:background="@color/colorLinen" android:alpha="0.5" android:visibility="gone" />
@@ -665,7 +696,8 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@android:drawable/ic_menu_delete"
-                            app:tint="@color/colorAccentBrand" />
+                            app:tint="@color/colorAccentBrand"
+                            android:contentDescription="@null"/>
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -702,7 +734,7 @@
                 style="@style/TextAppearance.Saive.Caption"
                 android:text="@string/label_saive_footer"
                 android:textColor="@color/colorNoirBlack"
-                android:textSize="9sp"
+                android:textSize="11sp"
                 android:alpha="0.7" />
 
         </LinearLayout>
@@ -720,6 +752,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
+                android:baselineAligned="false"
             android:id="@+id/navItemsContainer"
             android:layout_width="match_parent"
             android:layout_height="@dimen/nav_bar_height"
@@ -733,20 +766,20 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:alpha="0.5"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="@dimen/icon_size_nav"
                     android:layout_height="@dimen/icon_size_nav"
                     android:src="@drawable/ic_favorite"
-                    app:tint="@color/colorHeaderContent" />
+                    app:tint="@color/colorOnMaroonSecondary"
+                    android:contentDescription="@null"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/nav_favorite"
                     style="@style/TextAppearance.Saive.Nav"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/colorHeaderContent" />
+                    android:textColor="@color/colorOnMaroonSecondary" />
             </LinearLayout>
 
             <LinearLayout
@@ -755,20 +788,20 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:alpha="0.5"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="@dimen/icon_size_nav"
                     android:layout_height="@dimen/icon_size_nav"
                     android:src="@mipmap/hangericon"
-                    app:tint="@color/colorHeaderContent" />
+                    app:tint="@color/colorOnMaroonSecondary"
+                    android:contentDescription="@null"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/nav_wardrobe"
                     style="@style/TextAppearance.Saive.Nav"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/colorHeaderContent" />
+                    android:textColor="@color/colorOnMaroonSecondary" />
             </LinearLayout>
 
             <!-- Item 2: HOME (PLACEHOLDER) -->
@@ -795,7 +828,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:alpha="0.5"
                 android:clickable="true"
                 android:focusable="true">
 
@@ -808,14 +840,15 @@
                         android:layout_width="@dimen/icon_size_nav"
                         android:layout_height="@dimen/icon_size_nav"
                         android:src="@drawable/ic_notifications"
-                        app:tint="@color/colorHeaderContent" />
+                        app:tint="@color/colorOnMaroonSecondary"
+                        android:contentDescription="@null"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/nav_notify"
                         style="@style/TextAppearance.Saive.Nav"
                         android:layout_marginTop="4dp"
-                        android:textColor="@color/colorHeaderContent" />
+                        android:textColor="@color/colorOnMaroonSecondary" />
                 </LinearLayout>
 
                 <View
@@ -838,13 +871,13 @@
                 android:focusable="true"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:gravity="center"
-                android:alpha="1.0"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="@dimen/icon_size_nav"
                     android:layout_height="@dimen/icon_size_nav"
                     android:src="@drawable/ic_profile"
-                    app:tint="@color/colorHeaderContent" />
+                    app:tint="@color/colorHeaderContent"
+                    android:contentDescription="@null"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -876,7 +909,8 @@
                 android:padding="16dp"
                 android:scaleType="fitCenter"
                 android:src="@mipmap/saive_logo"
-                app:tint="@color/colorAccentBrand" />
+                app:tint="@color/colorAccentBrand"
+                android:contentDescription="@null"/>
         </FrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
