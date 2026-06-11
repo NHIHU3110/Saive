@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="@dimen/spacing_medium"
     android:layout_marginVertical="8dp"
-    app:cardBackgroundColor="@color/white"
+    app:cardBackgroundColor="@color/colorAddressCardBg"
     app:cardCornerRadius="@dimen/corner_radius_large"
     app:cardElevation="0dp"
     app:strokeColor="@color/colorLinen"
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Thao Nhi Huynh"
-            android:textColor="@color/colorNoirBlack"
+            android:textColor="@color/colorAddressCardText"
             android:textSize="15sp"
             android:textStyle="bold" />
 
@@ -82,7 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="+84 901 234 567"
-            android:textColor="@color/colorSand"
+            android:textColor="@color/colorAddressCardPhone"
             android:textSize="13sp" />
 
         <TextView
@@ -92,7 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="123 Le Loi Street, Ben Nghe Ward, District 1, Ho Chi Minh City"
-            android:textColor="@color/colorNoirBlack"
+            android:textColor="@color/colorAddressCardText"
             android:textSize="14sp" />
 
         <View

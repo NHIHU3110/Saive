@@ -190,7 +190,7 @@
                 android:id="@+id/materialSection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@color/colorIvory"
                 android:orientation="vertical"
                 android:paddingVertical="80dp">
 
@@ -224,7 +224,7 @@
                             android:layout_marginEnd="20dp"
                             app:cardCornerRadius="16dp"
                             app:cardElevation="0dp"
-                            android:backgroundTint="@color/white">
+                            android:backgroundTint="@color/colorCotton">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -273,7 +273,7 @@
                             android:layout_marginEnd="20dp"
                             app:cardCornerRadius="16dp"
                             app:cardElevation="0dp"
-                            android:backgroundTint="@color/white">
+                            android:backgroundTint="@color/colorCotton">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -469,11 +469,10 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- 06 · CAM KẾT -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@color/colorIvory"
                 android:orientation="vertical"
                 android:paddingHorizontal="32dp"
                 android:paddingVertical="80dp">

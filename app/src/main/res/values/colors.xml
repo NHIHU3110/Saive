@@ -75,6 +75,17 @@
 
     <color name="colorAccentBrand">@color/colorMaroon</color>
 
+    <!-- Address Card Adaptive -->
+    <color name="colorAddressCardBg">@color/white</color>
+    <color name="colorAddressCardText">@color/colorNoirBlack</color>
+    <color name="colorAddressCardPhone">@color/colorSand</color>
+
+    <!-- Input Field Adaptive -->
+    <color name="colorInputText">@color/colorNoirBlack</color>
+    <color name="colorInputHint">@color/colorGrey</color>
+    <color name="colorInputBoxBg">@android:color/transparent</color>
+    <color name="colorInputStroke">@color/colorLinen</color>
+
     <!-- Contact Card Adaptive Colors -->
     <color name="colorContactCardBg">@color/colorMaroon</color>
     <color name="colorContactCardContent">@color/colorAlwaysWhite</color>

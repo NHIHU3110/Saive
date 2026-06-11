@@ -64,7 +64,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/white"
+            android:background="@color/colorIvory"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:padding="16dp">

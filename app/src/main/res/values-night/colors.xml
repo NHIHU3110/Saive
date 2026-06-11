@@ -1,56 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Backgrounds → Warm, "Quiet Luxury" Lighter Dark (Espresso/Mushroom) -->
-    <color name="colorCotton">#363634</color>
-    <color name="colorIvory">#3E3E3C</color>
-    <color name="colorBeigeBg">#3E3E3C</color>
-    <color name="colorGrayBg">#464644</color>
-    <color name="colorSandLight">#4F4F4D</color>
-    <color name="colorUnreadBg">#4F4F4D</color>
-    <color name="colorReadBg">#3E3E3C</color>
-    <color name="colorCategoryBg">#464644</color>
-    <color name="colorCategoryBorder">#5A5A58</color>
+    <!-- Backgrounds → Warm Dark (Quiet Luxury) -->
+    <color name="colorCotton">#121212</color> <!-- Main Background -->
+    <color name="colorIvory">#1E1E1C</color> <!-- Card/Section Surface -->
+    <color name="colorBeigeBg">#121212</color>
+    <color name="colorGrayBg">#1E1E1C</color>
+    <color name="colorSandLight">#2A2A28</color>
+    <color name="colorUnreadBg">#2A2A28</color>
+    <color name="colorReadBg">#121212</color>
+    <color name="colorCategoryBg">#1E1E1C</color>
+    <color name="colorCategoryBorder">#333331</color>
 
-    <!-- Dividers, borders → Subtle Gray -->
+    <!-- Dividers & Borders -->
+    <color name="colorLightGray">#333333</color>
+    <color name="colorLinen">#4A4A48</color>
 
-    <!-- Text → Light Cream/Sand -->
-    <color name="colorNoirBlack">#F5F5F0</color>
+    <!-- Text → Light Cream/Sand (Optimized for readability) -->
+    <color name="colorNoirBlack">#F5F5F0</color> <!-- Primary Text -->
     <color name="colorNoir">#F5F5F0</color>
-    <color name="colorGrayText">#A89B85</color>
+    <color name="colorGrayText">#A89B85</color> <!-- Secondary Text -->
     <color name="colorGrey">#888888</color>
     <color name="colorSand">#D4C9B8</color>
 
-    <color name="colorFlashSaleContent">@color/colorAlwaysBlack</color>
-    <color name="colorFlashSaleContentSecondary">@color/colorAlwaysBlack</color>
-
-    <color name="white">#F5F5F0</color>
+    <!-- Base Colors -->
+    <color name="white">#FFFFFF</color> <!-- Keep as White for icons/text on dark overlays -->
     <color name="colorAlwaysWhite">#FFFFFF</color>
     <color name="colorAlwaysBlack">#000000</color>
 
-    <!-- Table Colors for Dark Mode -->
-    <color name="colorSizeTableHead">#4A4A48</color>
-    <color name="colorSizeTableRowAlt">#2C2C2A</color>
-
-    <!-- Brand Colors for Dark Mode (Redirected to Sand/Beige for Quiet Luxury) -->
-    <color name="colorMaroon">#A89B85</color> <!-- Sand for accents -->
+    <!-- Adaptive Accents (Changes from Maroon to Sand) -->
+    <color name="colorMaroon">#A89B85</color>
     <color name="colorAccentRed">#A89B85</color>
-    <color name="colorMaroonBrand">#A89B85</color>
-    <color name="colorCherryRed">#A89B85</color>
-    <color name="colorCollectionMaroon">#A89B85</color>
-    <color name="colorCollectionMaroonSand">#1A1A1A</color>
+    <color name="colorAccentBrand">#D4C9B8</color>
 
-    <!-- Full Screen Backgrounds (Dark mode surfaces) -->
-    <color name="colorAuthBg">#363634</color>
+    <!-- Input Field Adaptive -->
+    <color name="colorInputText">#FFFFFF</color>
+    <color name="colorInputHint">#A89B85</color>
+    <color name="colorInputBoxBg">#1E1E1C</color>
+    <color name="colorInputStroke">#4A4A48</color>
 
-    <!-- Adaptive Theme Colors (Quiet Luxury Dark: Beige & Black) -->
-    <color name="colorHeaderBg">#EDEBDD</color> <!-- Beige Header in Dark Mode -->
-    <color name="colorHeaderContent">#1A1A1A</color> <!-- Black Text in Dark Mode -->
-    <color name="colorButtonBg">#EDEBDD</color>
-    <color name="colorButtonText">#1A1A1A</color>
-    <color name="colorAccentBrand">#A89B85</color> <!-- Sand Accent -->
+    <!-- Content on Sand/Beige adaptive backgrounds -->
+    <color name="colorOnMaroon">#1A1A1A</color>
+    <color name="colorOnMaroonSecondary">#801A1A1A</color>
 
-    <!-- Contact Card Adaptive Colors -->
-    <color name="colorContactCardBg">#EDEBDD</color>
+    <!-- Flash Sale Content (High contrast for light container in Dark Mode) -->
+    <color name="colorFlashSaleContent">#000000</color> <!-- Title "Limited Time Drops" -->
+    <color name="colorFlashSaleContentSecondary">#810100</color> <!-- Label "FLASH SALE" -->
+
+    <!-- Button Colors - Specifically kept Maroon as requested -->
+    <color name="colorButtonBg">#810100</color>
+    <color name="colorButtonText">#FFFFFF</color>
+
+    <!-- Header Adaptive -->
+    <color name="colorHeaderBg">#A89B85</color>
+    <color name="colorHeaderContent">#1A1A1A</color>
+
+    <!-- Address Card Adaptive (Dark Mode -> Black text on light card) -->
+    <color name="colorAddressCardBg">#D4C9B8</color> <!-- Light Sand/Beige for contrast -->
+    <color name="colorAddressCardText">#000000</color> <!-- Black as requested -->
+    <color name="colorAddressCardPhone">#444444</color>
+
+    <!-- Contact Card Adaptive -->
+    <color name="colorContactCardBg">#D4C9B8</color>
     <color name="colorContactCardContent">#1A1A1A</color>
-    <color name="colorContactCardLabel">#1A1A1A</color>
+    <color name="colorContactCardLabel">#444444</color>
 </resources>
