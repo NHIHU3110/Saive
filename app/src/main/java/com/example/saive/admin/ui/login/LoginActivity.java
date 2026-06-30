@@ -16,6 +16,7 @@ public class LoginActivity extends AppCompatActivity {
     private AdminActivityLoginBinding binding;
     private LoginViewModel viewModel;
     private int logoClickCount = 0;
+    private long lastClickTime = 0;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -45,9 +46,17 @@ public class LoginActivity extends AppCompatActivity {
         setupObservers();
 
         binding.ivLogo.setOnClickListener(v -> {
-            logoClickCount++;
+            long currentTime = System.currentTimeMillis();
+            if (currentTime - lastClickTime < 500) {
+                logoClickCount++;
+            } else {
+                logoClickCount = 1;
+            }
+            lastClickTime = currentTime;
+
             if (logoClickCount == 5) {
                 logoClickCount = 0;
+                Toast.makeText(this, "Switched to Customer App", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(LoginActivity.this, com.example.saive.ui.LoginActivity.class);
                 startActivity(intent);
                 finish();

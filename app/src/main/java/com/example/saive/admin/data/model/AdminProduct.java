@@ -173,9 +173,9 @@ public class AdminProduct {
         int total = 0;
         for (java.util.Map<String, Integer> colorMap : variantsStock.values()) {
             if (colorMap != null) {
-                for (Integer qty : colorMap.values()) {
-                    if (qty != null) {
-                        total += qty;
+                for (Object qtyObj : colorMap.values()) {
+                    if (qtyObj instanceof Number) {
+                        total += ((Number) qtyObj).intValue();
                     }
                 }
             }

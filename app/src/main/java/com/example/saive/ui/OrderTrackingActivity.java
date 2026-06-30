@@ -86,23 +86,26 @@ public class OrderTrackingActivity extends BaseActivity {
                         tvName.setText(item.getName());
                         tvPrice.setText(item.getPrice());
                         String attributes;
-                        if (item.getColor() != null && !item.getColor().isEmpty()) {
+                        if (item.getColor() != null && !item.getColor().isEmpty() && !item.getColor().equals("—") && !item.getColor().equals("Default")) {
                             attributes = getString(R.string.format_order_attributes_with_color, item.getSize(), item.getColor(), item.getQuantity());
                         } else {
                             attributes = getString(R.string.format_order_attributes, item.getSize(), item.getQuantity());
                         }
                         
                         tvAttributes.setText(attributes);
-                        com.example.saive.utils.ImageUtils.setSafeImage(ivItem, item.getImageResId());
+                        com.example.saive.utils.ImageUtils.setSafeImage(ivItem, item.getImageUrl(), item.getImageResId());
 
                         String status = order.getStatus() != null ? order.getStatus().toLowerCase(java.util.Locale.ROOT) : "";
                         if (status.equals("delivered") || status.equals("completed")) {
-                            itemView.setOnClickListener(v -> {
-                                Intent intent = new Intent(OrderTrackingActivity.this, LeaveReviewActivity.class);
-                                intent.putExtra("productName", item.getName());
-                                intent.putExtra("orderPrice", item.getPrice());
-                                startActivity(intent);
-                            });
+                            if (!order.isReviewed()) {
+                                itemView.setOnClickListener(v -> {
+                                    Intent intent = new Intent(OrderTrackingActivity.this, LeaveReviewActivity.class);
+                                    intent.putExtra("productName", item.getName());
+                                    intent.putExtra("orderPrice", item.getPrice());
+                                    intent.putExtra("orderId", order.getOrderId());
+                                    startActivity(intent);
+                                });
+                            }
                         }
 
                         if (i > 0) {

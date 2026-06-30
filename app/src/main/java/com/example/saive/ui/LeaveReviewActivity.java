@@ -31,6 +31,7 @@ public class LeaveReviewActivity extends BaseActivity {
 
     private String productName;
     private String orderPrice;
+    private String orderId;
     private RecyclerView rvSelectedPhotos;
     private SelectedPhotoAdapter photoAdapter;
     private List<Uri> selectedPhotoUris = new ArrayList<>();
@@ -57,6 +58,7 @@ public class LeaveReviewActivity extends BaseActivity {
 
         productName = getIntent().getStringExtra("productName");
         orderPrice = getIntent().getStringExtra("orderPrice");
+        orderId = getIntent().getStringExtra("orderId");
 
         setupUI();
         setupPhotoRecyclerView();
@@ -121,12 +123,25 @@ public class LeaveReviewActivity extends BaseActivity {
                 imageUrls.add(uri.toString());
             }
 
-            Review newReview = new Review(productName, "You", rating, comment, currentDate, imageUrls);
-            
-            DataManager.getInstance(this).addReview(newReview);
+            String reviewerName = com.example.saive.utils.UserSession.getInstance().getDisplayName();
+            if (reviewerName == null || reviewerName.isEmpty()) reviewerName = "User";
 
-            ToastUtils.showCustomToast(this, getString(R.string.toast_review_success));
-            finish();
+            Review newReview = new Review(productName, reviewerName, rating, comment, currentDate, imageUrls);
+            
+            findViewById(R.id.btnSubmit).setEnabled(false); // Prevent multiple clicks
+
+            com.example.saive.utils.DataManager.getInstance(this).submitReviewToFirebase(newReview, () -> {
+                if (orderId != null && !orderId.isEmpty()) {
+                    String safeOrderId = orderId.replace("#", "");
+                    com.google.firebase.database.FirebaseDatabase.getInstance("https://saive-403f7-default-rtdb.asia-southeast1.firebasedatabase.app")
+                            .getReference("Orders").child(safeOrderId).child("IsReviewed").setValue(true);
+                }
+                ToastUtils.showCustomToast(LeaveReviewActivity.this, getString(R.string.toast_review_success));
+                finish();
+            }, () -> {
+                findViewById(R.id.btnSubmit).setEnabled(true);
+                ToastUtils.showCustomToast(LeaveReviewActivity.this, "Failed to submit review");
+            });
         });
 
         findViewById(R.id.btnAddPhoto).setOnClickListener(v -> {

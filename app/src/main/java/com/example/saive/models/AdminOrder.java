@@ -14,6 +14,7 @@ public class AdminOrder implements java.io.Serializable {
     private int quantity;
     private String paymentMethod;
     private String shippingAddress;
+    private boolean isReviewed;
     private java.util.List<OrderItem> items = new java.util.ArrayList<>();
 
     public AdminOrder(String orderId, String customerName, String itemsSummary, String totalAmount, String status, String timeAgo) {
@@ -42,7 +43,7 @@ public class AdminOrder implements java.io.Serializable {
         this.productImageResId = productImageResId;
         this.imageUrl = imageUrl;
         this.size = size != null ? size : "L";
-        this.color = color != null ? color : "Default";
+        this.color = color != null ? color : "—";
         this.quantity = Math.max(1, quantity);
         this.paymentMethod = paymentMethod != null ? paymentMethod : "COD";
         this.shippingAddress = shippingAddress != null ? shippingAddress : "";
@@ -71,7 +72,7 @@ public class AdminOrder implements java.io.Serializable {
     public void setTimeAgo(String timeAgo) { this.timeAgo = timeAgo; }
     public String getSize() { return size != null ? size : "M"; }
     public void setSize(String size) { this.size = size; }
-    public String getColor() { return color != null ? color : "Default"; }
+    public String getColor() { return color != null ? color : "—"; }
     public void setColor(String color) { this.color = color; }
     public int getQuantity() { return Math.max(1, quantity); }
     public void setQuantity(int quantity) { this.quantity = quantity; }
@@ -81,6 +82,8 @@ public class AdminOrder implements java.io.Serializable {
     public void setShippingAddress(String shippingAddress) { this.shippingAddress = shippingAddress; }
     public int getProductImageResId() { return productImageResId; }
     public void setProductImageResId(int productImageResId) { this.productImageResId = productImageResId; }
+    public boolean isReviewed() { return isReviewed; }
+    public void setReviewed(boolean reviewed) { isReviewed = reviewed; }
 
     public static String normalizeStatus(String serverStatus) {
         if (serverStatus == null) return "pending";

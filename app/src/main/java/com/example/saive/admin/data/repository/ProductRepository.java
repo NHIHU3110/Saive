@@ -55,6 +55,17 @@ public class ProductRepository {
         });
     }
 
+    public void addProduct(Map<String, Object> productData, MutableLiveData<String> resultLiveData, MutableLiveData<String> errorLiveData) {
+        String newId = FirebaseConnector.getDatabase().getReference(NODE_PRODUCTS).push().getKey();
+        if (newId != null) {
+            FirebaseConnector.getDatabase().getReference(NODE_PRODUCTS).child(newId).setValue(productData)
+                .addOnSuccessListener(aVoid -> resultLiveData.setValue(newId))
+                .addOnFailureListener(e -> errorLiveData.setValue(e.getMessage()));
+        } else {
+            errorLiveData.setValue("Error generating ID");
+        }
+    }
+
     public void updateProduct(String id, Map<String, Object> updates, MutableLiveData<AdminProduct> resultLiveData, MutableLiveData<String> errorLiveData) {
         FirebaseConnector.updateFields(NODE_PRODUCTS, id, updates,
             () -> getProductById(id, resultLiveData, errorLiveData),

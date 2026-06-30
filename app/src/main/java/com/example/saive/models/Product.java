@@ -124,57 +124,75 @@ public class Product implements Serializable {
     public void setVariantsStock(java.util.Map<String, java.util.Map<String, Integer>> variantsStock) { this.variantsStock = variantsStock; }
 
     public int getStockForVariant(String size, String color) {
-        if (variantsStock == null) return stockQuantity;
+        if (variantsStock == null || variantsStock.isEmpty()) return stockQuantity;
         
         // If both are provided, get specific stock
         if (size != null && color != null) {
-            java.util.Map<String, Integer> colorMap = variantsStock.get(size);
-            if (colorMap != null) {
-                // Try exact match first
-                if (colorMap.containsKey(color)) return colorMap.get(color);
-                
-                // Try case-insensitive match
-                for (String key : colorMap.keySet()) {
-                    if (key.equalsIgnoreCase(color)) return colorMap.get(key);
+            // Case-insensitive size lookup
+            for (java.util.Map.Entry<String, java.util.Map<String, Integer>> sizeEntry : variantsStock.entrySet()) {
+                if (sizeEntry.getKey().equalsIgnoreCase(size)) {
+                    java.util.Map<String, Integer> colorMap = sizeEntry.getValue();
+                    if (colorMap != null) {
+                        for (java.util.Map.Entry<String, Integer> colorEntry : colorMap.entrySet()) {
+                            if (colorEntry.getKey().equalsIgnoreCase(color)) {
+                                // Safely convert: Gson may deserialize integers as Double
+                                Object val = colorEntry.getValue();
+                                if (val instanceof Number) return ((Number) val).intValue();
+                                try { return Integer.parseInt(String.valueOf(val)); } catch (Exception e) { return 0; }
+                            }
+                        }
+                    }
+                    return 0; // size found but color not found
                 }
             }
-            return 0; // Variant defined but no stock for this specific color
+            return 0; // size not found
         }
         
         // If only size is provided, sum all colors for that size
         if (size != null) {
-            java.util.Map<String, Integer> colorMap = null;
-            // Case-insensitive size lookup
-            for (String key : variantsStock.keySet()) {
-                if (key.equalsIgnoreCase(size)) {
-                    colorMap = variantsStock.get(key);
-                    break;
+            for (java.util.Map.Entry<String, java.util.Map<String, Integer>> sizeEntry : variantsStock.entrySet()) {
+                if (sizeEntry.getKey().equalsIgnoreCase(size)) {
+                    java.util.Map<String, Integer> colorMap = sizeEntry.getValue();
+                    if (colorMap == null) return 0;
+                    int sum = 0;
+                    for (Object val : colorMap.values()) {
+                        if (val instanceof Number) sum += ((Number) val).intValue();
+                        else { try { sum += Integer.parseInt(String.valueOf(val)); } catch (Exception ignored) {} }
+                    }
+                    return sum;
                 }
-            }
-
-            if (colorMap != null) {
-                int sum = 0;
-                for (int s : colorMap.values()) sum += s;
-                return sum;
             }
             return 0;
         }
 
-        // NEW: If only color is provided, sum all sizes for that color
+        // If only color is provided, sum all sizes for that color
         if (color != null) {
             int sum = 0;
             for (java.util.Map<String, Integer> colorMap : variantsStock.values()) {
-                for (java.util.Map.Entry<String, Integer> entry : colorMap.entrySet()) {
-                    if (entry.getKey().equalsIgnoreCase(color)) {
-                        sum += entry.getValue();
+                if (colorMap == null) continue;
+                for (java.util.Map.Entry<String, Integer> colorEntry : colorMap.entrySet()) {
+                    if (colorEntry.getKey().equalsIgnoreCase(color)) {
+                        Object val = colorEntry.getValue();
+                        if (val instanceof Number) sum += ((Number) val).intValue();
+                        else { try { sum += Integer.parseInt(String.valueOf(val)); } catch (Exception ignored) {} }
                     }
                 }
             }
             return sum;
         }
 
-        return stockQuantity;
+        // No size/color filter: sum everything
+        int total = 0;
+        for (java.util.Map<String, Integer> colorMap : variantsStock.values()) {
+            if (colorMap == null) continue;
+            for (Object val : colorMap.values()) {
+                if (val instanceof Number) total += ((Number) val).intValue();
+                else { try { total += Integer.parseInt(String.valueOf(val)); } catch (Exception ignored) {} }
+            }
+        }
+        return total > 0 ? total : stockQuantity;
     }
+
 
     public String getSelectedSize() { return selectedSize; }
     public void setSelectedSize(String selectedSize) { this.selectedSize = selectedSize; }

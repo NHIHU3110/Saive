@@ -46,8 +46,14 @@ public class UserOrderAdapter extends RecyclerView.Adapter<UserOrderAdapter.Orde
         
         // Set action button text based on status
         String status = order.getStatus() != null ? order.getStatus().toLowerCase(java.util.Locale.ROOT) : "pending";
+        holder.btnAction.setVisibility(View.VISIBLE);
+        holder.btnAction.setEnabled(true);
         if (status.equals("completed") || status.equals("delivered")) {
-            holder.btnAction.setText(R.string.btn_leave_review);
+            if (order.isReviewed()) {
+                holder.btnAction.setVisibility(View.GONE);
+            } else {
+                holder.btnAction.setText(R.string.btn_leave_review);
+            }
         } else if (status.equals("cancelled")) {
             holder.btnAction.setText(R.string.btn_reorder);
         } else {
@@ -71,7 +77,11 @@ public class UserOrderAdapter extends RecyclerView.Adapter<UserOrderAdapter.Orde
 
                 tvName.setText(item.getName());
                 tvPrice.setText(com.example.saive.utils.PriceFormatter.formatPrice(item.getPrice()));
-                tvAttributes.setText(holder.itemView.getContext().getString(R.string.format_order_attributes, item.getSize(), item.getQuantity()));
+                if (item.getColor() != null && !item.getColor().isEmpty() && !item.getColor().equals("—") && !item.getColor().equals("Default")) {
+                    tvAttributes.setText(holder.itemView.getContext().getString(R.string.format_order_attributes_with_color, item.getSize(), item.getColor(), item.getQuantity()));
+                } else {
+                    tvAttributes.setText(holder.itemView.getContext().getString(R.string.format_order_attributes, item.getSize(), item.getQuantity()));
+                }
                 
                 // Sử dụng setSafeImage hỗ trợ cả URL và Resource ID
                 com.example.saive.utils.ImageUtils.setSafeImage(ivItem, item.getImageUrl(), item.getImageResId());

@@ -24,12 +24,12 @@ public class OrderItem implements java.io.Serializable {
     }
 
     public OrderItem(String name, String size, int quantity, String price, int imageResId) {
-        this(name, size, "Default", quantity, price, imageResId, null);
+        this(name, size, "—", quantity, price, imageResId, null);
     }
 
     public String getName() { return name != null ? name : "Product"; }
     public String getSize() { return size != null ? size : "M"; }
-    public String getColor() { return color != null ? color : "Default"; }
+    public String getColor() { return color != null ? color : "—"; }
     public int getQuantity() { return Math.max(1, quantity); }
     public String getPrice() { return price != null ? price : "0 ₫"; }
     public int getImageResId() { return imageResId; }

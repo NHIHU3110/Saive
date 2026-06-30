@@ -776,7 +776,7 @@ public class CheckoutActivity extends BaseActivity {
                 itemSize = (p.getCategory() != null && p.getCategory().toLowerCase(java.util.Locale.ROOT).contains("glasses")) ? "One Size" : "M";
             }
 
-            orderItems.add(new com.example.saive.models.OrderItem(p.getName(), itemSize, p.getSelectedColor() != null ? p.getSelectedColor() : "Default", p.getQuantity(), p.getPrice(), p.getImageResId(), p.getImageUrl()));
+            orderItems.add(new com.example.saive.models.OrderItem(p.getName(), itemSize, p.getSelectedColor() != null ? p.getSelectedColor() : "—", p.getQuantity(), p.getPrice(), p.getImageResId(), p.getImageUrl()));
             summaryBuilder.append(p.getName());
             if (i < cartItems.size() - 1) summaryBuilder.append(", ");
         }
@@ -797,7 +797,7 @@ public class CheckoutActivity extends BaseActivity {
         String itemSizeLegacy = (selectedSize != null && !selectedSize.isEmpty()) ? selectedSize : cartItems.get(0).getSelectedSize();
         if (itemSizeLegacy == null || itemSizeLegacy.isEmpty()) itemSizeLegacy = "M";
         String itemColorLegacy = cartItems.get(0).getSelectedColor();
-        if (itemColorLegacy == null || itemColorLegacy.isEmpty()) itemColorLegacy = "Default";
+        if (itemColorLegacy == null || itemColorLegacy.isEmpty()) itemColorLegacy = "—";
 
         com.example.saive.models.AdminOrder newOrder = new com.example.saive.models.AdminOrder(
                 orderId, customerName, summaryBuilder.toString(), finalPrice, "PENDING", "Just now",
@@ -839,7 +839,15 @@ public class CheckoutActivity extends BaseActivity {
             Map<String, Object> itemMap = new HashMap<>();
             itemMap.put("ProductName", item.getName());
             itemMap.put("Quantity", item.getQuantity());
-            itemMap.put("Size", item.getSize());
+            
+            // For Web Admin (which checks SelectedSize / SelectedColor)
+            itemMap.put("SelectedSize", item.getSize());
+            itemMap.put("SelectedColor", item.getColor() != null && !item.getColor().equals("—") ? item.getColor() : "—");
+            
+            // For Android App (Gson/Firebase which checks size / color)
+            itemMap.put("size", item.getSize());
+            itemMap.put("color", item.getColor() != null && !item.getColor().equals("—") ? item.getColor() : "—");
+            
             String priceStr = item.getPrice() != null ? item.getPrice().replaceAll("[^\\d]", "") : "0";
             itemMap.put("Price", priceStr.isEmpty() ? 0.0 : Double.parseDouble(priceStr));
             itemMap.put("Image", item.getImageUrl());

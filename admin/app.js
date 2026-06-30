@@ -1439,6 +1439,7 @@ function renderOrders() {
       </tr>
     `;
   }).join('');
+  if (window.filterOrders) window.filterOrders();
 }
 
 window.viewOrder = function(id) {
@@ -1763,6 +1764,7 @@ function renderUsers() {
       </td>
     </tr>
   `}).join('');
+  if (window.filterUsers) window.filterUsers();
 }
 
 window.editUser = function(id) {
@@ -2040,6 +2042,7 @@ function renderReviews() {
       </td>
     </tr>
   `}).join('');
+  if (window.filterReviews) window.filterReviews();
 }
 
 window.approveReview = async (id) => {

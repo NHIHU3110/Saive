@@ -101,7 +101,8 @@ public class ProductEditFragment extends Fragment {
             String size = sizeEntry.getKey();
             for (Map.Entry<String, Integer> colorEntry : sizeEntry.getValue().entrySet()) {
                 String color = colorEntry.getKey();
-                int stock = colorEntry.getValue();
+                Object stockObj = colorEntry.getValue();
+                int stock = (stockObj instanceof Number) ? ((Number) stockObj).intValue() : 0;
                 addVariantRow(size, color, stock);
             }
         }
@@ -148,8 +149,10 @@ public class ProductEditFragment extends Fragment {
     private void updateTotalStock() {
         int total = 0;
         for (Map<String, Integer> colors : variantsStock.values()) {
-            for (int stock : colors.values()) {
-                total += stock;
+            for (Object stockObj : colors.values()) {
+                if (stockObj instanceof Number) {
+                    total += ((Number) stockObj).intValue();
+                }
             }
         }
         binding.etStock.setText(String.valueOf(total));
@@ -249,11 +252,23 @@ public class ProductEditFragment extends Fragment {
         if (productId != null) {
             repo.updateProduct(productId, updates, new androidx.lifecycle.MutableLiveData<>(), new androidx.lifecycle.MutableLiveData<>());
             Toast.makeText(getContext(), R.string.toast_update_success, Toast.LENGTH_SHORT).show();
+            Navigation.findNavController(requireView()).popBackStack();
         } else {
-            // Add new logic if repo supports it
-            Toast.makeText(getContext(), "Tính năng thêm mới sẽ được cập nhật", Toast.LENGTH_SHORT).show();
+            updates.put("CreatedAt", new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", java.util.Locale.getDefault()).format(new java.util.Date()));
+            updates.put("NumBuy", 0);
+            updates.put("Rating", 5.0);
+            
+            repo.addProduct(updates, new androidx.lifecycle.MutableLiveData<String>() {{
+                observe(getViewLifecycleOwner(), id -> {
+                    Toast.makeText(getContext(), "Thêm sản phẩm thành công!", Toast.LENGTH_SHORT).show();
+                    Navigation.findNavController(requireView()).popBackStack();
+                });
+            }}, new androidx.lifecycle.MutableLiveData<String>() {{
+                observe(getViewLifecycleOwner(), err -> {
+                    Toast.makeText(getContext(), "Lỗi: " + err, Toast.LENGTH_SHORT).show();
+                });
+            }});
         }
-        Navigation.findNavController(requireView()).popBackStack();
     }
 
     private void deleteProduct() {

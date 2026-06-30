@@ -76,6 +76,31 @@ public class ProductDetailFragment extends Fragment {
         }
 
         ImageUtils.setSafeImage(binding.ivProduct, product.getFirstImage(), R.drawable.model1);
+        
+        java.util.Map<String, java.util.Map<String, Integer>> variantsStock = product.getVariantsStock();
+        binding.layoutVariants.removeAllViews();
+        if (variantsStock != null && !variantsStock.isEmpty()) {
+            for (java.util.Map.Entry<String, java.util.Map<String, Integer>> sizeEntry : variantsStock.entrySet()) {
+                String size = sizeEntry.getKey();
+                for (java.util.Map.Entry<String, Integer> colorEntry : sizeEntry.getValue().entrySet()) {
+                    String color = colorEntry.getKey();
+                    Object stockObj = colorEntry.getValue();
+                    int stock = (stockObj instanceof Number) ? ((Number) stockObj).intValue() : 0;
+                    
+                    android.widget.TextView tv = new android.widget.TextView(getContext());
+                    tv.setText("• " + size + " / " + color + " (Tồn kho: " + stock + ")");
+                    tv.setPadding(0, 8, 0, 8);
+                    tv.setTextColor(getResources().getColor(R.color.colorNoirBlack, null));
+                    tv.setTextSize(14f);
+                    binding.layoutVariants.addView(tv);
+                }
+            }
+        } else {
+            android.widget.TextView tv = new android.widget.TextView(getContext());
+            tv.setText("Không có phân loại hàng");
+            tv.setTextColor(getResources().getColor(R.color.colorGrayText, null));
+            binding.layoutVariants.addView(tv);
+        }
     }
 
     private String formatPrice(double price) {

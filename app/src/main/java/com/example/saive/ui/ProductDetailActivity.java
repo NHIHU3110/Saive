@@ -56,6 +56,7 @@ public class ProductDetailActivity extends BaseActivity {
     private LottieAnimationView lottieFavorite;
     private TextView tvProductName, tvPrice, tvOriginalPrice, tvDescription, tvWardrobeAction, btnWriteReview, btnSeeMore, tvCartBadge, tvQuantity, tvQuantityBottom, tvSizeStockStatus, tvColorStockStatus;
     private View btnAddToWardrobe, sizeSelectionContainer, colorSelectionContainer, btnSizeGuide, btnRecommendation;
+    private android.widget.LinearLayout colorSwatchContainer;
     private ImageButton btnDecrease, btnIncrease, btnDecreaseBottom, btnIncreaseBottom;
     private RecyclerView rvCompleteLook, rvReviews;
     private List<View> sizeViews, colorViews;
@@ -205,27 +206,292 @@ public class ProductDetailActivity extends BaseActivity {
 
         sizeSelectionContainer = findViewById(R.id.sizeSelectionContainer);
         colorSelectionContainer = findViewById(R.id.colorSelectionContainer);
-
-        sizeViews = new ArrayList<>();
-        sizeViews.add(findViewById(R.id.sizeXS));
-        sizeViews.add(findViewById(R.id.sizeS));
-        sizeViews.add(findViewById(R.id.sizeM));
-        sizeViews.add(findViewById(R.id.sizeL));
-        sizeViews.add(findViewById(R.id.sizeXL));
-
+        colorSwatchContainer = findViewById(R.id.colorSwatchContainer);
+        // colorViews will be populated dynamically in buildColorSwatches()
         colorViews = new ArrayList<>();
-        colorViews.add(findViewById(R.id.colorBlack));
-        colorViews.add(findViewById(R.id.colorGray));
-        colorViews.add(findViewById(R.id.colorYellow));
-        colorViews.add(findViewById(R.id.colorBrown));
+        sizeViews = java.util.Arrays.asList(
+                findViewById(R.id.sizeXS),
+                findViewById(R.id.sizeS),
+                findViewById(R.id.sizeM),
+                findViewById(R.id.sizeL),
+                findViewById(R.id.sizeXL)
+        );
 
         tvSizeStockStatus = findViewById(R.id.tvSizeStockStatus);
         tvColorStockStatus = findViewById(R.id.tvColorStockStatus);
         btnRecommendation = findViewById(R.id.btnRecommendation);
     }
 
+    /**
+     * Merges variantsStock and tagColor from DataManager cache into currentProduct.
+     * These fields can be null after Java Serializable Intent round-trip.
+     * DataManager holds the most up-to-date Firebase data.
+     */
+    private void mergeStockDataFromCache() {
+        if (currentProduct == null) return;
+
+        List<Product> cached = DataManager.getInstance(this).getProducts();
+        Product match = null;
+
+        // 1. Match by productId first (most accurate)
+        if (currentProduct.getProductId() != null) {
+            for (Product p : cached) {
+                if (currentProduct.getProductId().equals(p.getProductId())) {
+                    match = p;
+                    break;
+                }
+            }
+        }
+
+        // 2. Fallback: match by name
+        if (match == null && currentProduct.getName() != null) {
+            for (Product p : cached) {
+                if (currentProduct.getName().equalsIgnoreCase(p.getName())) {
+                    match = p;
+                    break;
+                }
+            }
+        }
+
+        if (match == null) return;
+
+        // Copy variantsStock if missing or empty
+        if ((currentProduct.getVariantsStock() == null || currentProduct.getVariantsStock().isEmpty())
+                && match.getVariantsStock() != null && !match.getVariantsStock().isEmpty()) {
+            currentProduct.setVariantsStock(match.getVariantsStock());
+        }
+
+        // Copy tagColor if missing
+        if ((currentProduct.getTagColor() == null || currentProduct.getTagColor().isEmpty())
+                && match.getTagColor() != null && !match.getTagColor().isEmpty()) {
+            currentProduct.setTagColor(match.getTagColor());
+        }
+
+        // Copy stockQuantity if zero
+        if (currentProduct.getStockQuantity() == 0 && match.getStockQuantity() > 0) {
+            currentProduct.setStockQuantity(match.getStockQuantity());
+        }
+
+        // Copy tagType/tagStyle/tagTypeGroup if missing
+        if (currentProduct.getTagTypeGroup() == null && match.getTagTypeGroup() != null) {
+            currentProduct.setTagTypeGroup(match.getTagTypeGroup());
+        }
+        if (currentProduct.getTagStyle() == null && match.getTagStyle() != null) {
+            currentProduct.setTagStyle(match.getTagStyle());
+        }
+        if (currentProduct.getTagType() == null && match.getTagType() != null) {
+            currentProduct.setTagType(match.getTagType());
+        }
+    }
+
+    /** Map color names (lowercase) to hex color strings. */
+    private String colorNameToHex(String colorName) {
+        if (colorName == null) return "#9E9E9E";
+        String normalized = colorName.toLowerCase(java.util.Locale.ROOT).trim();
+        // Handle potential snake_case or spaces
+        normalized = normalized.replace("_", "").replace(" ", "");
+
+        switch (normalized) {
+            // English colors
+            case "black":        
+            case "đen":          
+            case "den":          return "#212121";
+            
+            case "white":        
+            case "trắng":        
+            case "trang":        return "#F5F5F5";
+            
+            case "gray":
+            case "grey":         
+            case "xám":          
+            case "xam":          return "#9E9E9E";
+            
+            case "lightgray":
+            case "lightgrey":    return "#E0E0E0";
+            case "darkgray":
+            case "darkgrey":     return "#616161";
+            case "silver":       return "#C0C0C0";
+            
+            case "red":          
+            case "đỏ":           
+            case "do":           return "#E53935";
+            case "darkred":
+            case "maroon":       return "#800000";
+            
+            case "pink":         
+            case "hồng":         
+            case "hong":         return "#F06292";
+            case "lightpink":    return "#F8BBD0";
+            case "hotpink":      return "#FF69B4";
+            
+            case "blue":         
+            case "xanhdương":    
+            case "xanhduong":    
+            case "xanhda":       return "#1E88E5";
+            case "navy":
+            case "darkblue":     return "#1A237E";
+            case "lightblue":    return "#81D4FA";
+            case "cyan":         return "#00BCD4";
+            case "teal":         return "#009688";
+            
+            case "green":        
+            case "xanhlá":       
+            case "xanhla":       
+            case "xanh":         // Generic 'xanh' usually implies green or blue, default to green here
+            case "xanhlục":      return "#43A047";
+            case "lightgreen":   return "#81C784";
+            case "darkgreen":    return "#1B5E20";
+            case "olive":        return "#808000";
+            case "lime":         return "#CDDC39";
+            
+            case "yellow":       
+            case "vàng":         
+            case "vang":         return "#FDD835";
+            case "gold":         return "#FFD700";
+            case "orange":       
+            case "cam":          return "#FB8C00";
+            case "coral":        return "#FF7F50";
+            case "peach":        return "#FFDAB9";
+            
+            case "brown":        
+            case "nâu":          
+            case "nau":          return "#6D4C41";
+            case "beige":        return "#F5F5DC";
+            case "cream":        
+            case "kem":          return "#FFFDD0";
+            case "khaki":        return "#F0E68C";
+            case "tan":          return "#D2B48C";
+            
+            case "purple":       
+            case "tím":          
+            case "tim":          return "#8E24AA";
+            case "lavender":     return "#E6E6FA";
+            case "magenta":      return "#FF00FF";
+            case "violet":       return "#EE82EE";
+            
+            default:             
+                // Check if it's already a valid hex string
+                if (normalized.startsWith("#") && (normalized.length() == 7 || normalized.length() == 9)) {
+                    return normalized;
+                }
+                return "#9E9E9E"; // Default fallback
+        }
+    }
+
+    /**
+     * Builds color swatches dynamically based on the product's variantsStock keys.
+     * Each color in the Stock node gets one circular swatch. Unknown colors get a gray circle.
+     */
+    private void buildColorSwatches(boolean isPerfume) {
+        if (colorSwatchContainer == null) return;
+
+        // Remove old swatches but keep tvColorStockStatus (last child)
+        int keepCount = (tvColorStockStatus != null) ? 1 : 0;
+        int childCount = colorSwatchContainer.getChildCount();
+        for (int i = childCount - 1 - keepCount; i >= 0; i--) {
+            colorSwatchContainer.removeViewAt(i);
+        }
+        colorViews.clear();
+
+        // Collect unique colors from variantsStock
+        List<String> stockColors = new ArrayList<>();
+        if (currentProduct.getVariantsStock() != null) {
+            for (java.util.Map<String, Integer> colorMap : currentProduct.getVariantsStock().values()) {
+                if (colorMap == null) continue;
+                for (String color : colorMap.keySet()) {
+                    boolean found = false;
+                    for (String sc : stockColors) {
+                        if (sc.equalsIgnoreCase(color)) { found = true; break; }
+                    }
+                    if (!found) stockColors.add(color.toLowerCase(java.util.Locale.ROOT));
+                }
+            }
+        }
+
+        if (stockColors.isEmpty()) {
+            // Hide the whole color section if no color variants defined
+            if (colorSelectionContainer != null) colorSelectionContainer.setVisibility(View.GONE);
+            return;
+        }
+
+        float density = getResources().getDisplayMetrics().density;
+        int sizePx  = (int)(36 * density);  // swatch size in px
+        int marginPx = (int)(12 * density); // spacing between swatches
+        int dp6 = (int)(6 * density);       // border radius for the foreground drawable
+
+        for (String colorName : stockColors) {
+            // Create the color swatch View
+            View swatch = new View(this);
+            android.widget.LinearLayout.LayoutParams lp =
+                    new android.widget.LinearLayout.LayoutParams(sizePx, sizePx);
+            lp.setMarginEnd(marginPx);
+            swatch.setLayoutParams(lp);
+
+            // Background: solid circle using GradientDrawable
+            android.graphics.drawable.GradientDrawable bg = new android.graphics.drawable.GradientDrawable();
+            bg.setShape(android.graphics.drawable.GradientDrawable.OVAL);
+            try {
+                bg.setColor(android.graphics.Color.parseColor(colorNameToHex(colorName)));
+            } catch (Exception e) {
+                bg.setColor(android.graphics.Color.GRAY);
+            }
+            swatch.setBackground(bg);
+
+            // White border for light colors (white, cream, beige, light gray)
+            String hex = colorNameToHex(colorName);
+            if (hex.equalsIgnoreCase("#F5F5F5") || hex.equalsIgnoreCase("#E0E0E0") 
+                || hex.equalsIgnoreCase("#F5F5DC") || hex.equalsIgnoreCase("#FFFDD0")) {
+                bg.setStroke((int)(1.5f * density), android.graphics.Color.parseColor("#CCCCCC"));
+            }
+
+            swatch.setTag(colorName);
+            swatch.setClickable(true);
+            swatch.setFocusable(true);
+
+            // Foreground: selection indicator (ring when selected)
+            swatch.setForeground(androidx.core.content.ContextCompat.getDrawable(this, R.drawable.bg_color_square));
+
+            // Check stock availability
+            int totalStock = currentProduct.getStockForVariant(null, colorName);
+            swatch.setAlpha(totalStock > 0 ? 1.0f : 0.3f);
+
+            // Insert BEFORE tvColorStockStatus
+            int insertIdx = (tvColorStockStatus != null)
+                    ? colorSwatchContainer.indexOfChild(tvColorStockStatus)
+                    : colorSwatchContainer.getChildCount();
+            colorSwatchContainer.addView(swatch, insertIdx);
+            colorViews.add(swatch);
+
+            // Click listener
+            swatch.setOnClickListener(v -> {
+                // Deselect all
+                for (View cv : colorViews) {
+                    cv.setSelected(false);
+                    cv.setScaleX(1.0f);
+                    cv.setScaleY(1.0f);
+                }
+                // Select this
+                v.setSelected(true);
+                v.setScaleX(1.15f);
+                v.setScaleY(1.15f);
+
+                String color = v.getTag().toString();
+                currentProduct.setSelectedColor(color);
+                updateStockStatus(color, false);
+                refreshSizeOptionsAvailability(color);
+                updateWardrobeStatus();
+            });
+        }
+
+        // Make sure color section is visible
+        if (colorSelectionContainer != null && !isPerfume) {
+            colorSelectionContainer.setVisibility(View.VISIBLE);
+        }
+    }
+
     private void setupData() {
         currentProduct = (Product) getIntent().getSerializableExtra("PRODUCT");
+
         if (currentProduct == null) {
             // Check lowercase version if uppercase fails
             currentProduct = (Product) getIntent().getSerializableExtra("product");
@@ -235,10 +501,17 @@ public class ProductDetailActivity extends BaseActivity {
             // Fallback mock if no product passed
             currentProduct = new Product("Amor Mystique", "1.200.000 ₫", R.drawable.model1, "Perfume");
         }
-        
+
+        // ── Merge fresh stock/tag data from DataManager ──────────────────────────────
+        // variantsStock and tagColor can be lost/null after Java Serializable round-trip
+        // through Intent. DataManager always has the freshest Firebase data.
+        mergeStockDataFromCache();
+        // ─────────────────────────────────────────────────────────────────────────────
+
         // Reset selections when opening detail to force user to choose
         currentProduct.setSelectedSize(null);
         currentProduct.setSelectedColor(null);
+
         
         tvProductName.setText(currentProduct.getName());
         tvPrice.setText(PriceFormatter.formatPrice(currentProduct.getPrice()));
@@ -275,7 +548,7 @@ public class ProductDetailActivity extends BaseActivity {
                     int totalSizeStock = currentProduct.getStockForVariant(size, null);
                     
                     // Dim size if completely out of stock across all colors
-                    if (totalSizeStock < 5) {
+                    if (totalSizeStock <= 0) {
                         v.setAlpha(0.3f);
                     } else {
                         v.setAlpha(1.0f);
@@ -286,64 +559,8 @@ public class ProductDetailActivity extends BaseActivity {
         if (btnSizeGuide != null) {
             btnSizeGuide.setVisibility((isGlasses || isPerfume) ? View.GONE : View.VISIBLE);
         }
-        if (colorSelectionContainer != null) {
-            colorSelectionContainer.setVisibility(isPerfume ? View.GONE : View.VISIBLE);
-        }
+        buildColorSwatches(isPerfume);
 
-        // Dynamically show/hide color options based on tagColor or variantsStock keys
-        List<String> availableColors = currentProduct.getTagColor();
-        if (availableColors == null) availableColors = new ArrayList<>();
-        
-        // Also check keys in variantsStock to ensure all stock colors are included
-        if (currentProduct.getVariantsStock() != null) {
-            for (java.util.Map<String, Integer> colorMap : currentProduct.getVariantsStock().values()) {
-                if (colorMap != null) {
-                    for (String color : colorMap.keySet()) {
-                        boolean alreadyIn = false;
-                        for (String ac : availableColors) {
-                            if (ac.equalsIgnoreCase(color)) {
-                                alreadyIn = true;
-                                break;
-                            }
-                        }
-                        if (!alreadyIn) availableColors.add(color);
-                    }
-                }
-            }
-        }
-
-        if (colorSelectionContainer != null) {
-            colorSelectionContainer.setVisibility(isPerfume ? View.GONE : View.VISIBLE);
-            
-            // Initial availability check (sum of all sizes for each color)
-            for (View v : colorViews) {
-                if (v != null && v.getTag() != null) {
-                    String colorTag = v.getTag().toString();
-                    
-                    // 1. Tag Check: Is it tagged in Firestore?
-                    boolean inTags = false;
-                    for (String ac : availableColors) {
-                        if (ac.equalsIgnoreCase(colorTag)) {
-                            inTags = true;
-                            break;
-                        }
-                    }
-                    
-                    // 2. Stock Check: Is there ANY stock for this color across all sizes?
-                    int totalColorStock = currentProduct.getStockForVariant(null, colorTag);
-                    
-                    v.setVisibility(View.VISIBLE);
-                    
-                    if (!inTags) {
-                        v.setAlpha(0.5f); // Not official color for this product
-                    } else if (totalColorStock < 5) {
-                        v.setAlpha(0.2f); // Official but completely out of stock across all sizes
-                    } else {
-                        v.setAlpha(1.0f); // Official and available in at least one size
-                    }
-                }
-            }
-        }
 
         // Show "Shop The Look" button for all wearable product types
         // Only hide for perfume/fragrance which can't form a visual outfit
@@ -423,11 +640,7 @@ public class ProductDetailActivity extends BaseActivity {
             btnWriteReview.setVisibility(View.GONE);
         }
 
-        // Nếu không có review nào, thêm dữ liệu mẫu (cho sản phẩm cụ thể này)
-        if (reviewList.isEmpty()) {
-            reviewList.add(new Review(currentProductName, "Nhi Huynh", 5.0f, "Chất liệu tuyệt vời, mặc rất thoải mái và sang trọng.", "24 Oct 2023", java.util.Arrays.asList("res://drawable/model1")));
-            reviewList.add(new Review(currentProductName, "Alex Dang", 4.5f, "Phom dáng đẹp, tuy nhiên màu sắc thực tế hơi đậm hơn ảnh một chút.", "15 Oct 2023", null));
-        }
+        // Nếu không có review nào thì danh sách sẽ trống
 
         reviewAdapter = new ReviewAdapter(reviewList);
         rvReviews.setLayoutManager(new LinearLayoutManager(this));
@@ -651,29 +864,24 @@ public class ProductDetailActivity extends BaseActivity {
     }
 
     private void refreshColorOptionsAvailability(String selectedSize) {
-        if (currentProduct.getVariantsStock() == null) return;
-        
         for (View v : colorViews) {
             if (v != null && v.getTag() != null) {
                 String colorTag = v.getTag().toString();
                 int stock = currentProduct.getStockForVariant(selectedSize, colorTag);
-                
-                // Dim color buttons if stock for THIS size is below 5
-                v.setAlpha(stock >= 5 ? 1.0f : 0.3f);
+                // Dim if this specific size+color combination is out of stock
+                v.setAlpha(stock > 0 ? 1.0f : 0.3f);
             }
         }
     }
 
     private void refreshSizeOptionsAvailability(String selectedColor) {
-        if (currentProduct.getVariantsStock() == null) return;
-
         for (View v : sizeViews) {
             if (v instanceof TextView) {
                 String size = ((TextView) v).getText().toString();
                 int stock = currentProduct.getStockForVariant(size, selectedColor);
 
-                // Dim size buttons if stock for THIS color is below 5
-                v.setAlpha(stock >= 5 ? 1.0f : 0.3f);
+                // Dim size buttons if stock for THIS color is zero
+                v.setAlpha(stock > 0 ? 1.0f : 0.3f);
             }
         }
     }
@@ -698,23 +906,18 @@ public class ProductDetailActivity extends BaseActivity {
         TextView targetTv = isSize ? tvSizeStockStatus : tvColorStockStatus;
         if (targetTv == null) return;
         
-        if (stock < 5) {
+        if (stock <= 0) {
             targetTv.setText(R.string.inventory_out_of_stock);
             targetTv.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark));
             targetTv.setVisibility(View.VISIBLE);
-        } else if (stock < 50) {
-            String status;
-            if (bothSelected) {
-                // Show exact stock from Admin database when specific variant is picked
-                status = "Chỉ còn " + stock + " sản phẩm";
-            } else {
-                status = getString(R.string.inventory_low_stock) + " (" + stock + ")";
-            }
+        } else if (stock < 20) {
+            // Low stock warning — always show this regardless of selection
+            String status = "Chỉ còn " + stock + " sản phẩm";
             targetTv.setText(status);
             targetTv.setTextColor(ContextCompat.getColor(this, R.color.colorMaroon));
             targetTv.setVisibility(View.VISIBLE);
         } else {
-            // Even if stock is high, show it if both are selected to confirm availability from database
+            // Stock is fine: only show confirmation text when BOTH size & color selected
             if (bothSelected) {
                 targetTv.setText("Còn hàng (" + stock + ")");
                 targetTv.setTextColor(ContextCompat.getColor(this, android.R.color.holo_green_dark));
@@ -723,6 +926,7 @@ public class ProductDetailActivity extends BaseActivity {
                 targetTv.setVisibility(View.GONE);
             }
         }
+
     }
 
     private void updateWardrobeStatus() {

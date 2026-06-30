@@ -150,25 +150,80 @@ public class DataManager {
                         Product p = new Product(name, String.valueOf(child.child("Price").getValue()), 0, child.child("CategoryId").getValue(String.class));
                         p.setProductId(child.getKey());
                         p.setDescription(child.child("Description").getValue(String.class));
+
+                        // Read tags
+                        String tagTypeGroup = child.child("tag_type_group").getValue(String.class);
+                        if (tagTypeGroup == null) tagTypeGroup = child.child("TagTypeGroup").getValue(String.class);
+                        if (tagTypeGroup != null) p.setTagTypeGroup(tagTypeGroup.trim().toLowerCase());
+
+                        String tagStyle = child.child("tag_style").getValue(String.class);
+                        if (tagStyle != null) p.setTagStyle(tagStyle.trim().toLowerCase());
+
+                        String tagType = child.child("tag_type").getValue(String.class);
+                        if (tagType != null) p.setTagType(tagType.trim().toLowerCase());
+
+                        java.util.List<String> tagColorList = new java.util.ArrayList<>();
+                        com.google.firebase.database.DataSnapshot tagColorSnap = child.child("tag_color");
+                        if (tagColorSnap.exists()) {
+                            for (com.google.firebase.database.DataSnapshot colorChild : tagColorSnap.getChildren()) {
+                                String c = colorChild.getValue(String.class);
+                                if (c != null) tagColorList.add(c.trim().toLowerCase());
+                            }
+                        }
+                        if (!tagColorList.isEmpty()) p.setTagColor(tagColorList);
                         
                         // Cập nhật số lượng tổng
                         Integer sq = child.child("StockQuantity").getValue(Integer.class);
                         p.setStockQuantity(sq != null ? sq : 0);
                         
-                        // Cập nhật variantsStock từ node "Stock"
-                        com.google.firebase.database.DataSnapshot stockSnap = child.child("Stock");
-                        if (stockSnap.exists()) {
-                            java.util.Map<String, java.util.Map<String, Integer>> variants = new java.util.HashMap<>();
-                            for (com.google.firebase.database.DataSnapshot sizeSnap : stockSnap.getChildren()) {
-                                java.util.Map<String, Integer> colorMap = new java.util.HashMap<>();
-                                for (com.google.firebase.database.DataSnapshot colorSnap : sizeSnap.getChildren()) {
-                                    Integer stockVal = colorSnap.getValue(Integer.class);
-                                    colorMap.put(colorSnap.getKey(), stockVal != null ? stockVal : 0);
+                        // Load variantsStock from Firebase (Variants or Stock node)
+                        java.util.Map<String, java.util.Map<String, Integer>> variantsStock = new java.util.HashMap<>();
+                        com.google.firebase.database.DataSnapshot variantsSnap = child.child("Variants");
+                        if (!variantsSnap.exists()) variantsSnap = child.child("Stock");
+                        
+                        if (variantsSnap.exists()) {
+                            for (com.google.firebase.database.DataSnapshot variantSnap : variantsSnap.getChildren()) {
+                                String key = variantSnap.getKey();
+                                if (key == null) continue;
+                                
+                                if (key.contains("_")) {
+                                    // Format: {size}_{color} (e.g., M_Black)
+                                    String[] parts = key.split("_");
+                                    if (parts.length == 2) {
+                                        String size = parts[0];
+                                        String color = parts[1];
+                                        Object s = variantSnap.child("Stock").getValue();
+                                        if (s == null) s = variantSnap.getValue();
+                                        
+                                        if (s instanceof Number) {
+                                            java.util.Map<String, Integer> colors = variantsStock.get(size);
+                                            if (colors == null) {
+                                                colors = new java.util.HashMap<>();
+                                                variantsStock.put(size, colors);
+                                            }
+                                            colors.put(color, ((Number) s).intValue());
+                                        }
+                                    }
+                                } else {
+                                    // Legacy Format: {size}/{color}
+                                    String size = key;
+                                    java.util.Map<String, Integer> colors = variantsStock.get(size);
+                                    if (colors == null) {
+                                        colors = new java.util.HashMap<>();
+                                        variantsStock.put(size, colors);
+                                    }
+                                    for (com.google.firebase.database.DataSnapshot colorSnap : variantSnap.getChildren()) {
+                                        String color = colorSnap.getKey();
+                                        Object s = colorSnap.child("Stock").getValue();
+                                        if (s == null) s = colorSnap.getValue();
+                                        if (s instanceof Number) {
+                                            colors.put(color, ((Number) s).intValue());
+                                        }
+                                    }
                                 }
-                                variants.put(sizeSnap.getKey(), colorMap);
                             }
-                            p.setVariantsStock(variants);
                         }
+                        if (!variantsStock.isEmpty()) p.setVariantsStock(variantsStock);
 
                         // Ánh xạ danh sách ảnh
                         java.util.List<String> images = new ArrayList<>();
@@ -202,13 +257,44 @@ public class DataManager {
         }
         Type type = new TypeToken<ArrayList<Product>>() {}.getType();
         cachedProducts = gson.fromJson(json, type);
+        if (cachedProducts != null) {
+            // Fix Gson bug: Map<String, Integer> gets deserialized as Map<String, Double>
+            // Normalize all stock values back to Integer
+            for (Product p : cachedProducts) {
+                normalizeVariantsStock(p);
+            }
+        }
         return cachedProducts != null ? new ArrayList<>(cachedProducts) : new ArrayList<>();
+    }
+
+    /**
+     * Gson deserializes Map<String, Integer> as Map<String, Double> because of type erasure.
+     * This method rebuilds the variantsStock map with proper Integer values.
+     */
+    private void normalizeVariantsStock(Product p) {
+        if (p == null || p.getVariantsStock() == null) return;
+        java.util.Map<String, java.util.Map<String, Integer>> normalized = new java.util.HashMap<>();
+        for (java.util.Map.Entry<String, java.util.Map<String, Integer>> sizeEntry : p.getVariantsStock().entrySet()) {
+            java.util.Map<String, Integer> colorMapNorm = new java.util.HashMap<>();
+            if (sizeEntry.getValue() != null) {
+                for (java.util.Map.Entry<String, Integer> colorEntry : sizeEntry.getValue().entrySet()) {
+                    Object val = colorEntry.getValue();
+                    int intVal = 0;
+                    if (val instanceof Number) intVal = ((Number) val).intValue();
+                    else if (val != null) { try { intVal = Integer.parseInt(val.toString()); } catch (Exception ignored) {} }
+                    colorMapNorm.put(colorEntry.getKey(), intVal);
+                }
+            }
+            normalized.put(sizeEntry.getKey(), colorMapNorm);
+        }
+        p.setVariantsStock(normalized);
     }
 
     public void saveProducts(List<Product> products) {
         cachedProducts = products != null ? new ArrayList<>(products) : null;
         prefs.edit().putString(KEY_PRODUCTS, gson.toJson(products)).apply();
     }
+
 
     // --- Orders ---
     private String getOrdersKey(String userId) {

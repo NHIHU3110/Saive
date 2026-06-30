@@ -62,6 +62,7 @@ public class MyOrdersActivity extends BaseActivity {
                     Intent intent = new Intent(MyOrdersActivity.this, LeaveReviewActivity.class);
                     intent.putExtra("productName", order.getItemsSummary());
                     intent.putExtra("orderPrice", order.getTotalAmount());
+                    intent.putExtra("orderId", order.getOrderId());
                     startActivity(intent);
                 } else {
                     Intent intent = new Intent(MyOrdersActivity.this, OrderTrackingActivity.class);
@@ -233,6 +234,18 @@ public class MyOrdersActivity extends BaseActivity {
                     AdminOrder.normalizeStatus(status),
                     createdAt
             );
+            
+            try {
+                Object isRev = child.child("IsReviewed").getValue();
+                if (isRev instanceof Boolean) {
+                    order.setReviewed((Boolean) isRev);
+                } else if (isRev instanceof String) {
+                    order.setReviewed(Boolean.parseBoolean((String) isRev));
+                }
+            } catch (Exception e) {
+                // Ignore isReviewed parsing errors
+            }
+
             // Lưu lại giá trị gốc của CreatedAt vào timeAgo để sorting chính xác hơn nếu cần
             if (createdAtObj != null) {
                 order.setTimeAgo(createdAtObj.toString());
